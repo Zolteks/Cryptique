@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class OBJ_Collectable : MonoBehaviour, IInteractable
+public class OBJ_Collectable : OBJ_Interactable
 {
     /* Variables */
-    public bool bCanInteract { get; protected set; } = true;
     [SerializeField] private GameObject m_objInteractable;
 
     /* Functions */
-    public bool Interact()
+    public override bool Interact()
     {
-        if (!bCanInteract)
+        if (!CanInteract())
             return false;
 
         // Add to inventory
@@ -24,21 +23,18 @@ public class OBJ_Collectable : MonoBehaviour, IInteractable
     public void UseOn(GameObject ObjectToInteract)
     {
         // Use item on OBJ_Interactable
-        if (!bCanInteract)
+        if (!CanInteract())
             return;
 
         if (ObjectToInteract != m_objInteractable.gameObject)
             return;
 
-        // Use item on ObjectToInteract
-        if (!ObjectToInteract.TryGetComponent(out IInteractable interactable))
-            return;
-        
-        if (!interactable.bCanInteract)
+        // Use item on objInteractable
+        if (!TryGetComponent<OBJ_Interactable>(out var objInteractable))
             return;
 
         Debug.Log("Used " + gameObject.name + " on " + ObjectToInteract.name);
-        interactable.Interact();
+        objInteractable.Interact();
         Destroy(gameObject);
     }
 }
