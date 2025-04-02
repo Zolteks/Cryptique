@@ -12,6 +12,7 @@ public class UI_DialogueTrigger : MonoBehaviour
         public string sName;
         public Image iTalkingPortrait;
         public Image iListeningPortrait;
+        public bool bTalkOnRightSide;
     }
 
     [System.Serializable]
@@ -22,7 +23,6 @@ public class UI_DialogueTrigger : MonoBehaviour
         public string sLine;
     }
 
-
     [System.Serializable]
     public class Dialogue
     {
@@ -31,8 +31,14 @@ public class UI_DialogueTrigger : MonoBehaviour
 
     public Dialogue cDialogue;
 
+    private void Start()
+    {
+        UI_DialogueManager.cInstance.HideDialogueUI();
+    }
+
     public void TriggerDialogue()
     {
+        UI_DialogueManager.cInstance.ShowDialogueUI();
         UI_DialogueManager.cInstance.StartDialogue(cDialogue);
     }   
 }
