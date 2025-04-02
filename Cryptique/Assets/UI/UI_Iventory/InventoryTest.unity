@@ -1048,7 +1048,6 @@ GameObject:
   - component: {fileID: 646455811}
   - component: {fileID: 646455810}
   - component: {fileID: 646455809}
-  - component: {fileID: 646455812}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -1140,20 +1139,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &646455812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646455807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b277b319688523748a93178f4c8bebaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gInventoryPanel: {fileID: 0}
-  bInventoryButton: {fileID: 0}
 --- !u!1 &652436022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1237,7 +1222,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 264664275}
   m_Direction: 2
   m_Value: 0.5
-  m_Size: 0.26116425
+  m_Size: 0.2527287
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

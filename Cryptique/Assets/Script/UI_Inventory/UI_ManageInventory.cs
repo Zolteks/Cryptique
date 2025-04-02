@@ -40,7 +40,7 @@ public class UI_ManageInventory : MonoBehaviour
     {
         for (int i = 0; i < lPositionGrid.Count; i++)
         {
-            print(lNameGrid[i] + " : " + lPositionGrid[i]);
+            //print(lNameGrid[i] + " : " + lPositionGrid[i]);
         }
     }
 }
