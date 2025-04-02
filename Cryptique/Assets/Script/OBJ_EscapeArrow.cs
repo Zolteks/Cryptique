@@ -11,6 +11,8 @@ public class OBJ_EscapeArrow : OBJ_Interactable
     /*[SerializeField]*/ float fEaseMaxSpeed = 1200;
     /*[SerializeField]*/ float fEaseThreshold = 60;
 
+    bool m_isBusy = false;
+
     Transform m_cameraAnchor;
 
     private void Start()
@@ -41,8 +43,9 @@ public class OBJ_EscapeArrow : OBJ_Interactable
 
     IEnumerator CoroutineEaseBetweenTiles(Vector3 start, Vector3 end, Vector3 dir)
     {
+        m_isBusy = true;
 
-        while((m_cameraAnchor.position - end).magnitude >= .1f)
+        while ((m_cameraAnchor.position - end).magnitude >= .1f)
         {
             float startRatio = Mathf.Min((m_cameraAnchor.position - start).magnitude, fEaseThreshold) / fEaseThreshold;
             float endRatio = Mathf.Min((m_cameraAnchor.position - end).magnitude, fEaseThreshold) / fEaseThreshold;
@@ -53,6 +56,8 @@ public class OBJ_EscapeArrow : OBJ_Interactable
 
             yield return new WaitForFixedUpdate();
         }
+
+        m_isBusy = false;
     }
 
     // Is that definitive? Unsure
