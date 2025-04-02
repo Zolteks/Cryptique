@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class IN_Character : MonoBehaviour
+public class IN_Character : OBJ_Interactable
 {
     [SerializeField] string m_sName;
     [SerializeField] List<Transform> m_crossingPoints;
@@ -20,9 +20,14 @@ public class IN_Character : MonoBehaviour
         {
             Debug.LogWarning("A NPC doesn't have navmesh agent");
         }
-        
     }
 
+    public override bool Interact()
+    {
+        throw new NotImplementedException();
+    }
+
+    #region Mouvements
     public void GoToNextPoint()
     {
         if (m_iPointIndex >= m_crossingPoints.Count - 1)
@@ -94,6 +99,8 @@ public class IN_Character : MonoBehaviour
     {
         GoToSpecificPoint(m_crossingPoints.Count - 1);
     }
+
+    #endregion Mouvements
 
     private void Update()
     {

@@ -741,7 +741,7 @@ PrefabInstance:
     - target: {fileID: 1118764118112817779, guid: b44dfb5a4ff81ae458da9665efbf2d2a,
         type: 3}
       propertyPath: m_crossingPoints.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1118764118112817779, guid: b44dfb5a4ff81ae458da9665efbf2d2a,
         type: 3}
@@ -758,6 +758,11 @@ PrefabInstance:
       propertyPath: 'm_crossingPoints.Array.data[2]'
       value: 
       objectReference: {fileID: 1374146748}
+    - target: {fileID: 1118764118112817779, guid: b44dfb5a4ff81ae458da9665efbf2d2a,
+        type: 3}
+      propertyPath: 'm_crossingPoints.Array.data[3]'
+      value: 
+      objectReference: {fileID: 748319651}
     - target: {fileID: 1439138987035897757, guid: b44dfb5a4ff81ae458da9665efbf2d2a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -828,6 +833,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1374146748}
+    - targetCorrespondingSourceObject: {fileID: 1439138987035897757, guid: b44dfb5a4ff81ae458da9665efbf2d2a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 748319651}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b44dfb5a4ff81ae458da9665efbf2d2a, type: 3}
 --- !u!1 &605960997
@@ -970,6 +979,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 605960997}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &748319650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748319651}
+  m_Layer: 0
+  m_Name: GameObject (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &748319651
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748319650}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.77, y: 0, z: 1.28}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 96099281}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &907791869 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7972287033334376096, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
