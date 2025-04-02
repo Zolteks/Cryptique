@@ -1,25 +1,20 @@
 using UnityEngine;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
+//  Script responsable for the Entire Game logic
 public class GameManager : MonoBehaviour
 {
-    static private GameManager m_instance;
+    /* Variables */
+    static public GameManager Instance;
 
     [SerializeField] private Transform m_camera;
     [SerializeField] private UI_DialogueManager m_dialogueManager;
+    [SerializeField] private UIManager uiManager;
 
-    private void Awake()
-    {
-        if (m_instance != null)
-        {
-            Debug.LogError("There is multiple game manager in the scene!");
-        }
-
-        m_instance = this;
-    }
-
+    /* Getters and Setters */
     static public GameManager GetInstance()
     {
-        return m_instance;
+        return Instance;
     }
 
     public Transform GetCamera()
@@ -32,10 +27,37 @@ public class GameManager : MonoBehaviour
         return m_dialogueManager;
     }
 
-    // Cette méthode est utilisée pour notifier que l'objet a été collecté
-    public void NotifyItemCollected(string itemID)
+    /* Functions */
+    private void Awake()
     {
-        // Vous pouvez ici mettre à jour l'UI, ou faire autre chose en fonction de l'objet collecté
-        Debug.Log($"Item collecté: {itemID} - Mettre à jour l'UI ou d'autres systèmes");
+        if (Instance != null)
+        {
+            Debug.LogError("There is multiple game manager in the scene!");
+        }
+
+        Instance = this;
+    }
+
+    public void NotifyChapterChanged(string chapterID)
+    {
+        Debug.Log($"Chapter Changed : {chapterID} - Update UI or other systems");
+    }
+
+
+    public void NotifyItemCollected(string itemID, int itemCount)
+    {
+        Debug.Log($"Item collected: {itemID} - Total: {itemCount} - Update UI or other systems");
+
+        if (uiManager != null)
+        {
+            uiManager.UpdateItemCount(itemCount); // Update UI like : "Tavern 0/2"
+        }
+    }
+
+
+    public void NotifyPuzzleSolved(string PuzzleID)
+    {
+        //  work to do link with the progress bar
+        Debug.Log($"Puzzle Solved : {PuzzleID} - Update UI or other systems");
     }
 }
