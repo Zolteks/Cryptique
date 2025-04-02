@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.Tables;
+
 
 public class IN_Character : OBJ_Interactable
 {
@@ -11,7 +15,11 @@ public class IN_Character : OBJ_Interactable
 
     NavMeshAgent m_navMeshAgent;
     int m_iPointIndex = 0;
-    
+
+    UI_DialogueManager.Dialogue m_dialogue;
+    [SerializeField] SharedTableData m_localizationAsset;
+    [SerializeField] DialogueCharacterList m_characterList;
+
 
 
     private void Start()
@@ -20,11 +28,47 @@ public class IN_Character : OBJ_Interactable
         {
             Debug.LogWarning("A NPC doesn't have navmesh agent");
         }
+
+        LocalizationSettings.Instance.OnSelectedLocaleChanged += (Locale) => ConstructDialogue();
+
+        ConstructDialogue();
     }
 
     public override bool Interact()
     {
-        throw new NotImplementedException();
+        UI_DialogueManager.cInstance.ShowDialogueUI();
+        UI_DialogueManager.cInstance.StartDialogue(m_dialogue);
+        //throw new NotImplementedException();
+        return true;
+    }
+
+    void ConstructDialogue()
+    {
+        if(m_characterList == null || m_localizationAsset == null)
+        {
+            Debug.LogError("A NPC has no character list nor localized dialogue table");
+        }
+
+        StringTable localizedTable = LocalizationSettings.Instance.GetStringDatabase().GetTable(m_localizationAsset.TableCollectionName, LocalizationSettings.Instance.GetSelectedLocale());
+        m_dialogue = new();
+
+        for(int i=0; i< m_characterList.talkingCharacters.Count; i++)
+        {
+            UI_DialogueManager.DialogueCharacter lineChatracter = new();
+            var characterEntry = m_characterList.talkingCharacters[i];
+            lineChatracter.bTalkOnRightSide = characterEntry.bTalkOnRightSide;
+            lineChatracter.iTalkingPortrait = characterEntry.iTalkingPortrait;
+            lineChatracter.iListeningPortrait = characterEntry.iListeningPortrait;
+            lineChatracter.sName = characterEntry.sName;
+
+
+            UI_DialogueManager.DialogueLine line = new();
+            var entry = localizedTable.GetEntry(i.ToString());
+            line.sLine = entry.GetLocalizedString();
+            line.cCharacter = lineChatracter;
+
+            m_dialogue.lDialogueLines.Add(line);
+        }
     }
 
     #region Mouvements
@@ -116,5 +160,12 @@ public class IN_Character : OBJ_Interactable
         //{
         //    GoToSpecificPoint(0);
         //}
+    }
+    private void OnMouseDown()
+    {
+        if (CanInteract())
+        {
+            Interact();
+        }
     }
 }

@@ -2,11 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Tables;
 using UnityEngine.UI;
 using static UI_DialogueTrigger;
 
 public class UI_DialogueManager : MonoBehaviour
 {
+    #region Serializable Class
+    [System.Serializable]
+    public class DialogueCharacter
+    {
+        public string sName;
+        public Image iTalkingPortrait;
+        public Image iListeningPortrait;
+        public bool bTalkOnRightSide;
+    }
+
+    [System.Serializable]
+    public class DialogueLine
+    {
+        public DialogueCharacter cCharacter;
+        [TextArea(3, 10)]
+        public string sLine;
+    }
+
+    [System.Serializable]
+    public class Dialogue
+    {
+        public List<DialogueLine> lDialogueLines = new List<DialogueLine>();
+    }
+
+    #endregion Serializable Class
+
 
     public static UI_DialogueManager cInstance;
 
@@ -16,6 +43,8 @@ public class UI_DialogueManager : MonoBehaviour
     public TextMeshProUGUI tDialogueDisplay;
 
     public GameObject dialoguePanel;
+    
+    
 
     //public Animator dialogueAnimator;
 
@@ -29,8 +58,7 @@ public class UI_DialogueManager : MonoBehaviour
 
     //public Animator aDialogueAnimation;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (cInstance == null)
             cInstance = this;
