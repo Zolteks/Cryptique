@@ -21,9 +21,11 @@ public class UI_DialogueManager : MonoBehaviour
 
     private Queue<DialogueLine> qLines;
 
-    public bool isDialogueActive = false;
+    public bool bisDialogueActive = false;
 
-    public float fTextSpeed = 0.1f;
+    public float fTextSpeed = 0.05f;
+
+    private bool bIsTypingText = false;
 
     //public Animator aDialogueAnimation;
 
@@ -52,12 +54,12 @@ public class UI_DialogueManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f); // Animation Length
         dialoguePanel.SetActive(false);
-        isDialogueActive = false;
+        bisDialogueActive = false;
     }
 
     public void StartDialogue(Dialogue c_Dialogue)
     {
-        isDialogueActive = true;
+        bisDialogueActive = true;
 
         //aDialogueAnimation.Play("show");
 
@@ -87,28 +89,36 @@ public class UI_DialogueManager : MonoBehaviour
             return;
         }
 
-        DialogueLine cCurrentLine = qLines.Dequeue();
-        tNameText.text = cCurrentLine.cCharacter.sName;
-
-        Image talkingPortrait, listeningPortrait;
-
-        if (cCurrentLine.cCharacter.bTalkOnRightSide)
+        if (bIsTypingText == true)
         {
-            talkingPortrait = iRightCharacterPortrait;
-            listeningPortrait = iLeftCharacterPortrait;
+            fTextSpeed = 0.0001f;
         }
-        else
+        else 
         {
-            talkingPortrait = iLeftCharacterPortrait;
-            listeningPortrait = iRightCharacterPortrait;
+            DialogueLine cCurrentLine = qLines.Dequeue();
+            tNameText.text = cCurrentLine.cCharacter.sName;
+
+            Image talkingPortrait, listeningPortrait;
+
+            if (cCurrentLine.cCharacter.bTalkOnRightSide)
+            {
+                talkingPortrait = iRightCharacterPortrait;
+                listeningPortrait = iLeftCharacterPortrait;
+            }
+            else
+            {
+                talkingPortrait = iLeftCharacterPortrait;
+                listeningPortrait = iRightCharacterPortrait;
+            }
+
+            CopyImageProperties(cCurrentLine.cCharacter.iTalkingPortrait, talkingPortrait);
+            CopyImageProperties(cCurrentLine.cCharacter.iListeningPortrait, listeningPortrait);
+
+
+            StopAllCoroutines();
+            StartCoroutine(AnimatePortraitFocus(talkingPortrait, listeningPortrait));
+            StartCoroutine(TypeSentence(cCurrentLine.sLine));
         }
-
-        CopyImageProperties(cCurrentLine.cCharacter.iTalkingPortrait, talkingPortrait);
-        CopyImageProperties(cCurrentLine.cCharacter.iListeningPortrait, listeningPortrait);
-
-        StopAllCoroutines();
-        StartCoroutine(AnimatePortraitFocus(talkingPortrait, listeningPortrait));
-        StartCoroutine(TypeSentence(cCurrentLine.sLine));
     }
 
     private void CopyImageProperties(Image source, Image target)
@@ -162,17 +172,20 @@ public class UI_DialogueManager : MonoBehaviour
 
     IEnumerator TypeSentence(string sSentence)
     {
+        bIsTypingText = true;
         tDialogueDisplay.text = "";
         foreach (char cLetter in sSentence.ToCharArray())
         {
             tDialogueDisplay.text += cLetter;
             yield return new WaitForSeconds(fTextSpeed);
         }
+        bIsTypingText = false;
+        fTextSpeed = 0.05f;
     }
 
     public void EndDialogue()
     {
-        isDialogueActive = false;
+        bisDialogueActive = false;
         //aDialogueAnimation.Play("hide");
         HideDialogueUI();
     }
