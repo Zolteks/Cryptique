@@ -6,33 +6,14 @@ using UnityEngine.UI;
 public class UI_DialogueTrigger : MonoBehaviour
 {
 
-    [System.Serializable]
-    public class DialogueCharacter
+    private void Start()
     {
-        public string sName;
-        public Image iTalkingPortrait;
-        public Image iListeningPortrait;
+        UI_DialogueManager.cInstance.HideDialogueUI();
     }
-
-    [System.Serializable]
-    public class DialogueLine
-    {
-        public DialogueCharacter cCharacter;
-        [TextArea(3, 10)]
-        public string sLine;
-    }
-
-
-    [System.Serializable]
-    public class Dialogue
-    {
-        public List<DialogueLine> lDialogueLines = new List<DialogueLine>();
-    }
-
-    public Dialogue cDialogue;
 
     public void TriggerDialogue()
     {
-        UI_DialogueManager.cInstance.StartDialogue(cDialogue);
+        UI_DialogueManager.cInstance.ShowDialogueUI();
+        //UI_DialogueManager.cInstance.StartDialogue();
     }   
 }

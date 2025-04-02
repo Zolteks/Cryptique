@@ -2,11 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization.Tables;
 using UnityEngine.UI;
 using static UI_DialogueTrigger;
 
 public class UI_DialogueManager : MonoBehaviour
 {
+    #region Serializable Class
+    [System.Serializable]
+    public class DialogueCharacter
+    {
+        public string sName;
+        public Image iTalkingPortrait;
+        public Image iListeningPortrait;
+        public bool bTalkOnRightSide;
+    }
+
+    [System.Serializable]
+    public class DialogueLine
+    {
+        public DialogueCharacter cCharacter;
+        [TextArea(3, 10)]
+        public string sLine;
+    }
+
+    [System.Serializable]
+    public class Dialogue
+    {
+        public List<DialogueLine> lDialogueLines = new List<DialogueLine>();
+    }
+
+    #endregion Serializable Class
+
 
     public static UI_DialogueManager cInstance;
 
@@ -15,24 +42,52 @@ public class UI_DialogueManager : MonoBehaviour
     public TextMeshProUGUI tNameText;
     public TextMeshProUGUI tDialogueDisplay;
 
+    public GameObject dialoguePanel;
+    
+    
+
+    //public Animator dialogueAnimator;
+
     private Queue<DialogueLine> qLines;
 
-    public bool isDialogueActive = false;
+    public bool bisDialogueActive = false;
 
-    public float fTextSpeed = 0.1f;
+    public float fTextSpeed = 0.05f;
+
+    private bool bIsTypingText = false;
 
     //public Animator aDialogueAnimation;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (cInstance == null)
             cInstance = this;
+
+        HideDialogueUI();
+    }
+
+    public void ShowDialogueUI()
+    {
+        dialoguePanel.SetActive(true);
+        //dialogueAnimator.SetTrigger("Show");
+    }
+
+    public void HideDialogueUI()
+    {
+        //dialogueAnimator.SetTrigger("Hide");
+        StartCoroutine(DeactivateAfterAnimation());
+    }
+
+    IEnumerator DeactivateAfterAnimation()
+    {
+        yield return new WaitForSeconds(0.5f); // Animation Length
+        dialoguePanel.SetActive(false);
+        bisDialogueActive = false;
     }
 
     public void StartDialogue(Dialogue c_Dialogue)
     {
-        isDialogueActive = true;
+        bisDialogueActive = true;
 
         //aDialogueAnimation.Play("show");
 
@@ -62,32 +117,104 @@ public class UI_DialogueManager : MonoBehaviour
             return;
         }
 
-        DialogueLine cCurrentLine = qLines.Dequeue();
+        if (bIsTypingText == true)
+        {
+            fTextSpeed = 0.0001f;
+        }
+        else 
+        {
+            DialogueLine cCurrentLine = qLines.Dequeue();
+            tNameText.text = cCurrentLine.cCharacter.sName;
 
-        iRightCharacterPortrait.sprite = cCurrentLine.cCharacter.iTalkingPortrait.sprite;
+            Image talkingPortrait, listeningPortrait;
 
-        iLeftCharacterPortrait.sprite = cCurrentLine.cCharacter.iListeningPortrait.sprite;
+            if (cCurrentLine.cCharacter.bTalkOnRightSide)
+            {
+                talkingPortrait = iRightCharacterPortrait;
+                listeningPortrait = iLeftCharacterPortrait;
+            }
+            else
+            {
+                talkingPortrait = iLeftCharacterPortrait;
+                listeningPortrait = iRightCharacterPortrait;
+            }
 
-        tNameText.text = cCurrentLine.cCharacter.sName;
+            CopyImageProperties(cCurrentLine.cCharacter.iTalkingPortrait, talkingPortrait);
+            CopyImageProperties(cCurrentLine.cCharacter.iListeningPortrait, listeningPortrait);
 
-        StopAllCoroutines();
 
-        StartCoroutine(TypeSentence(cCurrentLine.sLine));
+            StopAllCoroutines();
+            StartCoroutine(AnimatePortraitFocus(talkingPortrait, listeningPortrait));
+            StartCoroutine(TypeSentence(cCurrentLine.sLine));
+        }
     }
+
+    private void CopyImageProperties(Image source, Image target)
+    {
+        if (source == null || target == null) return;
+
+        target.sprite = source.sprite;
+        target.color = source.color;
+        target.preserveAspect = source.preserveAspect;
+    }
+
+    private IEnumerator AnimatePortraitFocus(Image talkingPortrait, Image listeningPortrait)
+    {
+        float duration = 0.3f;
+        float elapsed = 0f;
+
+        // Initial Values, to be reattributed later
+        Vector3 talkingInitialScale = talkingPortrait.transform.localScale;
+        Vector3 listeningInitialScale = listeningPortrait.transform.localScale;
+        Color talkingInitialColor = talkingPortrait.color;
+        Color listeningInitialColor = listeningPortrait.color;
+
+        // Values applied during animation (To make it bigger/smaller)
+        Vector3 talkingTargetScale = Vector3.one * 1.5f;
+        Vector3 listeningTargetScale = Vector3.one * 0.75f;
+        Color talkingTargetColor = Color.white;
+        Color listeningTargetColor = new Color(0.7f, 0.7f, 0.7f);
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+
+            // Animate without animator
+            talkingPortrait.transform.localScale = Vector3.Lerp(talkingInitialScale, talkingTargetScale, t);
+            talkingPortrait.color = Color.Lerp(talkingInitialColor, talkingTargetColor, t);
+
+            listeningPortrait.transform.localScale = Vector3.Lerp(listeningInitialScale, listeningTargetScale, t);
+            listeningPortrait.color = Color.Lerp(listeningInitialColor, listeningTargetColor, t);
+
+            yield return null;
+        }
+
+        // Ensure perfect final values
+        talkingPortrait.transform.localScale = talkingTargetScale;
+        talkingPortrait.color = talkingTargetColor;
+        listeningPortrait.transform.localScale = listeningTargetScale;
+        listeningPortrait.color = listeningTargetColor;
+    }
+
 
     IEnumerator TypeSentence(string sSentence)
     {
+        bIsTypingText = true;
         tDialogueDisplay.text = "";
         foreach (char cLetter in sSentence.ToCharArray())
         {
             tDialogueDisplay.text += cLetter;
             yield return new WaitForSeconds(fTextSpeed);
         }
+        bIsTypingText = false;
+        fTextSpeed = 0.05f;
     }
 
     public void EndDialogue()
     {
-        isDialogueActive = false;
+        bisDialogueActive = false;
         //aDialogueAnimation.Play("hide");
+        HideDialogueUI();
     }
 }
