@@ -11,7 +11,7 @@ public class IN_EscapeArrow : OBJ_Interactable
     /*[SerializeField]*/ float fEaseMaxSpeed = 1200;
     /*[SerializeField]*/ float fEaseThreshold = 60;
 
-    bool m_isBusy = false;
+    static bool m_isBusy = false;
 
     Transform m_cameraAnchor;
 
@@ -22,10 +22,10 @@ public class IN_EscapeArrow : OBJ_Interactable
 
     public override bool Interact()
     {
-        if (false == CanInteract())
+        if (false == CanInteract() || m_isBusy)
             return false;
 
-        if (goToRegion == "")
+        if (string.IsNullOrEmpty(goToRegion))
         {
             Vector3 flattenDir = transform.forward;
             flattenDir.y = 0;
