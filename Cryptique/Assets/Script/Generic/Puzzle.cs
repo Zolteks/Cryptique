@@ -18,6 +18,7 @@ public class Puzzle : MonoBehaviour
 
     protected virtual void Complete()
     {
+        print("puzzle is complete!");
         Quit();
     }
 }

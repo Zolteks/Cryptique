@@ -35,7 +35,6 @@ public class PLZ_Lock : Puzzle
                 return;
             }
         }
-        print("Correct code!");
         Complete();
     }
 }
