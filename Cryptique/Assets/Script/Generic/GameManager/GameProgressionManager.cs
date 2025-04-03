@@ -15,6 +15,19 @@ public class GameProgressionManager : MonoBehaviour
         { "Dungeon", 5 },
         { "Forest", 3 }
     };
+    /// <summary>
+    /// /Dictonnary For Puzzles, probably needs another script to be more clean
+    /// </summary>
+    private Dictionary<string, List<string>> puzzlesByRegion = new Dictionary<string, List<string>>();
+
+    // Dictionnaire pour stocker les descriptions des puzzles
+    private Dictionary<string, string> puzzleDescriptions = new Dictionary<string, string>
+{
+    { "TestPuzzle", "You have to play with the man with the dices" },
+    { "Puzzle2", "Solve the riddle of the old woman" },
+    // Ajoutez plus de puzzles et leurs descriptions ici
+};
+
 
     /* Variables */
     public static GameProgressionManager Instance;
@@ -57,8 +70,21 @@ public class GameProgressionManager : MonoBehaviour
         return 0;
     }
 
+    public string GetPuzzleDescription(string puzzleID)
+    {
+        if (puzzleDescriptions.ContainsKey(puzzleID))
+        {
+            return puzzleDescriptions[puzzleID];
+        }
+        return "No description available for this puzzle.";
+    }
+
 
     /* Functions */
+
+    /// <summary>
+    ///  Here is the Item Logic
+    /// </summary>
     private void Awake()
     {
         if (Instance != null)
@@ -83,27 +109,36 @@ public class GameProgressionManager : MonoBehaviour
         }
     }
 
-    public void CompletePuzzle(string puzzleID)
-    {
-        if (!completedPuzzles.Contains(puzzleID))
-        {
-            completedPuzzles.Add(puzzleID);
-            Debug.Log($"Puzzle {puzzleID} completed !");
-            CheckProgression();
-        }
-    }
-
-    private void CheckProgression()
-    {
-        if (collectedItems.Count == 5 && completedPuzzles.Count == 5) // Exemple : if 5 objects collected and 5 Puzzle completed AdvanceChapter
-        {
-            AdvanceChapter();
-        }
-    }
-
     public bool IsItemCollected(string itemID)
     {
         return collectedItems.Contains(itemID);
+    }
+
+
+
+    /// <summary>
+    ///  Here is the Puzzle Logic
+    /// </summary>
+
+    public void RegisterPuzzle(string region, string puzzleID)
+    {
+        if (!puzzlesByRegion.ContainsKey(region))
+        {
+            puzzlesByRegion[region] = new List<string>();
+        }
+
+        if (!puzzlesByRegion[region].Contains(puzzleID))
+        {
+            puzzlesByRegion[region].Add(puzzleID);
+            Debug.Log($"Puzzle {puzzleID} added to region {region}");
+        }
+
+        // Afficher l'indice ou la description du puzzle
+        string puzzleDescription = GetPuzzleDescription(puzzleID);
+        Debug.Log($"Puzzle Description: {puzzleDescription}");
+
+        // Si vous avez une UI pour afficher ce texte, vous pouvez l'afficher ici, par exemple :
+        GameManager.GetInstance().NotifyPuzzleCreated(puzzleDescription);
     }
 
     public bool IsPuzzleCompleted(string puzzleID)
@@ -111,10 +146,39 @@ public class GameProgressionManager : MonoBehaviour
         return completedPuzzles.Contains(puzzleID);
     }
 
-    //  Next Chapter (for future)
+    public void CompletePuzzle(string puzzleID)
+    {
+        if (!completedPuzzles.Contains(puzzleID))
+        {
+            completedPuzzles.Add(puzzleID);
+            Debug.Log($"Puzzle {puzzleID} completed !");
+
+            // Vérifiez la progression du jeu
+            CheckProgression(puzzleID);
+        }
+    }
+
+
+
+    /// <summary>
+    ///  Here is the Chapter Logic (for future)
+    /// </summary>
+    private void CheckProgression(string puzzleID)
+    {
+        // Parcours des régions pour vérifier les énigmes complétées
+        foreach (var region in puzzlesByRegion)
+        {
+            int completedPuzzlesCount = region.Value.Count(puzzleID => completedPuzzles.Contains(puzzleID));
+            // Si tous les puzzles d'une région sont résolus, on peut vérifier si une nouvelle région doit être débloquée
+            GameManager.GetInstance().NotifyPuzzleSolved(puzzleID);
+        }
+    }
+
+    // Logique pour avancer le chapitre
     private void AdvanceChapter()
     {
         currentChapter++;
         Debug.Log($"Chaptre {currentChapter} unlocked !");
     }
+
 }

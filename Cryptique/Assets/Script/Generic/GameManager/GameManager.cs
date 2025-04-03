@@ -38,11 +38,6 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public void NotifyChapterChanged(string chapterID)
-    {
-        Debug.Log($"Chapter Changed : {chapterID} - Update UI or other systems");
-    }
-
 
     public void NotifyItemCollected(string region, int collectedCount, int totalItems)
     {
@@ -56,7 +51,27 @@ public class GameManager : MonoBehaviour
     }
     public void NotifyPuzzleSolved(string PuzzleID)
     {
-        //  work to do link with the progress bar
-        Debug.Log($"Puzzle Solved : {PuzzleID} - Update UI or other systems");
+        Debug.Log($"Puzzle Solved : {PuzzleID} - Update UI");
+
+        if (uiManager != null)
+        {
+            uiManager.UpdatePuzzleProgress();
+        }
     }
+
+    public void NotifyPuzzleCreated(string PuzzleDescription)
+    {
+        Debug.Log($"Puzzle Solved : {PuzzleDescription} - Update UI");
+
+        if (uiManager != null)
+        {
+            uiManager.UpdatePuzzleDescriptionUI(PuzzleDescription);
+        }
+    }
+
+    public void NotifyChapterChanged(string chapterID)
+    {
+        Debug.Log($"Chapter Changed : {chapterID} - Update UI or other systems");
+    }
+
 }

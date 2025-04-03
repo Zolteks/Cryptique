@@ -1,18 +1,29 @@
 using UnityEngine;
 using TMPro;
-using static UnityEditor.Progress;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     /* Variables */
-    private TextMeshProUGUI itemCountText;
-    private TextMeshProUGUI itemRegionText;
-
     [SerializeField] private TextMeshProUGUI regionUnlockedUI;
     [SerializeField] private TextMeshProUGUI itemProgressUI;
+    [SerializeField] private TextMeshProUGUI currentPuzzlesUI;
+    [SerializeField] private TextMeshProUGUI completedPuzzlesUI;
+    [SerializeField] private TextMeshProUGUI puzzleDescriptionText;
+    [SerializeField] private Slider chapterProgressBar;
 
+    /* Getters and Setters */
+    private int GetTotalPuzzles()
+    {
+        var progressionManager = GameProgressionManager.GetInstance();
+        int total = 0;
+        foreach (var region in progressionManager.GetRegions())
+        {
+            total += progressionManager.GetTotalItemsInRegion(region); // Remplace by a real total puzzle
+        }
+        return total;
+    }
 
-    /* Functions */
     public void UpdateItemProgress(string itemRegion, int collectedItems, int totalItems)
     {
         if (itemProgressUI != null)
@@ -30,4 +41,32 @@ public class UIManager : MonoBehaviour
             Debug.Log($"Region Unlocked UI Updated: {itemRegion}");
         }
     }
+
+    public void UpdatePuzzleProgress()
+    {
+        var progressionManager = GameProgressionManager.GetInstance();
+        if (progressionManager == null) return;
+
+
+        var completedPuzzles = progressionManager.GetCompletedPuzzles();
+        var totalPuzzles = GetTotalPuzzles();
+
+        if (completedPuzzlesUI != null)
+        {
+            completedPuzzlesUI.text = $"{completedPuzzles.Count}/{totalPuzzles}";
+        }
+
+        if (chapterProgressBar != null)
+        {
+            chapterProgressBar.value = totalPuzzles > 0 ? (float)completedPuzzles.Count / totalPuzzles : 0;
+        }
+
+        Debug.Log("Puzzle UI updated");
+    }
+
+    public void UpdatePuzzleDescriptionUI(string description)
+    {
+        puzzleDescriptionText.text = description;
+    }
+
 }

@@ -42,11 +42,11 @@ public class UI_ManageInventory : MonoBehaviour
             m_PositionGrid.Add(child.anchoredPosition);
             m_NameGrid.Add(child.name);
 
-            Debug.Log(child.name + " : " + child.anchoredPosition);
+            // Debug.Log(child.name + " : " + child.anchoredPosition);
         }
 
-        print(m_PositionGrid);
-        print(m_NameGrid);
+        //print(m_PositionGrid);
+        // print(m_NameGrid);
     }
     
     /// <summary>
