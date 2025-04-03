@@ -16,7 +16,7 @@ public class UI_ManageInventory : MonoBehaviour
     private List<string> m_NameGrid = new();
     
     [SerializeField]
-    private RectTransform m_initialGridElement;
+    private Sprite m_initialSprite;
     
     /* Functions */
     private void Awake()
@@ -50,12 +50,42 @@ public class UI_ManageInventory : MonoBehaviour
     }
     
     /// <summary>
+    /// Update the content panel with the items in the inventory
+    /// </summary>
+    /// <param name="items">The list of items in the inventory</param>
+    public void UpdateContentPanel(List<OBJ_Item> items)
+    {
+        int allChildren = gContentPanel.GetComponentsInChildren<RectTransform>().Length;
+        int allItems = items.Count;
+        for (int i = 0; i < allChildren; i++)
+        {
+            if (i < allItems)
+                UpdateGridElement(i, items[i]);
+            else
+                ClearGridElement(i);
+        }
+    }
+    
+    /// <summary>
+    /// Set the selected item with the initial Grid element
+    /// </summary>
+    /// <param name="id">The id of the child to be changed</param>
+    /// <param name="item">The item added to the inventory</param>
+    public void UpdateGridElement(int id, OBJ_Item item)
+    {
+        Image child = gContentPanel.transform.GetChild(id).GetChild(0).GetComponent<Image>();
+        child.sprite = item.GetSprite();
+        child.color = new Color(255, 255 ,255);
+    }
+    
+    /// <summary>
     /// Set the selected item with the initial Grid element
     /// </summary>
     /// <param name="id">The id in the inventory system List</param>
-    void ClearGridElement(int id)
+    public void ClearGridElement(int id)
     {
-        RectTransform child = gContentPanel.transform.GetChild(id + 1).GetComponent<RectTransform>();
-        //child = 
+        Image child = gContentPanel.transform.GetChild(id).GetChild(0).GetComponent<Image>();
+        child.sprite = m_initialSprite;
+        child.color = new Color(255, 0 ,0);
     }
 }
