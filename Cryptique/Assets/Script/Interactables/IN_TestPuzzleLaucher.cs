@@ -13,6 +13,8 @@ public class IN_TestPuzzleLaucher : OBJ_Interactable
 
     private void OnMouseDown()
     {
+        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
+
         Interact();
     }
 }
