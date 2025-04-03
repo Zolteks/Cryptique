@@ -1,15 +1,36 @@
 using UnityEngine;
 using TMPro;
+using static UnityEditor.Progress;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI itemCountText;
+    /* Variables */
+    private TextMeshProUGUI itemCountText;
+    private TextMeshProUGUI itemRegionText;
 
-    public void UpdateItemCount(int itemCount)
+    [SerializeField] private TextMeshProUGUI regionUnlockedUI;
+    [SerializeField] private TextMeshProUGUI itemProgressUI;
+
+
+    /* Functions */
+
+    public void UpdateItemProgress(string itemRegion, int collectedItems, int totalItems)
     {
-        if (itemCountText != null)
+        if (itemProgressUI != null)
         {
-            itemCountText.text = "Items collectés : " + itemCount.ToString();
+            itemProgressUI.text = $"{itemRegion} Items : {collectedItems}/{totalItems}";
+            Debug.Log($"Item Progress UI Updated: {itemRegion}: {collectedItems}/{totalItems}");
         }
     }
+
+    public void UpdateRegionUnlocked(string itemRegion)
+    {
+        if (regionUnlockedUI != null)
+        {
+            regionUnlockedUI.text = $"{itemRegion}";
+            Debug.Log($"Region Unlocked UI Updated: {itemRegion}");
+        }
+    }
+
+
 }

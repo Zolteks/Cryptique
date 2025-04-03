@@ -1,12 +1,24 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 //  Script responsable for progression of the player
 public class GameProgressionManager : MonoBehaviour
 {
+
+    private Dictionary<string, int> totalItemsPerRegion= new Dictionary<string, int>
+{
+    { "Tavern", 10 },
+    { "Dungeon", 5 },
+    { "Forest", 3 }
+};
+
+
     /* Variables */
     public static GameProgressionManager Instance;
 
     private HashSet<string> collectedItems = new HashSet<string>();
+    private HashSet<string> itemRegion = new HashSet<string>();
     private HashSet<string> completedPuzzles = new HashSet<string>();
 
     private int currentChapter = 1;
@@ -24,10 +36,25 @@ public class GameProgressionManager : MonoBehaviour
         return new List<string>(collectedItems);
     }
 
+    public List<string> GetRegions()
+    {
+        return new List<string>(itemRegion);
+    }
+
     public List<string> GetCompletedPuzzles()
     {
         return new List<string>(completedPuzzles);
     }
+
+    public int GetTotalItemsInRegion(string region)
+    {
+        if (totalItemsPerRegion.ContainsKey(region))
+        {
+            return totalItemsPerRegion[region];
+        }
+        return 0;
+    }
+
 
     /* Functions */
     private void Awake()
@@ -42,14 +69,18 @@ public class GameProgressionManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void CollectItem(string itemID)
+    public void CollectItem(string region, string itemID)
     {
         if (!collectedItems.Contains(itemID))
         {
             collectedItems.Add(itemID);
-            GameManager.GetInstance().NotifyItemCollected(itemID, collectedItems.Count);
+            itemRegion.Add(region);
+
+            int totalItems = GetTotalItemsInRegion(region);
+            GameManager.GetInstance().NotifyItemCollected(region, collectedItems.Count, totalItems);
         }
     }
+
 
 
     public void CompletePuzzle(string puzzleID)

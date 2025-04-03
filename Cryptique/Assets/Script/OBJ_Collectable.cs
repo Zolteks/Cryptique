@@ -13,6 +13,7 @@ public class OBJ_Collectable : OBJ_Interactable
     /* Getters and Setters */
     public OBJ_Item GetItem() => m_item;
 
+
     /* Functions */
     public override bool Interact()
     {
@@ -23,11 +24,9 @@ public class OBJ_Collectable : OBJ_Interactable
         InventoryManager.Instance.AddItem(m_item);
 
         // Notify the GameProgressionManager that an item as been collected
-        GameProgressionManager.Instance.CollectItem(m_item.name);
-        Debug.Log($"Item {m_item.name} collected !");
+        GameProgressionManager.Instance.CollectItem(m_item.GetRegion() ,m_item.GetName());
+        Debug.Log($"Item {m_item.name} collected ! add to GameProgressionManager ");
 
-        // Notify GameManager that an item as been collected
-        GameManager.GetInstance().NotifyItemCollected(m_item.name);
 
         Destroy(gameObject);
         return true;

@@ -44,15 +44,19 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void NotifyItemCollected(string itemID, int itemCount)
+    public void NotifyItemCollected(string region, int collectedCount, int totalItems)
     {
-        Debug.Log($"Item collected: {itemID} - Total: {itemCount} - Update UI or other systems");
+        Debug.Log($"Item collected in {region}: {collectedCount}/{totalItems}");
 
         if (uiManager != null)
         {
-            uiManager.UpdateItemCount(itemCount); // Update UI like : "Tavern 0/2"
+            uiManager.UpdateItemProgress(region, collectedCount, totalItems);
+            uiManager.UpdateRegionUnlocked(region);
         }
     }
+
+
+
 
 
     public void NotifyPuzzleSolved(string PuzzleID)
