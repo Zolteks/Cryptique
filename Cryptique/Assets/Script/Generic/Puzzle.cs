@@ -8,7 +8,7 @@ public class Puzzle : MonoBehaviour
     // If its an interfaceless UI, we'll make spawn an empty containing the appropriate script
     public static void StartPuzzle(string name)
     {
-        GameObject.Instantiate(Resources.Load(name));
+        GameObject.Instantiate(Resources.Load("Puzzles/PZL_"+name));
     }
 
     public void Quit()
