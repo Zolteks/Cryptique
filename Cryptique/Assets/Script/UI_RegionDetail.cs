@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,14 @@ public class UI_RegionDetail : MonoBehaviour
 
     private Dictionary<string, List<string>> chapterLevel = new();
     private Dictionary<string, CollectibleProgress> levelCollectibles = new();
+
+    private Dictionary<string, bool> regionUnlocked = new()
+    {
+        { "Level 1", true },
+        { "Level 2", true },
+        { "Level 3", false },
+        { "Level 4", false }
+    };
 
     private void Awake()
     {
@@ -40,6 +49,14 @@ public class UI_RegionDetail : MonoBehaviour
             regionDetail.GetComponentInChildren<TextMeshProUGUI>().text = levelName;
 
             levelCollectibles[levelName] = new CollectibleProgress { found = 2, total = 5 };
+
+            if (!regionUnlocked[levelName])
+            {
+                levelCollectibles[levelName].total = 0;
+                Image hideUnlockedButton = GetComponentInChildByName<Image>(regionDetail.transform, "HideRegion");
+                hideUnlockedButton.GameObject().SetActive(true);
+                regionDetail.GetComponentInChildren<Button>().interactable = false;
+            }
 
             TextMeshProUGUI collectibleText = GetComponentInChildByName<TextMeshProUGUI>(regionDetail.transform, "CollectibleCount");
             collectibleText.text = levelCollectibles[levelName].found + "/" + levelCollectibles[levelName].total;
