@@ -13,7 +13,6 @@ public class UIManager : MonoBehaviour
 
 
     /* Functions */
-
     public void UpdateItemProgress(string itemRegion, int collectedItems, int totalItems)
     {
         if (itemProgressUI != null)
@@ -31,6 +30,4 @@ public class UIManager : MonoBehaviour
             Debug.Log($"Region Unlocked UI Updated: {itemRegion}");
         }
     }
-
-
 }

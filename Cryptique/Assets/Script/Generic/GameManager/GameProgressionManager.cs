@@ -2,17 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+
 //  Script responsable for progression of the player
 public class GameProgressionManager : MonoBehaviour
 {
-
+    /// <summary>
+    /// /Dictonnary test for regions and number of Items per region
+    /// </summary>
     private Dictionary<string, int> totalItemsPerRegion= new Dictionary<string, int>
-{
-    { "Tavern", 10 },
-    { "Dungeon", 5 },
-    { "Forest", 3 }
-};
-
+    {
+        { "Tavern", 10 },
+        { "Dungeon", 5 },
+        { "Forest", 3 }
+    };
 
     /* Variables */
     public static GameProgressionManager Instance;
@@ -81,8 +83,6 @@ public class GameProgressionManager : MonoBehaviour
         }
     }
 
-
-
     public void CompletePuzzle(string puzzleID)
     {
         if (!completedPuzzles.Contains(puzzleID))
@@ -92,7 +92,6 @@ public class GameProgressionManager : MonoBehaviour
             CheckProgression();
         }
     }
-
 
     private void CheckProgression()
     {
@@ -112,7 +111,7 @@ public class GameProgressionManager : MonoBehaviour
         return completedPuzzles.Contains(puzzleID);
     }
 
-    //  Next Chapter
+    //  Next Chapter (for future)
     private void AdvanceChapter()
     {
         currentChapter++;

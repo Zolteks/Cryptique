@@ -54,11 +54,6 @@ public class GameManager : MonoBehaviour
             uiManager.UpdateRegionUnlocked(region);
         }
     }
-
-
-
-
-
     public void NotifyPuzzleSolved(string PuzzleID)
     {
         //  work to do link with the progress bar
