@@ -119,6 +119,42 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &17463796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 17463797}
+  m_Layer: 0
+  m_Name: Puzzles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &17463797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17463796}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 561.28375, y: 307.04144, z: 1.9552147}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 986566175}
+  - {fileID: 1189119864}
+  - {fileID: 1621714846}
+  - {fileID: 1801254990}
+  - {fileID: 1741924734}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &340230880 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4471635138690013324, guid: 4a9cb741198410c449af0fa63e86c608,
@@ -248,6 +284,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 419b80b76d0a7dc4a8aa49fe9e1bc088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzleSteps:
+  - requiredPuzzles:
+    - PuzzleC
+    - PuzzleB
+    nextPuzzleID: PuzzleSpaceBar
+  - requiredPuzzles:
+    - PuzzleSpaceBar
+    - PuzzleD
+    nextPuzzleID: PuzzleE
 --- !u!4 &605316365
 Transform:
   m_ObjectHideFlags: 0
@@ -380,6 +425,18 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &830159236 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1607523140528205478, guid: 4a9cb741198410c449af0fa63e86c608,
+    type: 3}
+  m_PrefabInstance: {fileID: 1912969696}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &986566173
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +448,7 @@ GameObject:
   - component: {fileID: 986566175}
   - component: {fileID: 986566174}
   m_Layer: 0
-  m_Name: PuzzleTest
+  m_Name: PuzzleSpaceBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -409,7 +466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a378a397412354143bdf02581ac7868e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleID: TestPuzzle
+  puzzleID: PuzzleSpaceBar
   region: Tavern
 --- !u!4 &986566175
 Transform:
@@ -419,12 +476,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 986566173}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 619.2883, y: 306.0546, z: 0.3895954}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 58.004578, y: -0.9868469, z: -1.5656193}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 17463797}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1069420904
 GameObject:
@@ -527,28 +584,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1189119864}
-  - component: {fileID: 1189119863}
+  - component: {fileID: 1189119865}
   m_Layer: 0
-  m_Name: PuzzleTest (1)
+  m_Name: PuzzleB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1189119863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189119862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a378a397412354143bdf02581ac7868e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  puzzleID: Puzzlev2
-  region: Tavern
 --- !u!4 &1189119864
 Transform:
   m_ObjectHideFlags: 0
@@ -557,13 +600,27 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1189119862}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 619.2883, y: 306.0546, z: 0.3895954}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 58.004578, y: -0.9868469, z: -1.5656193}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 17463797}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1189119865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189119862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc04f8790e82744f8d83134a38be0c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzleID: PuzzleB
+  region: Tavern
 --- !u!114 &1195638352 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5688453725332693229, guid: 4a9cb741198410c449af0fa63e86c608,
@@ -1091,6 +1148,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d59e3facb2fd5644950495f3102ac9d, type: 3}
+--- !u!1 &1621714844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1621714846}
+  - component: {fileID: 1621714847}
+  m_Layer: 0
+  m_Name: PuzzleC
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1621714846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621714844}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 17463797}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1621714847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621714844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ca8993d291432449fcb10697b06634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzleID: PuzzleC
+  region: Tavern
 --- !u!1 &1689880734
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,7 +1271,9 @@ MonoBehaviour:
   itemProgressUI: {fileID: 1912969697}
   currentPuzzlesUI: {fileID: 0}
   completedPuzzlesUI: {fileID: 0}
-  puzzleDescriptionText: {fileID: 1752714997}
+  puzzleDescriptionTexts:
+  - {fileID: 1752714997}
+  - {fileID: 830159236}
   chapterProgressBar: {fileID: 340230880}
 --- !u!4 &1691236179
 Transform:
@@ -1319,6 +1424,52 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1695522866}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1741924733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1741924734}
+  - component: {fileID: 1741924735}
+  m_Layer: 0
+  m_Name: PuzzleE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1741924734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741924733}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 17463797}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1741924735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741924733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 167890df592b3bf4ab80bfbd0ecdb889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzleID: PuzzleE
+  region: Tavern
 --- !u!114 &1752714997 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6549838735486407505, guid: 4a9cb741198410c449af0fa63e86c608,
@@ -1399,6 +1550,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1801254989
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1801254990}
+  - component: {fileID: 1801254991}
+  m_Layer: 0
+  m_Name: PuzzleD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1801254990
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801254989}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 17463797}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1801254991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801254989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 465f0107d4297cc42a3fa37fc20a09d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzleID: PuzzleD
+  region: Tavern
 --- !u!1001 &1908492872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1559,6 +1756,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607523140528205478, guid: 4a9cb741198410c449af0fa63e86c608,
+        type: 3}
+      propertyPath: m_text
+      value: "$\tQuest text 2"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1607523140528205478, guid: 4a9cb741198410c449af0fa63e86c608,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2528097720635645089, guid: 4a9cb741198410c449af0fa63e86c608,
         type: 3}
@@ -1794,6 +2001,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549838735486407505, guid: 4a9cb741198410c449af0fa63e86c608,
+        type: 3}
+      propertyPath: m_text
+      value: "$\tQuest text 1"
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549838735486407505, guid: 4a9cb741198410c449af0fa63e86c608,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6940009245927183866, guid: 4a9cb741198410c449af0fa63e86c608,
         type: 3}
@@ -2068,6 +2285,5 @@ SceneRoots:
   - {fileID: 1114972665}
   - {fileID: 1691236179}
   - {fileID: 398107157}
-  - {fileID: 986566175}
-  - {fileID: 1189119864}
   - {fileID: 1377842590}
+  - {fileID: 17463797}

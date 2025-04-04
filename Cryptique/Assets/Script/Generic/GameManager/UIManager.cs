@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemProgressUI;
     [SerializeField] private TextMeshProUGUI currentPuzzlesUI;
     [SerializeField] private TextMeshProUGUI completedPuzzlesUI;
-    [SerializeField] private TextMeshProUGUI puzzleDescriptionText;
+    [SerializeField] private List<TextMeshProUGUI> puzzleDescriptionTexts;
+
     [SerializeField] private Slider chapterProgressBar;
 
     /* Getters and Setters */
@@ -19,7 +21,7 @@ public class UIManager : MonoBehaviour
         int total = 0;
         foreach (var region in progressionManager.GetRegions())
         {
-            total += progressionManager.GetTotalItemsInRegion(region); // Remplace by a real total puzzle
+            total += progressionManager.GetTotalItemsInRegion(region);
         }
         return total;
     }
@@ -64,9 +66,18 @@ public class UIManager : MonoBehaviour
         Debug.Log("Puzzle UI updated");
     }
 
-    public void UpdatePuzzleDescriptionUI(string description)
+    public void UpdatePuzzleDescriptions(List<string> descriptions)
     {
-        puzzleDescriptionText.text = description;
+        for (int i = 0; i < puzzleDescriptionTexts.Count; i++)
+        {
+            if (i < descriptions.Count)
+            {
+                puzzleDescriptionTexts[i].text = descriptions[i];
+            }
+            else
+            {
+                puzzleDescriptionTexts[i].text = "";
+            }
+        }
     }
-
 }

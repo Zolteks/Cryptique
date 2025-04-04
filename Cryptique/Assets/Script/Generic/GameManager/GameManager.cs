@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
@@ -49,25 +50,53 @@ public class GameManager : MonoBehaviour
             uiManager.UpdateRegionUnlocked(region);
         }
     }
-    public void NotifyPuzzleSolved(string PuzzleID)
+    public void NotifyPuzzleSolved(string puzzleID)
     {
-        Debug.Log($"Puzzle Solved : {PuzzleID} - Update UI");
+        Debug.Log($"Puzzle Solved : {puzzleID} - Update UI");
+
+        // Notifie que le puzzle est résolu dans GameProgressionManager
+        GameProgressionManager.GetInstance().CompletePuzzle(puzzleID);
+
+        // Vérifier si d'autres puzzles sont débloqués après la résolution
+        CheckAndUnlockNextPuzzles();
 
         if (uiManager != null)
         {
-            uiManager.UpdatePuzzleProgress();
+            uiManager.UpdatePuzzleProgress();  // Met à jour la progression des puzzles
         }
     }
 
-    public void NotifyPuzzleCreated(string PuzzleDescription)
+    public void NotifyPuzzleCreated(List<string> puzzleDescriptions)
     {
-        Debug.Log($"Puzzle Solved : {PuzzleDescription} - Update UI");
+        Debug.Log("Puzzle descriptions updated in UI.");
 
         if (uiManager != null)
         {
-            uiManager.UpdatePuzzleDescriptionUI(PuzzleDescription);
+            uiManager.UpdatePuzzleDescriptions(puzzleDescriptions);  // Met à jour les descriptions des puzzles
         }
     }
+
+    /// <summary>
+    /// Vérifie si des puzzles sont débloqués après la résolution d'un puzzle.
+    /// </summary>
+    private void CheckAndUnlockNextPuzzles()
+    {
+        // Vous pouvez également faire un appel à GameProgressionManager pour vérifier les puzzles
+        var completedPuzzles = GameProgressionManager.GetInstance().GetCompletedPuzzles();
+
+        foreach (var puzzleID in GameProgressionManager.GetInstance().GetActivePuzzleDescriptions())
+        {
+            // Si le puzzle n'a pas encore été complété et qu'il est débloqué
+            if (GameProgressionManager.GetInstance().CanStartPuzzle(puzzleID))
+            {
+                // Notifier l'UI que ce puzzle est maintenant disponible
+                Debug.Log($"Puzzle {puzzleID} can now be started!");
+                NotifyPuzzleCreated(GameProgressionManager.GetInstance().GetActivePuzzleDescriptions());
+            }
+        }
+    }
+
+
 
     public void NotifyChapterChanged(string chapterID)
     {

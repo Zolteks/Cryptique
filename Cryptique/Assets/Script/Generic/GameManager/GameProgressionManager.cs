@@ -3,34 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-//  Script responsable for progression of the player
 public class GameProgressionManager : MonoBehaviour
 {
     /// <summary>
     /// /Dictonnary test for regions and number of Items per region
     /// </summary>
-    private Dictionary<string, int> totalItemsPerRegion= new Dictionary<string, int>
+    private Dictionary<string, int> totalItemsPerRegion = new Dictionary<string, int>
     {
         { "Tavern", 10 },
         { "Dungeon", 5 },
         { "Forest", 3 }
     };
+
     /// <summary>
     /// /Dictonnary For Puzzles, probably needs another script to be more clean
     /// </summary>
     private Dictionary<string, List<string>> puzzlesByRegion = new Dictionary<string, List<string>>();
-
-    // Dictionnaire pour stocker les descriptions des puzzles
     private Dictionary<string, string> puzzleDescriptions = new Dictionary<string, string>
-{
-    { "TestPuzzle", "You have to play with the man with the dices" },
-    { "Puzzle2", "Solve the riddle of the old woman" },
-    // Ajoutez plus de puzzles et leurs descriptions ici
-};
-
+    {
+        { "PuzzleSpaceBar", "You have to Press SpaceBar" },
+        { "PuzzleB", "You have to Press B" },
+        { "PuzzleC", "You have to Press C" },
+        { "PuzzleD", "You have to Press D" },
+        { "PuzzleE", "You have to Press E" }
+    };
 
     /* Variables */
     public static GameProgressionManager Instance;
+    [SerializeField]
+    private List<PuzzleStep> puzzleSteps = new List<PuzzleStep>();
 
     private HashSet<string> collectedItems = new HashSet<string>();
     private HashSet<string> itemRegion = new HashSet<string>();
@@ -45,10 +46,18 @@ public class GameProgressionManager : MonoBehaviour
         return Instance;
     }
 
-    //  Get Items and Puzzle completed for save
     public List<string> GetCollectedItems()
     {
         return new List<string>(collectedItems);
+    }
+
+    public int GetTotalItemsInRegion(string region)
+    {
+        if (totalItemsPerRegion.ContainsKey(region))
+        {
+            return totalItemsPerRegion[region];
+        }
+        return 0;
     }
 
     public List<string> GetRegions()
@@ -61,15 +70,6 @@ public class GameProgressionManager : MonoBehaviour
         return new List<string>(completedPuzzles);
     }
 
-    public int GetTotalItemsInRegion(string region)
-    {
-        if (totalItemsPerRegion.ContainsKey(region))
-        {
-            return totalItemsPerRegion[region];
-        }
-        return 0;
-    }
-
     public string GetPuzzleDescription(string puzzleID)
     {
         if (puzzleDescriptions.ContainsKey(puzzleID))
@@ -79,12 +79,7 @@ public class GameProgressionManager : MonoBehaviour
         return "No description available for this puzzle.";
     }
 
-
     /* Functions */
-
-    /// <summary>
-    ///  Here is the Item Logic
-    /// </summary>
     private void Awake()
     {
         if (Instance != null)
@@ -114,8 +109,6 @@ public class GameProgressionManager : MonoBehaviour
         return collectedItems.Contains(itemID);
     }
 
-
-
     /// <summary>
     ///  Here is the Puzzle Logic
     /// </summary>
@@ -137,8 +130,8 @@ public class GameProgressionManager : MonoBehaviour
         string puzzleDescription = GetPuzzleDescription(puzzleID);
         Debug.Log($"Puzzle Description: {puzzleDescription}");
 
-        // Si vous avez une UI pour afficher ce texte, vous pouvez l'afficher ici, par exemple :
-        GameManager.GetInstance().NotifyPuzzleCreated(puzzleDescription);
+        List<string> activeDescriptions = GetActivePuzzleDescriptions();
+        GameManager.GetInstance().NotifyPuzzleCreated(activeDescriptions);
     }
 
     public bool IsPuzzleCompleted(string puzzleID)
@@ -148,31 +141,98 @@ public class GameProgressionManager : MonoBehaviour
 
     public void CompletePuzzle(string puzzleID)
     {
+        // Vérifie si tous les puzzles nécessaires sont complétés
         if (!completedPuzzles.Contains(puzzleID))
         {
-            completedPuzzles.Add(puzzleID);
-            Debug.Log($"Puzzle {puzzleID} completed !");
+            bool canCompletePuzzle = true;
+            // Vérifie les prérequis du puzzle
+            foreach (var step in puzzleSteps)
+            {
+                if (step.nextPuzzleID == puzzleID)
+                {
+                    // Vérifie si tous les puzzles requis sont complétés
+                    if (!step.requiredPuzzles.All(p => completedPuzzles.Contains(p)))
+                    {
+                        canCompletePuzzle = false;
+                        Debug.Log($"Cannot complete puzzle {puzzleID} because required puzzles are not completed.");
+                        break;
+                    }
+                }
+            }
 
-            // Vérifiez la progression du jeu
-            CheckProgression(puzzleID);
+            if (canCompletePuzzle)
+            {
+                completedPuzzles.Add(puzzleID);
+                Debug.Log($"Puzzle {puzzleID} completed!");
+
+                // Notify GameManager that a puzzle is completed
+                GameManager.GetInstance().NotifyPuzzleSolved(puzzleID);
+                // Vérifie la progression des puzzles suivants
+                CheckProgression(puzzleID);
+            }
         }
     }
 
+
+    public List<string> GetActivePuzzleDescriptions()
+    {
+        List<string> activeDescriptions = new List<string>();
+
+        foreach (var region in puzzlesByRegion)
+        {
+            foreach (var puzzleID in region.Value)
+            {
+                if (!completedPuzzles.Contains(puzzleID))
+                {
+                    activeDescriptions.Add(GetPuzzleDescription(puzzleID));
+                }
+            }
+        }
+
+        return activeDescriptions;
+    }
+
+    /// <summary>
+    ///  Vérifie la progression pour débloquer les puzzles suivants en fonction des prérequis
+    /// </summary>
+    private void CheckProgression(string solvedPuzzleID)
+    {
+        foreach (var step in puzzleSteps)
+        {
+            // Si le puzzle suivant est déjà complété, on le saute
+            if (IsPuzzleCompleted(step.nextPuzzleID))
+                continue;
+
+            // Vérifie si tous les puzzles requis pour débloquer celui-ci sont complétés
+            if (step.requiredPuzzles.All(p => completedPuzzles.Contains(p)))
+            {
+                // Enregistre/débloque le puzzle suivant
+                RegisterPuzzle("Tavern", step.nextPuzzleID); // Ou la région correcte
+                Debug.Log($"Next puzzle unlocked: {step.nextPuzzleID}");
+            }
+        }
+    }
 
 
     /// <summary>
-    ///  Here is the Chapter Logic (for future)
+    ///  Vérifie si le puzzle est prêt à être lancé (si tous les prérequis sont remplis)
     /// </summary>
-    private void CheckProgression(string puzzleID)
+    public bool CanStartPuzzle(string puzzleID)
     {
-        // Parcours des régions pour vérifier les énigmes complétées
-        foreach (var region in puzzlesByRegion)
+        foreach (var step in puzzleSteps)
         {
-            int completedPuzzlesCount = region.Value.Count(puzzleID => completedPuzzles.Contains(puzzleID));
-            // Si tous les puzzles d'une région sont résolus, on peut vérifier si une nouvelle région doit être débloquée
-            GameManager.GetInstance().NotifyPuzzleSolved(puzzleID);
+            if (step.nextPuzzleID == puzzleID)
+            {
+                return step.requiredPuzzles.All(p => completedPuzzles.Contains(p));
+            }
         }
+
+        return true; // Si le puzzle n'a pas de prérequis, il peut être démarré
     }
+
+    /// <summary>
+    ///  Logique pour avancer le chapitre (pour plus tard)
+    /// </summary>
 
     // Logique pour avancer le chapitre
     private void AdvanceChapter()
@@ -180,5 +240,4 @@ public class GameProgressionManager : MonoBehaviour
         currentChapter++;
         Debug.Log($"Chaptre {currentChapter} unlocked !");
     }
-
 }
