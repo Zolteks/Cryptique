@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI_RegionDetail : MonoBehaviour
@@ -60,7 +61,8 @@ public class UI_RegionDetail : MonoBehaviour
 
             regionDetail.GetComponentInChildren<Button>().onClick.AddListener(() =>
             {
-                Debug.Log($"Go to {chapter} in {levelName}");
+                //Load chapter
+                SceneManager.LoadScene(levelName);
             });
         }
     }
