@@ -5,15 +5,6 @@ using UnityEngine;
 
 public class GameProgressionManager : MonoBehaviour
 {
-    /// <summary>
-    /// /Dictonnary test for regions and number of Items per region
-    /// </summary>
-    private Dictionary<string, int> totalItemsPerRegion = new Dictionary<string, int>
-    {
-        { "Tavern", 10 },
-        { "Dungeon", 5 },
-        { "Forest", 3 }
-    };
 
     /// <summary>
     /// /Dictonnary For Puzzles, probably needs another script to be more clean
@@ -26,6 +17,48 @@ public class GameProgressionManager : MonoBehaviour
         { "PuzzleC", "You have to Press C" },
         { "PuzzleD", "You have to Press D" },
         { "PuzzleE", "You have to Press E" }
+        
+//  Script responsable for progression of the player
+public class GameProgressionManager : MonoBehaviour
+{
+
+    [SerializeField] private List<string> chapters = new List<string>
+    {
+        "Wendigo",
+        "Kelpie",
+        "Chupacabra",
+    };
+
+    /// <summary>
+    /// Dictionary test for regions and items
+    /// </summary>
+    private Dictionary<string, List<string>> regions = new Dictionary<string, List<string>>
+    {
+        { "Wendigo" , new List<string> { "Tavern", "Village", "Forest", "Cave" } },
+        { "Kelpie" , new List<string> { "Tavern", "Village", "Forest", "Cave" } },
+        { "Chupacabra" , new List<string> { "Tavern", "Village", "Forest", "Cave" } },
+    };
+
+    /// <summary>
+    /// /Dictonnary test for regions and number of Items per region for all chapters
+    /// </summary>
+    private Dictionary<string, int> totalItemsPerRegion= new Dictionary<string, int>
+    {
+        { "Tavern", 10 },
+        { "Village", 5 },
+        { "Forest", 3 },
+        { "Cave", 7 },
+    };
+
+    /// <summary>
+    /// Dictionary test for set unlocked regions
+    /// </summary>
+    private Dictionary<string, bool> regionUnlocked = new Dictionary<string, bool>
+    {
+        { "Tavern", true },
+        { "Village", false },
+        { "Forest", false },
+        { "Cave", false },
     };
 
     /* Variables */
@@ -58,6 +91,36 @@ public class GameProgressionManager : MonoBehaviour
             return totalItemsPerRegion[region];
         }
         return 0;
+    }
+    
+    // Get Chapter
+    public string GetCurrentChapter()
+    {
+        return chapters[currentChapter - 1];
+    }
+
+    public List<string> GetChapters()
+    {
+        return new List<string>(chapters);
+    }
+
+    // Get region
+    public List<string> GetRegions(string chapter)
+    {
+        if (regions.ContainsKey(chapter))
+        {
+            return regions[chapter];
+        }
+        return new List<string>();
+    }
+
+    public bool IsRegionUnlocked(string region)
+    {
+        if (regionUnlocked.ContainsKey(region))
+        {
+            return regionUnlocked[region];
+        }
+        return false;
     }
 
     public List<string> GetRegions()
@@ -227,6 +290,25 @@ public class GameProgressionManager : MonoBehaviour
         return true;
     }
 
+    private void CheckProgression()
+    {
+        if (collectedItems.Count == 5 && completedPuzzles.Count == 5) // Exemple : if 5 objects collected and 5 Puzzle completed AdvanceChapter
+        {
+            AdvanceChapter();
+        }
+    }
+
+    public bool IsItemCollected(string itemID)
+    {
+        return collectedItems.Contains(itemID);
+    }
+
+    public bool IsPuzzleCompleted(string puzzleID)
+    {
+        return completedPuzzles.Contains(puzzleID);
+    }
+
+    //  Next Chapter (for future)
     private void AdvanceChapter()
     {
         currentChapter++;

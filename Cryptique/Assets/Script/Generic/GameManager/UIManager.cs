@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using static UnityEditor.Progress;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentPuzzlesUI;
     [SerializeField] private TextMeshProUGUI completedPuzzlesUI;
     [SerializeField] private List<TextMeshProUGUI> puzzleDescriptionTexts;
+    
+    private TextMeshProUGUI itemCountText;
+    private TextMeshProUGUI itemRegionText;
 
     [SerializeField] private Slider chapterProgressBar;
 
@@ -25,7 +29,7 @@ public class UIManager : MonoBehaviour
         }
         return total;
     }
-
+    
     public void UpdateItemProgress(string itemRegion, int collectedItems, int totalItems)
     {
         if (itemProgressUI != null)
