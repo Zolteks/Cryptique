@@ -17,10 +17,7 @@ public class GameProgressionManager : MonoBehaviour
         { "PuzzleC", "You have to Press C" },
         { "PuzzleD", "You have to Press D" },
         { "PuzzleE", "You have to Press E" }
-        
-//  Script responsable for progression of the player
-public class GameProgressionManager : MonoBehaviour
-{
+    };
 
     [SerializeField] private List<string> chapters = new List<string>
     {
@@ -296,16 +293,6 @@ public class GameProgressionManager : MonoBehaviour
         {
             AdvanceChapter();
         }
-    }
-
-    public bool IsItemCollected(string itemID)
-    {
-        return collectedItems.Contains(itemID);
-    }
-
-    public bool IsPuzzleCompleted(string puzzleID)
-    {
-        return completedPuzzles.Contains(puzzleID);
     }
 
     //  Next Chapter (for future)
