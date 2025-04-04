@@ -1010,6 +1010,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -429.46228
       objectReference: {fileID: 0}
+    - target: {fileID: 2711834682676124107, guid: 45963a341f486bc40870b5692bbf6bb0,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2737290975133693855, guid: 45963a341f486bc40870b5692bbf6bb0,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1600,7 +1605,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -179.3293
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4390356000801216866, guid: 45963a341f486bc40870b5692bbf6bb0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
