@@ -7,6 +7,12 @@ public class OBJ_Collectable : OBJ_Interactable
 {
     /* Variables */
     [SerializeField] private GameObject m_objInteractable;
+    [SerializeField] private OBJ_Item m_item;
+
+
+    /* Getters and Setters */
+    public OBJ_Item GetItem() => m_item;
+
 
     /* Functions */
     public override bool Interact()
@@ -15,14 +21,20 @@ public class OBJ_Collectable : OBJ_Interactable
             return false;
 
         // Add to inventory
-        Debug.Log("Collected " + gameObject.name);
+        InventoryManager.Instance.AddItem(m_item);
+
+        // Notify the GameProgressionManager that an item as been collected
+        GameProgressionManager.Instance.CollectItem(m_item.GetRegion() ,m_item.GetName());
+        Debug.Log($"Item {m_item.name} collected ! add to GameProgressionManager ");
+
+
         Destroy(gameObject);
         return true;
     }
 
     public void UseOn(GameObject ObjectToInteract)
     {
-        // Use item on OBJ_Interactable
+        // Use item on a specific object
         if (!CanInteract())
             return;
 
@@ -34,7 +46,10 @@ public class OBJ_Collectable : OBJ_Interactable
             return;
 
         Debug.Log("Used " + gameObject.name + " on " + ObjectToInteract.name);
+        // Call the Interact method of the interactable object
         objInteractable.Interact();
+        // Remove from inventory
+        InventoryManager.Instance.RemoveItem(m_item);
         Destroy(gameObject);
     }
 }

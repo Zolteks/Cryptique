@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6955a0cbccec0c847a50b95f350927d9, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
-  talkingCharacters: []
+  talkingCharacters:
+  - sName: a
+    iTalkingPortrait: {fileID: 0}
+    iListeningPortrait: {fileID: 0}
+    bTalkOnRightSide: 0
+  - sName: b
+    iTalkingPortrait: {fileID: 0}
+    iListeningPortrait: {fileID: 0}
+    bTalkOnRightSide: 1
