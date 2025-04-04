@@ -6,26 +6,22 @@ using UnityEngine.UI;
 
 public class UI_RegionDetail : MonoBehaviour
 {
+    [SerializeField] private GameProgressionManager gameProgressionManager;
+
     [SerializeField] private GameObject regionDetailPrefab;
     [SerializeField] private TextMeshProUGUI pageTitle;
 
     private Dictionary<string, List<string>> chapterLevel = new();
     private Dictionary<string, CollectibleProgress> levelCollectibles = new();
 
-    private Dictionary<string, bool> regionUnlocked = new()
+    private void Start()
     {
-        { "Level 1", true },
-        { "Level 2", true },
-        { "Level 3", false },
-        { "Level 4", false }
-    };
-
-    private void Awake()
-    {
-        // Simulation des niveaux
-        chapterLevel["Wendigo"] = new() { "Level 1", "Level 2", "Level 3", "Level 4" };
-        chapterLevel["JeSaisPas"] = new() { "Level 1", "Level 2", "Level 3" };
+        if (gameProgressionManager == null)
+        {
+            gameProgressionManager = GameProgressionManager.GetInstance();
+        }
     }
+
 
     public void DisplayChapter(string chapter)
     {
@@ -34,23 +30,23 @@ public class UI_RegionDetail : MonoBehaviour
 
         levelCollectibles.Clear();
 
-        if (!chapterLevel.ContainsKey(chapter)) return;
+        List<string> regions = gameProgressionManager.GetRegions(chapter);
+
+        if (regions.Count == 0) return;
 
         pageTitle.text = chapter;
 
-        List<string> levels = chapterLevel[chapter];
-
-        for (int i = 0; i < levels.Count; i++)
+        for (int i = 0; i < regions.Count; i++)
         {
             GameObject regionDetail = Instantiate(regionDetailPrefab, this.transform);
-            string levelName = levels[i];
+            string levelName = regions[i];
             regionDetail.name = levelName;
 
             regionDetail.GetComponentInChildren<TextMeshProUGUI>().text = levelName;
 
             levelCollectibles[levelName] = new CollectibleProgress { found = 2, total = 5 };
 
-            if (!regionUnlocked[levelName])
+            if (!gameProgressionManager.IsRegionUnlocked(levelName))
             {
                 levelCollectibles[levelName].total = 0;
                 Image hideUnlockedButton = GetComponentInChildByName<Image>(regionDetail.transform, "HideRegion");
