@@ -200,22 +200,16 @@ public class GameProgressionManager : MonoBehaviour
         return true;
     }
 
-    /// <summary>
-    ///  Vérifie la progression pour débloquer les puzzles suivants en fonction des prérequis
-    /// </summary>
     private void CheckProgression(string solvedPuzzleID)
     {
         foreach (var step in puzzleSteps)
         {
-            // Si le puzzle suivant est déjà complété, on le saute
             if (IsPuzzleCompleted(step.nextPuzzleID))
                 continue;
 
-            // Vérifie si tous les puzzles requis pour débloquer celui-ci sont complétés
             if (step.requiredPuzzles.All(p => completedPuzzles.Contains(p)))
             {
-                // Enregistre/débloque le puzzle suivant
-                RegisterPuzzle("Tavern", step.nextPuzzleID); // Ou la région correcte
+                RegisterPuzzle("Tavern", step.nextPuzzleID);
                 Debug.Log($"Next puzzle unlocked: {step.nextPuzzleID}");
             }
         }
