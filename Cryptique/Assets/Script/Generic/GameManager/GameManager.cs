@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
@@ -43,7 +44,6 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Chapter Changed : {chapterID} - Update UI or other systems");
     }
 
-
     public void NotifyItemCollected(string region, int collectedCount, int totalItems)
     {
         Debug.Log($"Item collected in {region}: {collectedCount}/{totalItems}");
@@ -54,9 +54,42 @@ public class GameManager : MonoBehaviour
             uiManager.UpdateRegionUnlocked(region);
         }
     }
-    public void NotifyPuzzleSolved(string PuzzleID)
+    
+    public void NotifyPuzzleSolved(string puzzleID)
     {
-        //  work to do link with the progress bar
-        Debug.Log($"Puzzle Solved : {PuzzleID} - Update UI or other systems");
+        Debug.Log($"Puzzle Solved : {puzzleID} - Update UI");
+
+        GameProgressionManager.GetInstance().CompletePuzzle(puzzleID);
+
+        CheckAndUnlockNextPuzzles();
+
+        if (uiManager != null)
+        {
+            uiManager.UpdatePuzzleProgress();
+        }
+    }
+
+    public void NotifyPuzzleCreated(List<string> puzzleDescriptions)
+    {
+        Debug.Log("Puzzle descriptions updated in UI.");
+
+        if (uiManager != null)
+        {
+            uiManager.UpdatePuzzleDescriptions(puzzleDescriptions);
+        }
+    }
+
+    private void CheckAndUnlockNextPuzzles()
+    {
+        var completedPuzzles = GameProgressionManager.GetInstance().GetCompletedPuzzles();
+
+        foreach (var puzzleID in GameProgressionManager.GetInstance().GetActivePuzzleDescriptions())
+        {
+            if (GameProgressionManager.GetInstance().CanStartPuzzle(puzzleID))
+            {
+                Debug.Log($"Puzzle {puzzleID} can now be started!");
+                NotifyPuzzleCreated(GameProgressionManager.GetInstance().GetActivePuzzleDescriptions());
+            }
+        }
     }
 }
