@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Puzzle : MonoBehaviour
 {
     [SerializeField] private string puzzleID;
     [SerializeField] private string region;
+    [SerializeField] private UnityEvent onSuccess;
 
     private void Start()
     {
@@ -28,6 +30,7 @@ public class Puzzle : MonoBehaviour
         {
             Debug.Log($"{puzzleID} is completed.");
             GameProgressionManager.Instance.CompletePuzzle(puzzleID);
+            onSuccess?.Invoke();
             Quit();
         }
         else
