@@ -7,9 +7,13 @@ public class Bumper : MonoBehaviour
 
     private List<Rigidbody> ballsInContact = new List<Rigidbody>();
 
+    public void SetBumperForce(float bumpForce)
+    {
+        bumperForce = bumpForce;
+    }
+
     void OnTriggerEnter(Collider collision)
     {
-        print("moneky");
         AddBall(collision);
     }
 
@@ -18,7 +22,7 @@ public class Bumper : MonoBehaviour
         AddBall(collision);
     }
 
-    void OnCollisionExit(Collision collision)
+    void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
@@ -34,11 +38,9 @@ public class Bumper : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
-            print("moneky2");
             Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
             if (rb != null && !ballsInContact.Contains(rb))
             {
-            print("moneky3");
                 ballsInContact.Add(rb);
             }
         }
@@ -55,5 +57,4 @@ public class Bumper : MonoBehaviour
             rb.AddForce(launchDirection * bumperForce, ForceMode.Impulse);
         }
     }
-
 }
