@@ -1,14 +1,26 @@
+
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using static DieBehaviour;
 
 public class DieBehaviour : MonoBehaviour
 {
+    public enum RigState
+    {
+        regular = 0,
+        lose,
+        win,
+    }
+
     [SerializeField] List<Transform> faceDetectors;
     [SerializeField] float velocityFactor = 1;
     [SerializeField] float angularVelocityFactor = 1;
 
-    public bool bRigged;
+    public System.Func<int, bool> onRollOver;
+
+    public RigState rigState;
 
     bool bDead = false;
 
@@ -25,7 +37,7 @@ public class DieBehaviour : MonoBehaviour
         initialPos = transform.position;
         Init();
 
-        if (bRigged)
+        if (rigState != RigState.regular)
             RiggDie();
 
         LaunchDice();
@@ -64,14 +76,16 @@ public class DieBehaviour : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKey(KeyCode.Space)){
             Init();
 
-            if (bRigged)
+            if (rigState != RigState.regular)
                 RiggDie();
 
             LaunchDice();
         }
+#endif
 
         if (bDead) return;
 
@@ -80,6 +94,10 @@ public class DieBehaviour : MonoBehaviour
             int resultIndex = FindFaceResult();
             print(resultIndex+1);
             bDead = true;
+            if(onRollOver != null)
+            {
+                onRollOver(resultIndex + 1);
+            }
         }
     }
 
@@ -108,7 +126,7 @@ public class DieBehaviour : MonoBehaviour
     {
         LaunchDice();
         Physics.simulationMode = SimulationMode.Script;
-        for(int i = 0; i<5000; i++)
+        for(int i = 0; i<500; i++)
         {
             Physics.Simulate(Time.fixedDeltaTime);
         }
@@ -119,9 +137,39 @@ public class DieBehaviour : MonoBehaviour
         int res = id + 1;
         print("previous result was : " + res);
 
-        if (id <= 3)
+        switch (rigState)
         {
-            launchRotation = Quaternion.AngleAxis(180, Vector3.forward) * launchRotation;
+            case RigState.win:
+                switch (id)
+                {
+                    case 0:
+                        launchRotation = Quaternion.AngleAxis(180, Vector3.forward) * launchRotation;
+                        break;
+                    case 1:
+                        launchRotation = Quaternion.AngleAxis(90, Vector3.forward) * launchRotation;
+                        break;
+                    case 2:
+                        launchRotation = Quaternion.AngleAxis(180, Vector3.forward) * launchRotation;
+                        break;
+                }
+                break;
+
+            case RigState.lose:
+                switch (id)
+                {
+                    case 3:
+                        launchRotation = Quaternion.AngleAxis(-90, Vector3.forward) * launchRotation;
+                        break;
+                    case 4:
+                        launchRotation = Quaternion.AngleAxis(180, Vector3.forward) * launchRotation;
+                        break;
+                    case 5:
+                        launchRotation = Quaternion.AngleAxis(180, Vector3.forward) * launchRotation;
+                        break;
+                }
+                break;
         }
+
+        
     }
 }
