@@ -2801,6 +2801,7 @@ GameObject:
   - component: {fileID: 1004479860668384031}
   - component: {fileID: 2912103102355873680}
   - component: {fileID: 4453128103574972535}
+  - component: {fileID: 7854267361498542015}
   m_Layer: 5
   m_Name: Collectible1
   m_TagString: Untagged
@@ -2926,6 +2927,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7854267361498542015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7842852369605471318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a18638ffb1e9f544b47396640e2d51f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemCountText: {fileID: 0}
 --- !u!1 &8341054695319363870
 GameObject:
   m_ObjectHideFlags: 0
