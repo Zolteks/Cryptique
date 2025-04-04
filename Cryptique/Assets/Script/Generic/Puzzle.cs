@@ -7,8 +7,10 @@ public class Puzzle : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log($"Registering puzzle {puzzleID} in region {region}");
         GameProgressionManager.Instance.RegisterPuzzle(region, puzzleID);
     }
+
 
     public static void StartPuzzle(string name)
     {
@@ -22,7 +24,17 @@ public class Puzzle : MonoBehaviour
 
     protected virtual void Complete()
     {
-        GameProgressionManager.Instance.CompletePuzzle(puzzleID);
-        Quit();
+        if (GameProgressionManager.Instance.ArePrerequisitesCompleted(puzzleID))
+        {
+            Debug.Log($"{puzzleID} is completed.");
+            GameProgressionManager.Instance.CompletePuzzle(puzzleID);
+            Quit();
+        }
+        else
+        {
+            Debug.Log($"Cannot complete {puzzleID} because the prerequisites are not completed yet.");
+        }
     }
+
+
 }

@@ -54,15 +54,13 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"Puzzle Solved : {puzzleID} - Update UI");
 
-        // Notifie que le puzzle est résolu dans GameProgressionManager
         GameProgressionManager.GetInstance().CompletePuzzle(puzzleID);
 
-        // Vérifier si d'autres puzzles sont débloqués après la résolution
         CheckAndUnlockNextPuzzles();
 
         if (uiManager != null)
         {
-            uiManager.UpdatePuzzleProgress();  // Met à jour la progression des puzzles
+            uiManager.UpdatePuzzleProgress();
         }
     }
 
@@ -72,24 +70,18 @@ public class GameManager : MonoBehaviour
 
         if (uiManager != null)
         {
-            uiManager.UpdatePuzzleDescriptions(puzzleDescriptions);  // Met à jour les descriptions des puzzles
+            uiManager.UpdatePuzzleDescriptions(puzzleDescriptions);
         }
     }
 
-    /// <summary>
-    /// Vérifie si des puzzles sont débloqués après la résolution d'un puzzle.
-    /// </summary>
     private void CheckAndUnlockNextPuzzles()
     {
-        // Vous pouvez également faire un appel à GameProgressionManager pour vérifier les puzzles
         var completedPuzzles = GameProgressionManager.GetInstance().GetCompletedPuzzles();
 
         foreach (var puzzleID in GameProgressionManager.GetInstance().GetActivePuzzleDescriptions())
         {
-            // Si le puzzle n'a pas encore été complété et qu'il est débloqué
             if (GameProgressionManager.GetInstance().CanStartPuzzle(puzzleID))
             {
-                // Notifier l'UI que ce puzzle est maintenant disponible
                 Debug.Log($"Puzzle {puzzleID} can now be started!");
                 NotifyPuzzleCreated(GameProgressionManager.GetInstance().GetActivePuzzleDescriptions());
             }

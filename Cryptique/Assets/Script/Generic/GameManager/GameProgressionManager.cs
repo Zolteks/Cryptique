@@ -79,6 +79,24 @@ public class GameProgressionManager : MonoBehaviour
         return "No description available for this puzzle.";
     }
 
+    public List<string> GetActivePuzzleDescriptions()
+    {
+        List<string> activeDescriptions = new List<string>();
+
+        foreach (var region in puzzlesByRegion)
+        {
+            foreach (var puzzleID in region.Value)
+            {
+                if (!completedPuzzles.Contains(puzzleID))
+                {
+                    activeDescriptions.Add(GetPuzzleDescription(puzzleID));
+                }
+            }
+        }
+
+        return activeDescriptions;
+    }
+
     /* Functions */
     private void Awake()
     {
@@ -126,7 +144,6 @@ public class GameProgressionManager : MonoBehaviour
             Debug.Log($"Puzzle {puzzleID} added to region {region}");
         }
 
-        // Afficher l'indice ou la description du puzzle
         string puzzleDescription = GetPuzzleDescription(puzzleID);
         Debug.Log($"Puzzle Description: {puzzleDescription}");
 
@@ -141,16 +158,13 @@ public class GameProgressionManager : MonoBehaviour
 
     public void CompletePuzzle(string puzzleID)
     {
-        // Vérifie si tous les puzzles nécessaires sont complétés
         if (!completedPuzzles.Contains(puzzleID))
         {
             bool canCompletePuzzle = true;
-            // Vérifie les prérequis du puzzle
             foreach (var step in puzzleSteps)
             {
                 if (step.nextPuzzleID == puzzleID)
                 {
-                    // Vérifie si tous les puzzles requis sont complétés
                     if (!step.requiredPuzzles.All(p => completedPuzzles.Contains(p)))
                     {
                         canCompletePuzzle = false;
@@ -165,31 +179,25 @@ public class GameProgressionManager : MonoBehaviour
                 completedPuzzles.Add(puzzleID);
                 Debug.Log($"Puzzle {puzzleID} completed!");
 
-                // Notify GameManager that a puzzle is completed
                 GameManager.GetInstance().NotifyPuzzleSolved(puzzleID);
-                // Vérifie la progression des puzzles suivants
                 CheckProgression(puzzleID);
             }
         }
     }
 
-
-    public List<string> GetActivePuzzleDescriptions()
+    public bool ArePrerequisitesCompleted(string puzzleID)
     {
-        List<string> activeDescriptions = new List<string>();
-
-        foreach (var region in puzzlesByRegion)
+        foreach (var step in puzzleSteps)
         {
-            foreach (var puzzleID in region.Value)
+            if (step.nextPuzzleID == puzzleID)
             {
-                if (!completedPuzzles.Contains(puzzleID))
+                if (!step.requiredPuzzles.All(p => completedPuzzles.Contains(p)))
                 {
-                    activeDescriptions.Add(GetPuzzleDescription(puzzleID));
+                    return false;
                 }
             }
         }
-
-        return activeDescriptions;
+        return true;
     }
 
     /// <summary>
@@ -212,11 +220,6 @@ public class GameProgressionManager : MonoBehaviour
             }
         }
     }
-
-
-    /// <summary>
-    ///  Vérifie si le puzzle est prêt à être lancé (si tous les prérequis sont remplis)
-    /// </summary>
     public bool CanStartPuzzle(string puzzleID)
     {
         foreach (var step in puzzleSteps)
@@ -227,14 +230,9 @@ public class GameProgressionManager : MonoBehaviour
             }
         }
 
-        return true; // Si le puzzle n'a pas de prérequis, il peut être démarré
+        return true;
     }
 
-    /// <summary>
-    ///  Logique pour avancer le chapitre (pour plus tard)
-    /// </summary>
-
-    // Logique pour avancer le chapitre
     private void AdvanceChapter()
     {
         currentChapter++;
