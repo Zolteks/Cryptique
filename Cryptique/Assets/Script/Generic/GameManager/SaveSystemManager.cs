@@ -7,14 +7,14 @@ using UnityEngine;
 public class SaveSystemManager : MonoBehaviour
 {
 
-    private SaveManager<GameData> saveManager = new SaveManager<GameData>();
+    private SaveManager<GameDataJson> saveManager = new SaveManager<GameDataJson>();
 
     private string saveKey = "CryptiqueSaveData";
 
     void Awake()
     {
         Application.runInBackground = true;
-        saveManager.Register(new JsonSaveSystem<GameData>());
+        saveManager.Register(new JsonSaveSystem<GameDataJson>());
     }
 
 
@@ -24,18 +24,18 @@ public class SaveSystemManager : MonoBehaviour
         TestLoad();
     }
 
-    public void SaveGame()
+    public void SaveGame(GameDataJson gameDataJson)
     {
-        saveManager.Save(saveKey, new GameData());
+        saveManager.Save(saveKey, gameDataJson);
     }
 
-    public GameData LoadGame()
+    public GameDataJson LoadGame()
     {
         if (saveManager.Exists(saveKey))
         {
             var result = saveManager.Load(saveKey);
 
-            if (result.TryGet<JsonSaveSystem<GameData>>(out var data))
+            if (result.TryGet<JsonSaveSystem<GameDataJson>>(out var data))
             {
                 return data;
             }
@@ -59,21 +59,21 @@ public class SaveSystemManager : MonoBehaviour
 
     public void TestSave()
     {
-        GameData data = new GameData();
+        GameDataJson data = new GameDataJson();
         data.currentTile = "TestTile";
         data.currentRegion = "TestRegion";
         data.currentChapter = 1;
         data.currentChapterName = "TestChapter";
         data.solvedPuzzles.Add("Puzzle1");
         data.collectedItems.Add("Item1");
-       //data.cameraRotation = new Vector4(0, 0, 0, 0);
+        data.cameraRotation = new List<int> { 0, 0, 0, 0 }; // Example rotation values
         saveManager.Save(saveKey, data);
         Debug.Log("Test save completed.");
     }
 
     public void TestLoad()
     {
-        GameData data = LoadGame();
+        GameDataJson data = LoadGame();
         if (data != null)
         {
             Debug.Log("Test load completed.");
@@ -83,9 +83,29 @@ public class SaveSystemManager : MonoBehaviour
             Debug.Log($"Current Chapter Name: {data.currentChapterName}");
             Debug.Log($"Solved Puzzles: {string.Join(", ", data.solvedPuzzles)}");
             Debug.Log($"Collected Items: {string.Join(", ", data.collectedItems)}");
-           // Debug.Log($"Camera Rotation: {data.cameraRotation}");
+            Debug.Log($"Camera Rotation: {string.Join(", ", data.cameraRotation)}");
         }
     }
+}
+
+public class GameDataJson
+{
+    public string currentTile;
+    public string currentRegion;
+    public int currentChapter;
+    public string currentChapterName;
+    public List<string> solvedPuzzles = new List<string>();
+    public List<string> collectedItems = new List<string>();
+    public List<int> cameraRotation = new List<int>();
 
 
+    public void setCameraRotation(Vector4 rotation)
+    {
+        cameraRotation = new List<int> { (int)rotation.x, (int)rotation.y, (int)rotation.z, (int)rotation.w };
+    }
+
+    public Vector4 getCameraRotation()
+    {
+        return new Vector4(cameraRotation[0], cameraRotation[1], cameraRotation[2], cameraRotation[3]);
+    }
 }
