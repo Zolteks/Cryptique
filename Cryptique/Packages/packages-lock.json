@@ -1,5 +1,23 @@
 {
   "dependencies": {
+    "com.faolline.savesystem.core": {
+      "version": "https://github.com/JoshuaLetessier/UnitySaveSystem.git?path=/Packages/com.faolline.savesystem.core",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.0.2"
+      },
+      "hash": "8d183cc9143da1f60dc1ed31daa4f223f48d9a5c"
+    },
+    "com.faolline.savesystem.json": {
+      "version": "https://github.com/JoshuaLetessier/UnitySaveSystem.git?path=/Packages/com.faolline.savesystem.json",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.faolline.savesystem.core": "1.0.0"
+      },
+      "hash": "8d183cc9143da1f60dc1ed31daa4f223f48d9a5c"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
