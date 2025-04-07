@@ -16,7 +16,7 @@ public class Puzzle : MonoBehaviour
 
     public static void StartPuzzle(string name)
     {
-        GameObject.Instantiate(Resources.Load(name));
+        GameObject.Instantiate(Resources.Load("Puzzles/PZL_"+name));
     }
 
     public void Quit()

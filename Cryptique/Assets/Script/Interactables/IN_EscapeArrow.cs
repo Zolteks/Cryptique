@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class OBJ_EscapeArrow : OBJ_Interactable
+public class IN_EscapeArrow : OBJ_Interactable
 {
     [Tooltip("Let empty if the arrow doesn't lead to another region")]
     [SerializeField] string goToRegion;
@@ -11,7 +11,7 @@ public class OBJ_EscapeArrow : OBJ_Interactable
     /*[SerializeField]*/ float fEaseMaxSpeed = 1200;
     /*[SerializeField]*/ float fEaseThreshold = 60;
 
-    bool m_isBusy = false;
+    static bool m_isBusy = false;
 
     Transform m_cameraAnchor;
 
@@ -22,10 +22,10 @@ public class OBJ_EscapeArrow : OBJ_Interactable
 
     public override bool Interact()
     {
-        if (false == CanInteract())
+        if (false == CanInteract() || m_isBusy)
             return false;
 
-        if (goToRegion == "")
+        if (string.IsNullOrEmpty(goToRegion))
         {
             Vector3 flattenDir = transform.forward;
             flattenDir.y = 0;
@@ -63,6 +63,8 @@ public class OBJ_EscapeArrow : OBJ_Interactable
     // Is that definitive? Unsure
     private void OnMouseDown()
     {
+        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
+
         Interact();
     }
 }
