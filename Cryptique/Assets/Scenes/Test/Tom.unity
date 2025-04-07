@@ -284,15 +284,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 419b80b76d0a7dc4a8aa49fe9e1bc088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chapters:
+  - Wendigo
+  - Kelpie
+  - Chupacabra
   puzzleSteps:
-  - requiredPuzzles:
-    - PuzzleC
+  - puzzleID: PuzzleD
+    requiredPuzzles:
     - PuzzleB
-    nextPuzzleID: PuzzleSpaceBar
-  - requiredPuzzles:
-    - PuzzleSpaceBar
+    - PuzzleC
+  - puzzleID: PuzzleE
+    requiredPuzzles:
     - PuzzleD
-    nextPuzzleID: PuzzleE
+  - puzzleID: PuzzleSpaceBar
+    requiredPuzzles:
+    - PuzzleD
+    - PuzzleE
 --- !u!4 &605316365
 Transform:
   m_ObjectHideFlags: 0
@@ -1290,7 +1297,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   regionUnlockedUI: {fileID: 1195638352}
   itemProgressUI: {fileID: 1912969697}
-  currentPuzzlesUI: {fileID: 0}
   completedPuzzlesUI: {fileID: 0}
   puzzleDescriptionTexts:
   - {fileID: 1752714997}
