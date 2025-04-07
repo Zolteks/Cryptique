@@ -151,7 +151,7 @@ public class GameProgressionManager : MonoBehaviour
                 {
                     activeDescriptions.Add(GetPuzzleDescription(puzzleID));
 
-                    if (activeDescriptions.Count == 2) // Limit of UI quest showed
+                    if (activeDescriptions.Count == 2) // Limit of UI quests showed
                         return activeDescriptions;
                 }
             }
@@ -159,8 +159,6 @@ public class GameProgressionManager : MonoBehaviour
 
         return activeDescriptions;
     }
-
-
 
     /* Functions */
     private void Awake()
@@ -225,7 +223,7 @@ public class GameProgressionManager : MonoBehaviour
     {
         var step = puzzleSteps.Find(s => s.puzzleID == puzzleID);
         if (step == null)
-            return true; // Pas dans la liste, donc pas de restriction
+            return true;
 
         return step.requiredPuzzles.All(p => completedPuzzles.Contains(p));
     }
