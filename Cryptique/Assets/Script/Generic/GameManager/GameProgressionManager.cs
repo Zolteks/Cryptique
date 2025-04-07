@@ -16,7 +16,8 @@ public class GameProgressionManager : MonoBehaviour
         { "PuzzleB", "You have to Press B" },
         { "PuzzleC", "You have to Press C" },
         { "PuzzleD", "You have to Press D" },
-        { "PuzzleE", "You have to Press E" }
+        { "PuzzleE", "You have to Press E" },
+        { "PZL_BackyardAccess", "Find the key to access the Backyard" }
     };
 
     [SerializeField] private List<string> chapters = new List<string>
