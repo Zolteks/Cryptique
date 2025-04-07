@@ -10,5 +10,7 @@ public class PZL_Hold : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         gBall.transform.position = gPosRespawnBall.transform.position;
+        Rigidbody rb = gBall.GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
     }
 }
