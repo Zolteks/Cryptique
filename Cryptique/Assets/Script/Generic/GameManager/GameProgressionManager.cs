@@ -120,7 +120,7 @@ public class GameProgressionManager : MonoBehaviour
         return false;
     }
 
-    public List<string> GetRegions()
+    public List<string> GetItemRegions()
     {
         return new List<string>(itemRegion);
     }
@@ -147,9 +147,12 @@ public class GameProgressionManager : MonoBehaviour
         {
             foreach (var puzzleID in region.Value)
             {
-                if (!completedPuzzles.Contains(puzzleID))
+                if (!completedPuzzles.Contains(puzzleID) && IsPuzzleAvailable(puzzleID))
                 {
                     activeDescriptions.Add(GetPuzzleDescription(puzzleID));
+
+                    if (activeDescriptions.Count == 2) // Limit of UI quests showed
+                        return activeDescriptions;
                 }
             }
         }
@@ -216,25 +219,22 @@ public class GameProgressionManager : MonoBehaviour
         return completedPuzzles.Contains(puzzleID);
     }
 
+    private bool IsPuzzleAvailable(string puzzleID)
+    {
+        var step = puzzleSteps.Find(s => s.puzzleID == puzzleID);
+        if (step == null)
+            return true;
+
+        return step.requiredPuzzles.All(p => completedPuzzles.Contains(p));
+    }
+
+
+
     public void CompletePuzzle(string puzzleID)
     {
         if (!completedPuzzles.Contains(puzzleID))
         {
-            bool canCompletePuzzle = true;
-            foreach (var step in puzzleSteps)
-            {
-                if (step.nextPuzzleID == puzzleID)
-                {
-                    if (!step.requiredPuzzles.All(p => completedPuzzles.Contains(p)))
-                    {
-                        canCompletePuzzle = false;
-                        Debug.Log($"Cannot complete puzzle {puzzleID} because required puzzles are not completed.");
-                        break;
-                    }
-                }
-            }
-
-            if (canCompletePuzzle)
+            if (IsPuzzleAvailable(puzzleID))
             {
                 completedPuzzles.Add(puzzleID);
                 Debug.Log($"Puzzle {puzzleID} completed!");
@@ -242,43 +242,48 @@ public class GameProgressionManager : MonoBehaviour
                 GameManager.GetInstance().NotifyPuzzleSolved(puzzleID);
                 CheckProgression(puzzleID);
             }
+            else
+            {
+                Debug.LogWarning($"Cannot complete puzzle {puzzleID}: prerequisites not met.");
+            }
         }
     }
+
 
     public bool ArePrerequisitesCompleted(string puzzleID)
     {
         foreach (var step in puzzleSteps)
         {
-            if (step.nextPuzzleID == puzzleID)
+            if (step.puzzleID.Contains(puzzleID))
             {
-                if (!step.requiredPuzzles.All(p => completedPuzzles.Contains(p)))
-                {
-                    return false;
-                }
+                return step.requiredPuzzles.All(p => completedPuzzles.Contains(p));
             }
         }
         return true;
     }
 
+
     private void CheckProgression(string solvedPuzzleID)
     {
         foreach (var step in puzzleSteps)
         {
-            if (IsPuzzleCompleted(step.nextPuzzleID))
+            if (IsPuzzleCompleted(step.puzzleID))
                 continue;
 
-            if (step.requiredPuzzles.All(p => completedPuzzles.Contains(p)))
+            if (IsPuzzleAvailable(step.puzzleID))
             {
-                RegisterPuzzle("Tavern", step.nextPuzzleID);
-                Debug.Log($"Next puzzle unlocked: {step.nextPuzzleID}");
+                RegisterPuzzle("Tavern", step.puzzleID);
+                Debug.Log($"Next puzzle unlocked: {step.puzzleID}");
             }
         }
     }
+
+
     public bool CanStartPuzzle(string puzzleID)
     {
         foreach (var step in puzzleSteps)
         {
-            if (step.nextPuzzleID == puzzleID)
+            if (step.puzzleID.Contains(puzzleID))
             {
                 return step.requiredPuzzles.All(p => completedPuzzles.Contains(p));
             }
@@ -286,6 +291,7 @@ public class GameProgressionManager : MonoBehaviour
 
         return true;
     }
+
 
     private void CheckProgression()
     {
