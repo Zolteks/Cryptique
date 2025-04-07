@@ -19,7 +19,7 @@ public class PZL_Crank : MonoBehaviour, IDragHandler, IPointerDownHandler
     private Vector2 centerPoint;
     private bool isDragging;
     private Vector3 initialScale;
-
+    
     private void Start()
     {
         currentRotationZ = transform.eulerAngles.z;
@@ -51,12 +51,10 @@ public class PZL_Crank : MonoBehaviour, IDragHandler, IPointerDownHandler
     {
         if (Mathf.Abs(currentRotationZ) >= fmaxRightRotation-50)
         {
-            Debug.Log("Suck my flacid C***");
             return true;
         }
         else
         {
-            Debug.Log("I don't work ! Suck my flacid C***");
             return false;
         }
     }
