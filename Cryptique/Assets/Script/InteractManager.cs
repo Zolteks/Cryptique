@@ -27,6 +27,8 @@ public class InteractManager : Singleton<InteractManager>
         GameObject hitObject = Utils.GetObjectUnderTouch(m_camera, pos);
         if (hitObject != null)
         {
+            if (hitObject.GetComponentInParent<OBJ_InteractOnDrop>())
+                return;
             OBJ_Interactable interactable = hitObject.GetComponentInParent<OBJ_Interactable>();
             if (interactable != null)
             {
