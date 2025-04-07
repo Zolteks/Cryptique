@@ -42,18 +42,18 @@ public class InputManager : Singleton<InputManager>
     {
         //Debug.Log("StartTouch");
         if (OnStartTouch != null)
-            OnStartTouch(GetTouchPosition(), (float)context.startTime);
+            OnStartTouch(m_touchControl.Touch.TouchPosition.ReadValue<Vector2>(), (float)context.startTime);
     }
 
     private void EndTouch(InputAction.CallbackContext context)
     {
         //Debug.Log("EndTouch");
         if (OnEndTouch != null)
-            OnEndTouch(GetTouchPosition(), (float)context.time);
+            OnEndTouch(m_touchControl.Touch.TouchPosition.ReadValue<Vector2>(), (float)context.time);
     }
 
     public Vector2 GetTouchPosition()
     {
-        return Utils.ScreenToWorld(m_mainCamera, m_touchControl.Touch.TouchPosition.ReadValue<Vector2>());
+        return m_touchControl.Touch.TouchPosition.ReadValue<Vector2>();
     }
 }

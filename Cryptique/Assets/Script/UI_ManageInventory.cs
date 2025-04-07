@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_ManageInventory : MonoBehaviour
+public class UI_ManageInventory : Singleton<UI_ManageInventory>
 {
-    // Singleton
-    public static UI_ManageInventory Instance;
-    
     /* Variables */
     public GameObject gContentPanel;
     public Scrollbar scScrollbarPanel;
@@ -19,12 +16,6 @@ public class UI_ManageInventory : MonoBehaviour
     private Sprite m_initialSprite;
     
     /* Functions */
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-    }
-
     void Start()
     {
         // Forcer la mise � jour imm�diate de tous les Canvas et leurs LayoutGroups
@@ -76,6 +67,9 @@ public class UI_ManageInventory : MonoBehaviour
         Image child = gContentPanel.transform.GetChild(id).GetChild(0).GetComponent<Image>();
         child.sprite = item.GetSprite();
         child.color = new Color(255, 255 ,255);
+        OBJ_DraggableItem draggableItem = child.GetComponent<OBJ_DraggableItem>();
+        draggableItem.SetItem(item);
+        draggableItem.enabled = true;
     }
     
     /// <summary>
@@ -87,5 +81,8 @@ public class UI_ManageInventory : MonoBehaviour
         Image child = gContentPanel.transform.GetChild(id).GetChild(0).GetComponent<Image>();
         child.sprite = m_initialSprite;
         child.color = new Color(255, 0 ,0);
+        OBJ_DraggableItem draggableItem = child.GetComponent<OBJ_DraggableItem>();
+        draggableItem.SetItem(null);
+        draggableItem.enabled = false;
     }
 }

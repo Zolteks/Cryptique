@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Utils : MonoBehaviour
@@ -8,5 +6,11 @@ public class Utils : MonoBehaviour
     {
         position.z = camera.nearClipPlane;
         return camera.ScreenToWorldPoint(position);
+    }
+    
+    public static GameObject GetObjectUnderTouch(Camera camera, Vector3 mousePosition)
+    {
+        Ray ray = camera.ScreenPointToRay(mousePosition);
+        return Physics.Raycast(ray, out RaycastHit hit) ? hit.collider.gameObject : null;
     }
 }
