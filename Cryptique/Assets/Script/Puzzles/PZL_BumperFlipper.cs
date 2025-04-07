@@ -3,13 +3,21 @@ using UnityEngine;
 
 public class Bumper : MonoBehaviour
 {
-    public float bumperForce = 500f;
+    public float fInitBumperForces = 500f;
+
+    private float fBumperStrenght;
 
     private List<Rigidbody> ballsInContact = new List<Rigidbody>();
 
+
+    public float GetBumperForce()
+    {
+        return fInitBumperForces;
+    }
+
     public void SetBumperForce(float bumpForce)
     {
-        bumperForce = bumpForce;
+        fBumperStrenght = bumpForce;
     }
 
     void OnTriggerEnter(Collider collision)
@@ -50,11 +58,23 @@ public class Bumper : MonoBehaviour
     {
         foreach (Rigidbody rb in ballsInContact)
         {
-            Vector3 launchDirection = Vector3.forward;
+            Vector3 launchDirection = transform.forward;
 
             rb.velocity = Vector3.zero;
 
-            rb.AddForce(launchDirection * bumperForce, ForceMode.Impulse);
+            rb.AddForce(launchDirection * fBumperStrenght, ForceMode.Impulse);
+        }
+    }
+
+    public void Returnball()
+    {
+        foreach (Rigidbody rb in ballsInContact)
+        {
+            Vector3 launchDirection = transform.forward;
+
+            rb.velocity = -rb.velocity;
+
+            rb.AddForce(launchDirection * fInitBumperForces, ForceMode.Impulse);
         }
     }
 }
