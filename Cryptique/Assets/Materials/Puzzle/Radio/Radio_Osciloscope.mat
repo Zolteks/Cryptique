@@ -38,6 +38,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _SampleTexture2D_415a4bff388043adb7bafb629b6a3ac2_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 74f86b0e961cdac4887a246444671aed, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -52,13 +56,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FreqHeight: 0.25
-    - _FreqWidth: 8.7
+    - _FreqHeight: 0.1
+    - _FreqWidth: 2
     - _Height: 0
     - _OscilationSpeed: 0.3
     - _QueueControl: 0
     - _QueueOffset: 0
     - _StripesThickness: 0
+    - _TargetFreqHeight: 0.25
+    - _TargetFreqWidth: 9
     - _Width: 0
     m_Colors:
     - _Background: {r: 0.004988342, g: 0.16981125, b: 0, a: 0}
@@ -67,6 +73,6 @@ Material:
     - _Stripes: {r: 0, g: 0, b: 0, a: 0}
     - _StripesColor: {r: 0.31104958, g: 0.46226412, b: 0.30744928, a: 1}
     - _TargetFreq: {r: 0, g: 0, b: 0, a: 0}
-    - _TargetFreqColor: {r: 0, g: 0, b: 0, a: 0}
+    - _TargetFreqColor: {r: 0.18922815, g: 0.4811321, b: 0.13389997, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
