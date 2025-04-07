@@ -62,7 +62,7 @@ public class UI_RegionDetail : MonoBehaviour
             regionDetail.GetComponentInChildren<Button>().onClick.AddListener(() =>
             {
                 //Load chapter
-                SceneManager.LoadScene(levelName);
+                SaveAndLoadScene.Excute(levelName); 
             });
         }
     }

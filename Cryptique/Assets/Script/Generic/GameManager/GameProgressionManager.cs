@@ -167,7 +167,7 @@ public class GameProgressionManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+      //  DontDestroyOnLoad(gameObject);
     }
 
     public void CollectItem(string region, string itemID)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class OBJ_EscapeArrow : OBJ_Interactable
 {
     [Tooltip("Let empty if the arrow doesn't lead to another region")]
@@ -36,7 +37,7 @@ public class OBJ_EscapeArrow : OBJ_Interactable
         }
         else
         {
-            SceneManager.LoadScene(goToRegion);
+            SaveAndLoadScene.Excute(goToRegion);
         }
         return true;
     }

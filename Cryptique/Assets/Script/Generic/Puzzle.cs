@@ -31,6 +31,9 @@ public class Puzzle : MonoBehaviour
             Debug.Log($"{puzzleID} is completed.");
             GameProgressionManager.Instance.CompletePuzzle(puzzleID);
             onSuccess?.Invoke();
+
+            SaveSystemManager.Instance.GetGameData().collectedItems.Add(puzzleID);
+
             Quit();
         }
         else
