@@ -5,15 +5,6 @@ using UnityEngine;
 
 public class GameProgressionManager : MonoBehaviour
 {
-    /// <summary>
-    /// /Dictonnary test for regions and number of Items per region
-    /// </summary>
-    private Dictionary<string, int> totalItemsPerRegion = new Dictionary<string, int>
-    {
-        { "Tavern", 10 },
-        { "Dungeon", 5 },
-        { "Forest", 3 }
-    };
 
     /// <summary>
     /// /Dictonnary For Puzzles, probably needs another script to be more clean
@@ -26,6 +17,45 @@ public class GameProgressionManager : MonoBehaviour
         { "PuzzleC", "You have to Press C" },
         { "PuzzleD", "You have to Press D" },
         { "PuzzleE", "You have to Press E" }
+    };
+
+    [SerializeField] private List<string> chapters = new List<string>
+    {
+        "Wendigo",
+        "Kelpie",
+        "Chupacabra",
+    };
+
+    /// <summary>
+    /// Dictionary test for regions and items
+    /// </summary>
+    private Dictionary<string, List<string>> regions = new Dictionary<string, List<string>>
+    {
+        { "Wendigo" , new List<string> { "Tavern", "Village", "Forest", "Cave" } },
+        { "Kelpie" , new List<string> { "Tavern", "Village", "Forest", "Cave" } },
+        { "Chupacabra" , new List<string> { "Tavern", "Village", "Forest", "Cave" } },
+    };
+
+    /// <summary>
+    /// /Dictonnary test for regions and number of Items per region for all chapters
+    /// </summary>
+    private Dictionary<string, int> totalItemsPerRegion= new Dictionary<string, int>
+    {
+        { "Tavern", 10 },
+        { "Village", 5 },
+        { "Forest", 3 },
+        { "Cave", 7 },
+    };
+
+    /// <summary>
+    /// Dictionary test for set unlocked regions
+    /// </summary>
+    private Dictionary<string, bool> regionUnlocked = new Dictionary<string, bool>
+    {
+        { "Tavern", true },
+        { "Village", false },
+        { "Forest", false },
+        { "Cave", false },
     };
 
     /* Variables */
@@ -59,8 +89,38 @@ public class GameProgressionManager : MonoBehaviour
         }
         return 0;
     }
+    
+    // Get Chapter
+    public string GetCurrentChapter()
+    {
+        return chapters[currentChapter - 1];
+    }
 
-    public List<string> GetRegions()
+    public List<string> GetChapters()
+    {
+        return new List<string>(chapters);
+    }
+
+    // Get region
+    public List<string> GetRegions(string chapter)
+    {
+        if (regions.ContainsKey(chapter))
+        {
+            return regions[chapter];
+        }
+        return new List<string>();
+    }
+
+    public bool IsRegionUnlocked(string region)
+    {
+        if (regionUnlocked.ContainsKey(region))
+        {
+            return regionUnlocked[region];
+        }
+        return false;
+    }
+
+    public List<string> GetItemRegions()
     {
         return new List<string>(itemRegion);
     }
@@ -87,15 +147,20 @@ public class GameProgressionManager : MonoBehaviour
         {
             foreach (var puzzleID in region.Value)
             {
-                if (!completedPuzzles.Contains(puzzleID))
+                if (!completedPuzzles.Contains(puzzleID) && IsPuzzleAvailable(puzzleID))
                 {
                     activeDescriptions.Add(GetPuzzleDescription(puzzleID));
+
+                    if (activeDescriptions.Count == 2) // Limit of UI quest showed
+                        return activeDescriptions;
                 }
             }
         }
 
         return activeDescriptions;
     }
+
+
 
     /* Functions */
     private void Awake()
@@ -156,25 +221,22 @@ public class GameProgressionManager : MonoBehaviour
         return completedPuzzles.Contains(puzzleID);
     }
 
+    private bool IsPuzzleAvailable(string puzzleID)
+    {
+        var step = puzzleSteps.Find(s => s.puzzleID == puzzleID);
+        if (step == null)
+            return true; // Pas dans la liste, donc pas de restriction
+
+        return step.requiredPuzzles.All(p => completedPuzzles.Contains(p));
+    }
+
+
+
     public void CompletePuzzle(string puzzleID)
     {
         if (!completedPuzzles.Contains(puzzleID))
         {
-            bool canCompletePuzzle = true;
-            foreach (var step in puzzleSteps)
-            {
-                if (step.nextPuzzleID == puzzleID)
-                {
-                    if (!step.requiredPuzzles.All(p => completedPuzzles.Contains(p)))
-                    {
-                        canCompletePuzzle = false;
-                        Debug.Log($"Cannot complete puzzle {puzzleID} because required puzzles are not completed.");
-                        break;
-                    }
-                }
-            }
-
-            if (canCompletePuzzle)
+            if (IsPuzzleAvailable(puzzleID))
             {
                 completedPuzzles.Add(puzzleID);
                 Debug.Log($"Puzzle {puzzleID} completed!");
@@ -182,43 +244,48 @@ public class GameProgressionManager : MonoBehaviour
                 GameManager.GetInstance().NotifyPuzzleSolved(puzzleID);
                 CheckProgression(puzzleID);
             }
+            else
+            {
+                Debug.LogWarning($"Cannot complete puzzle {puzzleID}: prerequisites not met.");
+            }
         }
     }
+
 
     public bool ArePrerequisitesCompleted(string puzzleID)
     {
         foreach (var step in puzzleSteps)
         {
-            if (step.nextPuzzleID == puzzleID)
+            if (step.puzzleID.Contains(puzzleID))
             {
-                if (!step.requiredPuzzles.All(p => completedPuzzles.Contains(p)))
-                {
-                    return false;
-                }
+                return step.requiredPuzzles.All(p => completedPuzzles.Contains(p));
             }
         }
         return true;
     }
 
+
     private void CheckProgression(string solvedPuzzleID)
     {
         foreach (var step in puzzleSteps)
         {
-            if (IsPuzzleCompleted(step.nextPuzzleID))
+            if (IsPuzzleCompleted(step.puzzleID))
                 continue;
 
-            if (step.requiredPuzzles.All(p => completedPuzzles.Contains(p)))
+            if (IsPuzzleAvailable(step.puzzleID))
             {
-                RegisterPuzzle("Tavern", step.nextPuzzleID);
-                Debug.Log($"Next puzzle unlocked: {step.nextPuzzleID}");
+                RegisterPuzzle("Tavern", step.puzzleID);
+                Debug.Log($"Next puzzle unlocked: {step.puzzleID}");
             }
         }
     }
+
+
     public bool CanStartPuzzle(string puzzleID)
     {
         foreach (var step in puzzleSteps)
         {
-            if (step.nextPuzzleID == puzzleID)
+            if (step.puzzleID.Contains(puzzleID))
             {
                 return step.requiredPuzzles.All(p => completedPuzzles.Contains(p));
             }
@@ -227,6 +294,16 @@ public class GameProgressionManager : MonoBehaviour
         return true;
     }
 
+
+    private void CheckProgression()
+    {
+        if (collectedItems.Count == 5 && completedPuzzles.Count == 5) // Exemple : if 5 objects collected and 5 Puzzle completed AdvanceChapter
+        {
+            AdvanceChapter();
+        }
+    }
+
+    //  Next Chapter (for future)
     private void AdvanceChapter()
     {
         currentChapter++;

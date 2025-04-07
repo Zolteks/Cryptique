@@ -2,13 +2,13 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using static UnityEditor.Progress;
 
 public class UIManager : MonoBehaviour
 {
     /* Variables */
     [SerializeField] private TextMeshProUGUI regionUnlockedUI;
     [SerializeField] private TextMeshProUGUI itemProgressUI;
-    [SerializeField] private TextMeshProUGUI currentPuzzlesUI;
     [SerializeField] private TextMeshProUGUI completedPuzzlesUI;
     [SerializeField] private List<TextMeshProUGUI> puzzleDescriptionTexts;
 
@@ -19,13 +19,13 @@ public class UIManager : MonoBehaviour
     {
         var progressionManager = GameProgressionManager.GetInstance();
         int total = 0;
-        foreach (var region in progressionManager.GetRegions())
+        foreach (var region in progressionManager.GetItemRegions())
         {
             total += progressionManager.GetTotalItemsInRegion(region);
         }
         return total;
     }
-
+    
     public void UpdateItemProgress(string itemRegion, int collectedItems, int totalItems)
     {
         if (itemProgressUI != null)

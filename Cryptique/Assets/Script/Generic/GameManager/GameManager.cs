@@ -39,6 +39,10 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
+    public void NotifyChapterChanged(string chapterID)
+    {
+        Debug.Log($"Chapter Changed : {chapterID} - Update UI or other systems");
+    }
 
     public void NotifyItemCollected(string region, int collectedCount, int totalItems)
     {
@@ -50,6 +54,7 @@ public class GameManager : MonoBehaviour
             uiManager.UpdateRegionUnlocked(region);
         }
     }
+    
     public void NotifyPuzzleSolved(string puzzleID)
     {
         Debug.Log($"Puzzle Solved : {puzzleID} - Update UI");
@@ -87,12 +92,4 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
-
-
-    public void NotifyChapterChanged(string chapterID)
-    {
-        Debug.Log($"Chapter Changed : {chapterID} - Update UI or other systems");
-    }
-
 }
