@@ -28,13 +28,4 @@ public class OBJ_Item : ScriptableObject
     public void SetRegion(string region) => m_itemRegion = region;
     public void SetDescription(string description) => m_itemDescription = description;
     public void SetPrefab(GameObject prefab) => m_itemPrefab = prefab;
-    
-    public bool UseItemOn(GameObject ObjectToInteract)
-    {
-        if (!ObjectToInteract.TryGetComponent<OBJ_Collectable>(out var objInteractable))
-            return false;
-        
-        objInteractable.UseOn(ObjectToInteract);
-        return true;
-    }
 }

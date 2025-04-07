@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_ManageInventory : MonoBehaviour
+public class UI_ManageInventory : Singleton<UI_ManageInventory>
 {
-    // Singleton
-    public static UI_ManageInventory Instance;
-    
     /* Variables */
     public GameObject gContentPanel;
     public Scrollbar scScrollbarPanel;
@@ -19,12 +16,6 @@ public class UI_ManageInventory : MonoBehaviour
     private Sprite m_initialSprite;
     
     /* Functions */
-    private void Awake()
-    {
-        if (Instance == null)
-            Instance = this;
-    }
-
     void Start()
     {
         // Forcer la mise � jour imm�diate de tous les Canvas et leurs LayoutGroups
@@ -42,11 +33,11 @@ public class UI_ManageInventory : MonoBehaviour
             m_PositionGrid.Add(child.anchoredPosition);
             m_NameGrid.Add(child.name);
 
-            Debug.Log(child.name + " : " + child.anchoredPosition);
+            // Debug.Log(child.name + " : " + child.anchoredPosition);
         }
 
-        print(m_PositionGrid);
-        print(m_NameGrid);
+        //print(m_PositionGrid);
+        // print(m_NameGrid);
     }
     
     /// <summary>
@@ -55,8 +46,9 @@ public class UI_ManageInventory : MonoBehaviour
     /// <param name="items">The list of items in the inventory</param>
     public void UpdateContentPanel(List<OBJ_Item> items)
     {
-        int allChildren = gContentPanel.GetComponentsInChildren<RectTransform>().Length;
+        int allChildren = gContentPanel.GetComponentsInChildren<OBJ_DraggableItem>().Length;
         int allItems = items.Count;
+        Debug.Log("Number of children: " + allChildren);
         for (int i = 0; i < allChildren; i++)
         {
             if (i < allItems)
@@ -76,6 +68,9 @@ public class UI_ManageInventory : MonoBehaviour
         Image child = gContentPanel.transform.GetChild(id).GetChild(0).GetComponent<Image>();
         child.sprite = item.GetSprite();
         child.color = new Color(255, 255 ,255);
+        OBJ_DraggableItem draggableItem = child.GetComponent<OBJ_DraggableItem>();
+        draggableItem.SetItem(item);
+        draggableItem.enabled = true;
     }
     
     /// <summary>
@@ -84,8 +79,12 @@ public class UI_ManageInventory : MonoBehaviour
     /// <param name="id">The id in the inventory system List</param>
     public void ClearGridElement(int id)
     {
+        Debug.Log("ClearGridElement " + id);
         Image child = gContentPanel.transform.GetChild(id).GetChild(0).GetComponent<Image>();
         child.sprite = m_initialSprite;
         child.color = new Color(255, 0 ,0);
+        OBJ_DraggableItem draggableItem = child.GetComponent<OBJ_DraggableItem>();
+        draggableItem.SetItem(null);
+        draggableItem.enabled = false;
     }
 }
