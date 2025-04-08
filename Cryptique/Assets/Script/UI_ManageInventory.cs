@@ -46,8 +46,9 @@ public class UI_ManageInventory : Singleton<UI_ManageInventory>
     /// <param name="items">The list of items in the inventory</param>
     public void UpdateContentPanel(List<OBJ_Item> items)
     {
-        int allChildren = gContentPanel.GetComponentsInChildren<RectTransform>().Length;
+        int allChildren = gContentPanel.GetComponentsInChildren<OBJ_DraggableItem>().Length;
         int allItems = items.Count;
+        Debug.Log("Number of children: " + allChildren);
         for (int i = 0; i < allChildren; i++)
         {
             if (i < allItems)
@@ -78,6 +79,7 @@ public class UI_ManageInventory : Singleton<UI_ManageInventory>
     /// <param name="id">The id in the inventory system List</param>
     public void ClearGridElement(int id)
     {
+        Debug.Log("ClearGridElement " + id);
         Image child = gContentPanel.transform.GetChild(id).GetChild(0).GetComponent<Image>();
         child.sprite = m_initialSprite;
         child.color = new Color(255, 0 ,0);

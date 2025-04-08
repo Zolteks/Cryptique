@@ -9,7 +9,7 @@ public class DragAndDrop : Singleton<DragAndDrop>
 {
     /* Singleton */
     private InputManager m_inputManager;
-    
+
     /* Variables */
     [SerializeField]
     private Canvas m_canvas;
@@ -21,13 +21,8 @@ public class DragAndDrop : Singleton<DragAndDrop>
     private GameObject m_ghostImageObject;
     private RectTransform m_ghostRect;
     private OBJ_Item m_selectedItem;
-    private GameObject m_objectToInteract;
-    
+
     Coroutine m_dragCoroutine;
-
-    public event System.Action<OBJ_Item, GameObject> OnDragEnded;
-    public event System.Action<GameObject> OnInteractObject;
-
 
     /* Functions */
     private void Awake()
@@ -35,19 +30,19 @@ public class DragAndDrop : Singleton<DragAndDrop>
         m_inputManager = InputManager.Instance;
         m_mainCamera = Camera.main;
     }
-    
+
     private void OnEnable()
     {
         m_inputManager.OnStartTouch += OnDragStart;
         m_inputManager.OnEndTouch += OnDragEnd;
     }
-    
+
     private void OnDisable()
     {
         m_inputManager.OnStartTouch -= OnDragStart;
         m_inputManager.OnEndTouch -= OnDragEnd;
     }
-    
+
     private void OnDragStart(Vector2 position, float time)
     {
         // Raycast UI
@@ -58,7 +53,7 @@ public class DragAndDrop : Singleton<DragAndDrop>
         if (results.Count > 0)
         {
             GameObject hitUI = results[0].gameObject;
-            Debug.Log("Hit : " + hitUI.name);
+            Debug.Log(hitUI.name);
             Image img = hitUI.GetComponent<Image>();
             OBJ_DraggableItem draggableItem = hitUI.GetComponent<OBJ_DraggableItem>();
 
@@ -89,14 +84,14 @@ public class DragAndDrop : Singleton<DragAndDrop>
 
                 // Positionner directement la première fois
                 UpdateGhostPosition(position);
-                
+
                 // Démarrer la coroutine de drag
                 m_dragCoroutine = StartCoroutine(OnDrag());
             }
         }
         else Debug.Log("No UI hit");
     }
-    
+
     private IEnumerator OnDrag()
     {
         while (m_draggedObject != null)
@@ -106,36 +101,29 @@ public class DragAndDrop : Singleton<DragAndDrop>
             yield return null;
         }
     }
-    
+
     private void OnDragEnd(Vector2 position, float time)
     {
         if (m_ghostImageObject == null)
             return;
-        
-        Destroy(m_ghostImageObject); 
+
+        Destroy(m_ghostImageObject);
         m_ghostImageObject = null;
-        
+
         if (m_dragCoroutine != null)
             StopCoroutine(m_dragCoroutine);
-
-        // Appelle l'événement pour prévenir les abonnés
-        OnDragEnded?.Invoke(m_selectedItem, m_draggedObject);
 
         m_draggedObject = null;
 
         GameObject objectToInteract = Utils.GetObjectUnderTouch(m_mainCamera, position);
         if (objectToInteract != null)
         {
-            Debug.Log("ObecjtToInteract : " + objectToInteract.name);
-
-            m_objectToInteract = objectToInteract;
-            OnInteractObject?.Invoke(objectToInteract);
-
-            m_selectedItem.UseItemOn(objectToInteract);
+            Debug.Log(objectToInteract.name);
+            OBJ_InteractOnDrop objectInteract = objectToInteract.GetComponentInParent<OBJ_InteractOnDrop>();
+            if (objectToInteract != null)
+                objectInteract.UseItemOnDrop(m_selectedItem);
         }
         else Debug.Log("No Object to interact with");
-
-        
     }
 
     private void UpdateGhostPosition(Vector2 screenPos)
@@ -148,20 +136,5 @@ public class DragAndDrop : Singleton<DragAndDrop>
         );
 
         m_ghostRect.anchoredPosition = localPos;
-    }
-
-    public OBJ_Item GetSelectedItem()
-    {
-        return m_selectedItem;
-    }
-
-    public GameObject GetDraggedObject()
-    {
-        return m_draggedObject;
-    }
-
-    public GameObject GetObjecToInteract()
-    {
-        return m_objectToInteract;
     }
 }

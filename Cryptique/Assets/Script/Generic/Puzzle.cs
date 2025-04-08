@@ -16,7 +16,7 @@ public class Puzzle : MonoBehaviour
 
     public static void StartPuzzle(string name)
     {
-        GameObject.Instantiate(Resources.Load(name));
+        GameObject.Instantiate(Resources.Load("Puzzles/PZL_"+name));
     }
 
     public void Quit()
@@ -31,6 +31,9 @@ public class Puzzle : MonoBehaviour
             Debug.Log($"{puzzleID} is completed.");
             GameProgressionManager.Instance.CompletePuzzle(puzzleID);
             onSuccess?.Invoke();
+
+            SaveSystemManager.Instance.GetGameData().collectedItems.Add(puzzleID);
+
             Quit();
         }
         else
