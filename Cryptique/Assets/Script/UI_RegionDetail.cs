@@ -62,6 +62,7 @@ public class UI_RegionDetail : MonoBehaviour
             regionDetail.GetComponentInChildren<Button>().onClick.AddListener(() =>
             {
                 //Load chapter
+                Debug.Log($"{levelName}");
                 SaveAndLoadScene.Excute(levelName); 
             });
         }

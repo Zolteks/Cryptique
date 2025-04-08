@@ -10,6 +10,12 @@ public class SaveAndLoadScene : MonoBehaviour
         // Save the current scene
         SaveSystemManager.Instance.SaveGame();
         // Load the new scene
+        //test si la scene existe 
+        if (!Application.CanStreamedLevelBeLoaded(sceneName))
+        {
+            Debug.LogError($"Scene {sceneName} does not exist.");
+            return;
+        }
         SceneManager.LoadScene(sceneName);
     }
 }

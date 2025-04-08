@@ -54,7 +54,7 @@ public class GameProgressionManager : MonoBehaviour
     private Dictionary<string, bool> regionUnlocked = new Dictionary<string, bool>
     {
         { "Tavern", true },
-        { "Village", false },
+        { "Village", true },
         { "Forest", false },
         { "Cave", false },
     };
