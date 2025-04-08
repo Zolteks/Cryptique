@@ -248,49 +248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efec2f667dd2dc4f861f75b10b861c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &466078500 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1642058193272457832, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
-    type: 3}
-  m_PrefabInstance: {fileID: 912153523025322779}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &466078502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 466078500}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c91d7298e05154f4485532474659ccec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sNameBumperBool: RightButtonClicked
-  bLeftBumper: {fileID: 1260826774}
-  bRightBumper: {fileID: 312518738}
---- !u!95 &466078503
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 466078500}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ddafb87c4c837554e871051e6f1cb5d0, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 1
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &580371662
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +465,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &820772889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6467603785607734793, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
+    type: 3}
+  m_PrefabInstance: {fileID: 912153523025322779}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1260826774 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2945642227062629463, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
@@ -520,49 +483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efec2f667dd2dc4f861f75b10b861c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1364525254 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4556639895742889413, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
-    type: 3}
-  m_PrefabInstance: {fileID: 912153523025322779}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1364525256
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364525254}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ddafb87c4c837554e871051e6f1cb5d0, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 1
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1364525257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364525254}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c91d7298e05154f4485532474659ccec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sNameBumperBool: LeftButtonClicked
-  bLeftBumper: {fileID: 1260826774}
-  bRightBumper: {fileID: 312518738}
 --- !u!114 &1395590639 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 193240847082428251, guid: 7389fb8ec8709c34d9ac4c06b6093e8f,
@@ -853,6 +773,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 13400000, guid: d24eaa1cc1a81b042ad5308836117a51,
         type: 2}
+    - target: {fileID: 6476614703171784184, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 6476614703171784184, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.36
+      objectReference: {fileID: 0}
     - target: {fileID: 6688473512340295543, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
         type: 3}
       propertyPath: m_Size.z
@@ -910,6 +840,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7557165357888868780, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
         type: 3}
+      propertyPath: region
+      value: Grotte
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557165357888868780, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
+        type: 3}
+      propertyPath: puzzleID
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7557165357888868780, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
+        type: 3}
       propertyPath: bLeftBumper
       value: 
       objectReference: {fileID: 1260826774}
@@ -923,6 +863,11 @@ PrefabInstance:
       propertyPath: sSliderLauncher
       value: 
       objectReference: {fileID: 2040553087}
+    - target: {fileID: 7557165357888868780, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
+        type: 3}
+      propertyPath: goAllStalacmites
+      value: 
+      objectReference: {fileID: 820772889}
     - target: {fileID: 7557165357888868780, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
         type: 3}
       propertyPath: bLeftButtonBumper
@@ -1002,23 +947,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4556639895742889413, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1364525257}
-    - targetCorrespondingSourceObject: {fileID: 4556639895742889413, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1364525256}
-    - targetCorrespondingSourceObject: {fileID: 1642058193272457832, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 466078502}
-    - targetCorrespondingSourceObject: {fileID: 1642058193272457832, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 466078503}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29dbc8c52046b9e479dd15c3aa407d7e, type: 3}
 --- !u!1001 &3061811794700650948
 PrefabInstance:
