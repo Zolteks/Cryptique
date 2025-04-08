@@ -13,7 +13,6 @@ public class Puzzle : MonoBehaviour
         GameProgressionManager.Instance.RegisterPuzzle(region, puzzleID);
     }
 
-
     public static void StartPuzzle(string name)
     {
         GameObject.Instantiate(Resources.Load(name));
@@ -38,6 +37,4 @@ public class Puzzle : MonoBehaviour
             Debug.Log($"Cannot complete {puzzleID} because the prerequisites are not completed yet.");
         }
     }
-
-
 }

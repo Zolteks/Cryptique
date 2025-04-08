@@ -2,76 +2,93 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Gyroscope : MonoBehaviour
 {
-    public int bufferSize = 30;
-    public float sensitivity = 2.0f; // 2x la variation moyenne
-    public float minMovementAngle = 1.5f; // pour ignorer les variations trop faibles
+    [Header("Paramètres")]
+    public float calibrationDuration = 3f;
+    public float sensitivityMultiplier = 2f;
+    public float minMovementThreshold = 0.05f;
 
-    private List<float> rotationSpeeds = new();
-    private Quaternion lastRotation;
+    [Header("Événements")]
+    public UnityEvent OnMotionDetected;
+
+    private float calibrationTimer = 0f;
+    private bool isCalibrating = false;
+    private bool isCalibrated = false;
+    private bool movementDetected = false;
+
+    private Vector3 lastAcceleration;
     private bool hasReference = false;
 
-    private bool yoooooo = false;
+    private List<float> calibrationData = new();
+    private float calibratedAverage = 0f;
+    private float calibratedVariation = 0f;
 
-    void Start()
+    void OnEnable()
     {
-        Input.gyro.enabled = true;
+        StartCalibration();
     }
 
     void Update()
     {
-        Quaternion current = ConvertGyro(Input.gyro.attitude);
+        Vector3 current = Input.acceleration;
 
         if (!hasReference)
         {
-            lastRotation = current;
+            lastAcceleration = current;
             hasReference = true;
             return;
         }
 
-        float angle = Quaternion.Angle(lastRotation, current);
-        lastRotation = current;
+        float delta = Vector3.Distance(lastAcceleration, current);
+        lastAcceleration = current;
 
-        if (rotationSpeeds.Count >= bufferSize)
-            rotationSpeeds.RemoveAt(0);
-
-        rotationSpeeds.Add(angle);
-
-        float avg = rotationSpeeds.Average();
-        float var = Mathf.Abs(rotationSpeeds.Average() - angle); // variation simple
-
-        float threshold = avg + (var * sensitivity);
-
-        if (angle > threshold && angle > minMovementAngle)
+        if (isCalibrating)
         {
-            Debug.LogWarning(" Mouvement suspect détecté !");
-            // Tu peux déclencher une action ici (reset, effet, message…)
-            yoooooo = true;
+            calibrationTimer += Time.deltaTime;
+            calibrationData.Add(delta);
+
+            if (calibrationTimer >= calibrationDuration)
+            {
+                Calibrate();
+            }
+
+            return;
+        }
+
+        if (isCalibrated && !movementDetected)
+        {
+            float threshold = calibratedAverage + calibratedVariation * sensitivityMultiplier;
+
+            if (delta > threshold && delta > minMovementThreshold)
+            {
+                movementDetected = true;
+                OnMotionDetected?.Invoke();
+            }
         }
     }
 
-    Quaternion ConvertGyro(Quaternion q)
+    private void StartCalibration()
     {
-        return new Quaternion(q.x, q.y, -q.z, -q.w);
+        calibrationTimer = 0f;
+        calibrationData.Clear();
+        isCalibrating = true;
+        isCalibrated = false;
+        movementDetected = false;
+        hasReference = false;
     }
 
-    protected void OnGUI()
+    private void Calibrate()
     {
-        GUI.skin.label.fontSize = Screen.width / 40;
+        if (calibrationData.Count == 0) return;
 
-        GUILayout.Label("Orientation: " + Screen.orientation);
-        GUILayout.Label("input.gyro.attitude: " + Input.gyro.attitude);
-        GUILayout.Label("iphone width/font: " + Screen.width + " : " + GUI.skin.label.fontSize);
+        calibratedAverage = calibrationData.Average();
+        float sumSquaredDiff = calibrationData.Sum(d => Mathf.Pow(d - calibratedAverage, 2));
+        calibratedVariation = Mathf.Sqrt(sumSquaredDiff / calibrationData.Count);
 
-        if(yoooooo)
-        {
-            GUI.skin.label.fontSize = Screen.width / 20;
-            GUILayout.Label("Mouvement suspect détecté !");
-            GUI.skin.label.fontSize = Screen.width / 40;
-        }
-
+        isCalibrated = true;
+        isCalibrating = false;
     }
-
 }
