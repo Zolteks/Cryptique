@@ -119,7 +119,9 @@ public class DragAndDrop : Singleton<DragAndDrop>
         if (objectToInteract != null)
         {
             Debug.Log(objectToInteract.name);
-            m_selectedItem.UseItemOn(objectToInteract);
+            OBJ_InteractOnDrop objectInteract = objectToInteract.GetComponentInParent<OBJ_InteractOnDrop>();
+            if(objectToInteract != null)
+                objectInteract.UseItemOnDrop(m_selectedItem);
         }
         else Debug.Log("No Object to interact with");
     }
