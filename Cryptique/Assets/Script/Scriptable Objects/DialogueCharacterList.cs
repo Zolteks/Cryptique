@@ -13,6 +13,7 @@ public class DialogueCharacterList : ScriptableObject
         public Image iTalkingPortrait;
         public Image iListeningPortrait;
         public bool bTalkOnRightSide;
+        public bool bNoPortrait;
     }
 
     [SerializeField] public List<DialogueCharacter> talkingCharacters;

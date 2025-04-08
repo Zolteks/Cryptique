@@ -16,6 +16,7 @@ public class UI_DialogueManager : MonoBehaviour
         public Image iTalkingPortrait;
         public Image iListeningPortrait;
         public bool bTalkOnRightSide;
+        public bool bNoPortrait = false;
     }
 
     [System.Serializable]
@@ -75,10 +76,10 @@ public class UI_DialogueManager : MonoBehaviour
     public void HideDialogueUI()
     {
         //dialogueAnimator.SetTrigger("Hide");
-        StartCoroutine(DeactivateAfterAnimation());
+        StartCoroutine(CoroutineDeactivateAfterAnimation());
     }
 
-    IEnumerator DeactivateAfterAnimation()
+    IEnumerator CoroutineDeactivateAfterAnimation()
     {
         yield return new WaitForSeconds(0.5f); // Animation Length
         dialoguePanel.SetActive(false);
@@ -111,16 +112,18 @@ public class UI_DialogueManager : MonoBehaviour
 
     public void DisplayNextLine()
     {
+        if (bIsTypingText == true)
+        {
+            fTextSpeed = 0.0001f;
+            return;
+        }
+
         if (qLines.Count == 0)
         {
             EndDialogue();
             return;
         }
 
-        if (bIsTypingText == true)
-        {
-            fTextSpeed = 0.0001f;
-        }
         else 
         {
             DialogueLine cCurrentLine = qLines.Dequeue();
@@ -144,8 +147,8 @@ public class UI_DialogueManager : MonoBehaviour
 
 
             StopAllCoroutines();
-            StartCoroutine(AnimatePortraitFocus(talkingPortrait, listeningPortrait));
-            StartCoroutine(TypeSentence(cCurrentLine.sLine));
+            StartCoroutine(CoroutineAnimatePortraitFocus(talkingPortrait, listeningPortrait));
+            StartCoroutine(CoroutineTypeSentence(cCurrentLine.sLine));
         }
     }
 
@@ -158,7 +161,7 @@ public class UI_DialogueManager : MonoBehaviour
         target.preserveAspect = source.preserveAspect;
     }
 
-    private IEnumerator AnimatePortraitFocus(Image talkingPortrait, Image listeningPortrait)
+    private IEnumerator CoroutineAnimatePortraitFocus(Image talkingPortrait, Image listeningPortrait)
     {
         float duration = 0.3f;
         float elapsed = 0f;
@@ -198,7 +201,7 @@ public class UI_DialogueManager : MonoBehaviour
     }
 
 
-    IEnumerator TypeSentence(string sSentence)
+    IEnumerator CoroutineTypeSentence(string sSentence)
     {
         bIsTypingText = true;
         tDialogueDisplay.text = "";
