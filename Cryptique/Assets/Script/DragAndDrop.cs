@@ -21,9 +21,14 @@ public class DragAndDrop : Singleton<DragAndDrop>
     private GameObject m_ghostImageObject;
     private RectTransform m_ghostRect;
     private OBJ_Item m_selectedItem;
+    private GameObject m_objectToInteract;
     
     Coroutine m_dragCoroutine;
-    
+
+    public event System.Action<OBJ_Item, GameObject> OnDragEnded;
+    public event System.Action<GameObject> OnInteractObject;
+
+
     /* Functions */
     private void Awake()
     {
@@ -53,7 +58,7 @@ public class DragAndDrop : Singleton<DragAndDrop>
         if (results.Count > 0)
         {
             GameObject hitUI = results[0].gameObject;
-            Debug.Log(hitUI.name);
+            Debug.Log("Hit : " + hitUI.name);
             Image img = hitUI.GetComponent<Image>();
             OBJ_DraggableItem draggableItem = hitUI.GetComponent<OBJ_DraggableItem>();
 
@@ -113,17 +118,26 @@ public class DragAndDrop : Singleton<DragAndDrop>
         if (m_dragCoroutine != null)
             StopCoroutine(m_dragCoroutine);
 
+        // Appelle l'événement pour prévenir les abonnés
+        OnDragEnded?.Invoke(m_selectedItem, m_draggedObject);
+
         m_draggedObject = null;
 
         GameObject objectToInteract = Utils.GetObjectUnderTouch(m_mainCamera, position);
         if (objectToInteract != null)
         {
-            Debug.Log(objectToInteract.name);
+            Debug.Log("ObecjtToInteract : " + objectToInteract.name);
+
+            m_objectToInteract = objectToInteract;
+            OnInteractObject?.Invoke(objectToInteract);
+
             m_selectedItem.UseItemOn(objectToInteract);
         }
         else Debug.Log("No Object to interact with");
+
+        
     }
-    
+
     private void UpdateGhostPosition(Vector2 screenPos)
     {
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
@@ -134,5 +148,20 @@ public class DragAndDrop : Singleton<DragAndDrop>
         );
 
         m_ghostRect.anchoredPosition = localPos;
+    }
+
+    public OBJ_Item GetSelectedItem()
+    {
+        return m_selectedItem;
+    }
+
+    public GameObject GetDraggedObject()
+    {
+        return m_draggedObject;
+    }
+
+    public GameObject GetObjecToInteract()
+    {
+        return m_objectToInteract;
     }
 }
