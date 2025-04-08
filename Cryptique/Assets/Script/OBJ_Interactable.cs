@@ -24,6 +24,6 @@ public abstract class OBJ_Interactable : MonoBehaviour
     /// <summary>  
     /// Interagit avec l'objet.  
     /// </summary>  
-    /// <returns>True si l'interaction a réussi, sinon false.</returns>  
+    /// <returns>True si l'interaction a reussi, sinon false.</returns>  
     public abstract bool Interact();
 }
