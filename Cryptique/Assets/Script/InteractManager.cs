@@ -31,7 +31,7 @@ public class InteractManager : Singleton<InteractManager>
             if (interactableOnDrop != null && interactableOnDrop.CanInteract())
                 return;
             var interactable = hitObject.GetComponentInParent<OBJ_Interactable>();
-            if (interactable != null && interactableOnDrop.CanInteract())
+            if (interactable != null && interactable.CanInteract())
             {
                 interactable.Interact();
                 Debug.Log("Interacted with: " + hitObject.name);
