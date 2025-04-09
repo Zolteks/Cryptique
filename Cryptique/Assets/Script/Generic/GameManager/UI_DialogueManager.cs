@@ -16,7 +16,7 @@ public class UI_DialogueManager : MonoBehaviour
         public Image iTalkingPortrait;
         public Image iListeningPortrait;
         public bool bTalkOnRightSide;
-        public bool bNoPortrait = false;
+        public bool bNoPortrait;
     }
 
     [System.Serializable]
@@ -123,38 +123,51 @@ public class UI_DialogueManager : MonoBehaviour
             EndDialogue();
             return;
         }
-
-        else 
+        else
         {
             DialogueLine cCurrentLine = qLines.Dequeue();
             tNameText.text = cCurrentLine.cCharacter.sName;
 
-            Image talkingPortrait, listeningPortrait;
-
-            if (cCurrentLine.cCharacter.bTalkOnRightSide)
+            // Masquer tous les portraits si bNoPortrait est true
+            if (cCurrentLine.cCharacter.bNoPortrait)
             {
-                talkingPortrait = iRightCharacterPortrait;
-                listeningPortrait = iLeftCharacterPortrait;
+                iRightCharacterPortrait.gameObject.SetActive(false);
+                iLeftCharacterPortrait.gameObject.SetActive(false);
             }
             else
             {
-                talkingPortrait = iLeftCharacterPortrait;
-                listeningPortrait = iRightCharacterPortrait;
+                Image talkingPortrait, listeningPortrait;
+
+                if (cCurrentLine.cCharacter.bTalkOnRightSide)
+                {
+                    talkingPortrait = iRightCharacterPortrait;
+                    listeningPortrait = iLeftCharacterPortrait;
+                }
+                else
+                {
+                    talkingPortrait = iLeftCharacterPortrait;
+                    listeningPortrait = iRightCharacterPortrait;
+                }
+
+                // Réactiver les portraits au cas où ils étaient désactivés
+                iRightCharacterPortrait.gameObject.SetActive(true);
+                iLeftCharacterPortrait.gameObject.SetActive(true);
+
+                CopyImageProperties(cCurrentLine.cCharacter.iTalkingPortrait, talkingPortrait);
+                CopyImageProperties(cCurrentLine.cCharacter.iListeningPortrait, listeningPortrait);
+
+                StopAllCoroutines();
+                StartCoroutine(CoroutineAnimatePortraitFocus(talkingPortrait, listeningPortrait));
             }
 
-            CopyImageProperties(cCurrentLine.cCharacter.iTalkingPortrait, talkingPortrait);
-            CopyImageProperties(cCurrentLine.cCharacter.iListeningPortrait, listeningPortrait);
-
-
-            StopAllCoroutines();
-            StartCoroutine(CoroutineAnimatePortraitFocus(talkingPortrait, listeningPortrait));
             StartCoroutine(CoroutineTypeSentence(cCurrentLine.sLine));
         }
     }
 
     private void CopyImageProperties(Image source, Image target)
     {
-        if (source == null || target == null) return;
+        if (source == null || target == null || !target.gameObject.activeSelf)
+            return;
 
         target.sprite = source.sprite;
         target.color = source.color;
@@ -163,6 +176,9 @@ public class UI_DialogueManager : MonoBehaviour
 
     private IEnumerator CoroutineAnimatePortraitFocus(Image talkingPortrait, Image listeningPortrait)
     {
+        if (talkingPortrait == null || listeningPortrait == null || !talkingPortrait.gameObject.activeSelf || !listeningPortrait.gameObject.activeSelf)
+            yield break;
+
         float duration = 0.3f;
         float elapsed = 0f;
 
