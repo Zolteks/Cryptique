@@ -16,10 +16,11 @@ public abstract class OBJ_Interactable : MonoBehaviour
     /// </summary>
     public bool CanInteract() { return m_canInteract; }
 
-    protected void SetCanInteract(bool canInteract)
-    {
-        m_canInteract = canInteract;
-    }
+    /// <summary>
+    /// Applique le booleen m_canInteract.
+    /// </summary>
+    /// <param name="canInteract">True si l'interaction est possible, sinon false.</param>
+    public void SetCanInteract(bool canInteract) => m_canInteract = canInteract;
 
     /// <summary>  
     /// Interagit avec l'objet.  
