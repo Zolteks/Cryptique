@@ -27,10 +27,11 @@ public class InteractManager : Singleton<InteractManager>
         GameObject hitObject = Utils.GetObjectUnderTouch(m_camera, pos);
         if (hitObject != null)
         {
-            if (hitObject.GetComponentInParent<OBJ_InteractOnDrop>())
+            var interactableOnDrop = hitObject.GetComponentInParent<OBJ_InteractOnDrop>();
+            if (interactableOnDrop != null && interactableOnDrop.CanInteract())
                 return;
-            OBJ_Interactable interactable = hitObject.GetComponentInParent<OBJ_Interactable>();
-            if (interactable != null)
+            var interactable = hitObject.GetComponentInParent<OBJ_Interactable>();
+            if (interactable != null && interactableOnDrop.CanInteract())
             {
                 interactable.Interact();
                 Debug.Log("Interacted with: " + hitObject.name);
