@@ -5,12 +5,21 @@ using UnityEngine.UI;
 
 public class UI_ChaptersManager : MonoBehaviour
 {
-    [SerializeField] private List<string> chapters;
+    [SerializeField] private GameProgressionManager gameProgressionManager;
+
     [SerializeField] private GameObject chapterButtonPrefab;
     [SerializeField] private UI_RegionDetail regionDetail;
 
     private void Start()
     {
+
+        if (gameProgressionManager == null)
+        {
+            gameProgressionManager = GameProgressionManager.GetInstance();
+        }
+
+        List<string> chapters = gameProgressionManager.GetChapters();
+
         for (int i = 0; i < chapters.Count; i++)
         {
             GameObject chapterButton = Instantiate(chapterButtonPrefab, transform);
