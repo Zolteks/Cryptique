@@ -1,4 +1,6 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+
+using UnityEditor;
 using UnityEngine;
 
 namespace DanielLochner.Assets
@@ -34,3 +36,5 @@ namespace DanielLochner.Assets
         }
     }
 }
+
+#endif

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 //  Script responsable for the Entire Game logic
 public class GameManager : MonoBehaviour
@@ -9,8 +8,8 @@ public class GameManager : MonoBehaviour
     static public GameManager Instance;
 
     [SerializeField] private Transform m_camera;
-    [SerializeField] private UI_DialogueManager m_dialogueManager;
-    [SerializeField] private UIManager uiManager;
+    //[SerializeField] private UI_DialogueManager m_dialogueManager;
+    //[SerializeField] private UIManager uiManager;
 
     /* Getters and Setters */
     static public GameManager GetInstance()
@@ -25,7 +24,8 @@ public class GameManager : MonoBehaviour
 
     public UI_DialogueManager GetDialogueManager()
     {
-        return m_dialogueManager;
+        return null;
+       // return m_dialogueManager;
     }
 
     /* Functions */
@@ -48,11 +48,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"Item collected in {region}: {collectedCount}/{totalItems}");
 
-        if (uiManager != null)
-        {
-            uiManager.UpdateItemProgress(region, collectedCount, totalItems);
-            uiManager.UpdateRegionUnlocked(region);
-        }
+        //if (uiManager != null)
+        //{
+        //    uiManager.UpdateItemProgress(region, collectedCount, totalItems);
+        //    uiManager.UpdateRegionUnlocked(region);
+        //}
     }
     
     public void NotifyPuzzleSolved(string puzzleID)
@@ -63,20 +63,20 @@ public class GameManager : MonoBehaviour
 
         CheckAndUnlockNextPuzzles();
 
-        if (uiManager != null)
-        {
-            uiManager.UpdatePuzzleProgress();
-        }
+        //if (uiManager != null)
+        //{
+        //    uiManager.UpdatePuzzleProgress();
+        //}
     }
 
     public void NotifyPuzzleCreated(List<string> puzzleDescriptions)
     {
         Debug.Log("Puzzle descriptions updated in UI.");
 
-        if (uiManager != null)
-        {
-            uiManager.UpdatePuzzleDescriptions(puzzleDescriptions);
-        }
+        //if (uiManager != null)
+        //{
+        //    uiManager.UpdatePuzzleDescriptions(puzzleDescriptions);
+        //}
     }
 
     private void CheckAndUnlockNextPuzzles()

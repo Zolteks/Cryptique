@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems; // Nécessaire pour EventTrigger
 
-public class PZL_Flipper : MonoBehaviour
+public class PZL_Flipper : Puzzle
 {
     public Button bLeftButtonBumper;
     public Button bRightButtonBumper;
@@ -18,6 +18,8 @@ public class PZL_Flipper : MonoBehaviour
     public Bumper bLeftBumper;
     public Bumper bRightBumper;
     public Bumper pZL_Launcher;
+
+    [SerializeField] private GameObject goAllStalacmites;
 
     private Quaternion qLeftPivotRotation;
     private Quaternion qRightPivotRotation;
@@ -56,6 +58,14 @@ public class PZL_Flipper : MonoBehaviour
         entryEnd.eventID = EventTriggerType.PointerUp;
         entryEnd.callback.AddListener((data) => { OnSliderPointerUp(); });
         trigger.triggers.Add(entryEnd);
+    }
+
+    private void Update()
+    {
+        if (goAllStalacmites.transform.childCount == 0)
+        {
+            Complete();
+        }
     }
 
     // Méthode pour activer le bumper gauche

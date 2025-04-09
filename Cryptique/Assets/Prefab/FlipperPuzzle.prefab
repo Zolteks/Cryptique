@@ -867,7 +867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efec2f667dd2dc4f861f75b10b861c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumperForce: 30
+  fInitBumperForces: 500
 --- !u!65 &9129784882928019180
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1041,7 +1041,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efec2f667dd2dc4f861f75b10b861c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumperForce: 30
+  fInitBumperForces: 500
 --- !u!65 &3589981966835472692
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1263,6 +1263,8 @@ MonoBehaviour:
   bLeftBumper: {fileID: 2945642227062629463}
   bRightBumper: {fileID: 3196398147279442861}
   pZL_Launcher: {fileID: 8937127830945748410}
+  lAllStalactites:
+  - {fileID: 6652979414961273514}
 --- !u!1 &5911136719940060313
 GameObject:
   m_ObjectHideFlags: 0
@@ -1405,7 +1407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5efec2f667dd2dc4f861f75b10b861c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bumperForce: 50
+  fInitBumperForces: 500
 --- !u!1 &6332651410015610695
 GameObject:
   m_ObjectHideFlags: 0
