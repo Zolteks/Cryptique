@@ -11,7 +11,8 @@ public class HideFromDirection : MonoBehaviour
 
     private void Start()
     {
-        GameManager.GetInstance().GetCamera().GetComponent<CameraRotator>().eDirectionUpdate += (CameraDirdection newDir) =>
+        var cam = GameManager.GetInstance().GetCamera().GetComponent<CameraRotator>();
+        cam.eDirectionUpdate += (CameraDirdection newDir) =>
         {
             if(newDir == CameraDirdection.top)
             {
@@ -30,5 +31,25 @@ public class HideFromDirection : MonoBehaviour
                 gameObject.SetActive(!bot);
             }
         };
+
+        switch (cam.GetDirection())
+        {
+            case CameraDirdection.top:
+                if (top)
+                    gameObject.SetActive(false);
+                break;
+            case CameraDirdection.right:
+                if (right)
+                    gameObject.SetActive(false);
+                break;
+            case CameraDirdection.left:
+                if (left)
+                    gameObject.SetActive(false);
+                break;
+            case CameraDirdection.bot:
+                if (bot)
+                    gameObject.SetActive(false);
+                break;
+        }
     }
 }

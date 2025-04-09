@@ -42,6 +42,11 @@ public class CameraRotator : MonoBehaviour
 #endif
     }
 
+    public CameraDirdection GetDirection()
+    {
+        return m_currentDir;
+    }
+
     public void SetAllowedRotation(Dictionary<CameraDirdection, bool> value)
     {
         allowedRotations = value;
