@@ -114,13 +114,13 @@ public class PZL_Spy : Puzzle
     }
 
 
-    //    public void OnTriggerEnter(Collider other)
-    //    {
-    //        if (other.CompareTag("Player"))
-    //        {
-    //            gyroscope.enabled = true;
-    //        }
-    //    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            gyroscope.enabled = true;
+        }
+    }
 
     private IEnumerator WaitForSeconds()
     {
