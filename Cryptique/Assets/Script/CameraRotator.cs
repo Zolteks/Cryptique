@@ -85,7 +85,10 @@ public class CameraRotator : MonoBehaviour
     }
     IEnumerator CoroutineRotate(Quaternion start, Quaternion end, float duration, int incrementValue)
     {
-        if (false == allowedRotations[(CameraDirdection)(m_currentDir + incrementValue)]){
+        int id = (int)(m_currentDir + incrementValue)%4;
+        if (id < 0) id = 3;
+
+        if (false == allowedRotations[(CameraDirdection)id]){
             yield break;
         }
 
