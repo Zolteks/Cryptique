@@ -57,6 +57,7 @@ public class IN_Character : OBJ_Interactable
             UI_DialogueManager.DialogueCharacter lineChatracter = new();
             var characterEntry = m_characterList.talkingCharacters[i];
             lineChatracter.bTalkOnRightSide = characterEntry.bTalkOnRightSide;
+            lineChatracter.bNoPortrait = characterEntry.bNoPortrait;
             lineChatracter.iTalkingPortrait = characterEntry.iTalkingPortrait;
             lineChatracter.iListeningPortrait = characterEntry.iListeningPortrait;
             lineChatracter.sName = characterEntry.sName;
