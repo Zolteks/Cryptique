@@ -554,12 +554,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 857121472}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &895221173 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1656924009493907235, guid: e8984383fadb41043a97a7edbdf58819,
-    type: 3}
-  m_PrefabInstance: {fileID: 2199404339024679383}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1003800173
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,7 +929,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1687205616}
   - component: {fileID: 1687205615}
-  - component: {fileID: 1687205617}
   m_Layer: 0
   m_Name: DragAndDrop
   m_TagString: Untagged
@@ -972,20 +965,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1687205617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1687205614}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f99918f1e5482284993f346d736574ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goChain: {fileID: 895221173}
-  objiSelectedItem: {fileID: 0}
 --- !u!1 &1696668690
 GameObject:
   m_ObjectHideFlags: 0
