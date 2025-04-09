@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
     static public GameManager Instance;
 
     [SerializeField] private Transform m_camera;
-    //[SerializeField] private UI_DialogueManager m_dialogueManager;
-    //[SerializeField] private UIManager uiManager;
+    [SerializeField] private UI_DialogueManager m_dialogueManager;
+   // [SerializeField] private UIManager uiManager;
 
     /* Getters and Setters */
     static public GameManager GetInstance()
@@ -24,8 +24,7 @@ public class GameManager : MonoBehaviour
 
     public UI_DialogueManager GetDialogueManager()
     {
-        return null;
-       // return m_dialogueManager;
+        return m_dialogueManager;
     }
 
     /* Functions */
