@@ -7,7 +7,9 @@ public class PZL_SortingGame : Puzzle
 {
     private List<bool> etatsPlacement;
     private bool bIsAllPlaced = false;
+
     [SerializeField] private int iElementNumber;
+    [SerializeField] private OBJ_Item OBJ_LanternOil;
 
     void Start()
     {
@@ -28,6 +30,7 @@ public class PZL_SortingGame : Puzzle
         if (etatsPlacement.All(etat => etat))
         {
             bIsAllPlaced = true;
+            InventoryManager.Instance.AddItem(OBJ_LanternOil);
             Complete();
         }
     }
