@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PLZ_Radio : Puzzle
+public class PZL_Radio : Puzzle
 {
     [SerializeField] MeshRenderer frequenceDisplay;
     [SerializeField] GameObject buttonW;

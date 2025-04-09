@@ -431,6 +431,7 @@ GameObject:
   - component: {fileID: 5262402430990136391}
   - component: {fileID: 4996975579198489352}
   - component: {fileID: 1901705706700426180}
+  - component: {fileID: 8665561787242398885}
   m_Layer: 0
   m_Name: Button W
   m_TagString: Untagged
@@ -506,6 +507,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8665561787242398885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755605961812012199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c9687eec9c8a8445b64de043aaf292d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frotationSpeed: 5
+  lanterne: {fileID: 0}
+  fmaxLeftRotation: -1800
+  fmaxRightRotation: 720
+  fminScale: 0.5
+  fmaxScale: 2
 --- !u!1 &930789089247806992
 GameObject:
   m_ObjectHideFlags: 0
@@ -2719,9 +2738,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631f3a858362f104581bc9b5ce4243b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puzzleID: 
+  region: 
+  onSuccess:
+    m_PersistentCalls:
+      m_Calls: []
   frequenceDisplay: {fileID: 7846882596369583803}
   buttonW: {fileID: 755605961812012199}
   buttonH: {fileID: 8525928141579818680}
+  curFreqW: 0
+  curFreqH: 0
+  toleranceW: 0.1
+  toleranceH: 0.05
 --- !u!1 &8071389430532557368
 GameObject:
   m_ObjectHideFlags: 0
