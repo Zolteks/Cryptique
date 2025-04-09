@@ -9,7 +9,7 @@ public class HideFromDirection : MonoBehaviour
     [SerializeField] bool bot;
     [SerializeField] bool left;
 
-    private void Start()
+    private void Awake()
     {
         var cam = GameManager.GetInstance().GetCamera().GetComponent<CameraRotator>();
         cam.eDirectionUpdate += (CameraDirdection newDir) =>
@@ -32,24 +32,24 @@ public class HideFromDirection : MonoBehaviour
             }
         };
 
-        switch (cam.GetDirection())
-        {
-            case CameraDirdection.top:
-                if (top)
-                    gameObject.SetActive(false);
-                break;
-            case CameraDirdection.right:
-                if (right)
-                    gameObject.SetActive(false);
-                break;
-            case CameraDirdection.left:
-                if (left)
-                    gameObject.SetActive(false);
-                break;
-            case CameraDirdection.bot:
-                if (bot)
-                    gameObject.SetActive(false);
-                break;
-        }
+        //switch (cam.GetDirection())
+        //{
+        //    case CameraDirdection.top:
+        //        if (top)
+        //            gameObject.SetActive(false);
+        //        break;
+        //    case CameraDirdection.right:
+        //        if (right)
+        //            gameObject.SetActive(false);
+        //        break;
+        //    case CameraDirdection.left:
+        //        if (left)
+        //            gameObject.SetActive(false);
+        //        break;
+        //    case CameraDirdection.bot:
+        //        if (bot)
+        //            gameObject.SetActive(false);
+        //        break;
+        //}
     }
 }
