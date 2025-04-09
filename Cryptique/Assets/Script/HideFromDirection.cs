@@ -9,9 +9,9 @@ public class HideFromDirection : MonoBehaviour
     [SerializeField] bool bot;
     [SerializeField] bool left;
 
-    private void Awake()
+    private void Start()
     {
-        GameManager.GetInstance().GetComponent<CameraRotator>().eDirectionUpdate += (CameraDirdection newDir) =>
+        GameManager.GetInstance().GetCamera().GetComponent<CameraRotator>().eDirectionUpdate += (CameraDirdection newDir) =>
         {
             if(newDir == CameraDirdection.top)
             {
