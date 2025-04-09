@@ -23,6 +23,7 @@ public class Puzzle : MonoBehaviour
         Destroy(gameObject);
     }
 
+
     protected virtual void Complete()
     {
         if (GameProgressionManager.Instance.ArePrerequisitesCompleted(puzzleID))

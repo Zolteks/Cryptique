@@ -16,7 +16,7 @@ public class Gyroscope : MonoBehaviour
 
     private float calibrationTimer = 0f;
     private bool isCalibrating = false;
-    private bool isCalibrated = false;
+    public bool isCalibrated = false;
     private bool movementDetected = false;
 
     private Vector3 lastAcceleration;
@@ -53,6 +53,7 @@ public class Gyroscope : MonoBehaviour
             if (calibrationTimer >= calibrationDuration)
             {
                 Calibrate();
+                Debug.Log($"Calibration completed. Average: {calibratedAverage}, Variation: {calibratedVariation}");
             }
 
             return;
