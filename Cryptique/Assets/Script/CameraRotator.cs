@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.PropertyVariants.TrackedProperties;
 
 
 public enum CameraDirdection
@@ -20,8 +21,12 @@ public class CameraRotator : MonoBehaviour
     CameraDirdection m_currentDir;
     bool m_busy = false;
 
+    Dictionary<CameraDirdection, bool> allowedRotations;
+
+
     private void Start()
     {
+        ResetAllowedDirections();
         m_currentDir = CameraDirdection.bot;
         eDirectionUpdate?.Invoke(m_currentDir);
     }
@@ -35,6 +40,35 @@ public class CameraRotator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             RotateLeft();
 #endif
+    }
+
+    public void SetAllowedRotation(Dictionary<CameraDirdection, bool> value)
+    {
+        allowedRotations = value;
+    }
+
+    public void ResetAllowedDirections()
+    {
+        allowedRotations = new Dictionary<CameraDirdection, bool>() {
+            {CameraDirdection.bot, true },
+            {CameraDirdection.right, true },
+            {CameraDirdection.top, true },
+            {CameraDirdection.left, true },
+        };
+    }
+
+    public void ForceOrientation(CameraDirdection dir)
+    {
+        while(m_currentDir != dir)
+        {
+            m_currentDir = (CameraDirdection)(((int)m_currentDir + 1) % 4);
+            FastRotate();
+        }
+    }
+
+    private void FastRotate()
+    {
+        transform.rotation*= Quaternion.Euler(0, -90, 0);
     }
 
     public void RotateRight()
@@ -51,6 +85,11 @@ public class CameraRotator : MonoBehaviour
     }
     IEnumerator CoroutineRotate(Quaternion start, Quaternion end, float duration, int incrementValue)
     {
+        if (false == allowedRotations[(CameraDirdection)(m_currentDir + incrementValue)]){
+            yield break;
+        }
+
+
         m_busy = true;
         float t = 0;
 
