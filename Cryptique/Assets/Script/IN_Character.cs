@@ -157,7 +157,7 @@ public class IN_Character : OBJ_Interactable
         //    GoToNextPoint();
         //}
         //if (Input.GetMouseButtonDown(2))
-        //{
+        //{ 
         //    GoToSpecificPoint(0);
         //}
     }
