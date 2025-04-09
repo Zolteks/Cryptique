@@ -2,7 +2,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using static UnityEditor.Progress;
 
 public class UIManager : MonoBehaviour
 {
