@@ -20,6 +20,12 @@ public class CameraRotator : MonoBehaviour
     CameraDirdection m_currentDir;
     bool m_busy = false;
 
+    private void Start()
+    {
+        m_currentDir = CameraDirdection.bot;
+        eDirectionUpdate?.Invoke(m_currentDir);
+    }
+
     void Update()
     {
         // Debug controls for rotation
@@ -35,13 +41,13 @@ public class CameraRotator : MonoBehaviour
     {
         if (m_busy) return;
 
-        StartCoroutine(CoroutineRotate(transform.rotation, transform.rotation * Quaternion.Euler(0, -90, 0), .5f, -1));
+        StartCoroutine(CoroutineRotate(transform.rotation, transform.rotation * Quaternion.Euler(0, -90, 0), .5f, 1));
     }
     public void RotateLeft()
     {
         if (m_busy) return;
 
-        StartCoroutine(CoroutineRotate(transform.rotation, transform.rotation * Quaternion.Euler(0, 90, 0), .5f, 1));
+        StartCoroutine(CoroutineRotate(transform.rotation, transform.rotation * Quaternion.Euler(0, 90, 0), .5f, -1));
     }
     IEnumerator CoroutineRotate(Quaternion start, Quaternion end, float duration, int incrementValue)
     {

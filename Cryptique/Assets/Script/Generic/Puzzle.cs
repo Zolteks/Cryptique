@@ -1,14 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Puzzle : MonoBehaviour
 {
-    // This function initialize a puzzle
-    // If its an interfaceless UI, we'll make spawn an empty containing the appropriate script
+    [SerializeField] private string puzzleID;
+    [SerializeField] private string region;
+    [SerializeField] private UnityEvent onSuccess;
+
+    private void Start()
+    {
+        Debug.Log($"Registering puzzle {puzzleID} in region {region}");
+        GameProgressionManager.Instance.RegisterPuzzle(region, puzzleID);
+    }
+
+
     public static void StartPuzzle(string name)
     {
-        GameObject.Instantiate(Resources.Load(name));
+        GameObject.Instantiate(Resources.Load("Puzzles/PZL_"+name));
     }
 
     public void Quit()
@@ -18,6 +26,21 @@ public class Puzzle : MonoBehaviour
 
     protected virtual void Complete()
     {
-        Quit();
+        if (GameProgressionManager.Instance.ArePrerequisitesCompleted(puzzleID))
+        {
+            Debug.Log($"{puzzleID} is completed.");
+            GameProgressionManager.Instance.CompletePuzzle(puzzleID);
+            onSuccess?.Invoke();
+
+            SaveSystemManager.Instance.GetGameData().collectedItems.Add(puzzleID);
+
+            Quit();
+        }
+        else
+        {
+            Debug.Log($"Cannot complete {puzzleID} because the prerequisites are not completed yet.");
+        }
     }
+
+
 }

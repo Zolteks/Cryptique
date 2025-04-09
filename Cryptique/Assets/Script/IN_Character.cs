@@ -163,6 +163,8 @@ public class IN_Character : OBJ_Interactable
     }
     private void OnMouseDown()
     {
+        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
+
         if (CanInteract())
         {
             Interact();

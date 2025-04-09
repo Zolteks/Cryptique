@@ -9,6 +9,9 @@ public class GameData
     public int currentChapter;
     public string currentChapterName;
 
+    //Bool for change UI start
+    public bool IsTutorialDone;
+
     public List<string> solvedPuzzles = new List<string>();
     public List<string> collectedItems = new List<string>();
 
