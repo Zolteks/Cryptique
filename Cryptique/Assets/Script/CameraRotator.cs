@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.PropertyVariants.TrackedProperties;
 
 
 public enum CameraDirdection
@@ -20,6 +21,16 @@ public class CameraRotator : MonoBehaviour
     CameraDirdection m_currentDir;
     bool m_busy = false;
 
+    Dictionary<CameraDirdection, bool> allowedRotations;
+
+
+    private void Start()
+    {
+        ResetAllowedDirections();
+        m_currentDir = CameraDirdection.bot;
+        eDirectionUpdate?.Invoke(m_currentDir);
+    }
+
     void Update()
     {
         // Debug controls for rotation
@@ -31,20 +42,62 @@ public class CameraRotator : MonoBehaviour
 #endif
     }
 
+    public CameraDirdection GetDirection()
+    {
+        return m_currentDir;
+    }
+
+    public void SetAllowedRotation(Dictionary<CameraDirdection, bool> value)
+    {
+        allowedRotations = value;
+    }
+
+    public void ResetAllowedDirections()
+    {
+        allowedRotations = new Dictionary<CameraDirdection, bool>() {
+            {CameraDirdection.bot, true },
+            {CameraDirdection.right, true },
+            {CameraDirdection.top, true },
+            {CameraDirdection.left, true },
+        };
+    }
+
+    public void ForceOrientation(CameraDirdection dir)
+    {
+        while(m_currentDir != dir)
+        {
+            m_currentDir = (CameraDirdection)(((int)m_currentDir + 1) % 4);
+            FastRotate();
+        }
+    }
+
+    private void FastRotate()
+    {
+        transform.rotation*= Quaternion.Euler(0, -90, 0);
+    }
+
     public void RotateRight()
     {
         if (m_busy) return;
 
-        StartCoroutine(CoroutineRotate(transform.rotation, transform.rotation * Quaternion.Euler(0, -90, 0), .5f, -1));
+        StartCoroutine(CoroutineRotate(transform.rotation, transform.rotation * Quaternion.Euler(0, -90, 0), .5f, 1));
     }
     public void RotateLeft()
     {
         if (m_busy) return;
 
-        StartCoroutine(CoroutineRotate(transform.rotation, transform.rotation * Quaternion.Euler(0, 90, 0), .5f, 1));
+        StartCoroutine(CoroutineRotate(transform.rotation, transform.rotation * Quaternion.Euler(0, 90, 0), .5f, -1));
     }
     IEnumerator CoroutineRotate(Quaternion start, Quaternion end, float duration, int incrementValue)
     {
+        int id = (int)(m_currentDir + incrementValue)%4;
+        if (id < 0) id = 3;
+
+        if (false == allowedRotations[(CameraDirdection)id]){
+            yield break;
+        }
+
+
         m_busy = true;
         float t = 0;
 

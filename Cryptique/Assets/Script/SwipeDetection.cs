@@ -50,7 +50,7 @@ public class SwipeDetection : MonoBehaviour
 
     private void DetectSwipe()
     {
-        Debug.Log("Distance: " + Vector3.Distance(m_startPosition, m_endPosition));
+        //Debug.Log("Distance: " + Vector3.Distance(m_startPosition, m_endPosition));
         if (Vector3.Distance(m_startPosition, m_endPosition) >= m_minSwipeDistance &&
             (m_endTime - m_startTime) <= m_maxtime)
         {

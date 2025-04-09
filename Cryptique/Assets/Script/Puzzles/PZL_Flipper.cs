@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems; // Nécessaire pour EventTrigger
 
-public class PZL_Flipper : MonoBehaviour
+public class PZL_Flipper : Puzzle
 {
     public Button bLeftButtonBumper;
     public Button bRightButtonBumper;
@@ -18,6 +18,8 @@ public class PZL_Flipper : MonoBehaviour
     public Bumper bLeftBumper;
     public Bumper bRightBumper;
     public Bumper pZL_Launcher;
+
+    [SerializeField] private GameObject goAllStalacmites;
 
     private Quaternion qLeftPivotRotation;
     private Quaternion qRightPivotRotation;
@@ -58,22 +60,30 @@ public class PZL_Flipper : MonoBehaviour
         trigger.triggers.Add(entryEnd);
     }
 
+    private void Update()
+    {
+        if (goAllStalacmites.transform.childCount == 0)
+        {
+            Complete();
+        }
+    }
+
     // Méthode pour activer le bumper gauche
     public void ActivateLeftBumper()
     {
         Quaternion rotation = Quaternion.Euler(0, -60, 0);
-        gLeftPivot.transform.rotation = qLeftPivotRotation * rotation;
-        bLeftBumper.LaunchBalls();
-        StartCoroutine(ResetBumperAfterDelay(0.3f, gLeftPivot, qLeftPivotRotation));
+        StartCoroutine(MoveBumperAfterDelay(0f, 0.1f, gLeftPivot, qLeftPivotRotation * rotation));
+        bLeftBumper.Returnball();
+        StartCoroutine(MoveBumperAfterDelay(0.3f, 0.3f, gLeftPivot, qLeftPivotRotation));
     }
 
     // Méthode pour activer le bumper droit
     public void ActivateRightBumper()
     {
         Quaternion rotation = Quaternion.Euler(0, 60, 0);
-        gRightPivot.transform.rotation = qRightPivotRotation * rotation;
-        bRightBumper.LaunchBalls();
-        StartCoroutine(ResetBumperAfterDelay(0.3f, gRightPivot, qRightPivotRotation));
+        StartCoroutine(MoveBumperAfterDelay(0f, 0.1f, gRightPivot, qRightPivotRotation * rotation));
+        bRightBumper.Returnball();
+        StartCoroutine(MoveBumperAfterDelay(0.3f, 0.3f, gRightPivot, qRightPivotRotation));
     }
 
     // Méthode appelée chaque fois que la valeur du slider change
@@ -97,9 +107,9 @@ public class PZL_Flipper : MonoBehaviour
     void OnSliderPointerUp()
     {
         float sliderValue = sSliderLauncher.value;
-        float defaultBumperForce = 50f;
+        float defaultBumperForce = pZL_Launcher.GetBumperForce();
 
-        pZL_Launcher.bumperForce = defaultBumperForce * sliderValue;
+        pZL_Launcher.SetBumperForce(defaultBumperForce * sliderValue);
 
         bIsSliding = false;
         // Réinitialiser la valeur du slider à 0 lorsque l'utilisateur relâche
@@ -111,13 +121,12 @@ public class PZL_Flipper : MonoBehaviour
         StartCoroutine(SmoothReturnToInitialPosition(gLauncher));
     }
 
-    // Coroutine pour réinitialiser la rotation du bumper après un délai
-    private IEnumerator ResetBumperAfterDelay(float delay, GameObject bumper, Quaternion initialRotation)
+    // Coroutine pour actionner la rotation du bumper après un délai
+    private IEnumerator MoveBumperAfterDelay(float delay, float duration, GameObject bumper, Quaternion initialRotation)
     {
         // Attend avant de commencer la remise en place
         yield return new WaitForSeconds(delay);
 
-        float duration = 0.3f; // Durée de l'animation
         float timeElapsed = 0f;
 
         Quaternion startRotation = bumper.transform.rotation;

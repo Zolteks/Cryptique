@@ -9,12 +9,10 @@ public class HideFromDirection : MonoBehaviour
     [SerializeField] bool bot;
     [SerializeField] bool left;
 
-    // TODO: To be replaced by and access trough game manager singleton or similar
-    [SerializeField] CameraRotator m_camera;
-
     private void Start()
     {
-        m_camera.eDirectionUpdate += (CameraDirdection newDir) =>
+        var cam = GameManager.GetInstance().GetCamera().GetComponent<CameraRotator>();
+        cam.eDirectionUpdate += (CameraDirdection newDir) =>
         {
             if(newDir == CameraDirdection.top)
             {
@@ -33,5 +31,25 @@ public class HideFromDirection : MonoBehaviour
                 gameObject.SetActive(!bot);
             }
         };
+
+        switch (cam.GetDirection())
+        {
+            case CameraDirdection.top:
+                if (top)
+                    gameObject.SetActive(false);
+                break;
+            case CameraDirdection.right:
+                if (right)
+                    gameObject.SetActive(false);
+                break;
+            case CameraDirdection.left:
+                if (left)
+                    gameObject.SetActive(false);
+                break;
+            case CameraDirdection.bot:
+                if (bot)
+                    gameObject.SetActive(false);
+                break;
+        }
     }
 }

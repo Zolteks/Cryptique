@@ -1,8 +1,9 @@
+using System;
 using System.Collections.Generic;
 
 [System.Serializable]
 public class PuzzleStep
 {
-    public List<string> requiredPuzzles;
-    public string nextPuzzleID;
+    public string puzzleID;
+    public List<string> requiredPuzzles = new List<string>();
 }

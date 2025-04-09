@@ -57,6 +57,7 @@ public class IN_Character : OBJ_Interactable
             UI_DialogueManager.DialogueCharacter lineChatracter = new();
             var characterEntry = m_characterList.talkingCharacters[i];
             lineChatracter.bTalkOnRightSide = characterEntry.bTalkOnRightSide;
+            lineChatracter.bNoPortrait = characterEntry.bNoPortrait;
             lineChatracter.iTalkingPortrait = characterEntry.iTalkingPortrait;
             lineChatracter.iListeningPortrait = characterEntry.iListeningPortrait;
             lineChatracter.sName = characterEntry.sName;
@@ -157,12 +158,14 @@ public class IN_Character : OBJ_Interactable
         //    GoToNextPoint();
         //}
         //if (Input.GetMouseButtonDown(2))
-        //{
+        //{ 
         //    GoToSpecificPoint(0);
         //}
     }
     private void OnMouseDown()
     {
+        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
+
         if (CanInteract())
         {
             Interact();

@@ -5,35 +5,31 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/BootStrap.unity
+    guid: 289d1680244a6574d9f5c84fcf87a5be
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 2d14bbc2880bbeb48bec36d0ffabc5f7
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/MainMenuGrimoire.unity
+    guid: f244c83dec44f0746b82a1d74af7a51c
+  - enabled: 1
     path: Assets/Scenes/Tavern.unity
     guid: a57f560a503c5cb4386e7eb474a69ec1
-  - enabled: 0
-    path: Assets/Scenes/Village.unity
-    guid: f9cb4f2b80269784fa1aec0f3d796d96
-  - enabled: 0
-    path: Assets/Scenes/Forest.unity
-    guid: 95f26d48976fab84e894ed838da89556
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Cave.unity
     guid: 988dbb42f69200e4cbf9533193e5eaf3
-  - enabled: 0
-    path: Assets/Scenes/Test/InventoryTest.unity
-    guid: 156d52ae9cb1a8d41a587f6a3940b153
-  - enabled: 0
-    path: Assets/Scenes/OptionsMenu.unity
-    guid: c2abf841e755464499ce11b7b2cf30dd
   - enabled: 1
-    path: Assets/Scenes/Test/Gyro.unity
-    guid: 958ede65688201843ac8e40aaa7d8f0d
+    path: Assets/Scenes/Village.unity
+    guid: f9cb4f2b80269784fa1aec0f3d796d96
+  - enabled: 1
+    path: Assets/Scenes/Forest.unity
+    guid: 95f26d48976fab84e894ed838da89556
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 820ae4a0e4055214b9ba1b12784ad42b,
+      type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: a2f5624eaa2fd144c82a3bab7bda47e8,
       type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: 31b3d5ecf29b2f14da800536d7165f0b,
       type: 2}
