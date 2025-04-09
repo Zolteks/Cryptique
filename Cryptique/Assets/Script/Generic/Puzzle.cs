@@ -13,7 +13,6 @@ public class Puzzle : MonoBehaviour
         GameProgressionManager.Instance.RegisterPuzzle(region, puzzleID);
     }
 
-
     public static void StartPuzzle(string name)
     {
         GameObject.Instantiate(Resources.Load("Puzzles/PZL_"+name));
@@ -23,6 +22,7 @@ public class Puzzle : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
 
     protected virtual void Complete()
     {
@@ -41,6 +41,4 @@ public class Puzzle : MonoBehaviour
             Debug.Log($"Cannot complete {puzzleID} because the prerequisites are not completed yet.");
         }
     }
-
-
 }
