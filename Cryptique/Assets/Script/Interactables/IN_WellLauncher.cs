@@ -6,12 +6,8 @@ public class IN_WellLauncher : OBJ_Interactable
 {
     public override bool Interact()
     {
-        Puzzle.StartPuzzle("PZL_Well");
+        Debug.Log("IN_WellLauncher Interact() called");
+        Puzzle.StartPuzzle("WellUI");
         return true;
-    }
-
-    private void OnMouseDown()
-    {
-        Interact();
     }
 }
