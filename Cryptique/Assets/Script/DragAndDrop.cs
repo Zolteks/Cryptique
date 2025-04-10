@@ -11,12 +11,9 @@ public class DragAndDrop : Singleton<DragAndDrop>
     private InputManager m_inputManager;
 
     /* Variables */
-    [SerializeField]
-    private Canvas m_canvas;
-    [SerializeField]
-    private GraphicRaycaster m_graphicRaycaster;
-
     private Camera m_mainCamera;
+    private Canvas m_canvas;
+    private GraphicRaycaster m_graphicRaycaster;
     private GameObject m_draggedObject;
     private GameObject m_ghostImageObject;
     private RectTransform m_ghostRect;
@@ -29,6 +26,8 @@ public class DragAndDrop : Singleton<DragAndDrop>
     {
         m_inputManager = InputManager.Instance;
         m_mainCamera = Camera.main;
+        m_canvas = UIManager.Instance.GetCanvas();
+        m_graphicRaycaster = UIManager.Instance.GetGraphicRaycaster();
     }
 
     private void OnEnable()

@@ -16,13 +16,8 @@ public class InteractManager : Singleton<InteractManager>
     {
         m_inputManager = InputManager.Instance;
         m_camera = Camera.main;
-        foreach (var objectInScene in SceneManager.GetActiveScene().GetRootGameObjects())
-        {
-            if (objectInScene.transform as RectTransform == null)
-                continue;
-            m_canvas = objectInScene.transform.GetComponent<Canvas>();
-            m_graphicRaycaster = m_canvas.GetComponent<GraphicRaycaster>();
-        }
+        m_canvas = UIManager.Instance.GetCanvas();
+        m_graphicRaycaster = UIManager.Instance.GetGraphicRaycaster();
     }
 
     private void OnEnable()
