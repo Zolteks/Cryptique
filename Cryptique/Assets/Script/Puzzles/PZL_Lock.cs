@@ -5,7 +5,7 @@ using DanielLochner.Assets.SimpleScrollSnap;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PLZ_Lock : Puzzle
+public class PZL_Lock : Puzzle
 {
     [SerializeField] List<int> code;
 

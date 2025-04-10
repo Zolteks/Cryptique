@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PLZ_TestPuzzle : Puzzle
+public class PZL_GutterLabyrinth : Puzzle
 {
+    PipeManager pipeManager;
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (PipeManager.CheckVictory())
+        {
             Complete();
+        }
     }
 }

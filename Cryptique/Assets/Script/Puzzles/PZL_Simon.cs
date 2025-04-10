@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PLZ_Simon : Puzzle
+public class PZL_Simon : Puzzle
 {
     //------
     // The whole logic is working but we got a few issues with visuals, we aim to fix that whene we got the definitive sprites
