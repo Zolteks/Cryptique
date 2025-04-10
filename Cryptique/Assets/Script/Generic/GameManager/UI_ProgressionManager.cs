@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-public class UIManager : MonoBehaviour
+public class UI_ProgressionManager : MonoBehaviour
 {
     /* Variables */
     [SerializeField] private TextMeshProUGUI regionUnlockedUI;
