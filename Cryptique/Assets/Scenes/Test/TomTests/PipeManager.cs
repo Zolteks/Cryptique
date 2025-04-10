@@ -11,7 +11,7 @@ public class PipeManager : MonoBehaviour
         Instance = this;
     }
 
-    public static void CheckVictory()
+    public static bool CheckVictory()
     {
         int totalValidConnections = 0;
         int totalPipeCount = Instance.allPipes.Count;
@@ -34,10 +34,13 @@ public class PipeManager : MonoBehaviour
         if (actualConnections == totalPipeCount - 1)
         {
             Debug.Log(" Victory !");
+            return true;
+
         }
         else
         {
             Debug.Log(" Not won yet ");
+            return false;
         }
     }
 }

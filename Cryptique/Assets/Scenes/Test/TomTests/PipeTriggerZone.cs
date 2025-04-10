@@ -11,7 +11,6 @@ public class PipeTriggerZone : MonoBehaviour
             Debug.Log("Trigger touched by : " + other.name);
             isConnected = true;
 
-            // Appelle CheckConnections du tuyau parent
             PipePieceTrigger parentPipe = GetComponentInParent<PipePieceTrigger>();
             if (parentPipe != null)
             {
