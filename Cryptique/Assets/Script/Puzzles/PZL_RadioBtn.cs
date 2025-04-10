@@ -1,59 +1,38 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
-public class PZL_RadioBtn : MonoBehaviour, IDragHandler, IPointerDownHandler
+public class PZL_RadioBtn : MonoBehaviour
 {
-    [SerializeField] float frotationSpeed = 5f;
-    [SerializeField] float fmaxLeftRotation = -1800f;
-    [SerializeField] float fmaxRightRotation = 720f;
-
-    float currentRotationZ;
-    Vector2 centerPoint;
-    bool isDragging;
-
-    private void Start()
+    float _angle;
+    public float angle
     {
-        currentRotationZ = transform.eulerAngles.z;
+        get { return _angle; }
     }
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
+    Vector3 mPrevPos;
+    Vector3 mPosDelta;
+    bool isSelected;
 
-        isDragging = true;
-        centerPoint = RectTransformUtility.WorldToScreenPoint(null, transform.position);
+    private void OnMouseDown()
+    {
+        isSelected = true;
     }
-
-    public void OnDrag(PointerEventData eventData)
+    private void OnMouseUp()
     {
-        if (!isDragging) return;
-
-        Vector2 direction = eventData.position - centerPoint;
-        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        float deltaRotation = Mathf.DeltaAngle(currentRotationZ, targetAngle);
-        currentRotationZ = Mathf.Clamp(currentRotationZ + deltaRotation * frotationSpeed * Time.deltaTime, fmaxLeftRotation, fmaxRightRotation);
-
-        transform.rotation = Quaternion.Euler(0, 0, currentRotationZ);
-    }
-
-    public bool pickAble()
-    {
-        if (Mathf.Abs(currentRotationZ) >= fmaxRightRotation - 50)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        isSelected = false;
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (isSelected)
         {
-            isDragging = false;
-        }
-    }
+            mPosDelta = Input.mousePosition - mPrevPos;
+            transform.Rotate(transform.up, -Vector3.Dot(mPosDelta, Camera.main.transform.right), Space.World);
 
+            _angle = transform.rotation.eulerAngles.x;
+        }
+
+        mPrevPos = Input.mousePosition;
+    }
 }

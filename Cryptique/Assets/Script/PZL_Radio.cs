@@ -5,8 +5,8 @@ using UnityEngine;
 public class PZL_Radio : Puzzle
 {
     [SerializeField] MeshRenderer frequenceDisplay;
-    [SerializeField] GameObject buttonW;
-    [SerializeField] GameObject buttonH;
+    [SerializeField] PZL_RadioBtn buttonW;
+    [SerializeField] PZL_RadioBtn buttonH;
     Material shader;
 
     public float curFreqW;
@@ -35,6 +35,8 @@ public class PZL_Radio : Puzzle
     // Update is called once per frame
     void Update()
     {
+        print(buttonH.angle);
+
         // Set the shader values base on the current frequence.
         shader.SetFloat("_FreqWidth", curFreqW);
         shader.SetFloat("_FreqHeight", curFreqH);
