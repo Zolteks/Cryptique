@@ -14,9 +14,13 @@ public class PZL_PotionCrafter : OBJ_InteractOnDrop
 
     public override bool Interact()
     {
-        m_ItemsDropped = GetItemDropped();
-        CheckListIngredient();
-        return true;
+        if (CanInteract())
+        {
+            m_ItemsDropped = GetItemDropped();
+            CheckListIngredient();
+            return true;
+        }
+        return false;
     }
 
     void CheckListIngredient()
@@ -49,6 +53,7 @@ public class PZL_PotionCrafter : OBJ_InteractOnDrop
             {
                 m_FailedPotion.SetActive(true);
             }
+            SetCanInteract(false);
         }
     }
 }
