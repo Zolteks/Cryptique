@@ -9,7 +9,8 @@ public class OBJ_DropOnWell : OBJ_InteractOnDrop
         var component = GetComponent<IN_WellLauncher>();
         if (component != null)
         {
-            component.enabled = true;
+            component.SetCanInteract(true);
+            SetCanInteract(false);
             return true;
         }
         else

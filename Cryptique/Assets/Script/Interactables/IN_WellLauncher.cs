@@ -7,7 +7,7 @@ public class IN_WellLauncher : OBJ_Interactable
     public override bool Interact()
     {
         Debug.Log("IN_WellLauncher Interact() called");
-        Puzzle.StartPuzzle("WellPuzzle");
+        Puzzle.StartPuzzle("WellUI");
         return true;
     }
 }

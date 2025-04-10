@@ -32,7 +32,7 @@ public class Puzzle : MonoBehaviour
             GameProgressionManager.Instance.CompletePuzzle(puzzleID);
             onSuccess?.Invoke();
 
-            SaveSystemManager.Instance.GetGameData().collectedItems.Add(puzzleID);
+            //SaveSystemManager.Instance.GetGameData().collectedItems.Add(puzzleID);
 
             Quit();
         }
