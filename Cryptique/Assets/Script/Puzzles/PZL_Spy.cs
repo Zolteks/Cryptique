@@ -112,8 +112,6 @@ public class PZL_Spy : Puzzle
     {
         Debug.Log($"Puzzle completed successfully.");
     }
-
-
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
