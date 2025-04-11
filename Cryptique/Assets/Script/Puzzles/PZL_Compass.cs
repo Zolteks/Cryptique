@@ -6,7 +6,7 @@ public class PZL_Compass : Puzzle
 {
     [SerializeField] private GameObject goCompass;
 
-    private void Start()
+    void Start()
     {
         if (goCompass != null)
         {
