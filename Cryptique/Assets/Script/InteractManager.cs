@@ -35,10 +35,12 @@ public class InteractManager : Singleton<InteractManager>
         // Raycast UI
         if (m_graphicRaycaster != null && Utils.DetectHitWithUI(pos, m_graphicRaycaster))
             return;
-        // Raycast 3D
-        GameObject hitObject = Utils.GetObjectUnderTouch(m_camera, pos);
+        else Debug.Log("UI hit !!!");
+            // Raycast 3D
+            GameObject hitObject = Utils.GetObjectUnderTouch(m_camera, pos);
         if (hitObject != null)
         {
+            Debug.Log("Interacted with : " + hitObject.name);
             var interactableOnDrop = hitObject.GetComponentInParent<OBJ_InteractOnDrop>();
             if (interactableOnDrop != null && interactableOnDrop.CanInteract())
                 return;
@@ -49,5 +51,6 @@ public class InteractManager : Singleton<InteractManager>
                 Debug.Log("Interacted with: " + hitObject.name);
             }
         }
+        else Debug.Log("No object hit");
     }
 }

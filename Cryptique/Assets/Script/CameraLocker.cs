@@ -14,7 +14,6 @@ public class CameraLocker : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("hut");
         if(other.gameObject.TryGetComponent<CameraRotator>(out CameraRotator cam))
         {
             Dictionary<CameraDirdection, bool> newAuthorizations = new()
