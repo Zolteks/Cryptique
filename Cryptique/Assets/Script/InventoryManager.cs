@@ -21,6 +21,8 @@ public class InventoryManager : MonoBehaviour
         // Update the UI to reflect the addition
         UI_ManageInventory.Instance.UpdateGridElement(m_items.Count - 1, item);
         Debug.Log("Item added: " + item.name);
+
+
     }
     
     public void RemoveItem(OBJ_Item item)

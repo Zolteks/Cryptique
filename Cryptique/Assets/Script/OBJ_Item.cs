@@ -14,7 +14,7 @@ public class OBJ_Item : ScriptableObject
     private GameObject m_itemPrefab;
     [SerializeField]
     private Sprite m_itemSprite;
-    
+    [SerializeField]
     private string m_itemDescription;
 
     /* Getters and Setters */
