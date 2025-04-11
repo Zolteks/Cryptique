@@ -1,14 +1,16 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class PC_PlayerController : MonoBehaviour
 {
     [Header("Player Movement")]
-    [SerializeField] private float m_moveSpeed = 5f;
+    [SerializeField] [Range(3f, 6f)] private float m_moveSpeed = 4.5f;
     
     private Camera m_camera;
     private InputManager m_inputManager;
     private NavMeshAgent m_agent;
+    private Animator m_animator;
     
     private void Awake()
     {
@@ -16,9 +18,8 @@ public class PC_PlayerController : MonoBehaviour
         m_inputManager = InputManager.Instance;
         m_agent = GetComponentInChildren<NavMeshAgent>();
         if (m_agent != null)
-        {
             m_agent.speed = m_moveSpeed;
-        }
+        m_animator = GetComponentInChildren<Animator>();
     }
     
     private void OnEnable()
@@ -58,7 +59,18 @@ public class PC_PlayerController : MonoBehaviour
     {
         if (m_agent != null)
         {
-            m_agent.SetDestination(destination);
+            NavMesh.SamplePosition(destination, out NavMeshHit hit, 1.0f, NavMesh.AllAreas);
+            m_agent.SetDestination(hit.position);
         }
+    }
+
+    private void LateUpdate()
+    {
+        if (m_agent != null)
+            m_animator.SetFloat("MotionSpeed", m_agent.velocity.magnitude);
+        Vector3 cameraPosition = m_camera.transform.position;
+        cameraPosition.y = transform.position.y;
+        transform.GetChild(0).transform.LookAt(cameraPosition);
+        transform.GetChild(0).transform.Rotate(0f, 180f, 0f);
     }
 }
