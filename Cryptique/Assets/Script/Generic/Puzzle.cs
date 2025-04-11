@@ -18,6 +18,15 @@ public class Puzzle : MonoBehaviour
         GameObject.Instantiate(Resources.Load("Puzzles/PZL_"+name));
     }
 
+    public static void StartPuzzle(string name, string region, UnityEvent onSuccess)
+    {
+        GameObject pzlGo = (GameObject)GameObject.Instantiate(Resources.Load("Puzzles/PZL_" + name));
+        Puzzle pzl = pzlGo.GetComponent<Puzzle>();
+        pzl.puzzleID = name;
+        pzl.region = region;
+        pzl.onSuccess = onSuccess;
+    }
+
     public void Quit()
     {
         Destroy(gameObject);
