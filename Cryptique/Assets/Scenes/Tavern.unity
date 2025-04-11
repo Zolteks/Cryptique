@@ -1050,8 +1050,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3376897057235789459, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
         type: 3}
+      propertyPath: m_Name
+      value: CameraLocker
+      objectReference: {fileID: 0}
+    - target: {fileID: 3376897057235789459, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
+        type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4691119442989319540, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836816168685948757, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836816168685948757, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836816168685948757, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 887
       objectReference: {fileID: 0}
     - target: {fileID: 5786803541719352588, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
         type: 3}
@@ -1059,7 +1084,8 @@ PrefabInstance:
       value: TavernOutdoor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3223235669852452919, guid: f9bcdb576be1b5c41b3e822b45c0a9ef, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9bcdb576be1b5c41b3e822b45c0a9ef, type: 3}
