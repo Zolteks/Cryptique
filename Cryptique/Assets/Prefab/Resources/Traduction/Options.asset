@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b5464cb82faa224d847eb8cdc9ecf01, type: 3}
+  m_Name: Options
+  m_EditorClassIdentifier: 
+  entries:
+  - key: options.name
+    frText: Options
+    enText: Options
+  - key: options.audio
+    frText: Son
+    enText: Audio
+  - key: options.music
+    frText: Musique
+    enText: Music
+  - key: options.SFX
+    frText: SFX
+    enText: SFX
+  - key: options.resetSaves
+    frText: "R\xE9initialiser la sauvegarde"
+    enText: Reset save
+  - key: options.controles
+    frText: Controles
+    enText: Controles
+  - key: options.controles.arrow
+    frText: "Fl\xE9ches"
+    enText: Arrow
+  - key: options.controles.slides
+    frText: Glissements
+    enText: Slides
+  - key: options.langage
+    frText: Langue
+    enText: Language
+  - key: options.daltonismes
+    frText: Daltonismes
+    enText: Daltonisms

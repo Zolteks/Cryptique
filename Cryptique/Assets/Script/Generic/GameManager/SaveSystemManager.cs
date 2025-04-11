@@ -20,6 +20,7 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
 
         TestSave();
     }
+
     public void SaveGame()
     {
         GameDataJson gameDataJson = new GameDataJson
@@ -30,7 +31,7 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
             currentChapterName = gameData.currentChapterName,
             IsTutorialDone = gameData.IsTutorialDone,
             solvedPuzzles = gameData.solvedPuzzles,
-            collectedItems = gameData.collectedItems
+            collectedItems = gameData.collectedItems,
         };
         gameDataJson.setCameraRotation(gameData.cameraRotation);
         saveManager.Save(saveKey, gameDataJson);
@@ -98,6 +99,7 @@ public class GameDataJson
     public List<string> solvedPuzzles = new List<string>();
     public List<string> collectedItems = new List<string>();
     public List<int> cameraRotation = new List<int>();
+
 
 
     public void setCameraRotation(Vector4 rotation)

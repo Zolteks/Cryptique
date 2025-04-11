@@ -15,9 +15,20 @@ public class GameData
     public List<string> solvedPuzzles = new List<string>();
     public List<string> collectedItems = new List<string>();
 
-
     ////////////////////////////////// WIP
     public Vector4 cameraRotation;
 
-    // Dialogues data here ?
+    // Option data
+    // Audio
+    public float volumeMusic = 1.0f;
+    public float volumeSfx = 1.0f;
+
+    // Language
+    public string langue = "EN";
+
+    // Daltonien
+    public string daltonienMode = "Default";
+
+    // Slide
+    public string slideMode = "Arrow"; // arrow, slide
 }
