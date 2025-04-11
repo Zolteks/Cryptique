@@ -1,8 +1,11 @@
 # Cryptique
 
 ## Architecture de base et nommage des dossiers
+
 ### Exemple
+
 Root:
+
 - Script
 - - Puzzle 1
 - FBX
@@ -19,23 +22,42 @@ Root:
 - Scenes
 
 ## Nom des fichiers
-Pour les fichiers C#, ne pas preciser "Script" dans le nom.
-Prefixe de script/classe au format "\[PREFIX\]_NomDuScript" :
-- PZL : Puzzle
-- UI : User Interface
-- PC : Player Controler
-- SFX : Sound effect
-- DLG : Delegate
+
+Pour les fichiers C#, ne pas préciser *Script* dans le nom.  
+Préfixe de script/classe au format `[PREFIX]_NomDuScript` :
+
+- **PZL** : Puzzle  
+- **UI** : User Interface  
+- **PC** : Player Controller  
+- **SFX** : Sound effect  
+- **DLG** : Delegate  
+- **SGL** : Singleton classes
+- **OBJ** : Object Scripts  
+- **ABS** : Abstract classes
 
 ## Nom de variable et fonction
 
-Getter uniquement sous forme de methodes. Pas de Property.
+Getter uniquement sous forme de methodes. Pas de Property (sauf Singletons).
 
 ### Variables
-Nom des variables:
-\[Initial du type en minuscule\]NomDeVariable
+
+```cs
+private m_nomDeVariable
+
+public nomDeVariable
+```
 
 ### Fonctions / Methodes
+
 Nom des fonctions:
-Standard : NomDeLaFonction
-Coroutine : CoroutineNomDeLaFontion
+
+```cs
+// Functions
+void NomDeLaFonction(/*...*/)
+// Coroutine
+Coroutine CoroutineNomDeLaFontion(/*...*/)
+// Getters
+bool GetIsExemple() => m_isExemple;
+// Setters
+void SetIsExemple(bool value) => m_isExemple = value;
+```
