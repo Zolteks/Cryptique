@@ -378,6 +378,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1135514732}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1135514734 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6815092863912315205, guid: 17aabcfba52af6b42a7e7f1e65379084,
+    type: 3}
+  m_PrefabInstance: {fileID: 1135514732}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c158ef6706c9cc499236d3b597111e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1137351616
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,10 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chapters:
-  - Wendigo
-  - Kelpie
-  - Chupacabra
-  puzzleSteps: []
+  - {fileID: 11400000, guid: c5ad825f694cee2488a12b4b2c447a9d, type: 2}
 --- !u!114 &1137351620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,6 +470,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 215348029669683492, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 751829199436252489, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 751829199436252489, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 751829199436252489, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 751829199436252489, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 751829199436252489, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 751829199436252489, guid: e7f7cb76545c76a41967c2264d343d53,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
@@ -535,6 +574,41 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4121452160761782922, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4121452160761782922, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4121452160761782922, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1135514734}
+    - target: {fileID: 4121452160761782922, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4121452160761782922, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RotateLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 4121452160761782922, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CameraRotator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4121452160761782922, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4864994798466937779, guid: e7f7cb76545c76a41967c2264d343d53,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -594,6 +668,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6075521127990141724, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6075521127990141724, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6075521127990141724, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1135514734}
+    - target: {fileID: 6075521127990141724, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6075521127990141724, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RotateRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 6075521127990141724, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CameraRotator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6075521127990141724, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6206949577399127104, guid: e7f7cb76545c76a41967c2264d343d53,
         type: 3}
@@ -706,6 +815,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7509371857547876718, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662444177688222542, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662444177688222542, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662444177688222542, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662444177688222542, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662444177688222542, guid: e7f7cb76545c76a41967c2264d343d53,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7662444177688222542, guid: e7f7cb76545c76a41967c2264d343d53,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
@@ -1041,6 +1180,16 @@ PrefabInstance:
     - target: {fileID: 2194547654010396241, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3223235669852452919, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3376897057235789459, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5786803541719352588, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,

@@ -335,12 +335,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chapters:
-  - Wendigo
-  - Kelpie
-  - Chupacabra
-  puzzleSteps:
-  - puzzleID: CrossOfWendigo
-    requiredPuzzles: []
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &318745391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1194,6 +1191,12 @@ PrefabInstance:
       propertyPath: lastTile
       value: 
       objectReference: {fileID: 432052973}
+    - target: {fileID: 9044769924621521634, guid: dfe4657fbccebef4882eb1575a2cf25e,
+        type: 3}
+      propertyPath: puzzleData
+      value: 
+      objectReference: {fileID: 11400000, guid: 01bae3ea814da484db508013ca3b6d6b,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

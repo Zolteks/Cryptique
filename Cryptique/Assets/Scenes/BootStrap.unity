@@ -163,6 +163,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe9628c5a1d65ce4794a940e47ae8cb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveKey: CryptiqueSaveData
+  gameData:
+    currentTile: 
+    currentRegion: 
+    currentChapter: 0
+    currentChapterName: 
+    IsTutorialDone: 0
+    solvedPuzzles: []
+    collectedItems: []
+    cameraRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1066864680
 GameObject:
   m_ObjectHideFlags: 0
