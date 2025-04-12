@@ -7,10 +7,11 @@ public class LanguageManager : Singleton<LanguageManager>
 {
     private SaveSystemManager saveSystemManager;
 
-    private string currentLanguage;
+    private LanguageCode currentLanguage;
 
     private  readonly List<LocalizedTextUI> listeners = new();
-    private  readonly List<Action<string>> callbackListeners = new();
+    private  readonly List<Action<LanguageCode>> callbackListeners = new();
+    private  readonly List<ILocalizedElement> dynamicElements = new();
 
     private void Awake()
     {
@@ -37,7 +38,7 @@ public class LanguageManager : Singleton<LanguageManager>
             listeners.Remove(l);
     }
 
-    public  void Register(Action<string> callback)
+    public  void Register(Action<LanguageCode> callback)
     {
         if (!callbackListeners.Contains(callback))
         {
@@ -46,12 +47,22 @@ public class LanguageManager : Singleton<LanguageManager>
         }
     }
 
-    public  void Unregister(Action<string> callback)
+    public  void Unregister(Action<LanguageCode> callback)
     {
         if (callbackListeners.Contains(callback))
             callbackListeners.Remove(callback);
     }
 
+    public void Register(ILocalizedElement element)
+    {
+        if (!dynamicElements.Contains(element))
+            dynamicElements.Add(element);
+    }
+
+    public void Unregister(ILocalizedElement element)
+    {
+        dynamicElements.Remove(element);
+    }
     public void RefreshAll()
     {
         currentLanguage = saveSystemManager.GetGameData().langue;
@@ -62,11 +73,13 @@ public class LanguageManager : Singleton<LanguageManager>
 
         foreach (var callback in callbackListeners)
             callback(currentLanguage);
+
+        foreach (var e in dynamicElements)
+            e.RefreshLocalized();
     }
 
-    public string GetCurrentLanguage()
+    public LanguageCode GetCurrentLanguage()
     {
-        Debug.Log("Current Language: " + currentLanguage);
         return currentLanguage;
     }
 }

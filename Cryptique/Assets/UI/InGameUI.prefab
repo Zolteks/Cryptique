@@ -381,6 +381,7 @@ GameObject:
   - component: {fileID: 2427822467422608857}
   - component: {fileID: 7273710495475555806}
   - component: {fileID: 4764455795253654466}
+  - component: {fileID: 1667044722336411251}
   m_Layer: 5
   m_Name: PauseGrimoire
   m_TagString: Untagged
@@ -502,6 +503,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1667044722336411251}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+        m_MethodName: active
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1667044722336411251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3988293627107627517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e92cd8ceeb7224648a86556b63a08e57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  regionDetail: {fileID: 6207770834594112474}
 --- !u!1 &4420147802117571519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,7 +1127,7 @@ PrefabInstance:
     - target: {fileID: 1275782737265010795, guid: 6d59e3facb2fd5644950495f3102ac9d,
         type: 3}
       propertyPath: m_Size
-      value: 0.2888415
+      value: 0.282192
       objectReference: {fileID: 0}
     - target: {fileID: 1275782737265010795, guid: 6d59e3facb2fd5644950495f3102ac9d,
         type: 3}
@@ -2563,6 +2589,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -139.27798
       objectReference: {fileID: 0}
+    - target: {fileID: 4073528275980014715, guid: 4a9cb741198410c449af0fa63e86c608,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8669227266541771781}
     - target: {fileID: 4147158329551600764, guid: 4a9cb741198410c449af0fa63e86c608,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2935,11 +2966,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7874281051524960456, guid: 4a9cb741198410c449af0fa63e86c608,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3298878032066391127}
-    - target: {fileID: 7874281051524960456, guid: 4a9cb741198410c449af0fa63e86c608,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -3048,16 +3074,16 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7239930834746313281}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3298878032066391127 stripped
+--- !u!114 &6207770834594112474 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5313859071006975510, guid: 4a9cb741198410c449af0fa63e86c608,
+  m_CorrespondingSourceObject: {fileID: 3629628703730870683, guid: 4a9cb741198410c449af0fa63e86c608,
     type: 3}
   m_PrefabInstance: {fileID: 7239930834746313281}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afec387e7c5b0ea4d8b877e2a93897fc, type: 3}
+  m_Script: {fileID: 11500000, guid: 32bd9ca110dbfdd40b7da3bd662be83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6216123567172223630 stripped
@@ -3073,7 +3099,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6216123567172223630}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3b29d7a8a25f7a43b17ab674297a5f8, type: 3}
   m_Name: 

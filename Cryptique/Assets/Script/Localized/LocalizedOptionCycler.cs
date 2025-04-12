@@ -55,7 +55,7 @@ public class LocalizedOptionCycler : MonoBehaviour
         }
     }
 
-    private void OnLanguageChanged(string _)
+    private void OnLanguageChanged(LanguageCode _)
     {
         UpdateDisplay();
     }

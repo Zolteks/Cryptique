@@ -27,7 +27,7 @@ public class LocalizedTextUI : MonoBehaviour
         languageManager.Unregister(this);
     }
 
-    public void UpdateText(string language)
+    public void UpdateText(LanguageCode language)
     {
         if (localisationData == null) return;
         text.text = localisationData.GetText(key, language);

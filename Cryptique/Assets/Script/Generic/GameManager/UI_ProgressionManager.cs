@@ -16,17 +16,14 @@ public class UI_ProgressionManager : MonoBehaviour
 
     [SerializeField] private Slider chapterProgressBar;
 
-    /* Getters and Setters */
-    private int GetTotalPuzzles()
+    private GameProgressionManager gameProgressionManager;
+
+    private void Awake()
     {
-        var progressionManager = GameProgressionManager.GetInstance();
-        int total = 0;
-        foreach (var region in progressionManager.GetItemRegions())
-        {
-            total += progressionManager.GetTotalItemsInRegion(region);
-        }
-        return total;
+        gameProgressionManager = GameProgressionManager.Instance;
     }
+
+    /* Getters and Setters */
     
     public void UpdateItemProgress(string itemRegion, int collectedItems, int totalItems)
     {
@@ -48,21 +45,20 @@ public class UI_ProgressionManager : MonoBehaviour
 
     public void UpdatePuzzleProgress()
     {
-        var progressionManager = GameProgressionManager.GetInstance();
-        if (progressionManager == null) return;
+        if (gameProgressionManager == null) return;
 
 
-        var completedPuzzles = progressionManager.GetCompletedPuzzles();
-        var totalPuzzles = GetTotalPuzzles();
+        int completedPuzzles = gameProgressionManager.GetCurrentRegion().GetCompletedPuzzlesCount();
+        var totalPuzzles = gameProgressionManager.GetCurrentRegion().GetPuzzles().Count;
 
         if (completedPuzzlesUI != null)
         {
-            completedPuzzlesUI.text = $"{completedPuzzles.Count}/{totalPuzzles}";
+            completedPuzzlesUI.text = $"{completedPuzzles}/{totalPuzzles}";
         }
 
         if (chapterProgressBar != null)
         {
-            chapterProgressBar.value = totalPuzzles > 0 ? (float)completedPuzzles.Count / totalPuzzles : 0;
+            chapterProgressBar.value = totalPuzzles > 0 ? (float)completedPuzzles / totalPuzzles : 0;
         }
 
         Debug.Log("Puzzle UI updated");

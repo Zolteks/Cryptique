@@ -763,10 +763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chapters:
-  - Wendigo
-  - Kelpie
-  - Chupacabra
-  puzzleSteps: []
+  - {fileID: 11400000, guid: c5ad825f694cee2488a12b4b2c447a9d, type: 2}
 --- !u!114 &690751925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -780,6 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_camera: {fileID: 279864743}
+  m_dialogueManager: {fileID: 0}
 --- !u!4 &690751926
 Transform:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-public class SlideModeSelector : OptionSelectorComponent
+public class SlideModeSelector : OptionSelectorComponent<string>
 {
     protected override void LoadFromSave()
     {

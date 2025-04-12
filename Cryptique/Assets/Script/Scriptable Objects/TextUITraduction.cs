@@ -25,27 +25,19 @@ public class TextUITraduction : ScriptableObject
         }
     }
 
-    public string GetText(string key, string language)
+    public string GetText(string key, LanguageCode language)
     {
         if (dict == null || dict.Count == 0) Init();
 
         if (!dict.TryGetValue(key, out var entry))
             return $"[{key}]";
 
-        //Test available language
-        if (string.IsNullOrEmpty(language))
-            throw new System.Exception($"Language is null or empty for key: {key}");
-        if (language != "FR" && language != "EN")
-            throw new System.Exception($"Language is not supported for key: {key}");
-
 
         return language switch
         {
-             "FR"=> entry.frText,
-            "Français" => entry.frText,
-            "EN" => entry.enText,
-            "English" => entry.enText,
-            _ => entry.enText
+            LanguageCode.FR => entry.frText,
+            LanguageCode.EN => entry.enText,
+            _ => entry.frText
         };
     }
 }

@@ -2,14 +2,13 @@
 using TMPro;
 using UnityEngine;
 
-public abstract class OptionSelectorComponent : MonoBehaviour
+public abstract class OptionSelectorComponent<T> : MonoBehaviour
 {
     [SerializeField] protected string optionKey;
     [SerializeField] protected TextMeshProUGUI optionText;
-    [SerializeField] protected List<string> options = new();
+    [SerializeField] protected List<T> options = new();
 
     protected int currentIndex = 0;
-
     protected SaveSystemManager saveSystemManager;
 
     protected virtual void Awake()
@@ -55,27 +54,27 @@ public abstract class OptionSelectorComponent : MonoBehaviour
 
     protected virtual void OnOptionExternallyChanged(object value)
     {
-        string selected = value as string;
-        if (options.Contains(selected))
+        if (value is T typedValue && options.Contains(typedValue))
         {
-            currentIndex = options.IndexOf(selected);
+            currentIndex = options.IndexOf(typedValue);
             UpdateText();
         }
     }
 
     protected abstract void LoadFromSave();
-    protected abstract void SaveToGameData(string value);
+    protected abstract void SaveToGameData(T value);
 
     protected void UpdateText()
     {
-        if (IsValid()) optionText.text = options[currentIndex];
+        if (IsValid())
+            optionText.text = options[currentIndex]?.ToString();
     }
 
     private bool IsValid()
     {
         if (options.Count == 0)
         {
-            Debug.LogError($"[OptionSelectorComponent] No options set for {gameObject.name}");
+            Debug.LogError($"[OptionSelectorComponent<{typeof(T).Name}>] No options set for {gameObject.name}");
             return false;
         }
         return true;

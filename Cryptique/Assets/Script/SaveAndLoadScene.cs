@@ -5,17 +5,34 @@ using UnityEngine.SceneManagement;
 
 public class SaveAndLoadScene : MonoBehaviour
 {
-    public static void Excute(string sceneName)
+    [SceneDropdown]
+    public string sceneToLoad;
+
+    public void Excute()
     {
         // Save the current scene
         SaveSystemManager.Instance.SaveGame();
         // Load the new scene
         //test si la scene existe 
-        if (!Application.CanStreamedLevelBeLoaded(sceneName))
+        if (!Application.CanStreamedLevelBeLoaded(sceneToLoad))
         {
-            Debug.LogError($"Scene {sceneName} does not exist.");
+            Debug.LogError($"Scene {sceneToLoad} does not exist.");
             return;
         }
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneToLoad);
+    }
+
+    public static void Excute(string sceneToLoad)
+    {
+        // Save the current scene
+        SaveSystemManager.Instance.SaveGame();
+        // Load the new scene
+        //test si la scene existe 
+        if (!Application.CanStreamedLevelBeLoaded(sceneToLoad))
+        {
+            Debug.LogError($"Scene {sceneToLoad} does not exist.");
+            return;
+        }
+        SceneManager.LoadScene(sceneToLoad);
     }
 }

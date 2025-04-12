@@ -1,9 +1,6 @@
-﻿using System;
-using UnityEngine;
-
-public class LangueSelector : OptionSelectorComponent
+﻿public class LangueSelector : OptionSelectorComponent<LanguageCode>
 {
-    LanguageManager languageManager;
+    private LanguageManager languageManager;
 
     protected override void Awake()
     {
@@ -11,26 +8,19 @@ public class LangueSelector : OptionSelectorComponent
         languageManager = LanguageManager.Instance;
     }
 
-
     protected override void LoadFromSave()
     {
-        string value = saveSystemManager.GetGameData().langue;
+        var value = saveSystemManager.GetGameData().langue;
+
         if (options.Contains(value))
             currentIndex = options.IndexOf(value);
         else
             currentIndex = 0;
     }
 
-    protected override void SaveToGameData(string value)
+    protected override void SaveToGameData(LanguageCode value)
     {
-        if(value == "Français")
-            value = "FR";
-        else if (value == "English")
-            value = "EN";
-        else
-            value = "EN";
         saveSystemManager.GetGameData().langue = value;
-
         languageManager.RefreshAll();
     }
 }

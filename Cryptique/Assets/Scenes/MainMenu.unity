@@ -344,7 +344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localisationData: {fileID: 11400000, guid: dd0f207d570f75f40a5bb305122a38cc, type: 2}
-  key: 
+  key: Start
 --- !u!1 &367675791
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +889,7 @@ MonoBehaviour:
       - m_Target: {fileID: 619830031}
         m_TargetAssemblyTypeName: UI_LoadScene, Assembly-CSharp
         m_MethodName: LoadScene
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -910,6 +910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72e7cd2211eff644c99615a264fc0b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoad: Tavern
 --- !u!1 &631192246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,7 +1187,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72.15
+  m_fontSize: 70
   m_fontSizeBase: 60
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2525,7 +2526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localisationData: {fileID: 11400000, guid: dd0f207d570f75f40a5bb305122a38cc, type: 2}
-  key: 
+  key: Quit
 --- !u!1 &1847757660
 GameObject:
   m_ObjectHideFlags: 0
@@ -2859,7 +2860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localisationData: {fileID: 11400000, guid: dd0f207d570f75f40a5bb305122a38cc, type: 2}
-  key: 
+  key: Options
 --- !u!1 &2099961643
 GameObject:
   m_ObjectHideFlags: 0

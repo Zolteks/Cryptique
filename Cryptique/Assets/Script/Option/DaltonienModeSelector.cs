@@ -1,4 +1,4 @@
-﻿public class DaltonienModeSelector : OptionSelectorComponent
+﻿public class DaltonienModeSelector : OptionSelectorComponent<string>
 {
     protected override void LoadFromSave()
     {
