@@ -20,6 +20,8 @@ public class PZL_DiceRoll : Puzzle
     {
         if (m_busy) return;
 
+        playerHasRiggedDice = OBJ_DropOnDiceTable.playerHasDice; // TEMP line for playable v1
+
         m_busy = true;
         Roll(playerHasRiggedDice ? DieBehaviour.RigState.win : DieBehaviour.RigState.lose, m_playerDice);
         StartCoroutine(CoroutineWaitForEnemy(playerHasRiggedDice));
