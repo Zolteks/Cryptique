@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class PZL_GutterLabyrinth : Puzzle
 {
-    PipeManager pipeManager;
-    private void Update()
+    [SerializeField]PipeManager pipeManager;
+
+    public void Solve()
     {
-        if (PipeManager.CheckVictory())
+        if (pipeManager == null)
         {
+            Debug.LogWarning("PipeManager.Instance est null !");
+            return;
+        }
+
+        if (pipeManager.isSolved)
+        {
+            Debug.Log("Puzzle gutter solved !");
             Complete();
         }
     }

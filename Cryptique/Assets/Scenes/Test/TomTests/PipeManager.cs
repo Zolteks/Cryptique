@@ -1,17 +1,31 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PipeManager : MonoBehaviour
 {
     public List<PipePieceTrigger> allPipes = new List<PipePieceTrigger>();
+    public Transform pipesParent;
     public static PipeManager Instance;
+    public static PZL_GutterLabyrinth PZL_GutterLabyrinth;
+    public bool isSolved = false;
 
     private void Awake()
     {
         Instance = this;
+
+        if (pipesParent != null)
+        {
+            PipePieceTrigger[] foundPipes = pipesParent.GetComponentsInChildren<PipePieceTrigger>(true);
+            allPipes = new List<PipePieceTrigger>(foundPipes);
+        }
+        else
+        {
+            Debug.LogWarning("pipesParent n'est pas assigné dans PipeManager.");
+        }
     }
 
-    public static bool CheckVictory()
+    public static void CheckVictory()
     {
         int totalValidConnections = 0;
         int totalPipeCount = Instance.allPipes.Count;
@@ -34,13 +48,37 @@ public class PipeManager : MonoBehaviour
         if (actualConnections == totalPipeCount - 1)
         {
             Debug.Log(" Victory !");
-            return true;
-
+            Win();
         }
         else
         {
             Debug.Log(" Not won yet ");
-            return false;
         }
     }
+
+    private static void Win()
+    {
+        Instance.isSolved = true;
+
+        // Affiche tous les joints des pipes
+        Instance.ShowAllJoints();
+
+        // Résout le puzzle
+        if (PZL_GutterLabyrinth == null)
+            PZL_GutterLabyrinth = Object.FindAnyObjectByType<PZL_GutterLabyrinth>();
+
+        if (PZL_GutterLabyrinth != null)
+            PZL_GutterLabyrinth.Solve();
+    }
+
+
+
+    public void ShowAllJoints()
+    {
+        foreach (var pipe in allPipes)
+        {
+            pipe.ShowJoints();
+        }
+    }
+
 }
