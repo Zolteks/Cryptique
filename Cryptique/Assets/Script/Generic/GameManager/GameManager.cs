@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 //  Script responsable for the Entire Game logic
 public class GameManager : MonoBehaviour
@@ -10,7 +9,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Transform m_camera;
     [SerializeField] private UI_DialogueManager m_dialogueManager;
-    [SerializeField] private UIManager uiManager;
+   // [SerializeField] private UIManager uiManager;
+
+    private GameProgressionManager m_gameProgressionManager;
 
     /* Getters and Setters */
     static public GameManager GetInstance()
@@ -37,6 +38,8 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+
+        m_gameProgressionManager = GameProgressionManager.Instance;
     }
 
     public void NotifyChapterChanged(string chapterID)
@@ -48,48 +51,48 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log($"Item collected in {region}: {collectedCount}/{totalItems}");
 
-        if (uiManager != null)
-        {
-            uiManager.UpdateItemProgress(region, collectedCount, totalItems);
-            uiManager.UpdateRegionUnlocked(region);
-        }
+        //if (uiManager != null)
+        //{
+        //    uiManager.UpdateItemProgress(region, collectedCount, totalItems);
+        //    uiManager.UpdateRegionUnlocked(region);
+        //}
     }
     
-    public void NotifyPuzzleSolved(string puzzleID)
-    {
-        Debug.Log($"Puzzle Solved : {puzzleID} - Update UI");
+    //public void NotifyPuzzleSolved(string puzzleID)
+    //{
+    //    Debug.Log($"Puzzle Solved : {puzzleID} - Update UI");
 
-        GameProgressionManager.GetInstance().CompletePuzzle(puzzleID);
+    //    GameProgressionManager.GetInstance().CompletePuzzle(puzzleID);
 
-        CheckAndUnlockNextPuzzles();
+    //    CheckAndUnlockNextPuzzles();
 
-        if (uiManager != null)
-        {
-            uiManager.UpdatePuzzleProgress();
-        }
-    }
+    //    //if (uiManager != null)
+    //    //{
+    //    //    uiManager.UpdatePuzzleProgress();
+    //    //}
+    //}
 
     public void NotifyPuzzleCreated(List<string> puzzleDescriptions)
     {
         Debug.Log("Puzzle descriptions updated in UI.");
 
-        if (uiManager != null)
-        {
-            uiManager.UpdatePuzzleDescriptions(puzzleDescriptions);
-        }
+        //if (uiManager != null)
+        //{
+        //    uiManager.UpdatePuzzleDescriptions(puzzleDescriptions);
+        //}
     }
 
-    private void CheckAndUnlockNextPuzzles()
-    {
-        var completedPuzzles = GameProgressionManager.GetInstance().GetCompletedPuzzles();
+    //private void CheckAndUnlockNextPuzzles()
+    //{
+    //    var completedPuzzles = m_gameProgressionManager.GetCompletedPuzzles();
 
-        foreach (var puzzleID in GameProgressionManager.GetInstance().GetActivePuzzleDescriptions())
-        {
-            if (GameProgressionManager.GetInstance().CanStartPuzzle(puzzleID))
-            {
-                Debug.Log($"Puzzle {puzzleID} can now be started!");
-                NotifyPuzzleCreated(GameProgressionManager.GetInstance().GetActivePuzzleDescriptions());
-            }
-        }
-    }
+    //    foreach (var puzzleID in GameProgressionManager.GetInstance().GetActivePuzzleDescriptions())
+    //    {
+    //        if (GameProgressionManager.GetInstance().CanStartPuzzle(puzzleID))
+    //        {
+    //            Debug.Log($"Puzzle {puzzleID} can now be started!");
+    //            NotifyPuzzleCreated(GameProgressionManager.GetInstance().GetActivePuzzleDescriptions());
+    //        }
+    //    }
+    //}
 }

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class OBJ_Item : ScriptableObject
@@ -15,7 +14,7 @@ public class OBJ_Item : ScriptableObject
     private GameObject m_itemPrefab;
     [SerializeField]
     private Sprite m_itemSprite;
-    
+    [SerializeField]
     private string m_itemDescription;
 
     /* Getters and Setters */

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,10 +16,10 @@ public class UI_ChaptersManager : MonoBehaviour
 
         if (gameProgressionManager == null)
         {
-            gameProgressionManager = GameProgressionManager.GetInstance();
+            gameProgressionManager = GameProgressionManager.Instance;
         }
 
-        List<string> chapters = gameProgressionManager.GetChapters();
+        List<string> chapters = gameProgressionManager.GetChapters().Select(ch => ch.GetName()).ToList();
 
         for (int i = 0; i < chapters.Count; i++)
         {

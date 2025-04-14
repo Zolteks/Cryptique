@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PZL_DiceRoll : Puzzle
 {
-    [SerializeField] int amountOfDices = 3;
-    [SerializeField] List<Transform> diceSpawnPoints;
+    //[SerializeField] int amountOfDices = 3;
+    //[SerializeField] List<Transform> diceSpawnPoints;
 
-    List<GameObject> m_dices = new(8);
+    [SerializeField] List<GameObject> m_playerDice ;
+    [SerializeField] List<GameObject> m_enemyDice ;
 
     bool m_busy = false;
 
@@ -19,27 +20,29 @@ public class PZL_DiceRoll : Puzzle
     {
         if (m_busy) return;
 
+        playerHasRiggedDice = OBJ_DropOnDiceTable.playerHasDice; // TEMP line for playable v1
+
         m_busy = true;
-        Roll(playerHasRiggedDice ? DieBehaviour.RigState.win : DieBehaviour.RigState.lose);
+        Roll(playerHasRiggedDice ? DieBehaviour.RigState.win : DieBehaviour.RigState.lose, m_playerDice);
         StartCoroutine(CoroutineWaitForEnemy(playerHasRiggedDice));
     }
 
-    public void Roll(DieBehaviour.RigState rigState)
+    public void Roll(DieBehaviour.RigState rigState, List<GameObject> dice)
     {
         m_lastScore = 0;
         m_diceOver = 0;
 
-        foreach (var dice in m_dices)
-        {
-            Destroy(dice);
-        }
+        //foreach (var dice in m_dice)
+        //{
+        //    Destroy(dice);
+        //}
 
-        for(int i = 0; i < amountOfDices; i++)
+        for(int i = 0; i < dice.Count; i++)
         {
-            GameObject die = (GameObject)GameObject.Instantiate(Resources.Load("Die"), diceSpawnPoints[i]);
-            m_dices.Add(die);
-            DieBehaviour dieComp = die.GetComponentInChildren<DieBehaviour>();
+            //GameObject die = (GameObject)GameObject.Instantiate(Resources.Load("Die"), diceSpawnPoints[i]);
+            DieBehaviour dieComp = dice[i].GetComponentInChildren<DieBehaviour>();
             dieComp.rigState = rigState;
+            dieComp.Roll();
             dieComp.onRollOver = OnDiceOverCallback;
         }
     }
@@ -55,7 +58,7 @@ public class PZL_DiceRoll : Puzzle
 
     IEnumerator CoroutineWaitForEnemy(bool playerHasRiggedDice)
     {
-        while(m_diceOver < amountOfDices)
+        while(m_diceOver < m_playerDice.Count)
         {
             yield return null;
         }
@@ -63,13 +66,13 @@ public class PZL_DiceRoll : Puzzle
 
         m_playerScore = m_lastScore;
 
-        Roll(playerHasRiggedDice ? DieBehaviour.RigState.regular : DieBehaviour.RigState.win);
+        Roll(playerHasRiggedDice ? DieBehaviour.RigState.regular : DieBehaviour.RigState.win, m_enemyDice);
         StartCoroutine(CoroutineWaitForEnd());
     }
 
     IEnumerator CoroutineWaitForEnd()
     {
-        while (m_diceOver < amountOfDices)
+        while (m_diceOver < m_enemyDice.Count)
         {
             yield return null;
         }

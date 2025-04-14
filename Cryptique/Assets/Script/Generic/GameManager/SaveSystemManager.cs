@@ -3,33 +3,41 @@ using SaveSystem.SSJson;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class SaveSystemManager : MonoBehaviour
+public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
 {
-
     private SaveManager<GameDataJson> saveManager = new SaveManager<GameDataJson>();
 
     private string saveKey = "CryptiqueSaveData";
-
-    void Awake()
-    {
-        Application.runInBackground = true;
-        saveManager.Register(new JsonSaveSystem<GameDataJson>());
-    }
-
+    private GameData gameData;
 
     private void Start()
     {
+        Application.runInBackground = true;
+        saveManager.Register(new JsonSaveSystem<GameDataJson>());
+        gameData = new GameData();
+
         TestSave();
-        TestLoad();
     }
 
-    public void SaveGame(GameDataJson gameDataJson)
+    public void SaveGame()
     {
+        GameDataJson gameDataJson = new GameDataJson
+        {
+            currentTile = gameData.currentTile,
+            currentRegion = gameData.currentRegion,
+            currentChapter = gameData.currentChapter,
+            currentChapterName = gameData.currentChapterName,
+            IsTutorialDone = gameData.IsTutorialDone,
+            solvedPuzzles = gameData.solvedPuzzles,
+            collectedItems = gameData.collectedItems,
+        };
+        gameDataJson.setCameraRotation(gameData.cameraRotation);
         saveManager.Save(saveKey, gameDataJson);
     }
 
-    public GameDataJson LoadGame()
+    public void LoadGame()
     {
         if (saveManager.Exists(saveKey))
         {
@@ -37,10 +45,16 @@ public class SaveSystemManager : MonoBehaviour
 
             if (result.TryGet<JsonSaveSystem<GameDataJson>>(out var data))
             {
-                return data;
+                gameData.currentTile = data.currentTile;
+                gameData.currentRegion = data.currentRegion;
+                gameData.currentChapter = data.currentChapter;
+                gameData.currentChapterName = data.currentChapterName;
+                gameData.IsTutorialDone = data.IsTutorialDone;
+                gameData.solvedPuzzles = data.solvedPuzzles;
+                gameData.collectedItems = data.collectedItems;
+                gameData.cameraRotation = data.getCameraRotation();
             }
         }
-        return null;
     }
 
     public void DeleteSave()
@@ -56,35 +70,22 @@ public class SaveSystemManager : MonoBehaviour
         }
     }
 
+    public GameData GetGameData()
+    {
+        return gameData;
+    }
 
     public void TestSave()
     {
-        GameDataJson data = new GameDataJson();
-        data.currentTile = "TestTile";
-        data.currentRegion = "TestRegion";
-        data.currentChapter = 1;
-        data.currentChapterName = "TestChapter";
-        data.solvedPuzzles.Add("Puzzle1");
-        data.collectedItems.Add("Item1");
-        data.cameraRotation = new List<int> { 0, 0, 0, 0 }; // Example rotation values
-        saveManager.Save(saveKey, data);
-        Debug.Log("Test save completed.");
-    }
-
-    public void TestLoad()
-    {
-        GameDataJson data = LoadGame();
-        if (data != null)
-        {
-            Debug.Log("Test load completed.");
-            Debug.Log($"Current Tile: {data.currentTile}");
-            Debug.Log($"Current Region: {data.currentRegion}");
-            Debug.Log($"Current Chapter: {data.currentChapter}");
-            Debug.Log($"Current Chapter Name: {data.currentChapterName}");
-            Debug.Log($"Solved Puzzles: {string.Join(", ", data.solvedPuzzles)}");
-            Debug.Log($"Collected Items: {string.Join(", ", data.collectedItems)}");
-            Debug.Log($"Camera Rotation: {string.Join(", ", data.cameraRotation)}");
-        }
+        gameData.currentTile = "TestTile";
+        gameData.currentRegion = "Tavern";
+        gameData.currentChapter = 1;
+        gameData.currentChapterName = "TestChapter";
+        gameData.IsTutorialDone = true;
+        gameData.solvedPuzzles.Add("Puzzle1");
+        gameData.collectedItems.Add("Item1");
+        gameData.cameraRotation = new Vector4(0, 0, 0, 0);
+        SaveGame();
     }
 }
 
@@ -94,9 +95,11 @@ public class GameDataJson
     public string currentRegion;
     public int currentChapter;
     public string currentChapterName;
+    public bool IsTutorialDone;
     public List<string> solvedPuzzles = new List<string>();
     public List<string> collectedItems = new List<string>();
     public List<int> cameraRotation = new List<int>();
+
 
 
     public void setCameraRotation(Vector4 rotation)

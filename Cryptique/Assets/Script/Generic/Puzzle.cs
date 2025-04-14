@@ -3,20 +3,19 @@ using UnityEngine.Events;
 
 public class Puzzle : MonoBehaviour
 {
-    [SerializeField] private string puzzleID;
-    [SerializeField] private string region;
+    [SerializeField] private PuzzleData puzzleData;
     [SerializeField] private UnityEvent onSuccess;
 
     private void Start()
     {
-        Debug.Log($"Registering puzzle {puzzleID} in region {region}");
-        GameProgressionManager.Instance.RegisterPuzzle(region, puzzleID);
+        //Debug.Log($"Registering puzzle {puzzleData.GetPuzzleID(} in region {region}");
+        //GameProgressionManager.Instance.RegisterPuzzle(region, puzzleID);
     }
-
-
-    public static void StartPuzzle(string name)
+    public static void StartPuzzle(string name, string region, UnityEvent onSuccess)
     {
-        GameObject.Instantiate(Resources.Load("Puzzles/PZL_"+name));
+        GameObject pzlGo = (GameObject)GameObject.Instantiate(Resources.Load("Puzzles/PZL_" + name));
+        Puzzle pzl = pzlGo.GetComponent<Puzzle>();
+        pzl.onSuccess = onSuccess;
     }
 
     public void Quit()
@@ -24,20 +23,21 @@ public class Puzzle : MonoBehaviour
         Destroy(gameObject);
     }
 
+
     protected virtual void Complete()
     {
-        if (GameProgressionManager.Instance.ArePrerequisitesCompleted(puzzleID))
+        if (GameProgressionManager.Instance.ArePrerequisitesCompleted(puzzleData))
         {
-            Debug.Log($"{puzzleID} is completed.");
-            GameProgressionManager.Instance.CompletePuzzle(puzzleID);
+            Debug.Log($"{puzzleData.GetPuzzleID()} is completed.");
             onSuccess?.Invoke();
+            puzzleData.SetCompleted(true);
+
+            //SaveSystemManager.Instance.GetGameData().collectedItems.Add(puzzleID);
             Quit();
         }
         else
         {
-            Debug.Log($"Cannot complete {puzzleID} because the prerequisites are not completed yet.");
+            Debug.Log($"Cannot complete {puzzleData.GetPuzzleID()} because the prerequisites are not completed yet.");
         }
     }
-
-
 }

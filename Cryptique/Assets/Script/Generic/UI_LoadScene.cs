@@ -1,12 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class UI_LoadScene : MonoBehaviour
 {
-    public void LoadScene(string sceneName)
+    [SceneDropdown]
+    public string sceneToLoad;
+
+    public void LoadScene()
     {
-        // Load the specified scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
+        SceneManager.LoadScene(sceneToLoad);
     }
 }
