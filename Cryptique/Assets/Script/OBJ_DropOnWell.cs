@@ -6,7 +6,7 @@ public class OBJ_DropOnWell : OBJ_InteractOnDrop
 {
     public override bool Interact()
     {
-        var component = GetComponent<IN_WellLauncher>();
+        var component = GetComponent<IN_PuzzleLauncher>();
         if (component != null)
         {
             component.SetCanInteract(true);

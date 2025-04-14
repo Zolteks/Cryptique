@@ -9,12 +9,12 @@ public class IN_PuzzleLauncher : OBJ_Interactable
     [SerializeField] private string region;
     [SerializeField] private UnityEvent onSuccess;
 
-    private void OnMouseDown()
-    {
-        if (false == CanInteract()) return;
+    //private void OnMouseDown()
+    //{
+    //    if (false == CanInteract()) return;
 
-        Interact();
-    }
+    //    Interact();
+    //}
 
     public override bool Interact()
     {
