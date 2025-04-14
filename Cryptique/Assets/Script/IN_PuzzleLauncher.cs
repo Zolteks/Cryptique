@@ -5,8 +5,7 @@ using UnityEngine.Events;
 
 public class IN_PuzzleLauncher : OBJ_Interactable
 {
-    [SerializeField] private string puzzleID;
-    [SerializeField] private string region;
+    [SerializeField] private PuzzleData puzzleData;
     [SerializeField] private UnityEvent onSuccess;
 
     //private void OnMouseDown()
@@ -18,7 +17,7 @@ public class IN_PuzzleLauncher : OBJ_Interactable
 
     public override bool Interact()
     {
-        Puzzle.StartPuzzle(puzzleID, region, onSuccess);
+        Puzzle.StartPuzzle(puzzleData, onSuccess);
 
         return true;
     }

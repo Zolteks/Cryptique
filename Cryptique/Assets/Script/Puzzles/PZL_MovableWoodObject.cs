@@ -13,8 +13,8 @@ public class PZL_MovableWoodObject : MonoBehaviour
 
     void OnMouseDown()
     {
-        fZCoord = Camera.main.WorldToScreenPoint(transform.position).z;
-        vOffset = transform.position - GetMouseWorldPos();
+        fZCoord = pzlGame.cam.WorldToScreenPoint(transform.position).z;
+        vOffset = new Vector3(transform.position.x, transform.position.y, transform.position.z) - GetMouseWorldPos();
         bIsDragging = true;
     }
 
@@ -35,7 +35,7 @@ public class PZL_MovableWoodObject : MonoBehaviour
     {
         Vector3 mousePoint = Input.mousePosition;
         mousePoint.z = fZCoord;
-        return Camera.main.ScreenToWorldPoint(mousePoint);
+        return pzlGame.cam.ScreenToWorldPoint(mousePoint);
     }
 
     private void OnTriggerStay(Collider other)

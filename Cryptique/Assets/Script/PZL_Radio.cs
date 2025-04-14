@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PZL_Radio : Puzzle
 {
+    [SerializeField] Camera cam;
+
     [SerializeField] MeshRenderer frequenceDisplay;
     [SerializeField] PZL_RadioBtn buttonW;
     [SerializeField] PZL_RadioBtn buttonH;
@@ -30,6 +32,8 @@ public class PZL_Radio : Puzzle
         targetFreqH = .15f;
         shader.SetFloat("_TargetFreqWidth", targetFreqW);
         shader.SetFloat("_TargetFreqHeight", targetFreqH);
+
+        InteractManager.Instance.ChangeCamera(cam);
     }
 
     void Update()
@@ -48,7 +52,10 @@ public class PZL_Radio : Puzzle
         {
             timeForValidation -= Time.deltaTime;
             if (timeForValidation < 0)
+            {
+                InteractManager.Instance.ChangeCamera(Camera.main);
                 Complete();
+            }
         }
     }
 }

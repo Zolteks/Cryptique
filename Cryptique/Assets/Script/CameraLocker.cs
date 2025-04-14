@@ -12,15 +12,17 @@ public class CameraLocker : MonoBehaviour
     [Tooltip("The side the camera will be watching at arrival")]
     [SerializeField] CameraDirdection facingSide = CameraDirdection.top;
 
+
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.TryGetComponent<CameraRotator>(out CameraRotator cam))
         {
             Dictionary<CameraDirdection, bool> newAuthorizations = new()
             {
-                {CameraDirdection.bot, top },
+                {CameraDirdection.bot, bot },
                 {CameraDirdection.right, right },
-                {CameraDirdection.top, bot },
+                {CameraDirdection.top, top },
                 {CameraDirdection.left, left },
             };
             cam.SetAllowedRotation(newAuthorizations);

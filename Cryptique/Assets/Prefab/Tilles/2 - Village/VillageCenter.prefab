@@ -80,8 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4656ab83c87de694bbdbb647e6a6412e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleID: 
-  region: 
+  puzzleData: {fileID: 0}
   onSuccess:
     m_PersistentCalls:
       m_Calls: []
@@ -246,8 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 0
-  puzzleID: Well
-  region: Village
+  puzzleData: {fileID: 11400000, guid: 645c46cffe2e42c4196d5f106ec93319, type: 2}
   onSuccess:
     m_PersistentCalls:
       m_Calls: []

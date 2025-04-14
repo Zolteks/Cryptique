@@ -30,6 +30,8 @@ public class InteractManager : Singleton<InteractManager>
         m_inputManager.OnStartTouch -= OnInteract;
     }
 
+    public void ChangeCamera(Camera cam) => m_camera = cam;
+
     private void OnInteract(Vector2 pos, float time)
     {
         // Raycast UI

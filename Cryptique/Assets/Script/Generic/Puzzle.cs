@@ -11,11 +11,12 @@ public class Puzzle : MonoBehaviour
         //Debug.Log($"Registering puzzle {puzzleData.GetPuzzleID(} in region {region}");
         //GameProgressionManager.Instance.RegisterPuzzle(region, puzzleID);
     }
-    public static void StartPuzzle(string name, string region, UnityEvent onSuccess)
+    public static void StartPuzzle(PuzzleData data, UnityEvent onSuccess)
     {
-        GameObject pzlGo = (GameObject)GameObject.Instantiate(Resources.Load("Puzzles/PZL_" + name));
+        GameObject pzlGo = (GameObject)GameObject.Instantiate(Resources.Load("Puzzles/PZL_" + data.defaultPuzzleID));
         Puzzle pzl = pzlGo.GetComponent<Puzzle>();
         pzl.onSuccess = onSuccess;
+        pzl.puzzleData = data;
     }
 
     public void Quit()
