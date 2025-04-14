@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 7965889550604798532}
   - component: {fileID: 7113674063911396681}
   - component: {fileID: 7113117778833141865}
+  - component: {fileID: 1173688528208502793}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -155,7 +156,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chapters:
-  - {fileID: 11400000, guid: c5ad825f694cee2488a12b4b2c447a9d, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1767184236105930685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,3 +222,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e432bd81c9426440be69934b81251cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1173688528208502793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5566644138177984620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50d153b261c87564f8742af6f9cb30fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DirectionalLight: {fileID: 0}
+  Preset: {fileID: 11400000, guid: 1cbede63042177f4689efc40fe09e8e1, type: 2}
+  TimeOfDay: 12
