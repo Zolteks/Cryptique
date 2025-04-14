@@ -41,9 +41,19 @@ public class GameProgressionManager : Singleton<GameProgressionManager>
     {
         return itemRegion.Count(r => r == regionName);
     }
-
-    private IEnumerable<RegionData> GetAllRegions() =>
-        chapters.SelectMany(ch => ch.regions);
+    private IEnumerable<RegionData> GetAllRegions()
+    {
+        if (chapters == null)
+            Debug.LogError("Add  Scriptable Object of Chapterns in GameProgressManagers");
+        foreach (var chapter in chapters)
+        {
+            foreach (var region in chapter.regions)
+            {
+                Debug.Log($"Region: {region.GetName()}");
+                yield return region;
+            }
+        }
+    }
 
     public bool ArePrerequisitesCompleted(PuzzleData puzzle)
     {
