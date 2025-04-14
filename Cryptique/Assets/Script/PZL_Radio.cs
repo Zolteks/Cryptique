@@ -32,10 +32,12 @@ public class PZL_Radio : Puzzle
         shader.SetFloat("_TargetFreqHeight", targetFreqH);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        print(buttonH.angle);
+        //print(buttonH.angle);
+
+        curFreqW = (buttonW.angle + 360)/40 + 2;
+        curFreqH = .1f+ (360 + buttonH.angle)/1000;
 
         // Set the shader values base on the current frequence.
         shader.SetFloat("_FreqWidth", curFreqW);

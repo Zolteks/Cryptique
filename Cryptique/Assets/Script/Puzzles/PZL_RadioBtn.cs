@@ -28,9 +28,16 @@ public class PZL_RadioBtn : MonoBehaviour
         if (isSelected)
         {
             mPosDelta = Input.mousePosition - mPrevPos;
-            transform.Rotate(transform.up, -Vector3.Dot(mPosDelta, Camera.main.transform.right), Space.World);
 
-            _angle = transform.rotation.eulerAngles.x;
+            _angle += mPosDelta.x;
+
+            if (angle > 360 || _angle < -360)
+            {
+                _angle = Mathf.Clamp(_angle, -360, 360);
+                return;
+            }
+
+            transform.Rotate(new Vector3(1, 0, 0), mPosDelta.x, Space.Self);
         }
 
         mPrevPos = Input.mousePosition;
