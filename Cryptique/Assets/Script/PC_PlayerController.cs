@@ -7,8 +7,8 @@ public class PC_PlayerController : MonoBehaviour
     [Header("Player Movement")]
     [SerializeField] [Range(3f, 6f)] private float m_moveSpeed = 4.5f;
     [Header("Animations")]
-    public bool interactionOnSart = false;
     private bool m_isInputActive = true;
+    [SerializeField] private string m_idleStateName = "charlie_idle";
     [SerializeField] private string m_interactionParameter = "Interaction";
     [SerializeField] private string m_SpeedParameter = "MotionSpeed";
     
@@ -46,12 +46,6 @@ public class PC_PlayerController : MonoBehaviour
         m_animator = GetComponentInChildren<Animator>();
         if (m_animator == null)
             Debug.LogError("Animator not found");
-    }
-    
-    private void Start()
-    {
-        if (interactionOnSart)
-            m_coroutineInteraction = StartCoroutine(CoroutineInteraction());
     }
     
     private void OnEnable()
@@ -120,21 +114,20 @@ public class PC_PlayerController : MonoBehaviour
         {
             yield return null;
         }
+        // Lancer l'interaction une fois arrivé
+        m_coroutineInteraction = StartCoroutine(LauchInteraction());
+    }
+
+    public IEnumerator LauchInteraction()
+    {
+        m_animator?.SetTrigger(m_interactionParameter);
+        while(!m_animator.GetCurrentAnimatorStateInfo(0).IsName(m_idleStateName))
+        {
+            yield return null;
+        }
+        Debug.Log("Interaction finished");
         // Réactiver les inputs
         if (!m_isInputActive)
             EnableInput();
-        // Lancer l'interaction une fois arrivé
-        LauchInteraction();
-    }
-
-    public void LauchInteraction()
-    {
-        m_animator?.SetTrigger(m_interactionParameter);
-    }
-
-    private IEnumerator CoroutineInteraction()
-    {
-        yield return new WaitForSeconds(2f);
-        LauchInteraction();
     }
 }
