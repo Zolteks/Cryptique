@@ -4,6 +4,7 @@ using UnityEngine;
 public class PipePieceTrigger : MonoBehaviour
 {
     public List<PipeTriggerZone> connectedZones = new List<PipeTriggerZone>();
+    public List<GameObject>  Joints;
 
     public void CheckConnections()
     {
@@ -16,8 +17,14 @@ public class PipePieceTrigger : MonoBehaviour
                 validConnections++;
             }
         }
-
-        Debug.Log("Number of valid connexions : " + validConnections);
         PipeManager.CheckVictory();
+    }
+
+    public void ShowJoints()
+    {
+        foreach (var joint in Joints)
+        {
+            joint.SetActive(true);
+        }
     }
 }

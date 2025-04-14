@@ -2,16 +2,9 @@ using UnityEngine;
 
 public class RotationGutters : MonoBehaviour
 {
-    PipePieceTrigger pipePieceTrigger;
     private Quaternion targetRotation;
     public float rotationSpeed = 360f;
     private bool isRotating = false;
-    PZL_GutterLabyrinth PZL_GutterLabyrinth;
-
-    //private void Start()
-    //{
-    //    PZL_GutterLabyrinth = Object.FindAnyObjectByType<PZL_GutterLabyrinth>();
-    //}
     void Update()
     {
         if (Input.touchCount > 0 && !isRotating)
@@ -29,7 +22,6 @@ public class RotationGutters : MonoBehaviour
                     {
                         targetRotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0f, 0f, -90f));
                         isRotating = true;
-                        //PZL_GutterLabyrinth.Solve();
                     }
                 }
             }
