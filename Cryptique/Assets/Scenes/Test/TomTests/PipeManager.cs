@@ -21,9 +21,14 @@ public class PipeManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("pipesParent n'est pas assigné dans PipeManager.");
+            Debug.LogWarning("pipesParent non assigné, fallback vers toute la scène");
+            PipePieceTrigger[] foundPipes = Object.FindObjectsByType<PipePieceTrigger>(FindObjectsSortMode.None);
+            allPipes = new List<PipePieceTrigger>(foundPipes);
         }
+
+        RandomizePipeRotations();
     }
+
 
     public static void CheckVictory()
     {
@@ -60,10 +65,8 @@ public class PipeManager : MonoBehaviour
     {
         Instance.isSolved = true;
 
-        // Affiche tous les joints des pipes
         Instance.ShowAllJoints();
 
-        // Résout le puzzle
         if (PZL_GutterLabyrinth == null)
             PZL_GutterLabyrinth = Object.FindAnyObjectByType<PZL_GutterLabyrinth>();
 
@@ -80,5 +83,15 @@ public class PipeManager : MonoBehaviour
             pipe.ShowJoints();
         }
     }
+
+    private void RandomizePipeRotations()
+    {
+        foreach (var pipe in allPipes)
+        {
+            int randomAngle = Random.Range(0, 4) * 90;
+            pipe.transform.rotation = Quaternion.Euler(0f, pipe.transform.eulerAngles.y, randomAngle);
+        }
+    }
+
 
 }
