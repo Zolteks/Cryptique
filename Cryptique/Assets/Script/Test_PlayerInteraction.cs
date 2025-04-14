@@ -21,8 +21,10 @@ public class Test_PlayerInteraction : OBJ_Interactable
     
     public override bool Interact()
     {
-        Debug.Log("Interact");
-        m_playerController.MoveAndInteract(gameObject.transform.position);
+        if (!m_playerController.GetInputActive())
+            return false;
+        Debug.Log("Launched Player Interact");
+        m_playerController.MoveForInteraction(gameObject.transform.position);
         return true;
     }
 }
