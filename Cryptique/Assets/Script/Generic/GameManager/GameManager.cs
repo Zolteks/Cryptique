@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UI_DialogueManager m_dialogueManager;
    // [SerializeField] private UIManager uiManager;
 
+    private GameProgressionManager m_gameProgressionManager;
+
     /* Getters and Setters */
     static public GameManager GetInstance()
     {
@@ -36,6 +38,8 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+
+        m_gameProgressionManager = GameProgressionManager.Instance;
     }
 
     public void NotifyChapterChanged(string chapterID)
@@ -54,19 +58,19 @@ public class GameManager : MonoBehaviour
         //}
     }
     
-    public void NotifyPuzzleSolved(string puzzleID)
-    {
-        Debug.Log($"Puzzle Solved : {puzzleID} - Update UI");
+    //public void NotifyPuzzleSolved(string puzzleID)
+    //{
+    //    Debug.Log($"Puzzle Solved : {puzzleID} - Update UI");
 
-        GameProgressionManager.GetInstance().CompletePuzzle(puzzleID);
+    //    GameProgressionManager.GetInstance().CompletePuzzle(puzzleID);
 
-        CheckAndUnlockNextPuzzles();
+    //    CheckAndUnlockNextPuzzles();
 
-        //if (uiManager != null)
-        //{
-        //    uiManager.UpdatePuzzleProgress();
-        //}
-    }
+    //    //if (uiManager != null)
+    //    //{
+    //    //    uiManager.UpdatePuzzleProgress();
+    //    //}
+    //}
 
     public void NotifyPuzzleCreated(List<string> puzzleDescriptions)
     {
@@ -78,17 +82,17 @@ public class GameManager : MonoBehaviour
         //}
     }
 
-    private void CheckAndUnlockNextPuzzles()
-    {
-        var completedPuzzles = GameProgressionManager.GetInstance().GetCompletedPuzzles();
+    //private void CheckAndUnlockNextPuzzles()
+    //{
+    //    var completedPuzzles = m_gameProgressionManager.GetCompletedPuzzles();
 
-        foreach (var puzzleID in GameProgressionManager.GetInstance().GetActivePuzzleDescriptions())
-        {
-            if (GameProgressionManager.GetInstance().CanStartPuzzle(puzzleID))
-            {
-                Debug.Log($"Puzzle {puzzleID} can now be started!");
-                NotifyPuzzleCreated(GameProgressionManager.GetInstance().GetActivePuzzleDescriptions());
-            }
-        }
-    }
+    //    foreach (var puzzleID in GameProgressionManager.GetInstance().GetActivePuzzleDescriptions())
+    //    {
+    //        if (GameProgressionManager.GetInstance().CanStartPuzzle(puzzleID))
+    //        {
+    //            Debug.Log($"Puzzle {puzzleID} can now be started!");
+    //            NotifyPuzzleCreated(GameProgressionManager.GetInstance().GetActivePuzzleDescriptions());
+    //        }
+    //    }
+    //}
 }

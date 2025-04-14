@@ -9,6 +9,13 @@ public class UI_OptionSelector : MonoBehaviour
     [SerializeField] private TextMeshProUGUI OptionText;
     [SerializeField] private List<string> Options;
 
+    private SaveSystemManager saveSystemManager;
+
+    private void Awake()
+    {
+        saveSystemManager = SaveSystemManager.Instance;
+    }
+
     public void SetNextOption()
     {
         if (!ErrorCheck()) return;
@@ -20,6 +27,7 @@ public class UI_OptionSelector : MonoBehaviour
             currentIndex = 0;
         }
         OptionText.text = Options[currentIndex];
+
     }
 
     public void SetPreviousOption()
