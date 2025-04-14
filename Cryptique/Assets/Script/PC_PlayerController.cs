@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -6,20 +6,52 @@ public class PC_PlayerController : MonoBehaviour
 {
     [Header("Player Movement")]
     [SerializeField] [Range(3f, 6f)] private float m_moveSpeed = 4.5f;
+    [Header("Animations")]
+    public bool interactionOnSart = false;
+    private bool m_isInputActive = true;
+    [SerializeField] private string m_interactionParameter = "Interaction";
+    [SerializeField] private string m_SpeedParameter = "MotionSpeed";
     
     private Camera m_camera;
     private InputManager m_inputManager;
     private NavMeshAgent m_agent;
     private Animator m_animator;
     
+    private Coroutine m_coroutineInteraction;
+    private Coroutine m_coroutineWaitForInteraction;
+
+    public bool GetInputActive() => m_isInputActive;
+    
     private void Awake()
     {
         m_camera = Camera.main;
+        if (m_camera == null)
+        {
+            Debug.LogError("Camera not found");
+            return;
+        }
         m_inputManager = InputManager.Instance;
+        if (m_inputManager == null)
+        {
+            Debug.LogError("InputManager not found");
+            return;
+        }
         m_agent = GetComponentInChildren<NavMeshAgent>();
-        if (m_agent != null)
-            m_agent.speed = m_moveSpeed;
+        if (m_agent == null)
+        {
+            Debug.LogError("NavMeshAgent not found");
+            return;
+        }
+        m_agent.speed = m_moveSpeed;
         m_animator = GetComponentInChildren<Animator>();
+        if (m_animator == null)
+            Debug.LogError("Animator not found");
+    }
+    
+    private void Start()
+    {
+        if (interactionOnSart)
+            m_coroutineInteraction = StartCoroutine(CoroutineInteraction());
     }
     
     private void OnEnable()
@@ -34,8 +66,6 @@ public class PC_PlayerController : MonoBehaviour
 
     private void CalculatePoint(Vector2 touchPoint, float time)
     {
-        // Convertir la position de l'écran en position du monde
-        Vector3 worldPoint = Utils.ScreenToWorld(m_camera, touchPoint);
         // Raycast pour trouver le point de destination
         Ray ray = m_camera.ScreenPointToRay(touchPoint);
         if (Physics.Raycast(ray, out RaycastHit hit))
@@ -48,29 +78,63 @@ public class PC_PlayerController : MonoBehaviour
     public void DisableInput()
     {
         m_inputManager.OnStartTouch -= CalculatePoint;
+        m_isInputActive = false;
     }
     
     public void EnableInput()
     {
         m_inputManager.OnStartTouch += CalculatePoint;
-    }
-    
-    public void SetDesinationPoint(Vector3 destination)
-    {
-        if (m_agent != null)
-        {
-            NavMesh.SamplePosition(destination, out NavMeshHit hit, 1.0f, NavMesh.AllAreas);
-            m_agent.SetDestination(hit.position);
-        }
+        m_isInputActive = true;
     }
 
     private void LateUpdate()
     {
-        if (m_agent != null)
-            m_animator.SetFloat("MotionSpeed", m_agent.velocity.magnitude);
+        m_animator?.SetFloat(m_SpeedParameter, m_agent.velocity.magnitude);
         Vector3 cameraPosition = m_camera.transform.position;
         cameraPosition.y = transform.position.y;
         transform.GetChild(0).transform.LookAt(cameraPosition);
         transform.GetChild(0).transform.Rotate(0f, 180f, 0f);
+    }
+    
+    public void SetDesinationPoint(Vector3 destination)
+    {
+        NavMesh.SamplePosition(destination, out NavMeshHit hit, 50.0f, NavMesh.AllAreas);
+        m_agent.SetDestination(hit.position);
+    }
+    
+    public void MoveAndInteract(Vector3 destination)
+    {
+        // Désactiver les inputs
+        if (m_isInputActive)
+            DisableInput();
+        // Lancer le mouvement
+        m_agent.ResetPath();
+        SetDesinationPoint(destination);
+        m_coroutineWaitForInteraction = StartCoroutine(CoroutineWaitForInteraction());
+    }
+
+    private IEnumerator CoroutineWaitForInteraction()
+    {
+        // Attendre que l'agent atteigne sa destination
+        while (m_agent.pathPending || m_agent.remainingDistance > m_agent.stoppingDistance)
+        {
+            yield return null;
+        }
+        // Réactiver les inputs
+        if (!m_isInputActive)
+            EnableInput();
+        // Lancer l'interaction une fois arrivé
+        LauchInteraction();
+    }
+
+    public void LauchInteraction()
+    {
+        m_animator?.SetTrigger(m_interactionParameter);
+    }
+
+    private IEnumerator CoroutineInteraction()
+    {
+        yield return new WaitForSeconds(2f);
+        LauchInteraction();
     }
 }
