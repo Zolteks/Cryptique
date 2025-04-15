@@ -18,6 +18,16 @@ public class Test_PlayerInteraction : OBJ_Interactable
         if (m_playerController == null)
             Debug.LogError("PlayerController not found");
     }
+
+    private void OnEnable()
+    {
+        m_playerController.OnInteractionCallback += OnEndOfInteraction;
+    }
+    
+    private void OnDisable()
+    {
+        m_playerController.OnInteractionCallback -= OnEndOfInteraction;
+    }
     
     public override bool Interact()
     {
@@ -26,5 +36,10 @@ public class Test_PlayerInteraction : OBJ_Interactable
         Debug.Log("Launched Player Interact");
         m_playerController.MoveForInteraction(gameObject.transform.position);
         return true;
+    }
+
+    public void OnEndOfInteraction()
+    {
+        Debug.Log("End of interaction");
     }
 }
