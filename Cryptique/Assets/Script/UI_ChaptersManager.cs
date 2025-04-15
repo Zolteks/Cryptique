@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UI_ChaptersManager : MonoBehaviour
 {
-    [SerializeField] private GameProgressionManager gameProgressionManager;
+    private GameProgressionManager gameProgressionManager;
 
     [SerializeField] private GameObject chapterButtonPrefab;
     [SerializeField] private UI_RegionDetail regionDetail;
