@@ -11,9 +11,12 @@ public class PZL_SortingGame : Puzzle
     [SerializeField] private int iElementNumber;
     [SerializeField] private OBJ_Item OBJ_LanternOil;
 
+    [SerializeField] public Camera cam;
+
     void Start()
     {
         etatsPlacement = new List<bool>(new bool[iElementNumber]);
+        InteractManager.Instance.ChangeCamera(cam);
     }
 
     public void UpdateEtatPlacement(int index, bool estBienPlace)
@@ -29,6 +32,7 @@ public class PZL_SortingGame : Puzzle
     {
         if (etatsPlacement.All(etat => etat))
         {
+            InteractManager.Instance.ChangeCamera(Camera.main);
             bIsAllPlaced = true;
             InventoryManager.Instance.AddItem(OBJ_LanternOil);
             Complete();

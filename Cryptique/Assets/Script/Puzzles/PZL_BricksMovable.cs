@@ -10,14 +10,14 @@ public class PZL_BricksMovable : MonoBehaviour
     
 
     private Vector3 offset;
-    private Camera mainCamera;
+    [SerializeField] private Camera mainCamera;
     private bool isDragging = false;
 
     private MeshRenderer mrMeshRenderer;
 
     void Start()
     {
-        mainCamera = Camera.main;
+        //mainCamera = Camera.main;
         mrMeshRenderer = GetComponent<MeshRenderer>();
 
     }

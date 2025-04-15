@@ -762,6 +762,17 @@ PrefabInstance:
       propertyPath: m_camera
       value: 
       objectReference: {fileID: 1135514733}
+    - target: {fileID: 5021316622015085288, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: chapters.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021316622015085288, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: 'chapters.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c5ad825f694cee2488a12b4b2c447a9d,
+        type: 2}
     - target: {fileID: 5566644138177984620, guid: c0b03de04c14e924cafbb28f5118be9c,
         type: 3}
       propertyPath: m_Name
@@ -1264,7 +1275,7 @@ PrefabInstance:
     - target: {fileID: 3376897057235789459, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4691119442989319540, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
         type: 3}

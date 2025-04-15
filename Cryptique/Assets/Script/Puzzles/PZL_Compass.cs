@@ -6,10 +6,13 @@ public class PZL_Compass : Puzzle
 {
     [SerializeField] private GameObject goCompass;
 
+    [SerializeField] public Camera cam;
+
     void Start()
     {
         if (goCompass != null)
         {
+            InteractManager.Instance.ChangeCamera(cam);
             StartCoroutine(CoroutineDestroyDetection());
         }
     }
@@ -24,6 +27,7 @@ public class PZL_Compass : Puzzle
 
     void CompassDestroy()
     {
+        InteractManager.Instance.ChangeCamera(cam);
         Complete();
     }
 }

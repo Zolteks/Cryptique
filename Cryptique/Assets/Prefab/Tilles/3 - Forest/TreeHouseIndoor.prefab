@@ -127,7 +127,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8448243609303929460, guid: 6961a51eeb09c644ba10924e13be0182,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2891826126085713553}
+      addedObject: {fileID: 7090683767804318170}
+    - targetCorrespondingSourceObject: {fileID: 8448243609303929460, guid: 6961a51eeb09c644ba10924e13be0182,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8992208085939252913}
     - targetCorrespondingSourceObject: {fileID: -2783104945377909065, guid: 6961a51eeb09c644ba10924e13be0182,
         type: 3}
       insertIndex: -1
@@ -152,8 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  puzzleID: 
-  region: Forest
+  puzzleData: {fileID: 11400000, guid: 0c4022a0c4ef792429099d97552616a3, type: 2}
   onSuccess:
     m_PersistentCalls:
       m_Calls: []
@@ -234,7 +237,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4118922216800158103}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2891826126085713553
+--- !u!114 &7090683767804318170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -247,11 +250,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  puzzleID: Radio
-  region: Forest
+  puzzleData: {fileID: 11400000, guid: ead2ed8cf03fd7441a8981839798f648, type: 2}
   onSuccess:
     m_PersistentCalls:
       m_Calls: []
+--- !u!65 &8992208085939252913
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5482966673232286691}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1393657, y: 0.24858612, z: 1.2753555}
+  m_Center: {x: -0.4317946, y: 0.089102164, z: -0.6376769}
 --- !u!1 &6938135124639442720 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2783104945377909065, guid: 6961a51eeb09c644ba10924e13be0182,

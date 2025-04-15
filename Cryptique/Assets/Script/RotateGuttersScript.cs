@@ -1,32 +1,12 @@
 using UnityEngine;
 
-public class RotationGutters : MonoBehaviour
+public class RotationGutters : OBJ_Interactable
 {
     private Quaternion targetRotation;
     public float rotationSpeed = 360f;
     private bool isRotating = false;
     void Update()
     {
-        if (Input.touchCount > 0 && !isRotating)
-        {
-            Touch touch = Input.GetTouch(0);
-
-            if (touch.phase == TouchPhase.Began)
-            {
-                Ray ray = Camera.main.ScreenPointToRay(touch.position);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit))
-                {
-                    if (hit.transform == transform)
-                    {
-                        targetRotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0f, 0f, -90f));
-                        isRotating = true;
-                    }
-                }
-            }
-        }
-
         if (isRotating)
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
@@ -37,5 +17,15 @@ public class RotationGutters : MonoBehaviour
                 isRotating = false;
             }
         }
+    }
+
+    override public bool Interact()
+    {
+        if (isRotating) return false;
+
+        targetRotation = Quaternion.Euler(transform.eulerAngles + new Vector3(0f, 0f, -90f));
+        isRotating = true;
+
+        return true;
     }
 }

@@ -5,6 +5,12 @@ using UnityEngine;
 public class PZL_GutterLabyrinth : Puzzle
 {
     [SerializeField]PipeManager pipeManager;
+    [SerializeField]Camera cam;
+
+    private void Start()
+    {
+        InteractManager.Instance.ChangeCamera(cam);
+    }
 
     public void Solve()
     {
@@ -17,7 +23,15 @@ public class PZL_GutterLabyrinth : Puzzle
         if (pipeManager.isSolved)
         {
             Debug.Log("Puzzle gutter solved !");
-            Complete();
+            InteractManager.Instance.ChangeCamera(Camera.main);
+            StartCoroutine(CoroutineSolve());
         }
+    }
+
+    IEnumerator CoroutineSolve()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        Complete();
     }
 }
