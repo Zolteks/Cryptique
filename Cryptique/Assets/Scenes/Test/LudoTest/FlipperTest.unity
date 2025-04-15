@@ -564,6 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_camera: {fileID: 0}
+  m_dialogueManager: {fileID: 0}
 --- !u!4 &1791448326
 Transform:
   m_ObjectHideFlags: 0
@@ -601,6 +602,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2967697186447980941, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
+        type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3208852266369339347, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
         type: 3}
@@ -652,6 +658,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4566391899193966048, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5379095857987495596, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
         type: 3}
       propertyPath: m_Name
@@ -664,8 +675,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6476614703171784184, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.499
+      objectReference: {fileID: 0}
+    - target: {fileID: 6476614703171784184, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
+        type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.19
+      value: 2.121
       objectReference: {fileID: 0}
     - target: {fileID: 6623088787347634534, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
         type: 3}
@@ -681,6 +697,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7820267895579853039, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7880491918722548798, guid: 29dbc8c52046b9e479dd15c3aa407d7e,
+        type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

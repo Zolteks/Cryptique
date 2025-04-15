@@ -845,6 +845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_camera: {fileID: 0}
+  m_dialogueManager: {fileID: 0}
 --- !u!4 &1586785845
 Transform:
   m_ObjectHideFlags: 0
@@ -1212,6 +1213,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SortingGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6495172723669961051, guid: 8f5b3df6408c8af4680b126e8d3cb8b4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6731213927757646897, guid: 8f5b3df6408c8af4680b126e8d3cb8b4,
         type: 3}
