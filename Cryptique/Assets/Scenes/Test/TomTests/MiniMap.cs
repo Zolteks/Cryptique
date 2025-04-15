@@ -16,6 +16,7 @@ public class Minimap3DManager : MonoBehaviour
     [Header("Caméra minimap")]
     public Camera minimapCamera;
     public float cameraDistance = 10f;
+    public Vector3 cameraOffsetDirection = new Vector3(-1f, 2f, -1f); // modifiable depuis l'inspecteur
     public bool useIsometricView = true;
 
     [Header("Tracking du joueur")]
@@ -25,13 +26,10 @@ public class Minimap3DManager : MonoBehaviour
     public Color surroundingTileColor = Color.yellow;
     public Color defaultTileColor = Color.white;
 
-    private List<GameObject> miniTiles = new List<GameObject>();
-    private Dictionary<GameObject, GameObject> tileToMiniTile = new Dictionary<GameObject, GameObject>();
+    private Dictionary<GameObject, GameObject> visitedMiniTiles = new Dictionary<GameObject, GameObject>();
 
     void Start()
     {
-        CreateMiniMapTiles();
-
         if (useIsometricView)
             SetupIsometricCameraView();
         else
@@ -46,50 +44,23 @@ public class Minimap3DManager : MonoBehaviour
         }
     }
 
-    void CreateMiniMapTiles()
-    {
-        if (miniTilePrefab == null || placedTiles.Count == 0)
-        {
-            Debug.LogWarning("Aucun prefab ou tile original assigné !");
-            return;
-        }
-
-        foreach (GameObject tile in placedTiles)
-        {
-            Vector3 originalPos = tile.transform.position;
-            Vector3 miniPos = minimapOrigin + (originalPos / scaleFactor);
-
-            GameObject miniTile = Instantiate(miniTilePrefab, miniPos, Quaternion.identity);
-            miniTile.transform.localScale = Vector3.one * 0.5f;
-            miniTile.layer = Mathf.RoundToInt(Mathf.Log(minimapLayer.value, 2));
-
-            Renderer rend = miniTile.GetComponent<Renderer>();
-            if (rend != null)
-            {
-                rend.material.color = defaultTileColor;
-            }
-
-            miniTiles.Add(miniTile);
-            tileToMiniTile[tile] = miniTile;
-        }
-    }
-
     void SetupIsometricCameraView()
     {
-        if (minimapCamera == null || miniTiles.Count == 0) return;
+        if (minimapCamera == null || placedTiles.Count == 0) return;
 
-        Bounds bounds = new Bounds(miniTiles[0].transform.position, Vector3.zero);
-        foreach (GameObject tile in miniTiles)
+        Bounds bounds = new Bounds(placedTiles[0].transform.position, Vector3.zero);
+        foreach (GameObject tile in placedTiles)
         {
             bounds.Encapsulate(tile.transform.position);
         }
 
         Vector3 center = bounds.center;
-        Vector3 offsetDirection = new Vector3(-1f, 1f, -1f).normalized;
-        Vector3 cameraPos = center + offsetDirection * cameraDistance;
+
+        Vector3 offsetDirection = cameraOffsetDirection.normalized;
+        Vector3 cameraPos = minimapOrigin + (center / scaleFactor) + offsetDirection * cameraDistance;
 
         minimapCamera.transform.position = cameraPos;
-        minimapCamera.transform.LookAt(center);
+        minimapCamera.transform.LookAt(minimapOrigin + (center / scaleFactor));
         minimapCamera.cullingMask = minimapLayer;
         minimapCamera.orthographic = false;
         minimapCamera.fieldOfView = 45f;
@@ -97,10 +68,10 @@ public class Minimap3DManager : MonoBehaviour
 
     void SetupTopDownCameraView()
     {
-        if (minimapCamera == null || miniTiles.Count == 0) return;
+        if (minimapCamera == null || placedTiles.Count == 0) return;
 
-        Bounds bounds = new Bounds(miniTiles[0].transform.position, Vector3.zero);
-        foreach (GameObject tile in miniTiles)
+        Bounds bounds = new Bounds(placedTiles[0].transform.position, Vector3.zero);
+        foreach (GameObject tile in placedTiles)
         {
             bounds.Encapsulate(tile.transform.position);
         }
@@ -113,9 +84,26 @@ public class Minimap3DManager : MonoBehaviour
         minimapCamera.cullingMask = minimapLayer;
     }
 
+    void CreateMiniTile(GameObject tile)
+    {
+        Vector3 originalPos = tile.transform.position;
+        Vector3 miniPos = minimapOrigin + (originalPos / scaleFactor);
+
+        GameObject miniTile = Instantiate(miniTilePrefab, miniPos, Quaternion.identity);
+        miniTile.transform.localScale = Vector3.one * 0.5f;
+        miniTile.layer = Mathf.RoundToInt(Mathf.Log(minimapLayer.value, 2));
+
+        Renderer rend = miniTile.GetComponent<Renderer>();
+        if (rend != null)
+        {
+            rend.material.color = defaultTileColor;
+        }
+
+        visitedMiniTiles[tile] = miniTile;
+    }
+
     void UpdateMiniTileHighlights()
     {
-        // Trouver la tile la plus proche du joueur
         GameObject closestTile = null;
         float minDist = Mathf.Infinity;
 
@@ -129,8 +117,16 @@ public class Minimap3DManager : MonoBehaviour
             }
         }
 
-        // Réinitialiser toutes les couleurs
-        foreach (var miniTile in tileToMiniTile.Values)
+        if (closestTile == null) return;
+
+        //  Créer la mini-tile du joueur si pas encore visitée
+        if (!visitedMiniTiles.ContainsKey(closestTile))
+        {
+            CreateMiniTile(closestTile);
+        }
+
+        //  Réinitialiser les couleurs
+        foreach (var miniTile in visitedMiniTiles.Values)
         {
             Renderer rend = miniTile.GetComponent<Renderer>();
             if (rend != null)
@@ -139,33 +135,28 @@ public class Minimap3DManager : MonoBehaviour
             }
         }
 
-        if (closestTile != null)
+        // Colorer la case actuelle du joueur
+        if (visitedMiniTiles.TryGetValue(closestTile, out GameObject playerMiniTile))
         {
-            if (tileToMiniTile.TryGetValue(closestTile, out GameObject playerMiniTile))
+            playerMiniTile.GetComponent<Renderer>().material.color = playerTileColor;
+        }
+
+        //  Tiles autour
+        foreach (GameObject tile in placedTiles)
+        {
+            if (tile == closestTile) continue;
+
+            float dist = Vector3.Distance(tile.transform.position, closestTile.transform.position);
+            if (dist < highlightRadius)
             {
-                Renderer rend = playerMiniTile.GetComponent<Renderer>();
-                if (rend != null)
+                if (!visitedMiniTiles.ContainsKey(tile))
                 {
-                    rend.material.color = playerTileColor;
+                    CreateMiniTile(tile);
                 }
-            }
 
-            // Mettre en surbrillance les tiles autour
-            foreach (GameObject tile in placedTiles)
-            {
-                if (tile == closestTile) continue;
-
-                float dist = Vector3.Distance(tile.transform.position, closestTile.transform.position);
-                if (dist < highlightRadius)
+                if (visitedMiniTiles.TryGetValue(tile, out GameObject miniTile))
                 {
-                    if (tileToMiniTile.TryGetValue(tile, out GameObject miniTile))
-                    {
-                        Renderer rend = miniTile.GetComponent<Renderer>();
-                        if (rend != null)
-                        {
-                            rend.material.color = surroundingTileColor;
-                        }
-                    }
+                    miniTile.GetComponent<Renderer>().material.color = surroundingTileColor;
                 }
             }
         }
