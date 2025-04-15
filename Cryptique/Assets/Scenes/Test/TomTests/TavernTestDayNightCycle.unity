@@ -296,6 +296,11 @@ MonoBehaviour:
   minimapCamera: {fileID: 2125401619}
   cameraDistance: 3.5
   useIsometricView: 1
+  player: {fileID: 1043440825}
+  highlightRadius: 700
+  playerTileColor: {r: 1, g: 0, b: 0, a: 1}
+  surroundingTileColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  defaultTileColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &257418217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -851,7 +856,7 @@ Transform:
   m_GameObject: {fileID: 1043440821}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03166294, y: 1.015, z: 500}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1173,6 +1178,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069336026506033053, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
+        type: 3}
+      propertyPath: goToRegion
+      value: Corridor
       objectReference: {fileID: 0}
     - target: {fileID: 5786803541719352588, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
         type: 3}
