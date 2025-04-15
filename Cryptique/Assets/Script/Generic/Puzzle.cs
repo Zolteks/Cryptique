@@ -32,8 +32,8 @@ public class Puzzle : MonoBehaviour
             Debug.Log($"{puzzleData.GetPuzzleID()} is completed.");
             onSuccess?.Invoke();
             puzzleData.SetCompleted(true);
+            SaveSystemManager.Instance.GetGameData().solvedPuzzles.Add(puzzleData.GetPuzzleID());
 
-            //SaveSystemManager.Instance.GetGameData().collectedItems.Add(puzzleID);
             Quit();
         }
         else
