@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 
-public class DragAndDrop : Singleton<DragAndDrop>
+public class SGL_DragAndDrop : Singleton<SGL_DragAndDrop>
 {
     /* Singleton */
-    private InputManager m_inputManager;
+    private SGL_InputManager m_inputManager;
 
     /* Variables */
     private Camera m_mainCamera;
@@ -17,14 +16,15 @@ public class DragAndDrop : Singleton<DragAndDrop>
     private GameObject m_draggedObject;
     private GameObject m_ghostImageObject;
     private RectTransform m_ghostRect;
-    private OBJ_Item m_selectedItem;
+    [Header("Debug")]
+    [SerializeField] private OBJ_Item m_selectedItem;
 
     Coroutine m_dragCoroutine;
 
     /* Functions */
     private void Awake()
     {
-        m_inputManager = InputManager.Instance;
+        m_inputManager = SGL_InputManager.Instance;
         m_mainCamera = Camera.main;
         m_canvas = UIManager.Instance.GetCanvas();
         m_graphicRaycaster = UIManager.Instance.GetGraphicRaycaster();
@@ -61,41 +61,39 @@ public class DragAndDrop : Singleton<DragAndDrop>
                 m_selectedItem = draggableItem.GetItem();
                 m_draggedObject = hitUI;
 
-                // Créer une ghost image
+                // Create a ghost image
                 m_ghostImageObject = new GameObject("GhostImage", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
                 m_ghostImageObject.transform.SetParent(m_canvas.transform, false);
 
                 m_ghostRect = m_ghostImageObject.GetComponent<RectTransform>();
                 Image ghostImg = m_ghostImageObject.GetComponent<Image>();
 
-                // Copier le sprite et les paramètres de l'original
+                // Set the ghost image to be the same as the original
                 ghostImg.sprite = img.sprite;
                 ghostImg.preserveAspect = true;
-                ghostImg.raycastTarget = false; // Important : ne pas intercepter les raycasts
+                ghostImg.raycastTarget = false; // Important : disable raycast on ghost image
 
-                // Tu peux personnaliser le visuel (alpha, ombre, effet visuel, etc.)
+                // Set the ghost image color to be semi-transparent
                 Color c = img.color;
                 c.a = 0.7f;
                 ghostImg.color = c;
 
-                // Ajuster la taille
+                // Adjust the size of the ghost image to match the original
                 m_ghostRect.sizeDelta = img.rectTransform.sizeDelta;
 
-                // Positionner directement la première fois
+                // First position update
                 UpdateGhostPosition(position);
 
-                // Démarrer la coroutine de drag
+                // Start the drag coroutine
                 m_dragCoroutine = StartCoroutine(OnDrag());
             }
         }
-        else Debug.Log("No UI hit");
     }
 
     private IEnumerator OnDrag()
     {
         while (m_draggedObject != null)
         {
-            // Mettre à jour la position de l'image fantôme
             UpdateGhostPosition(m_inputManager.GetTouchPosition());
             yield return null;
         }
@@ -118,12 +116,11 @@ public class DragAndDrop : Singleton<DragAndDrop>
         if (objectToInteract != null)
         {
             Debug.Log(objectToInteract.name);
-
             OBJ_InteractOnDrop objectInteract = objectToInteract.GetComponentInParent<OBJ_InteractOnDrop>();
             if (objectToInteract != null)
                 objectInteract.UseItemOnDrop(m_selectedItem);   
         }
-        else Debug.Log("No Object to interact with");
+        //else Debug.Log("No Object to interact with");
     }
 
     private void UpdateGhostPosition(Vector2 screenPos)
@@ -134,7 +131,6 @@ public class DragAndDrop : Singleton<DragAndDrop>
             m_canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : m_mainCamera,
             out Vector2 localPos
         );
-
         m_ghostRect.anchoredPosition = localPos;
     }
 }

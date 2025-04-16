@@ -134,14 +134,14 @@ public class CameraRotator : MonoBehaviour
 
     private void OnEnable()
     {
-        InputManager.Instance.OnStartTouch += HandleStartTouch;
-        InputManager.Instance.OnEndTouch += HandleEndTouch;
+        SGL_InputManager.Instance.OnStartTouch += HandleStartTouch;
+        SGL_InputManager.Instance.OnEndTouch += HandleEndTouch;
     }
     private void OnDisable()
     {
-        if (InputManager.Instance == null) return;
-        InputManager.Instance.OnStartTouch -= HandleStartTouch;
-        InputManager.Instance.OnEndTouch -= HandleEndTouch;
+        if (SGL_InputManager.Instance == null) return;
+        SGL_InputManager.Instance.OnStartTouch -= HandleStartTouch;
+        SGL_InputManager.Instance.OnEndTouch -= HandleEndTouch;
     }
 
     private void HandleStartTouch(Vector2 pos, float time)
@@ -158,7 +158,7 @@ public class CameraRotator : MonoBehaviour
     {
         if (isDragging)
         {
-            Vector2 currentTouchPosition = InputManager.Instance.GetTouchPosition();
+            Vector2 currentTouchPosition = SGL_InputManager.Instance.GetTouchPosition();
             Vector2 delta = currentTouchPosition - lastTouchPosition;
 
             if (!hasRotated && Mathf.Abs(delta.x) > Mathf.Abs(delta.y) && Mathf.Abs(delta.x) > swipeThreshold)
@@ -172,12 +172,12 @@ public class CameraRotator : MonoBehaviour
                     RotateLeft();
                 }
 
-                hasRotated = true; // empêcher de répéter la rotation
+                hasRotated = true; // empecher de repeter la rotation
             }
         }
         else
         {
-            hasRotated = false; // réinitialise pour le prochain swipe
+            hasRotated = false; // reinitialise pour le prochain swipe
         }
     }
 }

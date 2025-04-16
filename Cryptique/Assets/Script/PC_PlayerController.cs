@@ -27,7 +27,7 @@ public class PC_PlayerController : MonoBehaviour
     private bool m_isInputActive = true;
     
     private Camera m_camera;
-    private InputManager m_inputManager;
+    private SGL_InputManager m_inputManager;
     private NavMeshAgent m_agent;
     private Animator m_animator;
     
@@ -44,7 +44,7 @@ public class PC_PlayerController : MonoBehaviour
             Debug.LogError("Camera not found");
             return;
         }
-        m_inputManager = InputManager.Instance;
+        m_inputManager = SGL_InputManager.Instance;
         if (m_inputManager == null)
         {
             Debug.LogError("InputManager not found");

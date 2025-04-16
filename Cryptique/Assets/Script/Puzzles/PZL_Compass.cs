@@ -12,7 +12,7 @@ public class PZL_Compass : Puzzle
     {
         if (goCompass != null)
         {
-            InteractManager.Instance.ChangeCamera(cam);
+            SGL_InteractManager.Instance.ChangeCamera(cam);
             StartCoroutine(CoroutineDestroyDetection());
         }
     }
@@ -27,7 +27,7 @@ public class PZL_Compass : Puzzle
 
     void CompassDestroy()
     {
-        InteractManager.Instance.ChangeCamera(cam);
+        SGL_InteractManager.Instance.ChangeCamera(cam);
         Complete();
     }
 }

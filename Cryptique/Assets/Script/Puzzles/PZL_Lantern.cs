@@ -14,7 +14,7 @@ public class PZL_Lantern : MonoBehaviour, IPointerClickHandler
         if (crank.pickAble())
         {
             //Add the lantern to the inventory logic here !
-            InventoryManager.Instance.AddItem(m_lantern);
+            SGL_InventoryManager.Instance.AddItem(m_lantern);
             well.PuzzleEnded();
         }
 

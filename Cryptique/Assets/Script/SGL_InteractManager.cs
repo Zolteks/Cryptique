@@ -1,33 +1,42 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class InteractManager : Singleton<InteractManager>
+public class SGL_InteractManager : Singleton<SGL_InteractManager>
 {
-    private static InputManager m_inputManager;
+    /* Singleton */
+    private static SGL_InputManager m_inputManager;
     
-    private Camera m_camera;
-    [SerializeField]
-    private Canvas m_canvas;
-    [SerializeField]
-    private GraphicRaycaster m_graphicRaycaster;
+    /* Variables */
+    [Header("Settings")]
+    [SerializeField] private Camera m_camera;
+    [SerializeField] private Canvas m_canvas;
+    [SerializeField] private GraphicRaycaster m_graphicRaycaster;
     
+    /* Functions */
     private void Awake()
     {
-        m_inputManager = InputManager.Instance;
+        m_inputManager = SGL_InputManager.Instance;
+        if (m_inputManager == null)
+            Debug.LogError("InputManager not found");
         m_camera = Camera.main;
+        if (m_camera == null)
+            Debug.LogError("Camera not found");
         m_canvas = UIManager.Instance.GetCanvas();
+        if (m_canvas == null)
+            Debug.LogError("Canvas not found");
         m_graphicRaycaster = UIManager.Instance.GetGraphicRaycaster();
+        if (m_graphicRaycaster == null)
+            Debug.LogError("GraphicRaycaster not found");
     }
 
     private void OnEnable()
     {
-        m_inputManager.OnStartTouch += OnInteract;
+        m_inputManager.OnClick += OnInteract;
     }
     
     private void OnDisable()
     {
-        m_inputManager.OnStartTouch -= OnInteract;
+        m_inputManager.OnClick -= OnInteract;
     }
 
     public void ChangeCamera(Camera cam) => m_camera = cam;
@@ -37,12 +46,10 @@ public class InteractManager : Singleton<InteractManager>
         // Raycast UI
         if (m_graphicRaycaster != null && Utils.DetectHitWithUI(pos, m_graphicRaycaster))
             return;
-        else Debug.Log("UI hit !!!");
-            // Raycast 3D
-            GameObject hitObject = Utils.GetObjectUnderTouch(m_camera, pos);
+        // Raycast 3D
+        GameObject hitObject = Utils.GetObjectUnderTouch(m_camera, pos);
         if (hitObject != null)
         {
-            Debug.Log("Interacted with : " + hitObject.name);
             var interactableOnDrop = hitObject.GetComponentInParent<OBJ_InteractOnDrop>();
             if (interactableOnDrop != null && interactableOnDrop.CanInteract())
                 return;
@@ -53,6 +60,5 @@ public class InteractManager : Singleton<InteractManager>
                 Debug.Log("Interacted with: " + hitObject.name);
             }
         }
-        else Debug.Log("No object hit");
     }
 }
