@@ -10,16 +10,20 @@ public class PC_PlayerController : MonoBehaviour
         Left = 180
     }
     
+    public delegate void EndOfInteractionCallback();
+    public event EndOfInteractionCallback OnInteractionCallback;
+    
     [Header("Movement")]
-    [SerializeField] [Range(3f, 6f)] private float m_moveSpeed = 4.5f;
+    [SerializeField] [Range(1f, 10f)] private float m_moveSpeed = 3f;
     [Header("Interaction")]
-    [SerializeField] [Range(1f, 15f)] private float m_interactionDistance = 5f;
+    [SerializeField] [Range(1f, 15f)] private float m_interactionDistance = 8f;
     [Header("Rotation")]
     [SerializeField] private PlayerRotation m_playerRotation = PlayerRotation.Left;
     [Header("Animations")]
     [SerializeField] private string m_idleStateName = "charlie_idle";
-    [SerializeField] private string m_interactionParameter = "Interaction";
     [SerializeField] private string m_SpeedParameter = "MotionSpeed";
+    [SerializeField] private string m_interactionTriggerParameter = "InteractionTrigger";
+    [SerializeField] private string m_isInteractingParameter = "IsInteracting";
     private bool m_isInputActive = true;
     
     private Camera m_camera;
@@ -27,8 +31,8 @@ public class PC_PlayerController : MonoBehaviour
     private NavMeshAgent m_agent;
     private Animator m_animator;
     
-    private Coroutine m_coroutineInteraction;
     private Coroutine m_coroutineWaitForInteraction;
+    private Coroutine m_coroutineInteraction;
     
     public bool GetInputActive() => m_isInputActive;
     
@@ -111,12 +115,12 @@ public class PC_PlayerController : MonoBehaviour
         Vector3 direction = (destination - childTransform.position).normalized;
         if (m_playerRotation == PlayerRotation.Left && Vector3.Dot(childTransform.right, direction) > 0f)
         {
-            Debug.Log("Droite");
+            //Debug.Log("Droite");
             FlipSprite();
         }
         else if (m_playerRotation == PlayerRotation.Right && Vector3.Dot(-childTransform.right, direction) < 0f)
         {
-            Debug.Log("Gauche");
+            //Debug.Log("Gauche");
             FlipSprite();
         }
     }
@@ -125,6 +129,7 @@ public class PC_PlayerController : MonoBehaviour
     {
         m_agent.ResetPath();
         NavMesh.SamplePosition(destination, out NavMeshHit hit, m_interactionDistance, NavMesh.AllAreas);
+        Debug.Log("Agent go to : " + hit.position);
         m_agent.SetDestination(hit.position);
         CheckFlipSprite(hit.position);
     }
@@ -135,37 +140,47 @@ public class PC_PlayerController : MonoBehaviour
         if (m_isInputActive)
             DisableInput();
         else return;
-        // Lancer le mouvement
-        if (!m_agent.pathPending)
-        {
-            Debug.LogError("Object too far for interaction");
-            return;
-        }
-        StartCoroutine(CoroutineWaitForInteraction());
+        m_animator.SetBool(m_isInteractingParameter, true);
+        m_coroutineWaitForInteraction = StartCoroutine(CoroutineWaitForInteraction());
     }
     
     /* Coroutines */
     private IEnumerator CoroutineWaitForInteraction()
     {
+        yield return new WaitForEndOfFrame();
+        // Verifier si l'agent a atteint sa destination
+        if ((!m_agent.pathPending && !m_agent.hasPath) && Vector3.Distance(gameObject.transform.position, m_agent.destination) > m_interactionDistance)
+        {
+            Debug.LogError("Object too far for interaction");
+            EnableInput();
+            yield break;
+        }
         // Attendre que l'agent atteigne sa destination
-        while (m_agent.pathPending || m_agent.remainingDistance > m_agent.stoppingDistance)
+        while (m_agent.pathPending || m_agent.velocity != Vector3.zero || m_agent.remainingDistance > m_agent.stoppingDistance)
         {
             yield return null;
         }
         // Lancer l'interaction une fois arrivé
-        StartCoroutine(LauchInteraction());
+        yield return new WaitForEndOfFrame();
+        m_coroutineInteraction = StartCoroutine(LauchInteraction());
+        StopCoroutine(m_coroutineWaitForInteraction);
     }
     
     private IEnumerator LauchInteraction()
     {
-        m_animator?.SetTrigger(m_interactionParameter);
+        //yield return new WaitForEndOfFrame();
+        m_animator?.SetTrigger(m_interactionTriggerParameter);
         while(!m_animator.GetCurrentAnimatorStateInfo(0).IsName(m_idleStateName))
         {
             yield return null;
         }
         Debug.Log("Player interaction finished");
         // Réactiver les inputs
+        yield return new WaitForEndOfFrame();
         if (!m_isInputActive)
             EnableInput();
+        m_animator.SetBool(m_isInteractingParameter, false);
+        StopCoroutine(m_coroutineInteraction);
+        OnInteractionCallback?.Invoke();
     }
 }

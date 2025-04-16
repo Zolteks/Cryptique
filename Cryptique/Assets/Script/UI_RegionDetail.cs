@@ -87,7 +87,7 @@ public class UI_RegionDetail : MonoBehaviour, ILocalizedElement
             RegionData region = regionsData[i];
             regionDetail.GetComponentInChildren<Button>().onClick.AddListener(() =>
             {
-                SaveAndLoadScene.Excute(region.GetSceneName());
+                SaveAndLoadScene.Excute(region.defaultRegionName);
                 gameProgressionManager.SetCurrentRegion(i);
             });
         }
@@ -144,10 +144,4 @@ public class UI_RegionDetail : MonoBehaviour, ILocalizedElement
         return null;
     }
 
-}
-
-class CollectibleProgress
-{
-    public int found;
-    public int total;
 }

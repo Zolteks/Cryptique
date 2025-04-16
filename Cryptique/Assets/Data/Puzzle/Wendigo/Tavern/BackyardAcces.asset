@@ -13,11 +13,18 @@ MonoBehaviour:
   m_Name: BackyardAcces
   m_EditorClassIdentifier: 
   defaultPuzzleID: BackyardAcces
-  defaultDescription: 
+  defaultDescription: BackyardAcces
   puzzleID:
-    entries: []
+    entries:
+    - languageCode: 0
+      value: BackyardAcces
+    - languageCode: 1
+      value: "Cour Arri\xE8re"
   description:
     entries:
     - languageCode: 0
-      value: 
-  prerequisites: []
+      value: BackyardAcces
+    - languageCode: 0
+      value: "Cour Arri\xE8re"
+  prerequisites:
+  - {fileID: 11400000, guid: f0cb8206877a8df4484be3c2ff2bb553, type: 2}

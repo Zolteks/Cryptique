@@ -8,5 +8,9 @@ public class UI_ChangeUI : MonoBehaviour
     {
         newUI.SetActive(true);
         gameObject.SetActive(false);
+
+        //LOG
+        Debug.Log($"UI {gameObject.name} is now inactive");
+        Debug.Log($"UI {newUI.name} is now active");
     }
 }

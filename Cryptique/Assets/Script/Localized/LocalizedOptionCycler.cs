@@ -2,16 +2,17 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class LocalizedOptionCycler : MonoBehaviour
+public abstract class LocalizedOptionCycler : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI displayText;
-    [SerializeField] private List<string> optionKeys = new();
-    [SerializeField] private TextUITraduction localisationData;
+    [SerializeField] protected TextMeshProUGUI displayText;
+    [SerializeField] protected List<string> optionKeys = new();
+    [SerializeField] protected TextUITraduction localisationData;
+    [SerializeField] protected string optionName;
 
-    SaveSystemManager saveSystemManager;
-    LanguageManager languageManager;
+    protected SaveSystemManager saveSystemManager;
+    protected LanguageManager languageManager;
 
-    private int currentIndex = 0;
+    protected int currentIndex = 0;
 
     private void Awake()
     {
@@ -60,9 +61,14 @@ public class LocalizedOptionCycler : MonoBehaviour
         UpdateDisplay();
     }
 
-    private void NotifySelectedKey()
+    protected virtual void NotifySelectedKey()
     {
-        OptionChangeNotifier.Notify("slideMode", optionKeys[currentIndex]);
-        saveSystemManager.GetGameData().slideMode = optionKeys[currentIndex];
+
     }
+
+    //private void NotifySelectedKey()
+    //{
+    //    OptionChangeNotifier.Notify(optionName, optionKeys[currentIndex]);
+    //    saveSystemManager.GetGameData().slideMode = optionKeys[currentIndex];
+    //}
 }
