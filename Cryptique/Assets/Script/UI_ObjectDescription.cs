@@ -119,14 +119,14 @@ public class UI_ObjectDescription : MonoBehaviour
 
     private void OnEnable()
     {
-        InputManager.Instance.OnStartTouch += HandleStartTouch;
-        InputManager.Instance.OnEndTouch += HandleEndTouch;
+        SGL_InputManager.Instance.OnStartTouch += HandleStartTouch;
+        SGL_InputManager.Instance.OnEndTouch += HandleEndTouch;
     }
     private void OnDisable()
     {
-        if (InputManager.Instance == null) return;
-        InputManager.Instance.OnStartTouch -= HandleStartTouch;
-        InputManager.Instance.OnEndTouch -= HandleEndTouch;
+        if (SGL_InputManager.Instance == null) return;
+        SGL_InputManager.Instance.OnStartTouch -= HandleStartTouch;
+        SGL_InputManager.Instance.OnEndTouch -= HandleEndTouch;
     }
 
     private void HandleStartTouch(Vector2 pos, float time)
@@ -144,7 +144,7 @@ public class UI_ObjectDescription : MonoBehaviour
     {
         if (isDragging)
         {
-            Vector2 currentTouchPosition = InputManager.Instance.GetTouchPosition();
+            Vector2 currentTouchPosition = SGL_InputManager.Instance.GetTouchPosition();
             Vector2 delta = currentTouchPosition - lastTouchPosition;
 
             pivot.transform.Rotate(Vector3.up, -delta.x * rotationSpeed, Space.World);

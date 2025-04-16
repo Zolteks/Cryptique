@@ -3,17 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class InventoryManager : MonoBehaviour
+public class SGL_InventoryManager : Singleton<SGL_InventoryManager>
 {
-    public static InventoryManager Instance;
-    
-    [SerializeField]
-    private List<OBJ_Item> m_items = new();
-    
-    private void Awake()
-    {
-        Instance = this;
-    }
+    [Header("Inventory Content")]
+    [SerializeField] private List<OBJ_Item> m_items = new();
     
     public void AddItem(OBJ_Item item)
     {
@@ -21,8 +14,6 @@ public class InventoryManager : MonoBehaviour
         // Update the UI to reflect the addition
         UI_ManageInventory.Instance.UpdateGridElement(m_items.Count - 1, item);
         Debug.Log("Item added: " + item.name);
-
-
     }
     
     public void RemoveItem(OBJ_Item item)

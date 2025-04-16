@@ -4,7 +4,7 @@ using UnityEngine;
 public class SwipeDetection : MonoBehaviour
 {
     /* Singleton */
-    private InputManager m_inputManager;
+    private SGL_InputManager m_inputManager;
     
     /* Variables */
     [SerializeField]
@@ -20,7 +20,7 @@ public class SwipeDetection : MonoBehaviour
     /* Functions */
     private void Awake()
     {
-        m_inputManager = InputManager.Instance;
+        m_inputManager = SGL_InputManager.Instance;
     }
     
     private void OnEnable()
