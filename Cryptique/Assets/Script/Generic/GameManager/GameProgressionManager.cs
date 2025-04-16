@@ -99,8 +99,14 @@ public class GameProgressionManager : Singleton<GameProgressionManager>
 
     public bool ArePrerequisitesCompleted(PuzzleData puzzle)
     {
+        List<PuzzleData> prerequisites = puzzle.GetPrerequisites();
+        if (prerequisites == null || prerequisites.Count == 0)
+            return true;
+
         foreach (var step in puzzle.GetPrerequisites())
         {
+
+
             if(step == null)
                 continue;
 
