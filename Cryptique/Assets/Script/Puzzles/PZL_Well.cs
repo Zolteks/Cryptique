@@ -7,24 +7,13 @@ public class PZL_Well : Puzzle
 
     [SerializeField] private GameObject lanterne;
     [SerializeField] private GameObject crank;
-    [SerializeField] private GameObject Panel;
-
-
-    public void Start()
+    
+    private void Update()
     {
-        //StartPuzzle(name);
-        //crank.SetActive(false);
-    }
-
-    public void AddCrank()
-    {
-        //crank.SetActive(true);
-        Panel.SetActive(true);
-    }
-
-    public void PuzzleEnded()
-    {
-        Complete();
+        if (lanterne == null)
+        {
+            Complete();
+        }
     }
 
 }

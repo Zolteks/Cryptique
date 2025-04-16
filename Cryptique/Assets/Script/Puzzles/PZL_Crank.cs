@@ -1,80 +1,70 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PZL_Crank : MonoBehaviour, IDragHandler, IPointerDownHandler
+public class PZL_Crank : MonoBehaviour
 {
-    [SerializeField] private float frotationSpeed = 5f;
-    [SerializeField] private GameObject lanterne;
+    [SerializeField] private GameObject m_lantern;
+    [SerializeField] private float rotationSpeed = 0.5f;
+
     [SerializeField] private float fmaxLeftRotation = -1800f;
     [SerializeField] private float fmaxRightRotation = 720f;
-
     [SerializeField] private float fminScale = 0.5f;
     [SerializeField] private float fmaxScale = 2f;
 
     private float currentRotationZ;
-    private Vector2 centerPoint;
-    private bool isDragging;
     private Vector3 initialScale;
-    
-    private void Start()
+    private Vector3 lastMousePosition;
+    private OBJ_Collectable m_LanternCollectable;
+
+    void Start()
     {
-        currentRotationZ = transform.eulerAngles.z;
-        initialScale = lanterne.transform.localScale;
+        // Appliquer la rotation fixe de 180° sur l'axe X
+        Vector3 initialRotation = transform.eulerAngles;
+        initialRotation.x = 180f;
+        transform.eulerAngles = initialRotation;
+        initialScale = m_lantern.transform.localScale;
+        m_LanternCollectable = m_lantern.GetComponent<OBJ_Collectable>();
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    void Update()
     {
-        
-        isDragging = true;
-        centerPoint = RectTransformUtility.WorldToScreenPoint(null, transform.position);
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        if (!isDragging) return;
-
-        Vector2 direction = eventData.position - centerPoint;
-        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        float deltaRotation = Mathf.DeltaAngle(currentRotationZ, targetAngle);
-        currentRotationZ = Mathf.Clamp(currentRotationZ + deltaRotation * frotationSpeed * Time.deltaTime, fmaxLeftRotation, fmaxRightRotation);
-
-        transform.rotation = Quaternion.Euler(0, 0, currentRotationZ);
-        UpdateLanterneScale();
-    }
-
-    public bool pickAble()
-    {
-        if (Mathf.Abs(currentRotationZ) >= fmaxRightRotation-50)
+        if (Input.GetMouseButtonDown(0))
         {
-            return true;
+            lastMousePosition = Input.mousePosition;
         }
-        else
+
+        if (Input.GetMouseButton(0))
         {
-            return false;
+            Vector3 delta = Input.mousePosition - lastMousePosition;
+            float angleDelta = Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg;
+
+            float deltaRotation = Mathf.DeltaAngle(currentRotationZ, angleDelta);
+            currentRotationZ = Mathf.Clamp(currentRotationZ + deltaRotation * rotationSpeed * Time.deltaTime, fmaxLeftRotation, fmaxRightRotation);
+            transform.rotation = Quaternion.Euler(0, 0, currentRotationZ);
+
+            UpdateLanterneScale();
         }
     }
 
     private void UpdateLanterneScale()
     {
+        if (!m_LanternCollectable) return;
+
         // Since camera placed in front it seems left and right are inverted.
         // Scaling Left is scaled up x2 and Right is scaled down /2
         float normalizedRotation = Mathf.InverseLerp(fmaxLeftRotation, fmaxRightRotation, currentRotationZ);
 
         float currentScale = Mathf.Lerp(fmaxScale, fminScale, normalizedRotation);
 
-        lanterne.transform.localScale = initialScale * currentScale;
-    }
+        m_lantern.transform.localScale = initialScale * currentScale;
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonUp(0))
+        if (Mathf.Abs(currentRotationZ) >= fmaxRightRotation)
         {
-            isDragging = false;
+            m_LanternCollectable.SetCanInteract(true);
+        }
+        else
+        {
+            m_LanternCollectable.SetCanInteract(false);
         }
     }
 
