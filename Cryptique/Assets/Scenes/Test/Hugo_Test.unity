@@ -119,12 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!224 &5328417 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3774390816932594098, guid: 3d0ab76b812ba084ca5b6fe910bd85a9,
-    type: 3}
-  m_PrefabInstance: {fileID: 192293847}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &118138410
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,6 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 599a4cb04a5f43b499acef671303a7bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_canvas: {fileID: 0}
+  m_graphicRaycaster: {fileID: 0}
 --- !u!114 &118138413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_camera: {fileID: 567138648}
+  m_dialogueManager: {fileID: 0}
 --- !u!114 &118138415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,10 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chapters:
-  - Wendigo
-  - Kelpie
-  - Chupacabra
-  puzzleSteps: []
+  - {fileID: 11400000, guid: c5ad825f694cee2488a12b4b2c447a9d, type: 2}
 --- !u!4 &118138416
 Transform:
   m_ObjectHideFlags: 0
@@ -241,8 +235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5939a1f936f88428b43c62652ef088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_canvas: {fileID: 1127481083}
-  m_graphicRaycaster: {fileID: 1127481081}
 --- !u!1 &135841431
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,6 +720,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d0ab76b812ba084ca5b6fe910bd85a9, type: 3}
+--- !u!224 &192293848 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4686761772898257386, guid: 3d0ab76b812ba084ca5b6fe910bd85a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 192293847}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &222152109
 GameObject:
   m_ObjectHideFlags: 0
@@ -1856,7 +1854,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_itemToDrop: {fileID: 11400000, guid: 3b58b6aa1d8aabe4297feed1f1a6b7d2, type: 2}
+  m_itemToDrop:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &659661896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1870,6 +1871,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 0
+  m_itemToDrop: []
+  m_Well: {fileID: 0}
 --- !u!4 &864122350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4343885137616440591, guid: ead4a2d7871299540b42f36850c6c69f,
@@ -1934,7 +1937,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_itemToDrop: {fileID: 11400000, guid: 2684a97ad996f6843b2f2c0e18a9c157, type: 2}
+  m_itemToDrop:
+  - {fileID: 0}
   DropBorder: {fileID: 1038017875}
   LockedDoor: {fileID: 864122351}
 --- !u!1 &1038017875
@@ -2515,7 +2519,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 266940399}
-  - {fileID: 5328417}
+  - {fileID: 192293848}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3389,6 +3393,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2069531567}
     m_Modifications:
+    - target: {fileID: 532703906534729727, guid: f38893b7b099f844589bc269f4280383,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -8424583493777350915, guid: aaa2410d3cf7e7a48b0cbe24211ff62d,
+        type: 3}
     - target: {fileID: 1656739007029510053, guid: f38893b7b099f844589bc269f4280383,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3457,6 +3467,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2069531567}
     m_Modifications:
+    - target: {fileID: 1291555346530863830, guid: ead4a2d7871299540b42f36850c6c69f,
+        type: 3}
+      propertyPath: puzzleData
+      value: 
+      objectReference: {fileID: 11400000, guid: 645c46cffe2e42c4196d5f106ec93319,
+        type: 2}
     - target: {fileID: 4343885137616440591, guid: ead4a2d7871299540b42f36850c6c69f,
         type: 3}
       propertyPath: m_LocalPosition.x
