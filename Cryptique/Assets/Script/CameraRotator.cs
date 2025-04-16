@@ -50,6 +50,19 @@ public class CameraRotator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             RotateLeft();
 
+        //if (saveSystemManager)
+        //{
+        //    if (saveSystemManager.GetGameData().slideMode == SlideMode.Slide)
+        //    {
+        //        slideBoutons.SetActive(false);
+        //        HandleTouchRotation();
+        //    }
+        //    else
+        //    {
+        //        slideBoutons.SetActive(true);
+        //    }
+        //}
+
 #else
         if (saveSystemManager)
         {
