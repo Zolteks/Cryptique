@@ -25,10 +25,10 @@ public class SGL_InputManager : Singleton<SGL_InputManager>
     {
         m_touchControl = new TouchControl();
         if (m_touchControl == null)
-            Debug.LogError("Failed to initialize TouchControl");
+            Debug.LogWarning("Failed to initialize TouchControl");
         m_mainCamera = Camera.main;
         if (m_mainCamera == null)
-            Debug.LogError("Camera not found");
+            Debug.LogWarning("Camera not found");
     }
     
     private void OnEnable()

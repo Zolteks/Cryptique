@@ -156,9 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chapters:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: c5ad825f694cee2488a12b4b2c447a9d, type: 2}
 --- !u!114 &1767184236105930685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,6 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 599a4cb04a5f43b499acef671303a7bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_camera: {fileID: 0}
   m_canvas: {fileID: 0}
   m_graphicRaycaster: {fileID: 0}
 --- !u!114 &7965889550604798532
@@ -211,6 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5939a1f936f88428b43c62652ef088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_selectedItem: {fileID: 0}
 --- !u!114 &7113117778833141865
 MonoBehaviour:
   m_ObjectHideFlags: 0
