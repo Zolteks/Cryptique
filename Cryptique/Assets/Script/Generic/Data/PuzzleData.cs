@@ -8,7 +8,7 @@ public class PuzzleData : ScriptableObject
     public string defaultDescription;
 
     private bool isCompleted;
-    private bool isAvailable;
+
 
     [SerializeField]
     private LocalizedString puzzleID;
@@ -41,15 +41,5 @@ public class PuzzleData : ScriptableObject
     public void SetCompleted(bool completed)
     {
         isCompleted = completed;
-    }
-
-    public bool IsAvailable()
-    {
-        return isAvailable;
-    }
-
-    public void SetAvailable(bool available)
-    {
-        isAvailable = available;
     }
 }

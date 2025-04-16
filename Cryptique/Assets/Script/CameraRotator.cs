@@ -30,8 +30,12 @@ public class CameraRotator : MonoBehaviour
     [SerializeField] private float swipeThreshold = 50f;
     private bool hasRotated = false;
 
+     private SaveSystemManager saveSystemManager;
+    [SerializeField] private GameObject slideBoutons;
+
     private void Start()
     {
+        saveSystemManager = SaveSystemManager.Instance;
         ResetAllowedDirections();
         m_currentDir = CameraDirdection.bot;
         eDirectionUpdate?.Invoke(m_currentDir);
@@ -47,7 +51,18 @@ public class CameraRotator : MonoBehaviour
             RotateLeft();
 
 #else
-         HandleTouchRotation();
+        if (saveSystemManager)
+        {
+            if (saveSystemManager.GetGameData().slideMode == SlideMode.Slide)
+            {
+                slideBoutons.SetActive(false);
+                HandleTouchRotation();
+            }
+            else
+            {
+                slideBoutons.SetActive(true);
+            }
+        }
 #endif
     }
 
