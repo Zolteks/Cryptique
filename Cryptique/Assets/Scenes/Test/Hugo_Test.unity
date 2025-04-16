@@ -2245,7 +2245,8 @@ MonoBehaviour:
   fBeamDiameter: 0.1
   sMirrorTag: Mirror
   sLightBeamTag: LightBeam
-  sLockedDoorTag: LockedDoor
+  sDoorTag: LockedDoor
+  NextLockedDoor: {fileID: 0}
 --- !u!54 &1064932065
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3514,7 +3515,7 @@ PrefabInstance:
     - target: {fileID: 5954571882458935382, guid: ead4a2d7871299540b42f36850c6c69f,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: LockedDoor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
