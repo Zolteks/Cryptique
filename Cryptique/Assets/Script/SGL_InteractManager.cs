@@ -38,6 +38,16 @@ public class SGL_InteractManager : Singleton<SGL_InteractManager>
     {
         m_inputManager.OnClick -= OnInteract;
     }
+    
+    public void EnableInteraction()
+    {
+        m_inputManager.OnClick += OnInteract;
+    }
+    
+    public void DisableInteraction()
+    {
+        m_inputManager.OnClick -= OnInteract;
+    }
 
     public void ChangeCamera(Camera cam) => m_camera = cam;
 

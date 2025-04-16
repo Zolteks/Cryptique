@@ -28,6 +28,7 @@ public class PC_PlayerController : MonoBehaviour
     
     private Camera m_camera;
     private SGL_InputManager m_inputManager;
+    private SGL_InteractManager m_interactManager;
     private NavMeshAgent m_agent;
     private Animator m_animator;
     
@@ -40,26 +41,20 @@ public class PC_PlayerController : MonoBehaviour
     {
         m_camera = Camera.main;
         if (m_camera == null)
-        {
             Debug.LogError("Camera not found");
-            return;
-        }
         m_inputManager = SGL_InputManager.Instance;
         if (m_inputManager == null)
-        {
             Debug.LogError("InputManager not found");
-            return;
-        }
+        m_interactManager = SGL_InteractManager.Instance;
+        if (m_interactManager == null)
+            Debug.LogError("InteractManager not found");
         m_agent = GetComponent<NavMeshAgent>();
         if (m_agent == null)
-        {
             Debug.LogError("NavMeshAgent not found");
-            return;
-        }
-        m_agent.speed = m_moveSpeed;
         m_animator = GetComponentInChildren<Animator>();
         if (m_animator == null)
             Debug.LogError("Animator not found");
+        m_agent.speed = m_moveSpeed;
     }
     
     private void OnEnable()
@@ -92,16 +87,18 @@ public class PC_PlayerController : MonoBehaviour
         }
     }
     
-    public void DisableInput()
-    {
-        m_inputManager.OnStartTouch -= CalculatePoint;
-        m_isInputActive = false;
-    }
-    
     public void EnableInput()
     {
         m_inputManager.OnStartTouch += CalculatePoint;
+        m_interactManager.EnableInteraction();
         m_isInputActive = true;
+    }
+    
+    public void DisableInput()
+    {
+        m_inputManager.OnStartTouch -= CalculatePoint;
+        m_interactManager.DisableInteraction();
+        m_isInputActive = false;
     }
     
     private void FlipSprite()
