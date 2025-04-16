@@ -1,32 +1,39 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class Minimap3DManager : MonoBehaviour
 {
-    [Header("Tiles originales")]
+    [Header("Original tiles")]
     public List<GameObject> placedTiles;
 
-    [Header("Mini-map Settings")]
+    [Header("Minimap settings")]
     public GameObject miniTilePrefab;
+    public GameObject playerMarkerPrefab;
+    public GameObject linePrefab;
     public float scaleFactor = 100f;
     public Vector3 minimapOrigin = Vector3.zero;
     public LayerMask minimapLayer;
 
-    [Header("Caméra minimap")]
+    [Header("Minimap camera")]
     public Camera minimapCamera;
     public float cameraDistance = 10f;
-    public Vector3 cameraOffsetDirection = new Vector3(-1f, 2f, -1f); // modifiable depuis l'inspecteur
+    public Vector3 cameraOffsetDirection = new Vector3(-1f, 2f, -1f);
     public bool useIsometricView = true;
 
-    [Header("Tracking du joueur")]
+    [Header("Player tracking")]
     public Transform player;
+    private Vector3 lastPlayerPosition;
+
     public float highlightRadius = 10f;
-    public Color playerTileColor = Color.red;
-    public Color surroundingTileColor = Color.yellow;
     public Color defaultTileColor = Color.white;
 
     private Dictionary<GameObject, GameObject> visitedMiniTiles = new Dictionary<GameObject, GameObject>();
+    private GameObject playerMarker;
+    private List<GameObject> activeLines = new List<GameObject>();
+
+    public RawImage minimapRawImage;
+    public RenderTexture minimapTexture;
 
     void Start()
     {
@@ -34,13 +41,20 @@ public class Minimap3DManager : MonoBehaviour
             SetupIsometricCameraView();
         else
             SetupTopDownCameraView();
+        UpdateMiniMapPlayerPosition();
+        UpdateMinimapRawImage();
     }
 
     void Update()
     {
         if (player != null)
         {
-            UpdateMiniTileHighlights();
+            if (player.position != lastPlayerPosition)
+            {
+                lastPlayerPosition = player.position;
+                UpdateMiniMapPlayerPosition();
+                UpdateMinimapRawImage();
+            }
         }
     }
 
@@ -55,7 +69,6 @@ public class Minimap3DManager : MonoBehaviour
         }
 
         Vector3 center = bounds.center;
-
         Vector3 offsetDirection = cameraOffsetDirection.normalized;
         Vector3 cameraPos = minimapOrigin + (center / scaleFactor) + offsetDirection * cameraDistance;
 
@@ -102,7 +115,7 @@ public class Minimap3DManager : MonoBehaviour
         visitedMiniTiles[tile] = miniTile;
     }
 
-    void UpdateMiniTileHighlights()
+    void UpdateMiniMapPlayerPosition()
     {
         GameObject closestTile = null;
         float minDist = Mathf.Infinity;
@@ -119,29 +132,34 @@ public class Minimap3DManager : MonoBehaviour
 
         if (closestTile == null) return;
 
-        //  Créer la mini-tile du joueur si pas encore visitée
+        // Create mini-tile if not visited yet
         if (!visitedMiniTiles.ContainsKey(closestTile))
         {
             CreateMiniTile(closestTile);
         }
 
-        //  Réinitialiser les couleurs
-        foreach (var miniTile in visitedMiniTiles.Values)
+        // Create the player marker if it does not exist
+        if (playerMarker == null && playerMarkerPrefab != null)
         {
-            Renderer rend = miniTile.GetComponent<Renderer>();
-            if (rend != null)
-            {
-                rend.material.color = defaultTileColor;
-            }
+            playerMarker = Instantiate(playerMarkerPrefab);
+            playerMarker.transform.localScale = Vector3.one * 0.3f;
+            playerMarker.layer = Mathf.RoundToInt(Mathf.Log(minimapLayer.value, 2));
         }
 
-        // Colorer la case actuelle du joueur
-        if (visitedMiniTiles.TryGetValue(closestTile, out GameObject playerMiniTile))
+        // Position the player marker above the mini-tile
+        if (visitedMiniTiles.TryGetValue(closestTile, out GameObject miniTile))
         {
-            playerMiniTile.GetComponent<Renderer>().material.color = playerTileColor;
+            playerMarker.transform.position = miniTile.transform.position + Vector3.up * 0.5f;
         }
 
-        //  Tiles autour
+        // Remove old lines
+        foreach (GameObject line in activeLines)
+        {
+            Destroy(line);
+        }
+        activeLines.Clear();
+
+        // Create lines to nearby tiles
         foreach (GameObject tile in placedTiles)
         {
             if (tile == closestTile) continue;
@@ -154,11 +172,31 @@ public class Minimap3DManager : MonoBehaviour
                     CreateMiniTile(tile);
                 }
 
-                if (visitedMiniTiles.TryGetValue(tile, out GameObject miniTile))
+                if (visitedMiniTiles.TryGetValue(tile, out GameObject otherMiniTile))
                 {
-                    miniTile.GetComponent<Renderer>().material.color = surroundingTileColor;
+                    GameObject line = Instantiate(linePrefab);
+                    LineRenderer lr = line.GetComponent<LineRenderer>();
+
+                    if (lr != null)
+                    {
+                        lr.positionCount = 2;
+                        lr.SetPosition(0, miniTile.transform.position);
+                        lr.SetPosition(1, otherMiniTile.transform.position);
+                        lr.startWidth = lr.endWidth = 0.2f;
+                    }
+
+                    line.layer = Mathf.RoundToInt(Mathf.Log(minimapLayer.value, 2));
+                    activeLines.Add(line);
                 }
             }
+        }
+    }
+
+    void UpdateMinimapRawImage()
+    {
+        if (minimapRawImage != null && minimapTexture != null)
+        {
+            minimapRawImage.texture = minimapTexture;
         }
     }
 }
