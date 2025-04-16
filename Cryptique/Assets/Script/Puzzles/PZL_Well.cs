@@ -11,14 +11,14 @@ public class PZL_Well : Puzzle
 
     private void Start()
     {
-        InteractManager.Instance.ChangeCamera(cam);
+        SGL_InteractManager.Instance.ChangeCamera(cam);
     }
 
     private void Update()
     {
         if (lanterne == null)
         {
-            InteractManager.Instance.ChangeCamera(Camera.main);
+            SGL_InteractManager.Instance.ChangeCamera(Camera.main);
             Complete();
         }
     }
