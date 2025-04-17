@@ -8,17 +8,24 @@ public class PZL_Simon : Puzzle
     //------
     // The whole logic is working but we got a few issues with visuals, we aim to fix that whene we got the definitive sprites
 
-    [SerializeField] List<Button> buttons;
+    [SerializeField] List<Transform> buttons;
     [SerializeField] int roundAmount = 5;
 
     [SerializeField] float fShowDuration = 1;
     [SerializeField] float fShowPauseDuration = 2f;
 
+    [SerializeField] Material activatedMat;
+
+    [SerializeField] Transform cameraSpot;
+    [SerializeField] new Camera camera;
+    Vector3 baseCamSpot;
+    Quaternion baseCamRot;
+
     List<int> m_currentLayout;
     int m_playerStreak;
     bool m_busy = false;
 
-    void ResetPuzzle()
+    public void ResetPuzzle()
     {
         m_currentLayout = new List<int>(roundAmount);
         m_playerStreak = 0;
@@ -26,10 +33,10 @@ public class PZL_Simon : Puzzle
         PlayNextRound();
     }
 
-    private void Start()
-    {
-        ResetPuzzle();
-    }
+    //private void Start()
+    //{
+    //    ResetPuzzle();
+    //}
 
     public void TriggerButton(int id)
     {
@@ -43,7 +50,10 @@ public class PZL_Simon : Puzzle
                 if (m_currentLayout.Count < roundAmount)
                     PlayNextRound();
                 else
+                {
+                    ChangeCamState();
                     Complete();
+                }
             }
         }
         else
@@ -66,6 +76,7 @@ public class PZL_Simon : Puzzle
 
         for (int i = 0; i < m_currentLayout.Count; i++)
         {
+            print(m_currentLayout[i] + " : " + buttons[m_currentLayout[i]].name);
             StartCoroutine(CoroutineEnlightButton(buttons[m_currentLayout[i]], fShowDuration));
             yield return new WaitForSeconds(fShowDuration + fShowPauseDuration);
         }
@@ -73,20 +84,38 @@ public class PZL_Simon : Puzzle
         m_busy = false;
     }
 
-    IEnumerator CoroutineEnlightButton(Button button, float duration)
+    IEnumerator CoroutineEnlightButton(Transform button, float duration)
     {
         //TODO: this is temp function to show puzzle, meant to be changed when we got sprites
         //TODO: fix visual issues
-        ColorBlock baseColor = button.colors;
-        ColorBlock newColor = baseColor;
-        newColor.normalColor = new Color(100, 0, 0);
+        var newMat = new List<Material>();
+        newMat.Add(activatedMat);
+        button.GetComponent<MeshRenderer>().SetMaterials(newMat);
 
-        print("hiding" + button.gameObject.name);
-
-        button.colors = newColor;
+        //print("hiding" + button.gameObject.name);
 
         yield return new WaitForSeconds(duration);
 
-        button.colors = baseColor;
+
+        newMat.Clear();
+        newMat.Add(button.GetComponent<StalactiteBehaviour>().m_initMat);
+        button.GetComponent<MeshRenderer>().SetMaterials(newMat);
+    }
+
+    public void ChangeCamState()
+    {
+        Transform cam = camera.transform;
+        if(baseCamSpot != cam.position)
+        {
+            baseCamSpot = cam.position;
+            baseCamRot = cam.rotation;
+            cam.transform.position = cameraSpot.position;
+            cam.transform.rotation = cameraSpot.rotation;
+        }
+        else
+        {
+            cam.transform.position = baseCamSpot;
+            cam.transform.rotation = baseCamRot;
+        }
     }
 }
