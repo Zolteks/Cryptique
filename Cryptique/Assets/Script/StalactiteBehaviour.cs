@@ -8,11 +8,11 @@ public class StalactiteBehaviour : OBJ_Interactable
     [SerializeField] PZL_Simon pzl;
     [SerializeField] int id;
 
-    [NonSerialized] public Material m_initMat;
+    [NonSerialized] public Color m_initCol;
 
     private void Start()
     {
-        m_initMat = GetComponent<MeshRenderer>().material;
+        m_initCol = GetComponent<Renderer>().material.GetColor("_EdgesColor");
     }
 
     public override bool Interact()

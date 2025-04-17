@@ -12,6 +12,7 @@ public class PZL_Simon : Puzzle
     [SerializeField] int roundAmount = 5;
 
     [SerializeField] float fShowDuration = 1;
+    [SerializeField] float fClickDuration = .2f;
     [SerializeField] float fShowPauseDuration = 2f;
 
     [SerializeField] Material activatedMat;
@@ -42,10 +43,18 @@ public class PZL_Simon : Puzzle
     {
         if (m_busy) return;
 
-        if(id == m_currentLayout[m_playerStreak])
+        StartCoroutine(CoroutineTriggerButton(id));
+    }
+
+    IEnumerator CoroutineTriggerButton(int id)
+    {
+        if (id == m_currentLayout[m_playerStreak])
         {
+            StartCoroutine(CoroutineEnlightButton(buttons[id], fClickDuration));
+            yield return new WaitForSeconds(fClickDuration);
+
             ++m_playerStreak;
-            if(m_playerStreak >= m_currentLayout.Count)
+            if (m_playerStreak >= m_currentLayout.Count)
             {
                 if (m_currentLayout.Count < roundAmount)
                     PlayNextRound();
@@ -76,7 +85,7 @@ public class PZL_Simon : Puzzle
 
         for (int i = 0; i < m_currentLayout.Count; i++)
         {
-            print(m_currentLayout[i] + " : " + buttons[m_currentLayout[i]].name);
+            //print(m_currentLayout[i] + " : " + buttons[m_currentLayout[i]].name);
             StartCoroutine(CoroutineEnlightButton(buttons[m_currentLayout[i]], fShowDuration));
             yield return new WaitForSeconds(fShowDuration + fShowPauseDuration);
         }
@@ -88,18 +97,28 @@ public class PZL_Simon : Puzzle
     {
         //TODO: this is temp function to show puzzle, meant to be changed when we got sprites
         //TODO: fix visual issues
-        var newMat = new List<Material>();
-        newMat.Add(activatedMat);
-        button.GetComponent<MeshRenderer>().SetMaterials(newMat);
 
-        //print("hiding" + button.gameObject.name);
+        var initCol = button.GetComponent<StalactiteBehaviour>().m_initCol;
+        float timeSinceBegin = 0;
 
-        yield return new WaitForSeconds(duration);
+        while(timeSinceBegin < duration / 2)
+        {
+            timeSinceBegin += Time.deltaTime;
+            float intensity = timeSinceBegin / (duration / 2);
+            button.GetComponent<MeshRenderer>().material.SetFloat("_EmissionFactor", intensity);
+            yield return null;
+        }
 
+        timeSinceBegin = 0;
+        while (timeSinceBegin < duration / 2)
+        {
+            timeSinceBegin += Time.deltaTime;
+            float intensity = 1 - timeSinceBegin / (duration / 2);
+            button.GetComponent<MeshRenderer>().material.SetFloat("_EmissionFactor", intensity);
+            yield return null;
+        }
 
-        newMat.Clear();
-        newMat.Add(button.GetComponent<StalactiteBehaviour>().m_initMat);
-        button.GetComponent<MeshRenderer>().SetMaterials(newMat);
+        button.GetComponent<MeshRenderer>().material.SetFloat("_EmissionFactor", 0f);
     }
 
     public void ChangeCamState()
