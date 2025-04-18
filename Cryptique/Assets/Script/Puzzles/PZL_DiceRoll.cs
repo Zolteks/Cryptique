@@ -66,7 +66,7 @@ public class PZL_DiceRoll : Puzzle
 
         m_playerScore = m_lastScore;
 
-        Roll(playerHasRiggedDice ? DieBehaviour.RigState.regular : DieBehaviour.RigState.win, m_enemyDice);
+        Roll(playerHasRiggedDice ? DieBehaviour.RigState.lose : DieBehaviour.RigState.win, m_enemyDice);
         StartCoroutine(CoroutineWaitForEnd());
     }
 
