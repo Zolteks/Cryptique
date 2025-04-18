@@ -189,7 +189,7 @@ public class DieBehaviour : MonoBehaviour
                 break;
 
             case RigState.win:
-                min = 3;
+                min = 4;
                 break;
 
             default:

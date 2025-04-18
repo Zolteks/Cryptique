@@ -50,6 +50,19 @@ public class CameraRotator : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
             RotateLeft();
 
+        //if (saveSystemManager)
+        //{
+        //    if (saveSystemManager.GetGameData().slideMode == SlideMode.Slide)
+        //    {
+        //        slideBoutons.SetActive(false);
+        //        HandleTouchRotation();
+        //    }
+        //    else
+        //    {
+        //        slideBoutons.SetActive(true);
+        //    }
+        //}
+
 #else
         if (saveSystemManager)
         {
@@ -108,6 +121,7 @@ public class CameraRotator : MonoBehaviour
     }
     public void RotateLeft()
     {
+
         if (m_busy) return;
     
         StartCoroutine(CoroutineRotate(transform.rotation, transform.rotation * Quaternion.Euler(0, 90, 0), .5f, -1));

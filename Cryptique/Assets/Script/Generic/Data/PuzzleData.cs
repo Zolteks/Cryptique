@@ -18,6 +18,9 @@ public class PuzzleData : ScriptableObject
     [SerializeField]
     private List<PuzzleData> prerequisites;
 
+    [SerializeField]
+    private List<HintData> hints;
+
     public string GetPuzzleID()
     {
         return puzzleID.GetLocalized(LanguageManager.Instance.GetCurrentLanguage(), defaultPuzzleID);
@@ -41,5 +44,10 @@ public class PuzzleData : ScriptableObject
     public void SetCompleted(bool completed)
     {
         isCompleted = completed;
+    }
+
+    public List<HintData> GetHints()
+    {
+        return hints;
     }
 }
