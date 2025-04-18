@@ -57,7 +57,8 @@ public class PZL_MovableWoodObject : MonoBehaviour
     {
         while (Vector3.Distance(transform.position, positionCible) > 0.01f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, positionCible, vitesse * Time.deltaTime);
+            Vector3 newPosCible = new Vector3(positionCible.x + 0.75f, positionCible.y, positionCible.z - 0.3f);
+            transform.position = Vector3.MoveTowards(transform.position, newPosCible, vitesse * Time.deltaTime);
             yield return null; // Attendre le prochain frame
         }
         gameObject.transform.position = positionCible;

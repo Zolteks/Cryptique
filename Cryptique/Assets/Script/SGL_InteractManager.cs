@@ -67,7 +67,7 @@ public class SGL_InteractManager : Singleton<SGL_InteractManager>
             if (interactable != null && interactable.CanInteract())
             {
                 interactable.Interact();
-                Debug.Log("Interacted with: " + hitObject.name);
+                //Debug.Log("Interacted with: " + hitObject.name);
             }
         }
     }

@@ -347,6 +347,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2551248906354527866}
+  - component: {fileID: 1207105457269654414}
   m_Layer: 0
   m_Name: TsuchinokoBedroom
   m_TagString: Untagged
@@ -362,7 +363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624601488359033530}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -371,7 +372,39 @@ Transform:
   - {fileID: 5969604662172026516}
   - {fileID: 8241976563182451879}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &1207105457269654414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 624601488359033530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_AgentTypeID: -334000983
+  m_CollectObjects: 3
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.07333333
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 1679afc7cc62f3641bb4e451ff60d773, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &752426813435598951
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +520,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!65 &2808109910176774589
 BoxCollider:
@@ -819,6 +864,7 @@ GameObject:
   - component: {fileID: 2857946814590699640}
   - component: {fileID: 463274852468450439}
   - component: {fileID: 6584458779215988474}
+  - component: {fileID: 7191059129589335740}
   m_Layer: 0
   m_Name: table_chevet
   m_TagString: Untagged
@@ -893,6 +939,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &7191059129589335740
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926866285288812626}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.315, y: 0.48000002, z: 0.45700002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.142, y: 0.48000002, z: 0.1}
+  m_TimeToStationary: 0.5
 --- !u!1 &2153446912879461827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1415,8 +1477,9 @@ GameObject:
   - component: {fileID: 9045142157199233524}
   - component: {fileID: 1018361654723902928}
   - component: {fileID: 5883495777440186059}
+  - component: {fileID: 6498701053623721174}
   m_Layer: 0
-  m_Name: chaise10
+  m_Name: chaise13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1444,7 +1507,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2655496616237827136}
-  m_Mesh: {fileID: 8070575798745523197, guid: aaa2410d3cf7e7a48b0cbe24211ff62d, type: 3}
+  m_Mesh: {fileID: -4227874141116011363, guid: aaa2410d3cf7e7a48b0cbe24211ff62d, type: 3}
 --- !u!23 &5883495777440186059
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1467,7 +1530,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 5350959619556955418, guid: aaa2410d3cf7e7a48b0cbe24211ff62d, type: 3}
+  - {fileID: 2841223595393825169, guid: aaa2410d3cf7e7a48b0cbe24211ff62d, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1489,6 +1552,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &6498701053623721174
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2655496616237827136}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.25, y: 0.261, z: 0.25}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.48000002, y: 0.25100002, z: -0.312}
+  m_TimeToStationary: 0.5
 --- !u!1 &2741874659961224397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,6 +1664,7 @@ GameObject:
   - component: {fileID: 393353468118018541}
   - component: {fileID: 6131697776429012093}
   - component: {fileID: 7062039591377756639}
+  - component: {fileID: 6785271509922673187}
   m_Layer: 0
   m_Name: Malette
   m_TagString: Untagged
@@ -1660,6 +1740,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &6785271509922673187
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3066158464885716478}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.39, y: 0.23400001, z: 0.39}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.35, y: 0.23400001, z: -0.402}
+  m_TimeToStationary: 0.5
 --- !u!1 &3088778416032167161
 GameObject:
   m_ObjectHideFlags: 0
@@ -2616,6 +2712,7 @@ GameObject:
   - component: {fileID: 748561832919908965}
   - component: {fileID: 3549011027577987437}
   - component: {fileID: 4023671370752490057}
+  - component: {fileID: 7111692850593567927}
   m_Layer: 0
   m_Name: Lit2
   m_TagString: Untagged
@@ -2690,6 +2787,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &7111692850593567927
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4699609802572130826}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.235, y: 0.726, z: 0.54}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -1.2550001, y: 0.726, z: 0.559}
+  m_TimeToStationary: 0.5
 --- !u!1 &4826738018925914375
 GameObject:
   m_ObjectHideFlags: 0
@@ -2820,6 +2933,7 @@ GameObject:
   - component: {fileID: 5659222305181341228}
   - component: {fileID: 1845101147061781073}
   - component: {fileID: 1211428778697574697}
+  - component: {fileID: 4054266679608275650}
   m_Layer: 0
   m_Name: armoire
   m_TagString: Untagged
@@ -2894,6 +3008,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &4054266679608275650
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4961904372961890314}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.835, y: 1.381, z: 0.42}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.039, y: 0, z: -0.001}
+  m_TimeToStationary: 0.5
 --- !u!1 &5076857050124253411
 GameObject:
   m_ObjectHideFlags: 0
@@ -3205,6 +3335,7 @@ GameObject:
   - component: {fileID: 357944765012281094}
   - component: {fileID: 3064946069565578049}
   - component: {fileID: 5589434274116448182}
+  - component: {fileID: 2013890098174918469}
   m_Layer: 0
   m_Name: bureau
   m_TagString: Untagged
@@ -3279,6 +3410,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &2013890098174918469
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5848527447530744601}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.56, y: 0.39600003, z: 1.034}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.022000002, y: 0, z: -0.017}
+  m_TimeToStationary: 0.5
 --- !u!1 &6111298887841200642
 GameObject:
   m_ObjectHideFlags: 0
@@ -3293,6 +3440,7 @@ GameObject:
   - component: {fileID: 5559782658947094154}
   - component: {fileID: 2400562514875686459}
   - component: {fileID: 7539949651502475243}
+  - component: {fileID: 3998956646084438556}
   m_Layer: 0
   m_Name: fauteuil
   m_TagString: Untagged
@@ -3432,6 +3580,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!65 &7539949651502475243
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3453,6 +3613,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.4726578, y: 0.9825698, z: 1.1226641}
   m_Center: {x: -0.602689, y: 0.47432816, z: 0.5521776}
+--- !u!208 &3998956646084438556
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6111298887841200642}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.63, y: 0.49100003, z: 0.425}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.60300004, y: 0.47400004, z: 0.55200005}
+  m_TimeToStationary: 0.5
 --- !u!1 &6400466409904529090
 GameObject:
   m_ObjectHideFlags: 0
@@ -3464,6 +3640,7 @@ GameObject:
   - component: {fileID: 1426838149572669292}
   - component: {fileID: 5276992894096395995}
   - component: {fileID: 1328191161092537216}
+  - component: {fileID: 136799792072355162}
   m_Layer: 0
   m_Name: porte_R5
   m_TagString: Untagged
@@ -3538,6 +3715,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &136799792072355162
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6400466409904529090}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.586, y: 1.01, z: 0.072000004}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.43100002, y: 1.01, z: -0.072000004}
+  m_TimeToStationary: 0.5
 --- !u!1 &6548451918383953015
 GameObject:
   m_ObjectHideFlags: 0
@@ -4109,6 +4302,7 @@ GameObject:
   - component: {fileID: 1810643167051413333}
   - component: {fileID: 7566449048177627846}
   - component: {fileID: 1411494947492381397}
+  - component: {fileID: 60690974567802558}
   m_Layer: 0
   m_Name: fauteuil (1)
   m_TagString: Untagged
@@ -4183,6 +4377,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &60690974567802558
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7296385010912802249}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.73600006, y: 0.49100003, z: 0.56100005}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.60300004, y: 0.47400004, z: 0.55200005}
+  m_TimeToStationary: 0.5
 --- !u!1 &7442435291432722650
 GameObject:
   m_ObjectHideFlags: 0
@@ -4566,6 +4776,8 @@ GameObject:
   - component: {fileID: 6453282084734093685}
   - component: {fileID: 1322091831870793087}
   - component: {fileID: 7179587165176233742}
+  - component: {fileID: 470533896830191846}
+  - component: {fileID: 4475030847406018940}
   m_Layer: 0
   m_Name: sol2
   m_TagString: Untagged
@@ -4640,6 +4852,47 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &470533896830191846
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8744073391580208973}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.317162, y: 0.26464185, z: 5.317162}
+  m_Center: {x: -0.00000011920932, y: 0.000000014901161, z: 0}
+--- !u!114 &4475030847406018940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8744073391580208973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_OverrideArea: 1
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: a98c17ec
 --- !u!1 &8899466637132777287
 GameObject:
   m_ObjectHideFlags: 0
@@ -5128,6 +5381,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: EscapArrow
       objectReference: {fileID: 0}
+    - target: {fileID: 884724983240735401, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.15317369
+      objectReference: {fileID: 0}
+    - target: {fileID: 884724983240735401, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.15291268
+      objectReference: {fileID: 0}
+    - target: {fileID: 884724983240735401, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7074757
+      objectReference: {fileID: 0}
+    - target: {fileID: 884724983240735401, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.70673764
+      objectReference: {fileID: 0}
     - target: {fileID: 1863688403949691854, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5162,6 +5435,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -44.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 2781706957857264033, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.21382523
+      objectReference: {fileID: 0}
+    - target: {fileID: 2781706957857264033, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.024
+      objectReference: {fileID: 0}
+    - target: {fileID: 2781706957857264033, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.15329581
+      objectReference: {fileID: 0}
+    - target: {fileID: 2781706957857264033, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.9240793
+      objectReference: {fileID: 0}
+    - target: {fileID: 2781706957857264033, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.38220084
       objectReference: {fileID: 0}
     - target: {fileID: 7972287033334376096, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
         type: 3}
