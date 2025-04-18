@@ -6,7 +6,7 @@ using UnityEngine;
 public class OBJ_Collectable : OBJ_Interactable
 {
     /* Variables */
-    [SerializeField] private OBJ_Item m_item;
+    [SerializeField] protected OBJ_Item m_item;
 
     /* Getters and Setters */
     public OBJ_Item GetItem() => m_item;
