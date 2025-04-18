@@ -48,6 +48,7 @@ public class IN_Character : OBJ_Interactable
         {
             Debug.LogError("A NPC has no character list nor localized dialogue table");
         }
+        LanguageCode currentLanguage = LanguageManager.Instance.GetCurrentLanguage();
 
         StringTable localizedTable = LocalizationSettings.Instance.GetStringDatabase().GetTable(m_localizationAsset.TableCollectionName, LocalizationSettings.Instance.GetSelectedLocale());
         m_dialogue = new();
@@ -60,7 +61,9 @@ public class IN_Character : OBJ_Interactable
             lineChatracter.bNoPortrait = characterEntry.bNoPortrait;
             lineChatracter.iTalkingPortrait = characterEntry.iTalkingPortrait;
             lineChatracter.iListeningPortrait = characterEntry.iListeningPortrait;
-            lineChatracter.sName = characterEntry.sName;
+            lineChatracter.sNameDisplay = currentLanguage == LanguageCode.FR
+            ? characterEntry.sNameFR
+            : characterEntry.sNameEN;
 
 
             UI_DialogueManager.DialogueLine line = new();

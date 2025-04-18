@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,9 @@ public class DialogueCharacterList : ScriptableObject
     [System.Serializable]
     public class DialogueCharacter
     {
-        public string sName;
+        public string sNameFR;
+        public string sNameEN;
+        [NonSerialized]public string sNameDisplay;
         public Image iTalkingPortrait;
         public Image iListeningPortrait;
         public bool bTalkOnRightSide;

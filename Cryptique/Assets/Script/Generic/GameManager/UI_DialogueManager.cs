@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,7 +13,9 @@ public class UI_DialogueManager : MonoBehaviour
     [System.Serializable]
     public class DialogueCharacter
     {
-        public string sName;
+        public string sNameEN;
+        public string sNameFR;
+        [NonSerialized] public string sNameDisplay;
         public Image iTalkingPortrait;
         public Image iListeningPortrait;
         public bool bTalkOnRightSide;
@@ -92,6 +95,8 @@ public class UI_DialogueManager : MonoBehaviour
 
         //aDialogueAnimation.Play("show");
 
+        LanguageCode currentLanguage = LanguageManager.Instance.GetCurrentLanguage();
+
         if (qLines == null)
         {
             qLines = new Queue<DialogueLine>();
@@ -104,6 +109,15 @@ public class UI_DialogueManager : MonoBehaviour
 
         foreach (DialogueLine cLine in c_Dialogue.lDialogueLines)
         {
+            if (currentLanguage == LanguageCode.FR)
+            {
+                cLine.cCharacter.sNameDisplay = cLine.cCharacter.sNameFR;
+            }
+            else if (currentLanguage == LanguageCode.EN)
+            {
+                cLine.cCharacter.sNameDisplay = cLine.cCharacter.sNameEN;
+            }
+
             qLines.Enqueue(cLine);
         }
 
@@ -126,7 +140,7 @@ public class UI_DialogueManager : MonoBehaviour
         else
         {
             DialogueLine cCurrentLine = qLines.Dequeue();
-            tNameText.text = cCurrentLine.cCharacter.sName;
+            tNameText.text = cCurrentLine.cCharacter.sNameDisplay;
 
             // Masquer tous les portraits si bNoPortrait est true
             if (cCurrentLine.cCharacter.bNoPortrait)
