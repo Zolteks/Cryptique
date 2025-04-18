@@ -1,4 +1,7 @@
-﻿public class LangueSelector : OptionSelectorComponent<LanguageCode>
+﻿using UnityEngine.Localization.Settings;
+using System.Linq;
+
+public class LangueSelector : OptionSelectorComponent<LanguageCode>
 {
     private LanguageManager languageManager;
 
@@ -22,5 +25,22 @@
     {
         saveSystemManager.GetGameData().langue = value;
         languageManager.RefreshAll();
+        var targetLocale = LocalizationSettings.AvailableLocales.Locales
+            .FirstOrDefault(l => l.Identifier.Code == GetLocaleCode(value));
+
+        if (targetLocale != null)
+        {
+            LocalizationSettings.SelectedLocale = targetLocale;
+        }
+    }
+
+    private string GetLocaleCode(LanguageCode code)
+    {
+        return code switch
+        {
+            LanguageCode.EN => "en",
+            LanguageCode.FR => "fr",
+            _ => "en", // fallback
+        };
     }
 }
