@@ -58,9 +58,10 @@ public class Bumper : MonoBehaviour
     {
         foreach (Rigidbody rb in ballsInContact)
         {
-            Vector3 launchDirection = transform.forward;
+            Vector3 launchDirection = -transform.up;
 
             rb.velocity = Vector3.zero;
+            rb.useGravity = true;
 
             rb.AddForce(launchDirection * fBumperStrenght, ForceMode.Impulse);
         }

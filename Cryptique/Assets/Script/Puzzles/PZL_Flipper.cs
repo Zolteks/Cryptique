@@ -6,18 +6,19 @@ using UnityEngine.EventSystems; // Nécessaire pour EventTrigger
 
 public class PZL_Flipper : Puzzle
 {
-    public Button bLeftButtonBumper;
-    public Button bRightButtonBumper;
-    public Slider sSliderLauncher;
-
-    public GameObject gLeftPivot;
-    public GameObject gRightPivot;
-    public Transform gLauncher;
-    public GameObject gLastPos;
-
-    public Bumper bLeftBumper;
-    public Bumper bRightBumper;
-    public Bumper pZL_Launcher;
+    [SerializeField] private Button bLeftButtonBumper;
+    [SerializeField] private Button bRightButtonBumper;
+    [SerializeField] private Slider sSliderLauncher;
+    
+    [SerializeField] private GameObject gLeftPivot;
+    [SerializeField] private GameObject gRightPivot;
+    [SerializeField] private Transform gLauncher;
+    [SerializeField] private GameObject gLastPos;
+    
+    [SerializeField] private Bumper bLeftBumper;
+    [SerializeField] private Bumper bRightBumper;
+    [SerializeField] private Bumper pZL_Launcher;
+    [SerializeField] private Camera cam;
 
     [SerializeField] private GameObject goAllStalacmites;
 
@@ -36,6 +37,7 @@ public class PZL_Flipper : Puzzle
     // Start is called before the first frame update
     void Start()
     {
+        SGL_InteractManager.Instance.ChangeCamera(cam);
         fZStartPosition = gLauncher.position.z;
         fZEndPosition = gLastPos.transform.position.z;
 
@@ -64,6 +66,7 @@ public class PZL_Flipper : Puzzle
     {
         if (goAllStalacmites.transform.childCount == 0)
         {
+            SGL_InteractManager.Instance.ChangeCamera(Camera.main);
             Complete();
         }
     }
