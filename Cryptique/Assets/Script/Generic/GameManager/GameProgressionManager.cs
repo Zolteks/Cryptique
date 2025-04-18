@@ -17,6 +17,14 @@ public class GameProgressionManager : Singleton<GameProgressionManager>
 
     public int CollectedItemCount => collectedItems.Count;
 
+    private void Start()
+    {
+        foreach (var item in GetCurrentRegion().GetPuzzles())
+        {
+            item.SetCompleted(false);
+        }
+    }
+
     public ChapterData GetCurrentChapter() => chapters[currentChapterIndex];
 
     public List<ChapterData> GetChapters() => chapters;
@@ -34,39 +42,19 @@ public class GameProgressionManager : Singleton<GameProgressionManager>
         var puzzles = region.GetPuzzles();
         if (puzzles == null || puzzles.Count == 0)
             return null;
-        // Find all puzzle that is not completed and is available and has prerequisites completed
+
+        // Find all puzzle that is not completed and has prerequisites completed
         var availablePuzzles = new List<PuzzleData>();
 
         foreach (var puzzle in puzzles)
         {
-            if (!puzzle.IsCompleted() && ArePrerequisitesCompleted(puzzle))
+            if ((!puzzle.IsCompleted() && ArePrerequisitesCompleted(puzzle)) || puzzle.IsUnlocked())
             {
                 availablePuzzles.Add(puzzle);
             }
         }
 
         return availablePuzzles;
-    }
-
-    public PuzzleData GetCurrentPuzzle()
-    {
-        var region = GetCurrentRegion();
-        if (region == null)
-            return null;
-        var puzzles = region.GetPuzzles();
-        if (puzzles == null || puzzles.Count == 0)
-            return null;
-
-        // Find the first puzzle that is not completed and is available and has prerequisites completed
-        foreach (var puzzle in puzzles)
-        {
-            if (!puzzle.IsCompleted() && ArePrerequisitesCompleted(puzzle))
-            {
-                return puzzle;
-            }
-        }
-
-        return null;
     }
 
     public bool IsRegionUnlocked(string regionName)

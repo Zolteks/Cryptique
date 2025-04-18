@@ -15,6 +15,11 @@ public class SGL_InventoryManager : Singleton<SGL_InventoryManager>
         UI_ManageInventory.Instance.UpdateGridElement(m_items.Count - 1, item);
         Debug.Log("Item added: " + item.name);
     }
+
+    public bool CheckForItem(OBJ_Item item)
+    {
+        return m_items.Contains(item);
+    }
     
     public void RemoveItem(OBJ_Item item)
     {

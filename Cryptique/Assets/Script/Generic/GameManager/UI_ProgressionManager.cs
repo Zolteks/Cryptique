@@ -4,16 +4,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class UI_ProgressionManager : MonoBehaviour
-{
-    /* Variables */
-    [SerializeField] private TextMeshProUGUI regionUnlockedUI;
-    [SerializeField] private TextMeshProUGUI itemProgressUI;
-    [SerializeField] private TextMeshProUGUI completedPuzzlesUI;
-    [SerializeField] private List<TextMeshProUGUI> puzzleDescriptionTexts;
-    
-    private TextMeshProUGUI itemCountText;
-    private TextMeshProUGUI itemRegionText;
-
+{   
     [SerializeField] private Slider chapterProgressBar;
 
     private GameProgressionManager gameProgressionManager;
@@ -23,59 +14,33 @@ public class UI_ProgressionManager : MonoBehaviour
         gameProgressionManager = GameProgressionManager.Instance;
     }
 
-    /* Getters and Setters */
-    
-    public void UpdateItemProgress(string itemRegion, int collectedItems, int totalItems)
-    {
-        if (itemProgressUI != null)
-        {
-            itemProgressUI.text = $"{itemRegion} Items : {collectedItems}/{totalItems}";
-            Debug.Log($"Item Progress UI Updated: {itemRegion}: {collectedItems}/{totalItems}");
-        }
-    }
-
-    public void UpdateRegionUnlocked(string itemRegion)
-    {
-        if (regionUnlockedUI != null)
-        {
-            regionUnlockedUI.text = $"{itemRegion}";
-            Debug.Log($"Region Unlocked UI Updated: {itemRegion}");
-        }
-    }
 
     public void UpdatePuzzleProgress()
     {
-        if (gameProgressionManager == null) return;
-
+        if (gameProgressionManager == null)
+        {
+            gameProgressionManager = GameProgressionManager.Instance;
+        }
 
         int completedPuzzles = gameProgressionManager.GetCurrentRegion().GetCompletedPuzzlesCount();
-        var totalPuzzles = gameProgressionManager.GetCurrentRegion().GetPuzzles().Count;
+        int totalPuzzles = gameProgressionManager.GetCurrentRegion().GetPuzzles().Count;
+        int totalObjectCollected = gameProgressionManager.CollectedItemCount;
+        int totalObject = gameProgressionManager.GetTotalItemsInRegion(gameProgressionManager.GetCurrentRegion().GetName());
 
-        if (completedPuzzlesUI != null)
-        {
-            completedPuzzlesUI.text = $"{completedPuzzles}/{totalPuzzles}";
-        }
+
 
         if (chapterProgressBar != null)
         {
-            chapterProgressBar.value = totalPuzzles > 0 ? (float)completedPuzzles / totalPuzzles : 0;
-        }
+            // Calculate the progress percentage
+            // Object are a less value than puzzles
+            float progress = (float)completedPuzzles / totalPuzzles;
+            float objectProgress = (float)totalObjectCollected / totalObject;
+            float totalProgress = (progress + objectProgress) / 2;
 
-        Debug.Log("Puzzle UI updated");
-    }
+            // Update the progress bar
+            chapterProgressBar.value = totalProgress;
 
-    public void UpdatePuzzleDescriptions(List<string> descriptions)
-    {
-        for (int i = 0; i < puzzleDescriptionTexts.Count; i++)
-        {
-            if (i < descriptions.Count)
-            {
-                puzzleDescriptionTexts[i].text = descriptions[i];
-            }
-            else
-            {
-                puzzleDescriptionTexts[i].text = "";
-            }
+            Debug.Log($"Progress: {progress * 100}%");
         }
     }
 }

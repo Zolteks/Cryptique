@@ -12,5 +12,6 @@ public class PZL_Hold : MonoBehaviour
         gBall.transform.position = gPosRespawnBall.transform.position;
         Rigidbody rb = gBall.GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
+        rb.useGravity = false;
     }
 }
