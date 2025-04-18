@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 7113674063911396681}
   - component: {fileID: 7113117778833141865}
   - component: {fileID: 1173688528208502793}
+  - component: {fileID: 2778466118660891296}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -238,3 +239,33 @@ MonoBehaviour:
   DirectionalLight: {fileID: 0}
   Preset: {fileID: 11400000, guid: 1cbede63042177f4689efc40fe09e8e1, type: 2}
   TimeOfDay: 12
+--- !u!114 &2778466118660891296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5566644138177984620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32ebe677d502f943a70e32f2825a4aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placedTiles: []
+  miniTilePrefab: {fileID: 0}
+  playerMarkerPrefab: {fileID: 0}
+  linePrefab: {fileID: 0}
+  scaleFactor: 1000
+  minimapOrigin: {x: 1000, y: 1000, z: 1000}
+  minimapLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  minimapCamera: {fileID: 0}
+  cameraDistance: 3.5
+  cameraOffsetDirection: {x: 0, y: 2, z: -2}
+  useIsometricView: 1
+  player: {fileID: 0}
+  defaultTileColor: {r: 0.6132076, g: 0.6045301, b: 0.6045301, a: 1}
+  minimapRawImage: {fileID: 0}
+  minimapTexture: {fileID: 0}
+  highlightedTiles: []

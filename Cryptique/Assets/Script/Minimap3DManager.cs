@@ -37,6 +37,17 @@ public class Minimap3DManager : MonoBehaviour
     public RawImage minimapRawImage;
     public RenderTexture minimapTexture;
 
+    [System.Serializable]
+    public class TileHighlight
+    {
+        public GameObject tile;
+        public GameObject miniObject;
+    }
+
+    [Header("Highlighted Tiles")]
+    public List<TileHighlight> highlightedTiles = new List<TileHighlight>();
+
+
     void Start()
     {
         if (useIsometricView)
@@ -130,6 +141,29 @@ public class Minimap3DManager : MonoBehaviour
         }
 
         visitedMiniTiles[tile] = miniTile;
+        TileHighlight highlight = highlightedTiles.Find(h => h.tile == tile);
+        if (highlight != null && highlight.miniObject != null)
+        {
+            Renderer miniRenderer = miniTile.GetComponentInChildren<Renderer>();
+
+            float yOffset = miniRenderer != null ? miniRenderer.bounds.extents.y + 0.2f : 0.3f;
+
+            Vector3 markerPos = miniTile.transform.position + Vector3.up * yOffset;
+
+            GameObject marker = Instantiate(highlight.miniObject, markerPos, Quaternion.identity);
+            marker.transform.SetParent(miniTile.transform);
+            marker.transform.localScale = Vector3.one * 0.4f;
+
+            int layer = Mathf.RoundToInt(Mathf.Log(minimapLayer.value, 2));
+            marker.layer = layer;
+
+            foreach (Transform child in marker.transform)
+            {
+                child.gameObject.layer = layer;
+            }
+        }
+
+
     }
 
     public void UpdateMiniMapPlayerPosition()
@@ -137,6 +171,7 @@ public class Minimap3DManager : MonoBehaviour
         GameObject closestTile = null;
         float minDist = Mathf.Infinity;
 
+        // Trouver la case la plus proche du joueur
         foreach (GameObject tile in placedTiles)
         {
             float dist = Vector3.Distance(player.position, tile.transform.position);
@@ -149,11 +184,13 @@ public class Minimap3DManager : MonoBehaviour
 
         if (closestTile == null) return;
 
+        // Créer la case sur la minimap si elle n'existe pas encore
         if (!visitedMiniTiles.ContainsKey(closestTile))
         {
             CreateMiniTile(closestTile);
         }
 
+        // Créer et positionner le joueur sur la minimap si ce n'est pas encore fait
         if (playerMarker == null && playerMarkerPrefab != null)
         {
             playerMarker = Instantiate(playerMarkerPrefab);
@@ -168,6 +205,32 @@ public class Minimap3DManager : MonoBehaviour
 
         RepositionCamera();
 
+        // Vérifier si le mini-joueur est en collision avec un objet sur la minimap
+        Vector3 playerPos = playerMarker.transform.position;
+
+        // Faire un raycast vers le bas pour détecter si un objet est sous le mini-joueur
+        RaycastHit hit;
+        bool isColliding = Physics.Raycast(playerPos, Vector3.down, out hit, Mathf.Infinity, minimapLayer);
+
+        // Désactiver l'objet highlight s'il y a une collision
+        foreach (GameObject tile in placedTiles)
+        {
+            foreach (Transform child in tile.transform)
+            {
+                if (child.CompareTag("Highlight") && isColliding)
+                {
+                    // Si le mini-joueur est en collision avec l'objet, désactiver le highlight
+                    child.gameObject.SetActive(false);
+                }
+                else if (child.CompareTag("Highlight"))
+                {
+                    // Sinon, activer le highlight
+                    child.gameObject.SetActive(true);
+                }
+            }
+        }
+
+        // Générer les lignes sur la minimap (EscapeArrows, etc.)
         foreach (GameObject line in activeLines)
         {
             Destroy(line);
@@ -176,7 +239,7 @@ public class Minimap3DManager : MonoBehaviour
 
         foreach (Transform child in closestTile.transform)
         {
-            if(!child.gameObject.activeSelf) continue;
+            if (!child.gameObject.activeSelf) continue;
 
             if (child.CompareTag("EscapeArrow"))
             {
@@ -215,9 +278,18 @@ public class Minimap3DManager : MonoBehaviour
 
                     if (lr != null)
                     {
+                        Vector3 startPoint = miniTile.transform.position;
+
+                        Vector3 dir = (endPoint - startPoint).normalized;
+
+                        float offset = 0.25f;
+
+                        Vector3 adjustedStart = startPoint + dir * offset;
+                        Vector3 adjustedEnd = endPoint - dir * offset;
+
                         lr.positionCount = 2;
-                        lr.SetPosition(0, miniTile.transform.position);
-                        lr.SetPosition(1, endPoint);
+                        lr.SetPosition(0, adjustedStart);
+                        lr.SetPosition(1, adjustedEnd);
                         lr.startWidth = lr.endWidth = 0.2f;
                     }
 
@@ -226,8 +298,7 @@ public class Minimap3DManager : MonoBehaviour
                 }
             }
         }
-
-}
+    }
 
 
     void UpdateMinimapRawImage()

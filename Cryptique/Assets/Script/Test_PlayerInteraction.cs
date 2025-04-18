@@ -9,24 +9,19 @@ public class Test_PlayerInteraction : OBJ_Interactable
     
     private void Awake()
     {
-        foreach (var rootGameObject in SceneManager.GetActiveScene().GetRootGameObjects())
-        {
-            var script = rootGameObject.GetComponent<PC_PlayerController>();
-            if (script != null)
-                m_playerController = script;
-        }
+        m_playerController = PC_PlayerController.Instance;
         if (m_playerController == null)
             Debug.LogError("PlayerController not found");
     }
 
     private void OnEnable()
     {
-        m_playerController.OnInteractionCallback += OnEndOfInteraction;
+        m_playerController.OnInteractionCallback += EndOfInteraction;
     }
     
     private void OnDisable()
     {
-        m_playerController.OnInteractionCallback -= OnEndOfInteraction;
+        m_playerController.OnInteractionCallback -= EndOfInteraction;
     }
     
     public override bool Interact()
@@ -34,11 +29,11 @@ public class Test_PlayerInteraction : OBJ_Interactable
         if (!m_playerController.GetInputActive())
             return false;
         Debug.Log("Launched Player Interact");
-        m_playerController.MoveForInteraction(gameObject.transform.position);
+        m_playerController.MoveForInteraction();
         return true;
     }
 
-    public void OnEndOfInteraction()
+    private void EndOfInteraction()
     {
         Debug.Log("End of interaction");
     }
