@@ -43,6 +43,9 @@ public class PZL_Radio : Puzzle
         curFreqW = (buttonW.angle + 360)/40 + 2;
         curFreqH = .1f+ (360 + buttonH.angle)/1000;
 
+        //print("height: "+curFreqH);
+        //print("width: "+curFreqW);
+
         // Set the shader values base on the current frequence.
         shader.SetFloat("_FreqWidth", curFreqW);
         shader.SetFloat("_FreqHeight", curFreqH);
