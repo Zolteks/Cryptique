@@ -30,10 +30,9 @@ public class UI_ChaptersManager : MonoBehaviour
             string chapterName = $"Chapter {roman}: {chapters[i]}";
             chapterButton.GetComponentInChildren<TextMeshProUGUI>().text = chapterName;
 
-            string currentChapter = chapters[i]; // capture pour closure
             chapterButton.GetComponentInChildren<Button>().onClick.AddListener(() =>
             {
-                regionDetail.DisplayChapter(currentChapter);
+                regionDetail.DisplayChapter();
             });
         }
     }

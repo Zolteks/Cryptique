@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using UnityEngine.Localization.Settings;
+﻿using UnityEngine.Localization.Settings;
+using System.Linq;
 
 public class LangueSelector : OptionSelectorComponent<LanguageCode>
 {
@@ -25,7 +25,6 @@ public class LangueSelector : OptionSelectorComponent<LanguageCode>
     {
         saveSystemManager.GetGameData().langue = value;
         languageManager.RefreshAll();
-
         var targetLocale = LocalizationSettings.AvailableLocales.Locales
             .FirstOrDefault(l => l.Identifier.Code == GetLocaleCode(value));
 

@@ -3,14 +3,9 @@ using UnityEngine.Events;
 
 public class Puzzle : MonoBehaviour
 {
-    [SerializeField] private PuzzleData puzzleData;
+    [SerializeField] public PuzzleData puzzleData;
     [SerializeField] private UnityEvent onSuccess;
 
-    private void Start()
-    {
-        //Debug.Log($"Registering puzzle {puzzleData.GetPuzzleID(} in region {region}");
-        //GameProgressionManager.Instance.RegisterPuzzle(region, puzzleID);
-    }
     public static void StartPuzzle(PuzzleData data, UnityEvent onSuccess)
     {
         GameObject pzlGo = (GameObject)GameObject.Instantiate(Resources.Load("Puzzles/PZL_" + data.defaultPuzzleID));
@@ -32,6 +27,7 @@ public class Puzzle : MonoBehaviour
             Debug.Log($"{puzzleData.GetPuzzleID()} is completed.");
             onSuccess?.Invoke();
             puzzleData.SetCompleted(true);
+           // puzzleData.SetUnlocked(false);
             SaveSystemManager.Instance.GetGameData().solvedPuzzles.Add(puzzleData.GetPuzzleID());
 
             Quit();
