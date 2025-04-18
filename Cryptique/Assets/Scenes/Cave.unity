@@ -762,12 +762,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1681278985}
   m_PrefabAsset: {fileID: 0}
---- !u!20 &698359336 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 3792877587150632377, guid: 17aabcfba52af6b42a7e7f1e65379084,
-    type: 3}
-  m_PrefabInstance: {fileID: 1681278985}
-  m_PrefabAsset: {fileID: 0}
 --- !u!65 &1227526999 stripped
 BoxCollider:
   m_CorrespondingSourceObject: {fileID: 336108456752474239, guid: 3bf06714003031840bd52d870b593908,
@@ -1134,6 +1128,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CaveEntry
+      objectReference: {fileID: 0}
+    - target: {fileID: 2575334580460128714, guid: b577bd1226ae5db49a00ba6fafcebd31,
+        type: 3}
+      propertyPath: bot
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2575334580460128714, guid: b577bd1226ae5db49a00ba6fafcebd31,
+        type: 3}
+      propertyPath: top
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7049897616365563909, guid: b577bd1226ae5db49a00ba6fafcebd31,
         type: 3}
@@ -1981,11 +1985,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 811360905978570890, guid: abea60e0ded05cd419b77e258879296a,
-        type: 3}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 698359336}
     - target: {fileID: 3140540815854456767, guid: abea60e0ded05cd419b77e258879296a,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -17,11 +17,8 @@ public class PZL_Simon : Puzzle
 
     [SerializeField] Material activatedMat;
 
-    [SerializeField] Transform cameraSpot;
     [SerializeField] new Camera camera;
-    Vector3 baseCamSpot;
-    Quaternion baseCamRot;
-    float baseSize;
+    [SerializeField] Canvas canvas;
 
     [SerializeField] GameObject leftWall;
     [SerializeField] GameObject righttWall;
@@ -128,12 +125,10 @@ public class PZL_Simon : Puzzle
     public void ChangeCamState()
     {
         Transform cam = camera.transform;
-        if (baseCamSpot != cam.position)
+        if (false == camera.gameObject.active)
         {
-            baseCamSpot = cam.position;
-            baseCamRot = cam.rotation;
-            cam.transform.position = cameraSpot.position;
-            cam.transform.rotation = cameraSpot.rotation;
+            camera.gameObject.SetActive(true);
+            canvas.gameObject.SetActive(true);
 
             var allowedRotations = new Dictionary<CameraDirdection, bool>() {
                 {CameraDirdection.bot, false },
@@ -141,24 +136,23 @@ public class PZL_Simon : Puzzle
                 {CameraDirdection.top, false },
                 {CameraDirdection.left, false },
             };
-            GameManager.Instance.GetCamera().GetComponent<CameraRotator>().SetAllowedRotation(allowedRotations); 
+            GameManager.Instance.GetCamera().GetComponent<CameraRotator>().SetAllowedRotation(allowedRotations);
 
             leftWall.SetActive(false);
             righttWall.SetActive(false);
 
-            baseSize = camera.orthographicSize;
-            camera.orthographicSize = 3;
+            SGL_InteractManager.Instance.ChangeCamera(camera);
         }
         else
         {
-            cam.transform.position = baseCamSpot;
-            cam.transform.rotation = baseCamRot;
+            camera.gameObject.SetActive(false);
+            canvas.gameObject.SetActive(false);
+
             GameManager.Instance.GetCamera().GetComponent<CameraRotator>().ResetAllowedDirections();
 
             leftWall.SetActive(true);
             righttWall.SetActive(true);
-
-            camera.orthographicSize = baseSize;
+            SGL_InteractManager.Instance.ChangeCamera(Camera.main);
         }
     }
 }
