@@ -18,6 +18,15 @@ public class IN_EscapeArrow : OBJ_Interactable
     private void Start()
     {
         m_cameraAnchor = GameManager.GetInstance().GetCamera();
+
+        if (gameObject.activeSelf)
+        {
+            Minimap3DManager minimap = FindFirstObjectByType<Minimap3DManager>();
+            if (minimap != null)
+            {
+                minimap.UpdateMiniMapPlayerPosition();
+            }
+        }
     }
 
     public override bool Interact()
@@ -67,4 +76,21 @@ public class IN_EscapeArrow : OBJ_Interactable
 
         Interact();
     }
+
+    public void SetArrowActive(bool active)
+    {
+        bool wasActive = gameObject.activeSelf;
+
+        gameObject.SetActive(active);
+
+        if (!wasActive && active)
+        {
+            Minimap3DManager minimap = Object.FindFirstObjectByType<Minimap3DManager>();
+            if (minimap != null)
+            {
+                minimap.UpdateMiniMapPlayerPosition();
+            }
+        }
+    }
+
 }
