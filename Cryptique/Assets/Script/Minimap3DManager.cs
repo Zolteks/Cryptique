@@ -17,15 +17,17 @@ public class Minimap3DManager : MonoBehaviour
 
     [Header("Minimap camera")]
     public Camera minimapCamera;
-    public float cameraDistance = 10f;
+    public float cameraDistance = 1000f;
     public Vector3 cameraOffsetDirection = new Vector3(-1f, 2f, -1f);
     public bool useIsometricView = true;
 
     [Header("Player tracking")]
     public Transform player;
     private Vector3 lastPlayerPosition;
+    private Quaternion lastMarkerRotation;
 
-    public float highlightRadius = 10f;
+
+    private float unlockTile = 10f;
     public Color defaultTileColor = Color.white;
 
     private Dictionary<GameObject, GameObject> visitedMiniTiles = new Dictionary<GameObject, GameObject>();
@@ -52,8 +54,23 @@ public class Minimap3DManager : MonoBehaviour
             if (player.position != lastPlayerPosition)
             {
                 lastPlayerPosition = player.position;
+
                 UpdateMiniMapPlayerPosition();
                 UpdateMinimapRawImage();
+            }
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (playerMarker != null)
+        {
+            Quaternion currentRotation = playerMarker.transform.rotation;
+
+            if (currentRotation != lastMarkerRotation)
+            {
+                lastMarkerRotation = currentRotation;
+                CameraRotation();
             }
         }
     }
@@ -115,7 +132,7 @@ public class Minimap3DManager : MonoBehaviour
         visitedMiniTiles[tile] = miniTile;
     }
 
-    void UpdateMiniMapPlayerPosition()
+    public void UpdateMiniMapPlayerPosition()
     {
         GameObject closestTile = null;
         float minDist = Mathf.Infinity;
@@ -132,13 +149,11 @@ public class Minimap3DManager : MonoBehaviour
 
         if (closestTile == null) return;
 
-        // Create mini-tile if not visited yet
         if (!visitedMiniTiles.ContainsKey(closestTile))
         {
             CreateMiniTile(closestTile);
         }
 
-        // Create the player marker if it does not exist
         if (playerMarker == null && playerMarkerPrefab != null)
         {
             playerMarker = Instantiate(playerMarkerPrefab);
@@ -146,34 +161,55 @@ public class Minimap3DManager : MonoBehaviour
             playerMarker.layer = Mathf.RoundToInt(Mathf.Log(minimapLayer.value, 2));
         }
 
-        // Position the player marker above the mini-tile
         if (visitedMiniTiles.TryGetValue(closestTile, out GameObject miniTile))
         {
             playerMarker.transform.position = miniTile.transform.position + Vector3.up * 0.5f;
         }
 
-        // Remove old lines
+        RepositionCamera();
+
         foreach (GameObject line in activeLines)
         {
             Destroy(line);
         }
         activeLines.Clear();
 
-        // Create lines to nearby tiles
-        foreach (GameObject tile in placedTiles)
+        foreach (Transform child in closestTile.transform)
         {
-            if (tile == closestTile) continue;
+            if(!child.gameObject.activeSelf) continue;
 
-            float dist = Vector3.Distance(tile.transform.position, closestTile.transform.position);
-            if (dist < highlightRadius)
+            if (child.CompareTag("EscapeArrow"))
             {
-                if (!visitedMiniTiles.ContainsKey(tile))
+                Vector3 direction = child.forward;
+                float targetDistance = 500f;
+                Vector3 targetPoint = child.position + direction * targetDistance;
+
+                GameObject targetTile = null;
+                float closestDistance = Mathf.Infinity;
+
+                foreach (GameObject candidate in placedTiles)
                 {
-                    CreateMiniTile(tile);
+                    float dist = Vector3.Distance(candidate.transform.position, targetPoint);
+                    if (dist < 100f && dist < closestDistance)
+                    {
+                        closestDistance = dist;
+                        targetTile = candidate;
+                    }
                 }
 
-                if (visitedMiniTiles.TryGetValue(tile, out GameObject otherMiniTile))
+                if (targetTile != null)
                 {
+                    Vector3 endPoint;
+
+                    if (visitedMiniTiles.TryGetValue(targetTile, out GameObject targetMiniTile))
+                    {
+                        endPoint = targetMiniTile.transform.position;
+                    }
+                    else
+                    {
+                        endPoint = minimapOrigin + (targetTile.transform.position / scaleFactor);
+                    }
+
                     GameObject line = Instantiate(linePrefab);
                     LineRenderer lr = line.GetComponent<LineRenderer>();
 
@@ -181,7 +217,7 @@ public class Minimap3DManager : MonoBehaviour
                     {
                         lr.positionCount = 2;
                         lr.SetPosition(0, miniTile.transform.position);
-                        lr.SetPosition(1, otherMiniTile.transform.position);
+                        lr.SetPosition(1, endPoint);
                         lr.startWidth = lr.endWidth = 0.2f;
                     }
 
@@ -190,7 +226,9 @@ public class Minimap3DManager : MonoBehaviour
                 }
             }
         }
-    }
+
+}
+
 
     void UpdateMinimapRawImage()
     {
@@ -199,4 +237,35 @@ public class Minimap3DManager : MonoBehaviour
             minimapRawImage.texture = minimapTexture;
         }
     }
+
+    void CameraRotation()
+    {
+        if (playerMarker != null && minimapCamera != null && Camera.main != null)
+        {
+            Quaternion mainCameraRotation = Camera.main.transform.rotation;
+
+            minimapCamera.transform.rotation = mainCameraRotation;
+
+            Vector3 offsetDir = Quaternion.Euler(0f, Camera.main.transform.eulerAngles.y, 0f) * cameraOffsetDirection.normalized;
+
+            minimapCamera.transform.position = playerMarker.transform.position + offsetDir * cameraDistance;
+
+            minimapCamera.transform.LookAt(playerMarker.transform.position);
+        }
+    }
+
+    void RepositionCamera()
+    {
+        if (playerMarker != null && minimapCamera != null)
+        {
+            float angleY = playerMarker.transform.eulerAngles.y;
+
+            Vector3 offsetDir = Quaternion.Euler(0f, angleY, 0f) * cameraOffsetDirection.normalized;
+
+            minimapCamera.transform.position = playerMarker.transform.position + offsetDir * cameraDistance;
+
+            minimapCamera.transform.LookAt(playerMarker.transform.position);
+        }
+    }
+
 }
