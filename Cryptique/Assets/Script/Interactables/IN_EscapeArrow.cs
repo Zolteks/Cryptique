@@ -5,20 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class IN_EscapeArrow : OBJ_Interactable
 {
+    /* Variables */
+    [Header("Arrow Settings")]
     [Tooltip("Let empty if the arrow doesn't lead to another region")]
-    [SerializeField] string goToRegion;
-
-    /*[SerializeField]*/ float fEaseMaxSpeed = 1200;
-    /*[SerializeField]*/ float fEaseThreshold = 60;
-
-    static bool m_isBusy = false;
-
-    Transform m_cameraAnchor;
-
+    [SerializeField] private string m_goToRegion;
+    [Tooltip("Let empty if the player don't need to be teleported")]
+    [SerializeField] private GameObject m_teleportPoint;
+    
+    /*[SerializeField]*/ private float m_easeMaxSpeed = 1200;
+    /*[SerializeField]*/ private float m_easeThreshold = 60;
+    
+    private static bool m_isBusy = false;
+    private Transform m_cameraAnchor;
+    [SerializeField] private PC_PlayerController m_playerController;
+    
+    /* Functions */
+    private void Awake()
+    {
+        m_playerController = PC_PlayerController.Instance;
+        if (m_playerController == null)
+            Debug.LogError("PlayerController not found");
+    }
+    
     private void Start()
     {
         m_cameraAnchor = GameManager.GetInstance().GetCamera();
-
+        if (m_cameraAnchor == null)
+            Debug.LogError("Camera anchor not found");
         if (gameObject.activeSelf)
         {
             Minimap3DManager minimap = FindFirstObjectByType<Minimap3DManager>();
@@ -28,13 +41,28 @@ public class IN_EscapeArrow : OBJ_Interactable
             }
         }
     }
-
+    
     public override bool Interact()
     {
-        if (false == CanInteract() || m_isBusy)
-            return false;
+        if (Vector3.Distance(m_playerController.transform.position, transform.position) > 100)
+        {
+            InteractionCallback();
+            return true;
+        }
+        m_playerController.OnMoveCallback += InteractionCallback;
+        if (m_teleportPoint)
+            m_playerController.MoveToTile(m_teleportPoint.transform.position);
+        else
+            m_playerController.MoveTo();
+        return true;
+    }
+    
+    private void InteractionCallback()
+    {
+        if (m_isBusy)
+            return;
 
-        if (string.IsNullOrEmpty(goToRegion))
+        if (string.IsNullOrEmpty(m_goToRegion))
         {
             Vector3 flattenDir = transform.forward;
             flattenDir.y = 0;
@@ -45,38 +73,11 @@ public class IN_EscapeArrow : OBJ_Interactable
         }
         else
         {
-            SceneManager.LoadScene(goToRegion);
+            SceneManager.LoadScene(m_goToRegion);
         }
-        return true;
+        m_playerController.OnMoveCallback -= InteractionCallback;
     }
-
-    IEnumerator CoroutineEaseBetweenTiles(Vector3 start, Vector3 end, Vector3 dir)
-    {
-        m_isBusy = true;
-
-        while ((m_cameraAnchor.position - end).magnitude >= .1f)
-        {
-            float startRatio = Mathf.Min((m_cameraAnchor.position - start).magnitude, fEaseThreshold) / fEaseThreshold;
-            float endRatio = Mathf.Min((m_cameraAnchor.position - end).magnitude, fEaseThreshold) / fEaseThreshold;
-            float smallestRatio = Mathf.Min(startRatio, endRatio);
-
-            var value = dir * Mathf.Lerp(1f, fEaseMaxSpeed, smallestRatio) * Time.deltaTime;
-            m_cameraAnchor.position += value;
-
-            yield return new WaitForFixedUpdate();
-        }
-
-        m_isBusy = false;
-    }
-
-    // Is that definitive? Unsure
-    private void OnMouseDown()
-    {
-        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
-
-        Interact();
-    }
-
+    
     public void SetArrowActive(bool active)
     {
         bool wasActive = gameObject.activeSelf;
@@ -92,5 +93,24 @@ public class IN_EscapeArrow : OBJ_Interactable
             }
         }
     }
+    
+    /* Coroutine */
+    private IEnumerator CoroutineEaseBetweenTiles(Vector3 start, Vector3 end, Vector3 dir)
+    {
+        m_isBusy = true;
 
+        while ((m_cameraAnchor.position - end).magnitude >= .1f)
+        {
+            float startRatio = Mathf.Min((m_cameraAnchor.position - start).magnitude, m_easeThreshold) / m_easeThreshold;
+            float endRatio = Mathf.Min((m_cameraAnchor.position - end).magnitude, m_easeThreshold) / m_easeThreshold;
+            float smallestRatio = Mathf.Min(startRatio, endRatio);
+
+            var value = dir * Mathf.Lerp(1f, m_easeMaxSpeed, smallestRatio) * Time.deltaTime;
+            m_cameraAnchor.position += value;
+
+            yield return new WaitForFixedUpdate();
+        }
+
+        m_isBusy = false;
+    }
 }
