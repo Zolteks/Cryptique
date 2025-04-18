@@ -33,7 +33,7 @@ public class PZL_Radio : Puzzle
         shader.SetFloat("_TargetFreqWidth", targetFreqW);
         shader.SetFloat("_TargetFreqHeight", targetFreqH);
 
-        InteractManager.Instance.ChangeCamera(cam);
+        SGL_InteractManager.Instance.ChangeCamera(cam);
     }
 
     void Update()
@@ -53,7 +53,7 @@ public class PZL_Radio : Puzzle
             timeForValidation -= Time.deltaTime;
             if (timeForValidation < 0)
             {
-                InteractManager.Instance.ChangeCamera(Camera.main);
+                SGL_InteractManager.Instance.ChangeCamera(Camera.main);
                 Complete();
             }
         }

@@ -18,7 +18,7 @@ public class OBJ_Collectable : OBJ_Interactable
             return false;
 
         // Add to inventory
-        InventoryManager.Instance.AddItem(m_item);
+        SGL_InventoryManager.Instance.AddItem(m_item);
 
         // Notify the GameProgressionManager that an item as been collected
         GameProgressionManager.Instance.CollectItem(m_item.GetRegion() ,m_item.GetName());

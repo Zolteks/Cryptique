@@ -9,7 +9,6 @@ public class IN_WellLauncher : OBJ_InteractOnDrop
     public override bool Interact()
     {
         //Puzzle.StartPuzzle("PZL_Well");
-        m_Well.AddCrank();
         Destroy(gameObject);
         return true;
     }

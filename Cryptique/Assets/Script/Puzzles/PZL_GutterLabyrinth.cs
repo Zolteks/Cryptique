@@ -9,7 +9,7 @@ public class PZL_GutterLabyrinth : Puzzle
 
     private void Start()
     {
-        InteractManager.Instance.ChangeCamera(cam);
+        SGL_InteractManager.Instance.ChangeCamera(cam);
     }
 
     public void Solve()
@@ -23,7 +23,7 @@ public class PZL_GutterLabyrinth : Puzzle
         if (pipeManager.isSolved)
         {
             Debug.Log("Puzzle gutter solved !");
-            InteractManager.Instance.ChangeCamera(Camera.main);
+            SGL_InteractManager.Instance.ChangeCamera(Camera.main);
             StartCoroutine(CoroutineSolve());
         }
     }

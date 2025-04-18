@@ -14,11 +14,11 @@ public class PZL_CrossOfWendigo : Puzzle
 
     bool isHidden = false;
 
-    private InputManager inputManager;
+    private SGL_InputManager m_inputManager;
 
     public void Awake()
     {
-        inputManager = InputManager.Instance;
+        m_inputManager = SGL_InputManager.Instance;
     }
 
 

@@ -7,24 +7,20 @@ public class PZL_Well : Puzzle
 
     [SerializeField] private GameObject lanterne;
     [SerializeField] private GameObject crank;
-    [SerializeField] private GameObject Panel;
+    [SerializeField] public Camera cam;
 
-
-    public void Start()
+    private void Start()
     {
-        //StartPuzzle(name);
-        //crank.SetActive(false);
+        SGL_InteractManager.Instance.ChangeCamera(cam);
     }
 
-    public void AddCrank()
+    private void Update()
     {
-        //crank.SetActive(true);
-        Panel.SetActive(true);
-    }
-
-    public void PuzzleEnded()
-    {
-        Complete();
+        if (lanterne == null)
+        {
+            SGL_InteractManager.Instance.ChangeCamera(Camera.main);
+            Complete();
+        }
     }
 
 }

@@ -29,7 +29,7 @@ public abstract class OBJ_InteractOnDrop : OBJ_Interactable
                 m_item = itemToDrop;
 
                 // Remove from inventory
-                InventoryManager.Instance.RemoveItem(itemToDrop);
+                SGL_InventoryManager.Instance.RemoveItem(itemToDrop);
 
                 // Call the Interact method of the interactable object
                 Interact();
