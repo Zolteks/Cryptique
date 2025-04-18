@@ -26,8 +26,7 @@ class PauseManager : MonoBehaviour
 
     public void active()
     {
-        string chapterName = gameProgressionManager.GetCurrentChapter().defaultChapterName;
-        regionDetail.DisplayChapterEnableButton(chapterName);
+        regionDetail.DisplayChapterEnableButton();
     }
 }
 

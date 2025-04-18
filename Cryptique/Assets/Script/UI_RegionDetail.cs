@@ -49,8 +49,15 @@ public class UI_RegionDetail : MonoBehaviour, ILocalizedElement
         }
     }
 
-    public void DisplayChapter(string chapter)
+    public void DisplayChapter()
     {
+        if (gameProgressionManager == null)
+        {
+            gameProgressionManager = GameProgressionManager.Instance;
+        }
+
+        string chapter = gameProgressionManager.GetCurrentChapter().GetName();
+
         foreach (Transform child in this.transform)
             Destroy(child.gameObject);
 
@@ -93,8 +100,14 @@ public class UI_RegionDetail : MonoBehaviour, ILocalizedElement
         }
     }
 
-    public void DisplayChapterEnableButton(string chapter)
+    public void DisplayChapterEnableButton()
     {
+        if(gameProgressionManager == null)
+        {
+            gameProgressionManager = GameProgressionManager.Instance;
+        }
+        string chapter = gameProgressionManager.GetCurrentChapter().GetName();
+
         foreach (Transform child in this.transform)
             Destroy(child.gameObject);
 
@@ -143,5 +156,4 @@ public class UI_RegionDetail : MonoBehaviour, ILocalizedElement
 
         return null;
     }
-
 }

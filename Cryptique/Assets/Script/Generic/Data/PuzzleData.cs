@@ -7,8 +7,8 @@ public class PuzzleData : ScriptableObject
     public string defaultPuzzleID;
     public string defaultDescription;
 
-    private bool isCompleted;
-
+    private bool isCompleted = false;
+    private bool isUnlocked = false;
 
     [SerializeField]
     private LocalizedString puzzleID;
@@ -44,6 +44,16 @@ public class PuzzleData : ScriptableObject
     public void SetCompleted(bool completed)
     {
         isCompleted = completed;
+    }
+
+    public bool IsUnlocked()
+    {
+        return isUnlocked;
+    }
+
+    public void SetUnlocked(bool unlocked)
+    {
+        isUnlocked = unlocked;
     }
 
     public List<HintData> GetHints()

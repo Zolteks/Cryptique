@@ -13,8 +13,7 @@ public class UI_Quest : MonoBehaviour, ILocalizedElement
     private LanguageManager languageManager;
     void Start()
     {
-        UpdatePuzzleProgress();
-        UpdatePuzzleDescriptions();
+        UpdateAll();
 
         if (gameProgressionManager == null)
         {
@@ -46,6 +45,12 @@ public class UI_Quest : MonoBehaviour, ILocalizedElement
     private void OnDestroy()
     {
         languageManager.Unregister(this);
+    }
+
+    public void UpdateAll()
+    {
+        UpdatePuzzleProgress();
+        UpdatePuzzleDescriptions();
     }
 
     public void UpdatePuzzleProgress()
