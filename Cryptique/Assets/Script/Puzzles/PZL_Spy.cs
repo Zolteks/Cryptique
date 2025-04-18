@@ -49,7 +49,7 @@ public class PZL_Spy : Puzzle
             lineChatracter.bTalkOnRightSide = characterEntry.bTalkOnRightSide;
             lineChatracter.iTalkingPortrait = characterEntry.iTalkingPortrait;
             lineChatracter.iListeningPortrait = characterEntry.iListeningPortrait;
-            lineChatracter.sName = characterEntry.sName;
+            lineChatracter.sNameDisplay = characterEntry.sNameDisplay;
 
 
             UI_DialogueManager.DialogueLine line = new();
