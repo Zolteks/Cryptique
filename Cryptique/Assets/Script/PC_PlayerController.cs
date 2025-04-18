@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PC_PlayerController : MonoBehaviour
+public class PC_PlayerController : Singleton<PC_PlayerController>
 {
     public enum PlayerRotation
     {
@@ -10,8 +10,12 @@ public class PC_PlayerController : MonoBehaviour
         Left = 180
     }
     
+    #region Events
+    public delegate void EndOfMoveCallback();
+    public event EndOfMoveCallback OnMoveCallback;
     public delegate void EndOfInteractionCallback();
     public event EndOfInteractionCallback OnInteractionCallback;
+    #endregion
     
     [Header("Movement")]
     [SerializeField] [Range(1f, 10f)] private float m_moveSpeed = 3f;
@@ -25,6 +29,7 @@ public class PC_PlayerController : MonoBehaviour
     [SerializeField] private string m_interactionTriggerParameter = "InteractionTrigger";
     [SerializeField] private string m_isInteractingParameter = "IsInteracting";
     private bool m_isInputActive = true;
+    private Vector3 m_newtilePosition = Vector3.zero;
     
     private Camera m_camera;
     private SGL_InputManager m_inputManager;
@@ -32,7 +37,7 @@ public class PC_PlayerController : MonoBehaviour
     private NavMeshAgent m_agent;
     private Animator m_animator;
     
-    private Coroutine m_coroutineWaitForInteraction;
+    private Coroutine m_coroutineWaitFor;
     private Coroutine m_coroutineInteraction;
     
     public bool GetInputActive() => m_isInputActive;
@@ -59,12 +64,12 @@ public class PC_PlayerController : MonoBehaviour
     
     private void OnEnable()
     {
-        m_inputManager.OnStartTouch += CalculatePoint;
+        m_inputManager.OnClick += CalculatePoint;
     }
     
     private void OnDisable()
     {
-        m_inputManager.OnStartTouch -= CalculatePoint;
+        m_inputManager.OnClick -= CalculatePoint;
     }
     
     private void LateUpdate()
@@ -89,14 +94,14 @@ public class PC_PlayerController : MonoBehaviour
     
     public void EnableInput()
     {
-        m_inputManager.OnStartTouch += CalculatePoint;
+        m_inputManager.OnClick += CalculatePoint;
         m_interactManager.EnableInteraction();
         m_isInputActive = true;
     }
     
     public void DisableInput()
     {
-        m_inputManager.OnStartTouch -= CalculatePoint;
+        m_inputManager.OnClick -= CalculatePoint;
         m_interactManager.DisableInteraction();
         m_isInputActive = false;
     }
@@ -122,7 +127,7 @@ public class PC_PlayerController : MonoBehaviour
         }
     }
     
-    public void SetDesination(Vector3 destination)
+    private void SetDesination(Vector3 destination)
     {
         m_agent.ResetPath();
         NavMesh.SamplePosition(destination, out NavMeshHit hit, m_interactionDistance, NavMesh.AllAreas);
@@ -131,18 +136,46 @@ public class PC_PlayerController : MonoBehaviour
         CheckFlipSprite(hit.position);
     }
     
-    public void MoveForInteraction(Vector3 destination)
+    public void MoveToTile(Vector3 newTilePosition)
     {
         // Désactiver les inputs
         if (m_isInputActive)
             DisableInput();
         else return;
         m_animator.SetBool(m_isInteractingParameter, true);
-        m_coroutineWaitForInteraction = StartCoroutine(CoroutineWaitForInteraction());
+        m_newtilePosition = newTilePosition;
+        m_coroutineWaitFor = StartCoroutine(CoroutineWaitFor());
+        OnMoveCallback += TeleportToTile;
+    }
+    
+    private void TeleportToTile()
+    {
+        m_agent.ResetPath();
+        NavMesh.SamplePosition(m_newtilePosition, out NavMeshHit hit, m_interactionDistance, NavMesh.AllAreas);
+        Debug.Log("Agent go to : " + hit.position);
+        m_agent.Warp(hit.position);
+        CheckFlipSprite(hit.position);
+    }
+    
+    public void MoveForInteraction()
+    {
+        // Désactiver les inputs
+        if (m_isInputActive)
+            DisableInput();
+        else return;
+        m_animator.SetBool(m_isInteractingParameter, true);
+        m_coroutineWaitFor = StartCoroutine(CoroutineWaitFor());
+        OnMoveCallback += LaunchInteraction;
+    }
+    
+    private void LaunchInteraction()
+    {
+        m_coroutineInteraction = StartCoroutine(CoroutineInteraction());
+        OnMoveCallback -= LaunchInteraction;
     }
     
     /* Coroutines */
-    private IEnumerator CoroutineWaitForInteraction()
+    private IEnumerator CoroutineWaitFor()
     {
         yield return new WaitForEndOfFrame();
         // Verifier si l'agent a atteint sa destination
@@ -159,11 +192,11 @@ public class PC_PlayerController : MonoBehaviour
         }
         // Lancer l'interaction une fois arrivé
         yield return new WaitForEndOfFrame();
-        m_coroutineInteraction = StartCoroutine(LauchInteraction());
-        StopCoroutine(m_coroutineWaitForInteraction);
+        OnMoveCallback?.Invoke();
+        StopCoroutine(m_coroutineWaitFor);
     }
     
-    private IEnumerator LauchInteraction()
+    private IEnumerator CoroutineInteraction()
     {
         //yield return new WaitForEndOfFrame();
         m_animator?.SetTrigger(m_interactionTriggerParameter);
@@ -177,7 +210,7 @@ public class PC_PlayerController : MonoBehaviour
         if (!m_isInputActive)
             EnableInput();
         m_animator.SetBool(m_isInteractingParameter, false);
-        StopCoroutine(m_coroutineInteraction);
         OnInteractionCallback?.Invoke();
+        StopCoroutine(m_coroutineInteraction);
     }
 }
