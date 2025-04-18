@@ -21,6 +21,10 @@ public class PZL_Simon : Puzzle
     [SerializeField] new Camera camera;
     Vector3 baseCamSpot;
     Quaternion baseCamRot;
+    float baseSize;
+
+    [SerializeField] GameObject leftWall;
+    [SerializeField] GameObject righttWall;
 
     List<int> m_currentLayout;
     int m_playerStreak;
@@ -124,17 +128,37 @@ public class PZL_Simon : Puzzle
     public void ChangeCamState()
     {
         Transform cam = camera.transform;
-        if(baseCamSpot != cam.position)
+        if (baseCamSpot != cam.position)
         {
             baseCamSpot = cam.position;
             baseCamRot = cam.rotation;
             cam.transform.position = cameraSpot.position;
             cam.transform.rotation = cameraSpot.rotation;
+
+            var allowedRotations = new Dictionary<CameraDirdection, bool>() {
+                {CameraDirdection.bot, false },
+                {CameraDirdection.right, false },
+                {CameraDirdection.top, false },
+                {CameraDirdection.left, false },
+            };
+            GameManager.Instance.GetCamera().GetComponent<CameraRotator>().SetAllowedRotation(allowedRotations); 
+
+            leftWall.SetActive(false);
+            righttWall.SetActive(false);
+
+            baseSize = camera.orthographicSize;
+            camera.orthographicSize = 3;
         }
         else
         {
             cam.transform.position = baseCamSpot;
             cam.transform.rotation = baseCamRot;
+            GameManager.Instance.GetCamera().GetComponent<CameraRotator>().ResetAllowedDirections();
+
+            leftWall.SetActive(true);
+            righttWall.SetActive(true);
+
+            camera.orthographicSize = baseSize;
         }
     }
 }
