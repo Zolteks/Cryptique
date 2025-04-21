@@ -9,6 +9,8 @@ public class UI_QuitPuzzleInScene : MonoBehaviour
 
     public void SwitchCamera()
     {
+        SGL_DragAndDrop.Instance.ChangeCamera(Camera.main);
+        SGL_InteractManager.Instance.ChangeCamera(Camera.main);
         gameObject.SetActive(false);
         m_backCam.SetActive(false);
         m_collider.enabled = true;
