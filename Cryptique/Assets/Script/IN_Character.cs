@@ -36,8 +36,8 @@ public class IN_Character : OBJ_Interactable
 
     public override bool Interact()
     {
-        UI_DialogueManager.cInstance.ShowDialogueUI();
-        UI_DialogueManager.cInstance.StartDialogue(m_dialogue);
+        UI_DialogueManager.Instance.ShowDialogueUI();
+        UI_DialogueManager.Instance.StartDialogue(m_dialogue);
         //throw new NotImplementedException();
         return true;
     }
@@ -48,6 +48,7 @@ public class IN_Character : OBJ_Interactable
         {
             Debug.LogError("A NPC has no character list nor localized dialogue table");
         }
+        LanguageCode currentLanguage = LanguageManager.Instance.GetCurrentLanguage();
 
         StringTable localizedTable = LocalizationSettings.Instance.GetStringDatabase().GetTable(m_localizationAsset.TableCollectionName, LocalizationSettings.Instance.GetSelectedLocale());
         m_dialogue = new();
@@ -60,8 +61,21 @@ public class IN_Character : OBJ_Interactable
             lineChatracter.bNoPortrait = characterEntry.bNoPortrait;
             lineChatracter.iTalkingPortrait = characterEntry.iTalkingPortrait;
             lineChatracter.iListeningPortrait = characterEntry.iListeningPortrait;
-            lineChatracter.sName = characterEntry.sName;
+            lineChatracter.sNameEN = characterEntry.sNameEN;
+            lineChatracter.sNameFR = characterEntry.sNameFR;
 
+            if(currentLanguage == LanguageCode.FR)
+            {
+                lineChatracter.sNameDisplay = characterEntry.sNameFR;
+            }
+            else if (currentLanguage == LanguageCode.EN)
+            {
+                lineChatracter.sNameDisplay = characterEntry.sNameEN;
+            }
+            else
+            {
+                lineChatracter.sNameDisplay = characterEntry.sNameEN;
+            }
 
             UI_DialogueManager.DialogueLine line = new();
             var entry = localizedTable.GetEntry(i.ToString());
