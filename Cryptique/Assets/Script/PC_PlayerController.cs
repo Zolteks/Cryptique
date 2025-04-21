@@ -214,7 +214,7 @@ public class PC_PlayerController : Singleton<PC_PlayerController>
     private IEnumerator CoroutineInteraction()
     {
         //yield return new WaitForEndOfFrame();
-        m_animator?.SetTrigger(m_interactionTriggerParameter);
+        m_animator.SetTrigger(m_interactionTriggerParameter);
         while(!m_animator.GetCurrentAnimatorStateInfo(0).IsName(m_idleStateName))
         {
             yield return null;

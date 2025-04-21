@@ -64,6 +64,8 @@ public class SGL_InteractManager : Singleton<SGL_InteractManager>
             arrowObject.GetComponent<OBJ_Interactable>().Interact();
             return;
         }
+        if (hitObject == null)
+            return;
         var interactableOnDrop = hitObject.GetComponentInParent<OBJ_InteractOnDrop>();
         if (interactableOnDrop != null && interactableOnDrop.CanInteract())
             return;
