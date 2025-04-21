@@ -10,8 +10,12 @@ public class PZL_SortingGame : Puzzle
 
     [SerializeField] private int iElementNumber;
     [SerializeField] private OBJ_Item OBJ_LanternOil;
-
+    [SerializeField] private GameObject m_Game;
+    [SerializeField] private GameObject m_Oil;
+ 
     [SerializeField] public Camera cam;
+
+    private bool bOilRecuperee = false;
 
     void Start()
     {
@@ -34,7 +38,20 @@ public class PZL_SortingGame : Puzzle
         {
             SGL_InteractManager.Instance.ChangeCamera(Camera.main);
             bIsAllPlaced = true;
-            SGL_InventoryManager.Instance.AddItem(OBJ_LanternOil);
+            m_Game.SetActive(false);
+            m_Oil.SetActive(true);
+        }
+    }
+
+    private void Update()
+    {
+        if (!bIsAllPlaced || bOilRecuperee) return;
+
+        // Vérifie si l'objet n'est plus actif OU a été détruit
+        if (m_Oil == null || !m_Oil.activeInHierarchy)
+        {
+            bOilRecuperee = true;
+            Debug.Log("Huile récupérée !");
             Complete();
         }
     }
