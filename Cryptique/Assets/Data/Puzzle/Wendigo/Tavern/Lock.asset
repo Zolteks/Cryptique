@@ -13,13 +13,22 @@ MonoBehaviour:
   m_Name: Lock
   m_EditorClassIdentifier: 
   defaultPuzzleID: Lock
-  defaultDescription: 
+  defaultDescription: "There\u2019s a strange noise coming from the wardrobe... but
+    it\u2019s locked. There must be a way to open it."
   puzzleID:
     entries:
     - languageCode: 0
-      value: 
+      value: Lock
+    - languageCode: 1
+      value: Ouvrir
   description:
-    entries: []
+    entries:
+    - languageCode: 0
+      value: "There\u2019s a strange noise coming from the wardrobe... but it\u2019s
+        locked. There must be a way to open it."
+    - languageCode: 1
+      value: "Un bruit \xE9trange vient de l\u2019armoire\u2026 mais elle est verrouill\xE9e.
+        Il doit bien y avoir un moyen de l\u2019ouvrir."
   prerequisites:
   - {fileID: 11400000, guid: c3794acae0b2e404aafbb19fa173691e, type: 2}
   hints: []
