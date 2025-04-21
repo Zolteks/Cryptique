@@ -66,7 +66,7 @@ public class CameraRotator : MonoBehaviour
 #else
         if (saveSystemManager)
         {
-            if (saveSystemManager.GetGameData().slideMode == SlideMode.Slide)
+            if (saveSystemManager.GetGameData().slideMode == SlideMode.Slide  && slideBoutons.activeSelf)
             {
                 slideBoutons.SetActive(false);
                 HandleTouchRotation();
