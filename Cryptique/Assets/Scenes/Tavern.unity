@@ -914,6 +914,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9206649146902579051, guid: a6496054e12ad0041815091d24fcb847,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000091552734
+      objectReference: {fileID: 0}
+    - target: {fileID: 9206649146902579051, guid: a6496054e12ad0041815091d24fcb847,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000030517578
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1236,11 +1246,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3999786982099950021, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4518860355105340792, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
         type: 3}
       propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
       objectReference: {fileID: 543756073}
+    - target: {fileID: 5969604662172026516, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969604662172026516, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5969604662172026516, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6036603143022937965, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6036603143022937965, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6036603143022937965, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 7356298748503412509, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
         type: 3}
       propertyPath: m_teleportPoint
@@ -1400,6 +1445,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1862812952816946758, guid: 41ef0a37c40db0844a3fa1147113d16e,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1609055035}
+    - target: {fileID: 1862812952816946758, guid: 41ef0a37c40db0844a3fa1147113d16e,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
     - target: {fileID: 3945712659932900003, guid: 41ef0a37c40db0844a3fa1147113d16e,
         type: 3}
       propertyPath: m_teleportPoint
@@ -1442,6 +1497,12 @@ GameObject:
 --- !u!1 &1609055034 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 938897773979711893, guid: 41ef0a37c40db0844a3fa1147113d16e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1609055031}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1609055035 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1580166119597629720, guid: 41ef0a37c40db0844a3fa1147113d16e,
     type: 3}
   m_PrefabInstance: {fileID: 1609055031}
   m_PrefabAsset: {fileID: 0}
