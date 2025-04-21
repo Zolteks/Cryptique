@@ -8,7 +8,9 @@ public class TextUITraduction : ScriptableObject
     public class TextUIEntry
     {
         public string key;
+        [TextArea]
         public string frText;
+        [TextArea]
         public string enText;
     }
 
