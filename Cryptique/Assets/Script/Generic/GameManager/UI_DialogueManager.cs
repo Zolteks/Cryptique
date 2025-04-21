@@ -43,8 +43,8 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
     #endregion Serializable Class
 
 
-    public Image iRightCharacterPortrait;
     public Image iLeftCharacterPortrait;
+    public Image iRightCharacterPortrait;
     public TextMeshProUGUI tNameText;
     public TextMeshProUGUI tDialogueDisplay;
 
@@ -79,6 +79,15 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
         }
 
         HideDialogueUI(0);
+    }
+
+    private void Start()
+    {
+        iRightCharacterPortrait = GameObject.Find("Dialog_RightPortrait").GetComponent<Image>();
+        iLeftCharacterPortrait = GameObject.Find("Dialog_LeftPortrait").GetComponent<Image>();
+        tNameText = GameObject.Find("Dialog_TalkName").GetComponent<TextMeshProUGUI>();
+        tDialogueDisplay = GameObject.Find("Dialog_TextContent").GetComponent<TextMeshProUGUI>();
+        dialoguePanel = GameObject.Find("Dialogue_box");
     }
 
     public void ShowDialogueUI()
@@ -126,6 +135,11 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
         DisplayNextLine();
     }
 
+    public void ButtonDisplayNextLine()
+    {
+        UI_DialogueManager.Instance.DisplayNextLine();
+    }
+    
     public void DisplayNextLine()
     {
         if (bIsTypingText == true)
