@@ -5,7 +5,9 @@ using UnityEngine;
 public class LocalizedTextUI : MonoBehaviour
 {
     [SerializeField] private TextUITraduction localisationData;
-    [SerializeField] private string key;
+
+    [SerializeField]
+    private string key;
     private TextMeshProUGUI text;
 
     LanguageManager languageManager;

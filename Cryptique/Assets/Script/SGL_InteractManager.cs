@@ -57,18 +57,22 @@ public class SGL_InteractManager : Singleton<SGL_InteractManager>
         if (m_graphicRaycaster != null && Utils.DetectHitWithUI(pos, m_graphicRaycaster))
             return;
         // Raycast 3D
-        GameObject hitObject = Utils.GetObjectUnderTouch(m_camera, pos);
-        if (hitObject != null)
+        var arrowObject = Utils.GetArrowUnderTouch(m_camera, pos);
+        var hitObject = Utils.GetObjectUnderTouch(m_camera, pos);
+        if (hitObject == null && arrowObject != null)
         {
-            var interactableOnDrop = hitObject.GetComponentInParent<OBJ_InteractOnDrop>();
-            if (interactableOnDrop != null && interactableOnDrop.CanInteract())
-                return;
-            var interactable = hitObject.GetComponentInParent<OBJ_Interactable>();
-            if (interactable != null && interactable.CanInteract())
-            {
-                interactable.Interact();
-                //Debug.Log("Interacted with: " + hitObject.name);
-            }
+            arrowObject.GetComponent<OBJ_Interactable>().Interact();
+            return;
         }
+        if (hitObject == null)
+            return;
+        var interactableOnDrop = hitObject.GetComponentInParent<OBJ_InteractOnDrop>();
+        if (interactableOnDrop != null && interactableOnDrop.CanInteract())
+            return;
+        var interactable = hitObject.GetComponentInParent<OBJ_Interactable>();
+        if (interactable != null && interactable.CanInteract())
+            interactable.Interact();
+        else if (arrowObject)
+            arrowObject.GetComponent<OBJ_Interactable>().Interact();
     }
 }

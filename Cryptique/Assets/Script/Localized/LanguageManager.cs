@@ -10,6 +10,7 @@ public class LanguageManager : Singleton<LanguageManager>
     private LanguageCode currentLanguage;
 
     private  readonly List<LocalizedTextUI> listeners = new();
+    private readonly List<LocalizedSpriteUI> spriteListeners = new();
     private  readonly List<Action<LanguageCode>> callbackListeners = new();
     private  readonly List<ILocalizedElement> dynamicElements = new();
 
@@ -36,6 +37,21 @@ public class LanguageManager : Singleton<LanguageManager>
     {
         if (listeners.Contains(l))
             listeners.Remove(l);
+    }
+
+    public void Register(LocalizedSpriteUI l)
+    {
+        if (!spriteListeners.Contains(l))
+        {
+            spriteListeners.Add(l);
+            Debug.Log("Lacal register");
+        }
+    }
+
+    public void Unregister(LocalizedSpriteUI l)
+    {
+        if (spriteListeners.Contains(l))
+            spriteListeners.Remove(l);
     }
 
     public  void Register(Action<LanguageCode> callback)
@@ -69,6 +85,11 @@ public class LanguageManager : Singleton<LanguageManager>
         foreach (var l in listeners)
         {   
             l.UpdateText(currentLanguage);
+        }
+
+        foreach (var l in spriteListeners)
+        {
+            l.UpdateSprite(currentLanguage);
         }
 
         foreach (var callback in callbackListeners)

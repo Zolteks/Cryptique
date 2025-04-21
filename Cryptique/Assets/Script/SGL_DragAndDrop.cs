@@ -119,8 +119,8 @@ public class SGL_DragAndDrop : Singleton<SGL_DragAndDrop>
         {
             Debug.Log(objectToInteract.name);
             OBJ_InteractOnDrop objectInteract = objectToInteract.GetComponentInParent<OBJ_InteractOnDrop>();
-            if (objectToInteract != null)
-                objectInteract.UseItemOnDrop(m_selectedItem);   
+            if (objectInteract != null)
+                objectInteract.UseItemOnDrop(m_selectedItem);
         }
         //else Debug.Log("No Object to interact with");
     }

@@ -18,15 +18,15 @@ public class CameraAdditional : MonoBehaviour
 
     void Update()
     {
-        
+        Color temp = cam.backgroundColor;
 
-        cam.targetTexture = renderTexture;
+        cam.targetTexture = renderTexture;  
         cam.cullingMask = 1024;
         cam.backgroundColor = Color.white;
-        cam.clearFlags = CameraClearFlags.SolidColor;
+        //cam.clearFlags = CameraClearFlags.SolidColor;
         cam.Render();
         cam.cullingMask = ~0;
-        cam.clearFlags = CameraClearFlags.Skybox;
+        cam.backgroundColor = temp;
         cam.targetTexture = null;
     }
 
