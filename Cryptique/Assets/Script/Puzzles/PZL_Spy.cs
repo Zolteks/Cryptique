@@ -77,7 +77,7 @@ public class PZL_Spy : Puzzle
 
         StartCoroutine(WaitForSeconds());
         
-        if (!UI_DialogueManager.cInstance.bisDialogueActive  && isStarted)
+        if (!UI_DialogueManager.Instance.bisDialogueActive  && isStarted)
         {
             Complete();
         }
@@ -92,8 +92,8 @@ public class PZL_Spy : Puzzle
 
     public void PlayDialogue()
     {
-        UI_DialogueManager.cInstance.ShowDialogueUI();
-        UI_DialogueManager.cInstance.StartDialogue(m_dialogue);
+        UI_DialogueManager.Instance.ShowDialogueUI();
+        UI_DialogueManager.Instance.StartDialogue(m_dialogue);
 
         isStarted = true;
         Debug.Log("Dialogue started");
@@ -102,7 +102,7 @@ public class PZL_Spy : Puzzle
     public void isDetectMovement()
     {
         // Force the end of the dialogue and force the player to back to the start of the puzzle
-        UI_DialogueManager.cInstance.EndDialogue();
+        UI_DialogueManager.Instance.EndDialogue();
 
         //TODO: Add a transition screen
         player.transform.position = lastTile.position;
@@ -125,7 +125,7 @@ public class PZL_Spy : Puzzle
         if(isStarted)
         {
             yield return new WaitForSeconds(0.5f);
-            UI_DialogueManager.cInstance.DisplayNextLine();
+            UI_DialogueManager.Instance.DisplayNextLine();
         }
     }
 
