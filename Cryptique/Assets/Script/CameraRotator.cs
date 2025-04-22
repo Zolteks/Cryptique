@@ -111,6 +111,7 @@ public class CameraRotator : MonoBehaviour
     private void FastRotate()
     {
         transform.rotation*= Quaternion.Euler(0, -90, 0);
+        eDirectionUpdate?.Invoke(m_currentDir);
     }
 
     public void RotateRight()
