@@ -23,15 +23,8 @@ public class IN_PuzzleLauncher : OBJ_Interactable
 
     public override bool Interact()
     {
-        m_playerController.MoveForInteraction();
-        m_playerController.OnInteractionCallback += Wait;
+        Puzzle.StartPuzzle(puzzleData, onSuccess);
 
         return true;
-    }
-
-    void Wait()
-    {
-        Puzzle.StartPuzzle(puzzleData, onSuccess);
-        m_playerController.OnInteractionCallback -= Wait;
     }
 }

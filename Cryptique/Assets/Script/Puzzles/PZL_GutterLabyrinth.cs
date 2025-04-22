@@ -7,11 +7,16 @@ public class PZL_GutterLabyrinth : Puzzle
     [SerializeField]PipeManager pipeManager;
     [SerializeField]Camera cam;
 
+    private GameObject m_UIPlay;
+
     private void Start()
     {
         SGL_InteractManager.Instance.ChangeCamera(cam);
         PC_PlayerController.Instance.DisableInput();
         SGL_InteractManager.Instance.EnableInteraction();
+
+        m_UIPlay = GameObject.Find("UIPlay");
+        m_UIPlay.SetActive(false);
     }
 
     public void Solve()
@@ -35,6 +40,7 @@ public class PZL_GutterLabyrinth : Puzzle
         yield return new WaitForSeconds(1.5f);
 
         PC_PlayerController.Instance.EnableInput();
+        m_UIPlay.SetActive(true);
         Complete();
     }
 }

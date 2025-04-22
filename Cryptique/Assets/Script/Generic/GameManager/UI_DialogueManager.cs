@@ -267,7 +267,7 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
     {
         bisDialogueActive = false;
         //aDialogueAnimation.Play("hide");
-        HideDialogueUI(0.5f);
+        HideDialogueUI(0);
         
     }
 }
