@@ -31,6 +31,7 @@ public class Minimap3DManager : MonoBehaviour
     public Color defaultTileColor = Color.white;
 
     private Dictionary<GameObject, GameObject> visitedMiniTiles = new Dictionary<GameObject, GameObject>();
+    private Dictionary<GameObject, GameObject> miniTileMarkers = new Dictionary<GameObject, GameObject>(); // Clone of the objects to put in the map
     private GameObject playerMarker;
     private List<GameObject> activeLines = new List<GameObject>();
 
@@ -41,11 +42,11 @@ public class Minimap3DManager : MonoBehaviour
     public class TileHighlight
     {
         public GameObject tile;
-        public GameObject miniObject;
+        public GameObject miniObject; // The objects to put in the map
     }
 
-    [Header("Highlighted Tiles")]
-    public List<TileHighlight> highlightedTiles = new List<TileHighlight>();
+    [Header("Map Objects in Tiles")]
+    public List<TileHighlight> objectInTiles = new List<TileHighlight>();
 
 
     void Start()
@@ -141,7 +142,7 @@ public class Minimap3DManager : MonoBehaviour
         }
 
         visitedMiniTiles[tile] = miniTile;
-        TileHighlight highlight = highlightedTiles.Find(h => h.tile == tile);
+        TileHighlight highlight = objectInTiles.Find(h => h.tile == tile);
         if (highlight != null && highlight.miniObject != null)
         {
             Renderer miniRenderer = miniTile.GetComponentInChildren<Renderer>();
@@ -161,17 +162,17 @@ public class Minimap3DManager : MonoBehaviour
             {
                 child.gameObject.layer = layer;
             }
+
+            miniTileMarkers[tile] = marker;
         }
-
-
     }
+
 
     public void UpdateMiniMapPlayerPosition()
     {
         GameObject closestTile = null;
         float minDist = Mathf.Infinity;
 
-        // Trouver la case la plus proche du joueur
         foreach (GameObject tile in placedTiles)
         {
             float dist = Vector3.Distance(player.position, tile.transform.position);
@@ -184,13 +185,11 @@ public class Minimap3DManager : MonoBehaviour
 
         if (closestTile == null) return;
 
-        // Créer la case sur la minimap si elle n'existe pas encore
         if (!visitedMiniTiles.ContainsKey(closestTile))
         {
             CreateMiniTile(closestTile);
         }
 
-        // Créer et positionner le joueur sur la minimap si ce n'est pas encore fait
         if (playerMarker == null && playerMarkerPrefab != null)
         {
             playerMarker = Instantiate(playerMarkerPrefab);
@@ -205,32 +204,34 @@ public class Minimap3DManager : MonoBehaviour
 
         RepositionCamera();
 
-        // Vérifier si le mini-joueur est en collision avec un objet sur la minimap
-        Vector3 playerPos = playerMarker.transform.position;
-
-        // Faire un raycast vers le bas pour détecter si un objet est sous le mini-joueur
-        RaycastHit hit;
-        bool isColliding = Physics.Raycast(playerPos, Vector3.down, out hit, Mathf.Infinity, minimapLayer);
-
-        // Désactiver l'objet highlight s'il y a une collision
-        foreach (GameObject tile in placedTiles)
+        foreach (TileHighlight highlight in objectInTiles)
         {
-            foreach (Transform child in tile.transform)
+            if (highlight.tile == closestTile)
             {
-                if (child.CompareTag("Highlight") && isColliding)
+                if (highlight.tile != null && miniTileMarkers.ContainsKey(highlight.tile))
                 {
-                    // Si le mini-joueur est en collision avec l'objet, désactiver le highlight
-                    child.gameObject.SetActive(false);
+                    GameObject marker = miniTileMarkers[highlight.tile];
+
+                    if (marker != null)
+                    {
+                        marker.SetActive(false);
+                    }
                 }
-                else if (child.CompareTag("Highlight"))
+            }
+            else
+            {
+                if (highlight.tile != null && miniTileMarkers.ContainsKey(highlight.tile))
                 {
-                    // Sinon, activer le highlight
-                    child.gameObject.SetActive(true);
+                    GameObject marker = miniTileMarkers[highlight.tile];
+
+                    if (marker != null)
+                    {
+                        marker.SetActive(true);
+                    }
                 }
             }
         }
 
-        // Générer les lignes sur la minimap (EscapeArrows, etc.)
         foreach (GameObject line in activeLines)
         {
             Destroy(line);
