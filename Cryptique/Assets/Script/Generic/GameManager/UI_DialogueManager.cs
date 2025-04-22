@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,13 +7,19 @@ using UnityEngine.Localization.Tables;
 using UnityEngine.UI;
 using static UI_DialogueTrigger;
 
-public class UI_DialogueManager : MonoBehaviour
+public class UI_DialogueManager : Singleton<UI_DialogueManager>
 {
+
+    /* Singleton */
+    private static UI_DialogueManager m_DialogueManager;
+
     #region Serializable Class
     [System.Serializable]
     public class DialogueCharacter
     {
-        public string sName;
+        public string sNameEN;
+        public string sNameFR;
+        public string sNameDisplay;
         public Image iTalkingPortrait;
         public Image iListeningPortrait;
         public bool bTalkOnRightSide;
@@ -36,16 +43,14 @@ public class UI_DialogueManager : MonoBehaviour
     #endregion Serializable Class
 
 
-    public static UI_DialogueManager cInstance;
-
     public Image iRightCharacterPortrait;
     public Image iLeftCharacterPortrait;
     public TextMeshProUGUI tNameText;
     public TextMeshProUGUI tDialogueDisplay;
 
     public GameObject dialoguePanel;
-    
-    
+
+    LanguageManager languageManager;
 
     //public Animator dialogueAnimator;
 
@@ -61,10 +66,19 @@ public class UI_DialogueManager : MonoBehaviour
 
     void Awake()
     {
-        if (cInstance == null)
-            cInstance = this;
+        m_DialogueManager = UI_DialogueManager.Instance;
+        if(m_DialogueManager == null)
+        {
+            Debug.LogError("DialogueManager is null");
+        }
 
-        HideDialogueUI();
+        languageManager = LanguageManager.Instance;
+        if(languageManager == null)
+        {
+            Debug.LogError("LanguageManager is null");
+        }
+
+        HideDialogueUI(0);
     }
 
     public void ShowDialogueUI()
@@ -73,15 +87,15 @@ public class UI_DialogueManager : MonoBehaviour
         //dialogueAnimator.SetTrigger("Show");
     }
 
-    public void HideDialogueUI()
+    public void HideDialogueUI(float time)
     {
         //dialogueAnimator.SetTrigger("Hide");
-        StartCoroutine(CoroutineDeactivateAfterAnimation());
+        StartCoroutine(CoroutineDeactivateAfterAnimation(time));
     }
 
-    IEnumerator CoroutineDeactivateAfterAnimation()
+    IEnumerator CoroutineDeactivateAfterAnimation(float time)
     {
-        yield return new WaitForSeconds(0.5f); // Animation Length
+        yield return new WaitForSeconds(time); // Animation Length
         dialoguePanel.SetActive(false);
         bisDialogueActive = false;
     }
@@ -104,6 +118,8 @@ public class UI_DialogueManager : MonoBehaviour
 
         foreach (DialogueLine cLine in c_Dialogue.lDialogueLines)
         {
+            LanguageCode currentLanguage = LanguageManager.Instance.GetCurrentLanguage();
+
             qLines.Enqueue(cLine);
         }
 
@@ -126,7 +142,8 @@ public class UI_DialogueManager : MonoBehaviour
         else
         {
             DialogueLine cCurrentLine = qLines.Dequeue();
-            tNameText.text = cCurrentLine.cCharacter.sName;
+            
+            tNameText.text = cCurrentLine.cCharacter.sNameDisplay;
 
             // Masquer tous les portraits si bNoPortrait est true
             if (cCurrentLine.cCharacter.bNoPortrait)
@@ -234,6 +251,6 @@ public class UI_DialogueManager : MonoBehaviour
     {
         bisDialogueActive = false;
         //aDialogueAnimation.Play("hide");
-        HideDialogueUI();
+        HideDialogueUI(0.5f);
     }
 }

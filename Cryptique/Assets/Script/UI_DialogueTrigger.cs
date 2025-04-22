@@ -8,12 +8,12 @@ public class UI_DialogueTrigger : MonoBehaviour
 
     private void Start()
     {
-        UI_DialogueManager.cInstance.HideDialogueUI();
+        UI_DialogueManager.Instance.HideDialogueUI(0);
     }
 
     public void TriggerDialogue()
     {
-        UI_DialogueManager.cInstance.ShowDialogueUI();
+        UI_DialogueManager.Instance.ShowDialogueUI();
         //UI_DialogueManager.cInstance.StartDialogue();
     }   
 }
