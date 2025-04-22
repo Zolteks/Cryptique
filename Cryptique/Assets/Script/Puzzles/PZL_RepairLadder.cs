@@ -4,26 +4,19 @@ using UnityEngine;
 
 public class PZL_RepairLadder : OBJ_InteractOnDrop
 {
-    [SerializeField] private List<GameObject> testBase;
-    [SerializeField] private GameObject parentGameObject;
-    [SerializeField] private GameObject LadderGameObject;
+    private PZL_LadderComplete m_complete;
+
+    private void Start()
+    {
+        m_complete = GetComponent<PZL_LadderComplete>();
+    }
 
     public override bool Interact()
     {
-        GameObject test = Instantiate(GetItemDropped().GetPrefab(), parentGameObject.transform);
-
-        test.transform.position = testBase[0].transform.position;
-        testBase.Remove(testBase[0]);
-
-        if (testBase.Count <= 0)
+        if(GetItemDropped().name == "Ladder")
         {
-            GameObject Ladder = Instantiate(LadderGameObject);
-
-            Ladder.transform.position = parentGameObject.transform.position;
-
-            Destroy(parentGameObject);
+            m_complete.LadderComplete();
         }
-
         return true;
     }
 }

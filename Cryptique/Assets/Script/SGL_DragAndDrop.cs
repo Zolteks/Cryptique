@@ -42,6 +42,8 @@ public class SGL_DragAndDrop : Singleton<SGL_DragAndDrop>
         m_inputManager.OnEndTouch -= OnDragEnd;
     }
 
+    public void ChangeCamera(Camera cam) => m_mainCamera = cam;
+
     private void OnDragStart(Vector2 position, float time)
     {
         // Raycast UI

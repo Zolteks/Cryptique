@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 4636022214483527025}
   - component: {fileID: 7904374318497171084}
   - component: {fileID: 3654143651490221216}
-  - component: {fileID: 276372556484354928}
+  - component: {fileID: 2780370934881157862}
   m_Layer: 5
   m_Name: Lantern
   m_TagString: Untagged
@@ -490,7 +490,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.52
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &276372556484354928
+--- !u!114 &2780370934881157862
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -499,11 +499,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4273472489501615068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb9079d427bffdc4ebb7c2beac1415ad, type: 3}
+  m_Script: {fileID: 11500000, guid: 252a824c0554bc849b22ef4843ef6599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_canInteract: 0
+  m_canInteract: 1
   m_item: {fileID: 11400000, guid: 665b8b844baac624c870f1c34da2535f, type: 2}
+  fusionHolder: {fileID: 11400000, guid: 116463011deab064295cf2ecb320179c, type: 2}
 --- !u!1 &5510321202899303532
 GameObject:
   m_ObjectHideFlags: 0
