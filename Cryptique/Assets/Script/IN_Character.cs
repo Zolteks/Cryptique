@@ -21,6 +21,8 @@ public class IN_Character : OBJ_Interactable
     [SerializeField] SharedTableData m_localizationAsset;
     [SerializeField] DialogueCharacterList m_characterList;
 
+    private PC_PlayerController m_playerController;
+
 
 
     private void Start()
@@ -32,15 +34,25 @@ public class IN_Character : OBJ_Interactable
 
         LocalizationSettings.Instance.OnSelectedLocaleChanged += (Locale) => ConstructDialogue();
 
+        m_playerController = PC_PlayerController.Instance;
         ConstructDialogue();
     }
 
     public override bool Interact()
     {
-        UI_DialogueManager.Instance.ShowDialogueUI();
-        UI_DialogueManager.Instance.StartDialogue(m_dialogue);
+        m_playerController.MoveForInteraction();
+        m_playerController.OnInteractionCallback += Wait;
+
         //throw new NotImplementedException();
         return true;
+    }
+
+    void Wait()
+    {
+        UI_DialogueManager.Instance.ShowDialogueUI();
+        UI_DialogueManager.Instance.StartDialogue(m_dialogue);
+
+        m_playerController.OnInteractionCallback -= Wait;
     }
 
     void ConstructDialogue()

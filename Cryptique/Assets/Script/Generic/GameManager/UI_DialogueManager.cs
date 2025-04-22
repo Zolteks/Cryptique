@@ -69,13 +69,13 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
         m_DialogueManager = UI_DialogueManager.Instance;
         if(m_DialogueManager == null)
         {
-            Debug.LogError("DialogueManager is null");
+            Debug.LogWarning("DialogueManager is null");
         }
 
         languageManager = LanguageManager.Instance;
         if(languageManager == null)
         {
-            Debug.LogError("LanguageManager is null");
+            Debug.LogWarning("LanguageManager is null");
         }
 
         HideDialogueUI(0);
@@ -92,6 +92,9 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
 
     public void ShowDialogueUI()
     {
+        print("enculé de ta race");
+        PC_PlayerController.Instance.DisableInput();
+        //SGL_InteractManager.Instance.EnableInteraction();
         dialoguePanel.SetActive(true);
         //dialogueAnimator.SetTrigger("Show");
     }
@@ -107,6 +110,7 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
         yield return new WaitForSeconds(time); // Animation Length
         dialoguePanel.SetActive(false);
         bisDialogueActive = false;
+        PC_PlayerController.Instance.EnableInput();
     }
 
     public void StartDialogue(Dialogue c_Dialogue)

@@ -28,7 +28,7 @@ public class PC_PlayerController : Singleton<PC_PlayerController>
     [SerializeField] private string m_SpeedParameter = "MotionSpeed";
     [SerializeField] private string m_interactionTriggerParameter = "InteractionTrigger";
     [SerializeField] private string m_isInteractingParameter = "IsInteracting";
-    private bool m_isInputActive = true;
+    [SerializeField] private bool m_isInputActive = true;
     private Vector3 m_newtilePosition = Vector3.zero;
     
     private Camera m_camera;

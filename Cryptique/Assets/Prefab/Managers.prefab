@@ -249,8 +249,8 @@ GameObject:
   - component: {fileID: 7113117778833141865}
   - component: {fileID: 1173688528208502793}
   - component: {fileID: 7556065170156024338}
-  - component: {fileID: 6552584125382958453}
   - component: {fileID: 5835831541616445497}
+  - component: {fileID: 9143798404617935225}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -416,25 +416,6 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
---- !u!114 &6552584125382958453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5566644138177984620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b69c406e10345f41bed8009b5693f51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  iLeftCharacterPortrait: {fileID: 0}
-  iRightCharacterPortrait: {fileID: 0}
-  tNameText: {fileID: 0}
-  tDialogueDisplay: {fileID: 0}
-  dialoguePanel: {fileID: 0}
-  bisDialogueActive: 0
-  fTextSpeed: 0.05
 --- !u!114 &5835831541616445497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -465,3 +446,22 @@ MonoBehaviour:
   minimapRawImage: {fileID: 0}
   minimapTexture: {fileID: 0}
   objectInTiles: []
+--- !u!114 &9143798404617935225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5566644138177984620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b69c406e10345f41bed8009b5693f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iLeftCharacterPortrait: {fileID: 0}
+  iRightCharacterPortrait: {fileID: 0}
+  tNameText: {fileID: 0}
+  tDialogueDisplay: {fileID: 0}
+  dialoguePanel: {fileID: 0}
+  bisDialogueActive: 0
+  fTextSpeed: 0.05

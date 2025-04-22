@@ -10,6 +10,8 @@ public class PZL_GutterLabyrinth : Puzzle
     private void Start()
     {
         SGL_InteractManager.Instance.ChangeCamera(cam);
+        PC_PlayerController.Instance.DisableInput();
+        SGL_InteractManager.Instance.EnableInteraction();
     }
 
     public void Solve()
@@ -32,6 +34,7 @@ public class PZL_GutterLabyrinth : Puzzle
     {
         yield return new WaitForSeconds(1.5f);
 
+        PC_PlayerController.Instance.EnableInput();
         Complete();
     }
 }
