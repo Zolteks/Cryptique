@@ -17,7 +17,7 @@ public class LanguageManager : Singleton<LanguageManager>
     private void Awake()
     {
         saveSystemManager = SaveSystemManager.Instance;
-        currentLanguage = saveSystemManager.GetGameData().langue;
+        currentLanguage = saveSystemManager.GetGameData().settings.langue;
     }
 
     void Start()
@@ -78,7 +78,7 @@ public class LanguageManager : Singleton<LanguageManager>
     }
     public void RefreshAll()
     {
-        currentLanguage = saveSystemManager.GetGameData().langue;
+        currentLanguage = saveSystemManager.GetGameData().settings.langue;
         foreach (var l in listeners)
         {   
             l.UpdateText(currentLanguage);

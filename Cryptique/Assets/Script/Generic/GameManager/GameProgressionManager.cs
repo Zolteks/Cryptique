@@ -65,6 +65,16 @@ public class GameProgressionManager : Singleton<GameProgressionManager>
         return availablePuzzles;
     }
 
+    public RegionData GetRegionByName(string name)
+    {
+        foreach (RegionData reg in GetRegions())
+        {
+            if (reg.GetName() == name)
+                return reg;
+        }
+        return null;
+    }
+
     public bool IsRegionUnlocked(string regionName)
     {
         return GetAllRegions().FirstOrDefault(r => r.GetName() == regionName)?.isUnlocked ?? false;

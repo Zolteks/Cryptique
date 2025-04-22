@@ -77,6 +77,9 @@ public class UI_Hint : MonoBehaviour, ILocalizedElement
 
         foreach (PuzzleData puzzle in puzzles)
         {
+            if (puzzle.GetHints() == null || puzzle.GetHints().Count == 0)
+                continue;
+
             GameObject hintPuzzleGO = Instantiate(hintPuzzlePrefab, transform);
             //Afficher le nom du puzzle
             TextMeshProUGUI puzzleNameText = hintPuzzleGO.GetComponentInChildren<TextMeshProUGUI>();

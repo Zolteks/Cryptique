@@ -18,7 +18,7 @@ public class Bootstrap : MonoBehaviour
 
         Debug.Log("Bootstrap : Game loaded");
 
-        if (SaveSystemManager.Instance.GetGameData().IsTutorialDone)
+        if (SaveSystemManager.Instance.GetGameData().progression.IsTutorialDone)
         {
             SceneManager.LoadScene("MainMenuGrimoire", LoadSceneMode.Single);
         }

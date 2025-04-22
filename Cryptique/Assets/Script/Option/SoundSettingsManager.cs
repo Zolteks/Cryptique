@@ -34,26 +34,26 @@ public class SoundSettingsManager : MonoBehaviour
     private void SetMusicVolume(float vol)
     {
         Debug.Log($"Musique volume: {vol}");
-        saveSystemManager.GetGameData().volumeMusic = vol;
+        saveSystemManager.GetGameData().settings.volumeMusic = vol;
         musicSource.volume = vol;
     }
 
     private void SetSFXVolume(float vol)
     {
         Debug.Log($"SFX volume: {vol}");
-        saveSystemManager.GetGameData().volumeSfx = vol;
+        saveSystemManager.GetGameData().settings.volumeSfx = vol;
        /// sfxSource.volume = vol;
     }
 
     private void LoadUI()
     {
         var data = saveSystemManager.GetGameData();
-        musicSlider.value = data.volumeMusic;
-        sfxSlider.value = data.volumeSfx;
+        musicSlider.value = data.settings.volumeMusic;
+        sfxSlider.value = data.settings.volumeSfx;
 
         // Envoie les valeurs pour synchroniser
-        OptionChangeNotifier.Notify("volume_music", data.volumeMusic);
-        OptionChangeNotifier.Notify("volume_sfx", data.volumeSfx);
+        OptionChangeNotifier.Notify("volume_music", data.settings.volumeMusic);
+        OptionChangeNotifier.Notify("volume_sfx", data.settings.volumeSfx);
 
     }
 }

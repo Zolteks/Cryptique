@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    GameProgressionManager gameProgressionManager;
+    SaveSystemManager saveSystemManager;
+    GameProgressionManager gameProgression;
 
     void Awake()
     {
-        gameProgressionManager = GameProgressionManager.Instance;
+        saveSystemManager = SaveSystemManager.Instance;
+        gameProgression = GameProgressionManager.Instance;
     }
 
     void Start()
@@ -17,7 +19,7 @@ public class MusicManager : MonoBehaviour
 
     public void PlayBackgroundMusic()
     {
-        AudioClip backgroundMusic = gameProgressionManager.GetCurrentRegion().GetBackgroundMusic();
+        AudioClip backgroundMusic = gameProgression.GetRegionByName(saveSystemManager.GetGameData().progression.currentRegion).GetBackgroundMusic();
         if (backgroundMusic != null)
         {
             AudioSource audioSource = GetComponent<AudioSource>();
