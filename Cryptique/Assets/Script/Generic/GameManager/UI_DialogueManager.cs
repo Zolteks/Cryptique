@@ -93,7 +93,6 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
     public void ShowDialogueUI()
     {
         PC_PlayerController.Instance.DisableInput();
-        //SGL_InteractManager.Instance.EnableInteraction();
         dialoguePanel.SetActive(true);
         //dialogueAnimator.SetTrigger("Show");
     }
@@ -109,7 +108,6 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
         yield return new WaitForSeconds(time); // Animation Length
         dialoguePanel.SetActive(false);
         bisDialogueActive = false;
-        PC_PlayerController.Instance.EnableInput();
     }
 
     public void StartDialogue(Dialogue c_Dialogue)
@@ -154,6 +152,7 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
         if (qLines.Count == 0)
         {
             EndDialogue();
+            PC_PlayerController.Instance.EnableInput();
             return;
         }
         else
@@ -269,5 +268,6 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
         bisDialogueActive = false;
         //aDialogueAnimation.Play("hide");
         HideDialogueUI(0.5f);
+        
     }
 }
