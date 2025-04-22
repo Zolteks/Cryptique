@@ -16,6 +16,7 @@ public class Puzzle : MonoBehaviour
 
     public void Quit()
     {
+        PC_PlayerController.Instance.EnableInput();
         Destroy(gameObject);
     }
 
