@@ -34,11 +34,11 @@ public class SingletonPersistent<T> : MonoBehaviour
 	
     public virtual void Awake ()
     {
-        if (Instance == null) {
+        //if (Instance == null) {
             Instance = this as T;
             DontDestroyOnLoad (this);
-        } else {
-            Destroy (gameObject);
-        }
+        //} else {
+        //    Destroy (gameObject);
+        //}
     }
 }
