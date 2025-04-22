@@ -15,7 +15,7 @@ public class Utils : MonoBehaviour
     public static GameObject GetArrowUnderTouch(Camera camera, Vector3 mousePosition)
     {
         var ray = camera.ScreenPointToRay(mousePosition);
-        return (from hit in Physics.RaycastAll(ray) where hit.collider.GetComponent<IN_EscapeArrow>() select hit.collider.gameObject).FirstOrDefault();
+        return (from hit in Physics.RaycastAll(ray) where hit.collider.GetComponent<IN_EscapeArrow>() || hit.collider.GetComponent<IN_DecoyArrow>() select hit.collider.gameObject).FirstOrDefault();
     }
     
     public static GameObject GetObjectUnderTouch(Camera camera, Vector3 mousePosition)

@@ -5,18 +5,38 @@ using UnityEngine.SceneManagement;
 
 public class IN_DecoyArrow : OBJ_Interactable
 {
+    [Header("Arrow Settings")]
     [SerializeField] Transform fallbackTile;
+    [SerializeField] GameObject teleportPoint;
     float m_fFadeInDuration = 1.5f;
     float m_fFadeOutDuration = .8f;
+    private PC_PlayerController m_playerController;
+    
+    private void Awake()
+    {
+        m_playerController = PC_PlayerController.Instance;
+        if (m_playerController == null)
+            Debug.LogError("PlayerController not found");
+    }
 
     public override bool Interact()
     {
-        if (false == CanInteract())
-            return false;
-
-        StartCoroutine(CoroutineBackToFallback());
-
+        if (Vector3.Distance(m_playerController.transform.position, transform.position) > 100)
+        {
+            InteractionCallback();
+            return true;
+        }
+        m_playerController.OnMoveCallback += InteractionCallback;
+        if (teleportPoint)
+            m_playerController.MoveToTile(teleportPoint.transform.position);
+        else
+            m_playerController.MoveTo();
         return true;
+    }
+    
+    private void InteractionCallback()
+    {
+        StartCoroutine(CoroutineBackToFallback());
     }
 
     IEnumerator CoroutineBackToFallback()
@@ -43,13 +63,6 @@ public class IN_DecoyArrow : OBJ_Interactable
         }
         
         Destroy(mask);
-    }
-
-    // Is that definitive? Unsure
-    private void OnMouseDown()
-    {
-        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
-
-        Interact();
+        m_playerController.OnMoveCallback -= InteractionCallback;
     }
 }
