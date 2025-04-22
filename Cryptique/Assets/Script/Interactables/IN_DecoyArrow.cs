@@ -19,24 +19,22 @@ public class IN_DecoyArrow : OBJ_Interactable
             Debug.LogError("PlayerController not found");
     }
 
-    public override bool Interact()
+    public override void TriggerInteract()
     {
-        if (Vector3.Distance(m_playerController.transform.position, transform.position) > 100)
-        {
-            InteractionCallback();
-            return true;
-        }
-        m_playerController.OnMoveCallback += InteractionCallback;
+
+        base.TriggerInteract();
+
         if (teleportPoint)
-            m_playerController.MoveToTile(teleportPoint.transform.position);
+            m_playerController.MoveToTile(teleportPoint.transform.position, false);
         else
             m_playerController.MoveTo();
-        return true;
     }
-    
-    private void InteractionCallback()
+
+    public override bool Interact()
     {
         StartCoroutine(CoroutineBackToFallback());
+
+        return true;
     }
 
     IEnumerator CoroutineBackToFallback()
@@ -51,6 +49,11 @@ public class IN_DecoyArrow : OBJ_Interactable
             opacityHandler.SetOpacity(timer / m_fFadeInDuration);
             yield return null;
         }
+
+        if (teleportPoint)
+            m_playerController.TeleportToTile(teleportPoint.transform.position);
+        else
+            m_playerController.MoveTo();
 
         GameManager.GetInstance().GetCamera().position = fallbackTile.position;
         timer = 0;

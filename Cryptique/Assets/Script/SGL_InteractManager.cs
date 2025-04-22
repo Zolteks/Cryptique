@@ -61,7 +61,7 @@ public class SGL_InteractManager : Singleton<SGL_InteractManager>
         var hitObject = Utils.GetObjectUnderTouch(m_camera, pos);
         if (hitObject == null && arrowObject != null)
         {
-            arrowObject.GetComponent<OBJ_Interactable>().Interact();
+            arrowObject.GetComponent<OBJ_Interactable>().TriggerInteract();
             return;
         }
         if (hitObject == null)
@@ -71,8 +71,8 @@ public class SGL_InteractManager : Singleton<SGL_InteractManager>
             return;
         var interactable = hitObject.GetComponentInParent<OBJ_Interactable>();
         if (interactable != null && interactable.CanInteract())
-            interactable.Interact();
+            interactable.TriggerInteract();
         else if (arrowObject)
-            arrowObject.GetComponent<OBJ_Interactable>().Interact();
+            arrowObject.GetComponent<OBJ_Interactable>().TriggerInteract();
     }
 }

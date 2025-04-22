@@ -147,7 +147,7 @@ public class PC_PlayerController : Singleton<PC_PlayerController>
         m_coroutineWaitFor = StartCoroutine(CoroutineWaitFor());
     }
     
-    public void MoveToTile(Vector3 newTilePosition)
+    public void MoveToTile(Vector3 newTilePosition, bool tpOnOver = true)
     {
         // Désactiver les inputs
         if (m_isInputActive)
@@ -155,10 +155,12 @@ public class PC_PlayerController : Singleton<PC_PlayerController>
         else return;
         m_newtilePosition = newTilePosition;
         m_coroutineWaitFor = StartCoroutine(CoroutineWaitFor());
-        OnMoveCallback += TeleportToTile;
+
+        if(tpOnOver)
+            OnMoveCallback += TeleportToTileAsCallback;
     }
     
-    private void TeleportToTile()
+    private void TeleportToTileAsCallback()
     {
         m_agent.ResetPath();
         NavMesh.SamplePosition(m_newtilePosition, out NavMeshHit hit, m_interactionDistance, NavMesh.AllAreas);
@@ -167,9 +169,20 @@ public class PC_PlayerController : Singleton<PC_PlayerController>
         if (!m_agent.isOnNavMesh)
             Debug.LogWarning("NavMesh not found");
         CheckFlipSprite(hit.position);
-        OnMoveCallback -= TeleportToTile;
+        OnMoveCallback -= TeleportToTileAsCallback;
     }
-    
+
+    public void TeleportToTile(Vector3 newTilePosition)
+    {
+        m_agent.ResetPath();
+        NavMesh.SamplePosition(newTilePosition, out NavMeshHit hit, m_interactionDistance, NavMesh.AllAreas);
+        Debug.Log("Agent teleport to : " + hit.position);
+        m_agent.Warp(hit.position);
+        if (!m_agent.isOnNavMesh)
+            Debug.LogWarning("NavMesh not found");
+        CheckFlipSprite(hit.position);
+    }
+
     public void MoveForInteraction()
     {
         // Désactiver les inputs

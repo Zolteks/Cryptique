@@ -6,8 +6,8 @@ using UnityEngine;
 public abstract class OBJ_Interactable : MonoBehaviour
 {
     /* Variables */
-    [SerializeField]
-    private bool m_canInteract = true;
+    [SerializeField] private bool m_canInteract = true;
+    [SerializeField] protected bool m_walkToItem = false;
 
     /* Functions */
 
@@ -27,4 +27,20 @@ public abstract class OBJ_Interactable : MonoBehaviour
     /// </summary>  
     /// <returns>True si l'interaction a reussi, sinon false.</returns>  
     public abstract bool Interact();
+
+    public virtual void TriggerInteract()
+    {
+        if (m_walkToItem && Vector3.Distance(PC_PlayerController.Instance.transform.position, transform.position) < 100)
+        {
+            PC_PlayerController.Instance.OnMoveCallback += InteractionCallback;
+        }
+        else
+            Interact();
+    }
+
+    protected void InteractionCallback()
+    {
+        Interact();
+        PC_PlayerController.Instance.OnMoveCallback -= InteractionCallback;
+    }
 }

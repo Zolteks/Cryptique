@@ -41,27 +41,23 @@ public class IN_EscapeArrow : OBJ_Interactable
             }
         }
     }
-    
-    public override bool Interact()
-    {
-        if (Vector3.Distance(m_playerController.transform.position, transform.position) > 100)
-        {
-            InteractionCallback();
-            return true;
-        }
-        m_playerController.OnMoveCallback += InteractionCallback;
-        if (m_teleportPoint)
-            m_playerController.MoveToTile(m_teleportPoint.transform.position);
-        else
-            m_playerController.MoveTo();
-        return true;
-    }
-    
-    private void InteractionCallback()
+
+    public override void TriggerInteract()
     {
         if (m_isBusy)
             return;
 
+        base.TriggerInteract();
+
+        if (m_teleportPoint)
+            m_playerController.MoveToTile(m_teleportPoint.transform.position);
+        else
+            m_playerController.MoveTo();
+    }
+
+
+    public override bool Interact()
+    {
         if (string.IsNullOrEmpty(m_goToRegion))
         {
             Vector3 flattenDir = transform.forward;
@@ -75,7 +71,8 @@ public class IN_EscapeArrow : OBJ_Interactable
         {
             SceneManager.LoadScene(m_goToRegion);
         }
-        m_playerController.OnMoveCallback -= InteractionCallback;
+
+        return true;
     }
     
     public void SetArrowActive(bool active)
