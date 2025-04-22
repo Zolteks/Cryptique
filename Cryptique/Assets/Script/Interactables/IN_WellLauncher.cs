@@ -12,9 +12,4 @@ public class IN_WellLauncher : OBJ_InteractOnDrop
         Destroy(gameObject);
         return true;
     }
-
-    private void OnMouseDown()
-    {
-        Interact();
-    }
 }
