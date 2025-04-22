@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: DiceRoll
   m_EditorClassIdentifier: 
   defaultPuzzleID: DiceRoll
-  defaultDescription: DiceRoll
+  defaultDescription: Figure out a way to beat the Dice Player.
   puzzleID:
     entries:
     - languageCode: 0
       value: Dice roll
-    - languageCode: 0
+    - languageCode: 1
       value: "Jeu de d\xE9"
   description:
     entries:
     - languageCode: 0
-      value: Dice roll
-    - languageCode: 0
-      value: "Trouver un moyen de gagner contre le joueur de d\xE9"
+      value: Figure out a way to beat the Dice Player.
+    - languageCode: 1
+      value: "Trouver un moyen de gagner contre le joueur de d\xE9."
   prerequisites: []
   hints:
   - {fileID: 11400000, guid: 75e263095de8dfe4bb9e631aa9eadc15, type: 2}
+  - {fileID: 11400000, guid: b4c424179769cb3499d8ec41d52b98df, type: 2}

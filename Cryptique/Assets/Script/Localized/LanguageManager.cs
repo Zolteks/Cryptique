@@ -29,7 +29,6 @@ public class LanguageManager : Singleton<LanguageManager>
         if (!listeners.Contains(l))
         {
             listeners.Add(l);
-            Debug.Log("Lacal register");
         }
     }
 
@@ -44,7 +43,6 @@ public class LanguageManager : Singleton<LanguageManager>
         if (!spriteListeners.Contains(l))
         {
             spriteListeners.Add(l);
-            Debug.Log("Lacal register");
         }
     }
 
@@ -59,7 +57,6 @@ public class LanguageManager : Singleton<LanguageManager>
         if (!callbackListeners.Contains(callback))
         {
             callbackListeners.Add(callback);
-            Debug.Log("Call register");
         }
     }
 

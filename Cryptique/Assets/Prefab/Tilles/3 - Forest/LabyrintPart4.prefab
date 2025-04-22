@@ -71,6 +71,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7342699684471078865}
+  - {fileID: 7603284174446865048}
   - {fileID: 2655004013387629574}
   - {fileID: 8914471265213989627}
   - {fileID: 1160702858816447774}
@@ -88,6 +90,7 @@ GameObject:
   m_Component:
   - component: {fileID: 943670147996371390}
   - component: {fileID: 7101980715519001158}
+  - component: {fileID: 6076988522239751485}
   m_Layer: 0
   m_Name: mur_03
   m_TagString: Untagged
@@ -129,6 +132,23 @@ MonoBehaviour:
   right: 0
   bot: 1
   left: 0
+--- !u!114 &6076988522239751485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992310466123494877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_Size: {x: 2.6, y: 3, z: 3}
+  m_Center: {x: -6.75, y: 1, z: -6.6000004}
+  m_Area: 1
+  m_AffectedAgents: a98c17ec
 --- !u!1 &1262320431097637455
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7988788408100839330}
   - component: {fileID: 2346791926109563471}
+  - component: {fileID: 5330765596653339964}
   m_Layer: 0
   m_Name: mur_04
   m_TagString: Untagged
@@ -180,6 +201,23 @@ MonoBehaviour:
   right: 0
   bot: 0
   left: 1
+--- !u!114 &5330765596653339964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262320431097637455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_Size: {x: 3.2, y: 3, z: 3.1}
+  m_Center: {x: -1.4, y: 1, z: -6.6}
+  m_Area: 1
+  m_AffectedAgents: a98c17ec
 --- !u!1 &1638864718642917547
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,7 +389,6 @@ GameObject:
   - component: {fileID: 2299759111046962794}
   - component: {fileID: 3412689693446897691}
   - component: {fileID: 6473657558687412448}
-  - component: {fileID: 2225591684393126989}
   m_Layer: 0
   m_Name: sapin50
   m_TagString: Untagged
@@ -426,22 +463,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &2225591684393126989
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2184477325688989547}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 1.3460001, y: 3.045, z: 1.3460001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.14500001, y: 3.045, z: 0.47800002}
-  m_TimeToStationary: 0.5
 --- !u!1 &2318150666258230169
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +474,6 @@ GameObject:
   - component: {fileID: 43115373375392714}
   - component: {fileID: 9169994758327957578}
   - component: {fileID: 3159693168882145512}
-  - component: {fileID: 2937581138646189669}
   m_Layer: 0
   m_Name: sapin39
   m_TagString: Untagged
@@ -528,22 +548,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &2937581138646189669
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2318150666258230169}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 1.393, y: 3.301, z: 1.2620001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.91300005, y: 3.301, z: 0.537}
-  m_TimeToStationary: 0.5
 --- !u!1 &2599228280519979858
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,6 +558,7 @@ GameObject:
   m_Component:
   - component: {fileID: 117192815324820264}
   - component: {fileID: 5033406884274095187}
+  - component: {fileID: 7527127120829396468}
   m_Layer: 0
   m_Name: mur_01
   m_TagString: Untagged
@@ -595,6 +600,23 @@ MonoBehaviour:
   right: 1
   bot: 0
   left: 0
+--- !u!114 &7527127120829396468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2599228280519979858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_Size: {x: 3.2, y: 3, z: 3.1}
+  m_Center: {x: -1.4, y: 1, z: -1.4}
+  m_Area: 1
+  m_AffectedAgents: a98c17ec
 --- !u!1 &2653987902539449325
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,7 +713,6 @@ GameObject:
   - component: {fileID: 5002553031328841274}
   - component: {fileID: 7593187143127433499}
   - component: {fileID: 1634627496238705091}
-  - component: {fileID: 3614371824803179464}
   m_Layer: 0
   m_Name: sapin41
   m_TagString: Untagged
@@ -766,22 +787,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &3614371824803179464
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2989408615356703236}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 1.4200001, y: 3.3730001, z: 1.3800001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.89000005, y: 3.361, z: 0.020000001}
-  m_TimeToStationary: 0.5
 --- !u!1 &3005421912627361502
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,7 +915,6 @@ GameObject:
   - component: {fileID: 7399154787090926096}
   - component: {fileID: 6489132871336041936}
   - component: {fileID: 2610060821177337895}
-  - component: {fileID: 4469529154652648362}
   m_Layer: 0
   m_Name: sapin48
   m_TagString: Untagged
@@ -985,22 +989,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &4469529154652648362
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3264096094295376860}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 1.626, y: 3.3730001, z: 1.3800001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.57600003, y: 3.361, z: -0.64500004}
-  m_TimeToStationary: 0.5
 --- !u!1 &3464009196563983309
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,7 +1000,6 @@ GameObject:
   - component: {fileID: 4759941749706556291}
   - component: {fileID: 3041561159565450666}
   - component: {fileID: 8503879522667491977}
-  - component: {fileID: 1512759700938687250}
   m_Layer: 0
   m_Name: sapin43
   m_TagString: Untagged
@@ -1087,22 +1074,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &1512759700938687250
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3464009196563983309}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 1.261, y: 3.301, z: 1.394}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.541, y: 3.301, z: 0.9110001}
-  m_TimeToStationary: 0.5
 --- !u!1 &4027758533837542812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,7 +1085,6 @@ GameObject:
   - component: {fileID: 586682494152803618}
   - component: {fileID: 7772415079042864324}
   - component: {fileID: 1308884862598472699}
-  - component: {fileID: 1144059986655936385}
   m_Layer: 0
   m_Name: sapin47
   m_TagString: Untagged
@@ -1189,22 +1159,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &1144059986655936385
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4027758533837542812}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 1.4230001, y: 3.1200001, z: 1.2700001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.49, y: 3.1200001, z: -0.08400001}
-  m_TimeToStationary: 0.5
 --- !u!1 &4031711723338741859
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,7 +1170,6 @@ GameObject:
   - component: {fileID: 7312798470183258318}
   - component: {fileID: 939423970261105164}
   - component: {fileID: 5460955968664687778}
-  - component: {fileID: 4624194177485549289}
   m_Layer: 0
   m_Name: sapin40
   m_TagString: Untagged
@@ -1291,22 +1244,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &4624194177485549289
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4031711723338741859}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 1.1190001, y: 2.459, z: 0.96300006}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.42600003, y: 2.459, z: -0.001}
-  m_TimeToStationary: 0.5
 --- !u!1 &5808868865061587185
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,7 +1255,6 @@ GameObject:
   - component: {fileID: 6182488152808636801}
   - component: {fileID: 608026794098316730}
   - component: {fileID: 6531345832961587360}
-  - component: {fileID: 3723586631404687992}
   m_Layer: 0
   m_Name: sapin49
   m_TagString: Untagged
@@ -1393,22 +1329,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &3723586631404687992
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5808868865061587185}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.9710001, y: 2.4380002, z: 0.93200004}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.703, y: 2.4380002, z: -0.20400001}
-  m_TimeToStationary: 0.5
 --- !u!1 &5811263226277305465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,7 +1425,6 @@ GameObject:
   - component: {fileID: 4003172346205103868}
   - component: {fileID: 5417052525379458037}
   - component: {fileID: 476029580734908110}
-  - component: {fileID: 38092088122856052}
   m_Layer: 0
   m_Name: sapin46
   m_TagString: Untagged
@@ -1580,22 +1499,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &38092088122856052
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5923232681204700671}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 1.21, y: 3.301, z: 1.439}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.837, y: 3.301, z: 0.54300004}
-  m_TimeToStationary: 0.5
 --- !u!1 &6043453414990088780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,7 +1595,6 @@ GameObject:
   - component: {fileID: 5344807771782276780}
   - component: {fileID: 4355116073675906402}
   - component: {fileID: 5550990481324481928}
-  - component: {fileID: 5697209527193227369}
   m_Layer: 0
   m_Name: sapin44
   m_TagString: Untagged
@@ -1767,22 +1669,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &5697209527193227369
-NavMeshObstacle:
+--- !u!1 &6468505215485574576
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6089668974854887724}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 1.5180001, y: 3.3730001, z: 1.4430001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.725, y: 3.361, z: -0.485}
-  m_TimeToStationary: 0.5
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7603284174446865048}
+  m_Layer: 0
+  m_Name: LabyrintPart5ToLabyrintPart4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7603284174446865048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6468505215485574576}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 3.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 877606318738546396}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6695248092097132672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1879,7 +1796,6 @@ GameObject:
   - component: {fileID: 3715845936326443569}
   - component: {fileID: 7514609994968565578}
   - component: {fileID: 4984217022860221975}
-  - component: {fileID: 8943564471138387468}
   m_Layer: 0
   m_Name: sapin42
   m_TagString: Untagged
@@ -1954,22 +1870,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &8943564471138387468
-NavMeshObstacle:
+--- !u!1 &7378385649824595571
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7189748356888109689}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 1.0890001, y: 2.459, z: 1.005}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.259, y: 2.459, z: -0.18300001}
-  m_TimeToStationary: 0.5
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7342699684471078865}
+  m_Layer: 0
+  m_Name: LabyrintPart3ToLabyrintPart4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7342699684471078865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7378385649824595571}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -3.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 877606318738546396}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7879602352772062584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1980,6 +1911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6715556996154519768}
   - component: {fileID: 157728894237779239}
+  - component: {fileID: 4511535399868491309}
   m_Layer: 0
   m_Name: mur_02
   m_TagString: Untagged
@@ -2021,6 +1953,23 @@ MonoBehaviour:
   right: 0
   bot: 0
   left: 0
+--- !u!114 &4511535399868491309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7879602352772062584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_Size: {x: 3.1, y: 3, z: 3}
+  m_Center: {x: -6.5, y: 1, z: -1.4}
+  m_Area: 1
+  m_AffectedAgents: a98c17ec
 --- !u!1 &8004414628957405748
 GameObject:
   m_ObjectHideFlags: 0
@@ -2032,7 +1981,6 @@ GameObject:
   - component: {fileID: 5025923183195265856}
   - component: {fileID: 6324546841617518581}
   - component: {fileID: 7290402972919787208}
-  - component: {fileID: 3934888377059547736}
   m_Layer: 0
   m_Name: sapin45
   m_TagString: Untagged
@@ -2107,22 +2055,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &3934888377059547736
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8004414628957405748}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 1.095, y: 2.433, z: 1.041}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.523, y: 2.424, z: -0.35000002}
-  m_TimeToStationary: 0.5
 --- !u!1 &8174035517135028239
 GameObject:
   m_ObjectHideFlags: 0

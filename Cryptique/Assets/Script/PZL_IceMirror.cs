@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PZL_IceMirror : MonoBehaviour
+public class PZL_IceMirror : Puzzle
 {
     [Header("Laser Settings")]
     public GameObject lightBeamPrefab;
@@ -12,16 +12,26 @@ public class PZL_IceMirror : MonoBehaviour
     public string sMirrorTag = "Mirror";
     public string sLightBeamTag = "LightBeam";
 
+    private IN_MirrorLauncher m_launcher;
     private GameObject currentBeam;
     private bool bIsBeaming;
 
     [Header("GameObject Interactions")]
     public string sDoorTag = "LockedDoor";
-    public PZL_UndergroundLakeDoor NextLockedDoor;
 
     private void Start()
     {
         bIsBeaming = false;
+
+        GameObject m_launcher = GameObject.Find("DroppableTriggerMirror");
+        if(m_launcher != null)
+        {
+            this.m_launcher = m_launcher.GetComponent<IN_MirrorLauncher>();
+        }
+        else
+        {
+            Debug.LogError("DroppableTriggerMirror not found in the scene.");
+        }
     }
 
     void Update()
@@ -38,6 +48,14 @@ public class PZL_IceMirror : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(sLightBeamTag) && !bIsBeaming)
+        {
+            bIsBeaming = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag(sLightBeamTag) && !bIsBeaming)
         {
@@ -73,7 +91,7 @@ public class PZL_IceMirror : MonoBehaviour
             }
             else if (hit.collider.gameObject.tag == "LockedDoor")
             {
-                NextLockedDoor.PuzzleEnded();
+                Complete();
                 return;
             }
         }

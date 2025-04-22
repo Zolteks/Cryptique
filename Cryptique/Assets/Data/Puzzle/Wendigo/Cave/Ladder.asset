@@ -15,8 +15,13 @@ MonoBehaviour:
   defaultPuzzleID: Ladder
   defaultDescription: 
   puzzleID:
-    entries: []
+    entries:
+    - languageCode: 0
+      value: Ladder
+    - languageCode: 1
+      value: Echelles
   description:
     entries: []
-  prerequisites: []
+  prerequisites:
+  - {fileID: 11400000, guid: e9478f4823266f241b2dcc229b2dc5c8, type: 2}
   hints: []

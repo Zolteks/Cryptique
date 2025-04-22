@@ -13,9 +13,23 @@ MonoBehaviour:
   m_Name: Radio
   m_EditorClassIdentifier: 
   defaultPuzzleID: Radio
-  defaultDescription: 
+  defaultDescription: "The creature is somewhere in the forest... We have to reach
+    the cave, but between the thick woods and the storm, it won\u2019t be easy"
   puzzleID:
-    entries: []
+    entries:
+    - languageCode: 0
+      value: Radio
+    - languageCode: 1
+      value: Radio
   description:
-    entries: []
+    entries:
+    - languageCode: 0
+      value: "The creature is somewhere in the forest... We have to reach the cave,
+        but between the thick woods and the storm, it won\u2019t be easy"
+    - languageCode: 1
+      value: "La cr\xE9ature est quelque part dans la for\xEAt\u2026 Il faut absolument
+        atteindre la grotte, mais entre les arbres denses et la temp\xEAte, ce ne
+        sera pas simple."
   prerequisites: []
+  hints:
+  - {fileID: 11400000, guid: f2d1502b50161544e96c8c96c6cc7434, type: 2}

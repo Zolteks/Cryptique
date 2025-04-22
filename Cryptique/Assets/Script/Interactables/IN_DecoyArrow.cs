@@ -5,15 +5,33 @@ using UnityEngine.SceneManagement;
 
 public class IN_DecoyArrow : OBJ_Interactable
 {
+    [Header("Arrow Settings")]
     [SerializeField] Transform fallbackTile;
+    [SerializeField] GameObject teleportPoint;
     float m_fFadeInDuration = 1.5f;
     float m_fFadeOutDuration = .8f;
+    private PC_PlayerController m_playerController;
+    
+    private void Awake()
+    {
+        m_playerController = PC_PlayerController.Instance;
+        if (m_playerController == null)
+            Debug.LogError("PlayerController not found");
+    }
+
+    public override void TriggerInteract()
+    {
+
+        base.TriggerInteract();
+
+        if (teleportPoint)
+            m_playerController.MoveToTile(teleportPoint.transform.position, false);
+        else
+            m_playerController.MoveTo();
+    }
 
     public override bool Interact()
     {
-        if (false == CanInteract())
-            return false;
-
         StartCoroutine(CoroutineBackToFallback());
 
         return true;
@@ -32,6 +50,11 @@ public class IN_DecoyArrow : OBJ_Interactable
             yield return null;
         }
 
+        if (teleportPoint)
+            m_playerController.TeleportToTile(teleportPoint.transform.position);
+        else
+            m_playerController.MoveTo();
+
         GameManager.GetInstance().GetCamera().position = fallbackTile.position;
         timer = 0;
 
@@ -43,13 +66,6 @@ public class IN_DecoyArrow : OBJ_Interactable
         }
         
         Destroy(mask);
-    }
-
-    // Is that definitive? Unsure
-    private void OnMouseDown()
-    {
-        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
-
-        Interact();
+        m_playerController.OnMoveCallback -= InteractionCallback;
     }
 }
