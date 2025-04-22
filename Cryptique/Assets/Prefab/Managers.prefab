@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 1173688528208502793}
   - component: {fileID: 7556065170156024338}
   - component: {fileID: 6552584125382958453}
+  - component: {fileID: 5835831541616445497}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -284,10 +285,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b69c406e10345f41bed8009b5693f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iRightCharacterPortrait: {fileID: 0}
   iLeftCharacterPortrait: {fileID: 0}
+  iRightCharacterPortrait: {fileID: 0}
   tNameText: {fileID: 0}
   tDialogueDisplay: {fileID: 0}
   dialoguePanel: {fileID: 0}
   bisDialogueActive: 0
   fTextSpeed: 0.05
+--- !u!114 &5835831541616445497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5566644138177984620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32ebe677d502f943a70e32f2825a4aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placedTiles: []
+  miniTilePrefab: {fileID: 0}
+  playerMarkerPrefab: {fileID: 0}
+  linePrefab: {fileID: 0}
+  scaleFactor: 100
+  minimapOrigin: {x: 0, y: 0, z: 0}
+  minimapLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  minimapCamera: {fileID: 0}
+  cameraDistance: 1000
+  cameraOffsetDirection: {x: -1, y: 2, z: -1}
+  useIsometricView: 1
+  player: {fileID: 0}
+  defaultTileColor: {r: 1, g: 1, b: 1, a: 1}
+  minimapRawImage: {fileID: 0}
+  minimapTexture: {fileID: 0}
+  objectInTiles: []
