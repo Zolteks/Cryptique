@@ -115,7 +115,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.16815041, y: 2.5518053, z: 2.6704428}
   m_Center: {x: 0.22416584, y: -0.15507138, z: 0.14949179}
@@ -132,10 +132,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
+  m_walkToItem: 0
   puzzleData: {fileID: 11400000, guid: d8e62a7466baba5449af1fe26e915d09, type: 2}
   onSuccess:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7386684963868990100}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ForestAccess, Assembly-CSharp
+        m_MethodName: UpdateCond
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &986634062653207624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -251,11 +276,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -7091035072604310877, guid: 4e791896bac66294da939481eb0eb25b,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2699680758417286385}
+      addedObject: {fileID: 5224600614952257501}
     - targetCorrespondingSourceObject: {fileID: 1341903999607497448, guid: 4e791896bac66294da939481eb0eb25b,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 429696691597063469}
+      addedObject: {fileID: 8221021566204071589}
     - targetCorrespondingSourceObject: {fileID: -3720872545287206913, guid: 4e791896bac66294da939481eb0eb25b,
         type: 3}
       insertIndex: -1
@@ -327,22 +352,23 @@ MonoBehaviour:
   right: 0
   bot: 1
   left: 0
---- !u!208 &2699680758417286385
-NavMeshObstacle:
+--- !u!114 &5224600614952257501
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163810346283812587}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.63, y: 2.8000002, z: 0.63}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.45900002, y: 2.8000002, z: 0.087000005}
-  m_TimeToStationary: 0.5
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_Size: {x: 1.6755369, y: 3, z: 1.691467}
+  m_Center: {x: -0.3792137, y: 1, z: -0.0756011}
+  m_Area: 1
+  m_AffectedAgents: a98c17ec
 --- !u!4 &1288805768004794832 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7182123789233631848, guid: 4e791896bac66294da939481eb0eb25b,
@@ -424,22 +450,23 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 986634062653207624}
   m_PrefabAsset: {fileID: 0}
---- !u!208 &429696691597063469
-NavMeshObstacle:
+--- !u!114 &8221021566204071589
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2246835381934315168}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.72, y: 2.344, z: 0.72}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.41500002, y: 2.3360002, z: -0.437}
-  m_TimeToStationary: 0.5
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_Size: {x: 1.3055114, y: 3, z: 1.7534205}
+  m_Center: {x: -0.43028504, y: 1, z: -0.26535314}
+  m_Area: 1
+  m_AffectedAgents: a98c17ec
 --- !u!1 &2649667533701844423 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6236156283660945009, guid: 4e791896bac66294da939481eb0eb25b,
@@ -572,13 +599,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
+  m_walkToItem: 0
   puzzleData: {fileID: 11400000, guid: 8b62351e314201844ba7c46ad5d4cba0, type: 2}
   onSuccess:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6562035831663339190}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
+      - m_Target: {fileID: 7386684963868990100}
+        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
+        m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
