@@ -287,6 +287,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: TsuchinokoBedroom
       objectReference: {fileID: 0}
+    - target: {fileID: 2400562514875686459, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2400562514875686459, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2400562514875686459, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 525187886}
+    - target: {fileID: 2400562514875686459, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 2400562514875686459, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2551248906354527866, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -365,6 +390,11 @@ PrefabInstance:
     - target: {fileID: 6724208215768890295, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
         type: 3}
       propertyPath: right
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296385010912802249, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7356298748503412509, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
@@ -1286,6 +1316,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7666449597733273601, guid: e48211be837205b46b97e95be717516a,
     type: 3}
   m_PrefabInstance: {fileID: 505244373}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &525187886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7632458844872114874, guid: eddec547f9b61dc41978a4a51883e0cf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1894807816}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &530141460
 GameObject:
@@ -2267,6 +2303,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1216830747347752732, guid: 509219bd42103ff47af6fe797f85177c,
+        type: 3}
+      propertyPath: m_BackGroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216830747347752732, guid: 509219bd42103ff47af6fe797f85177c,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.57254905
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216830747347752732, guid: 509219bd42103ff47af6fe797f85177c,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216830747347752732, guid: 509219bd42103ff47af6fe797f85177c,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.6745098
+      objectReference: {fileID: 0}
     - target: {fileID: 2675006437872245483, guid: 509219bd42103ff47af6fe797f85177c,
         type: 3}
       propertyPath: m_Layer
@@ -2336,6 +2392,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LightProbeUsage
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8261704827314492980, guid: 509219bd42103ff47af6fe797f85177c,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2794320591735875870, guid: 509219bd42103ff47af6fe797f85177c, type: 3}
