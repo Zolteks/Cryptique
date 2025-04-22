@@ -11,6 +11,12 @@ public class PZL_Lock : Puzzle
 
     [SerializeField]  List<SimpleScrollSnap> scrollAreas;
 
+    private PC_PlayerController m_playerController;
+    private void Start()
+    {
+        m_playerController = PC_PlayerController.Instance;
+        m_playerController.DisableInput();
+    }
 
     public void UpdateCode()
     {
@@ -35,6 +41,7 @@ public class PZL_Lock : Puzzle
                 return;
             }
         }
+        m_playerController.EnableInput();
         Complete();
     }
 }

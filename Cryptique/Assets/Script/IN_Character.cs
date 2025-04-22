@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.Tables;
@@ -176,13 +177,14 @@ public class IN_Character : OBJ_Interactable
         //    GoToSpecificPoint(0);
         //}
     }
-    private void OnMouseDown()
-    {
-        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
+    //private void OnMouseDown()
+    //{
+    //    Debug.Log(GameObject.Find("EventSystem"));
+    //    if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
 
-        if (CanInteract())
-        {
-            Interact();
-        }
-    }
+    //    if (CanInteract())
+    //    {
+    //        Interact();
+    //    }
+    //}
 }
