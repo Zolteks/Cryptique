@@ -16,6 +16,14 @@ public class PZL_DiceRoll : Puzzle
     int m_diceOver;
     int m_playerScore;
 
+    private PC_PlayerController m_playerController;
+
+    private void Start()
+    {
+        m_playerController = PC_PlayerController.Instance;
+        m_playerController.DisableInput();
+    }
+
     public void StartRound(bool playerHasRiggedDice)
     {
         if (m_busy) return;
@@ -81,6 +89,7 @@ public class PZL_DiceRoll : Puzzle
         m_busy = false;
         if (m_playerScore > m_lastScore)
         {
+            m_playerController.EnableInput();
             Complete();
         }
     }

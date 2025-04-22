@@ -15,12 +15,14 @@ public class PZL_SortingGame : Puzzle
  
     [SerializeField] public Camera cam;
 
-    private bool bOilRecuperee = false;
+    private bool bOilTake = false;
 
     void Start()
     {
         etatsPlacement = new List<bool>(new bool[iElementNumber]);
         SGL_InteractManager.Instance.ChangeCamera(cam);
+        PC_PlayerController.Instance.DisableInput();
+        SGL_InteractManager.Instance.EnableInteraction();
     }
 
     public void UpdateEtatPlacement(int index, bool estBienPlace)
@@ -45,13 +47,14 @@ public class PZL_SortingGame : Puzzle
 
     private void Update()
     {
-        if (!bIsAllPlaced || bOilRecuperee) return;
+        if (!bIsAllPlaced || bOilTake) return;
 
         // Vérifie si l'objet n'est plus actif OU a été détruit
         if (m_Oil == null || !m_Oil.activeInHierarchy)
         {
-            bOilRecuperee = true;
+            bOilTake = true;
             Debug.Log("Huile récupérée !");
+            PC_PlayerController.Instance.EnableInput();
             Complete();
         }
     }
