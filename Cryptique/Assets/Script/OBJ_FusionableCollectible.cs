@@ -7,7 +7,7 @@ public class OBJ_FusionableCollectible : OBJ_Collectable
 {
     [SerializeField] FusionHolder fusionHolder;
 
-    public new bool Interact()
+    public override bool Interact()
     {
         if (!CanInteract())
             return false;
@@ -17,7 +17,7 @@ public class OBJ_FusionableCollectible : OBJ_Collectable
 
         // Notify the GameProgressionManager that an item as been collected
         GameProgressionManager.Instance.CollectItem(m_item.GetRegion(), m_item.GetName());
-        Debug.Log($"Item {m_item.name} collected ! add to GameProgressionManager ");
+        Debug.Log($"Item {m_item.name} collected ! add to GameProgressionManager eeee ");
 
 
         foreach(var item in fusionHolder.items)

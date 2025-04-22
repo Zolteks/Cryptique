@@ -7,10 +7,19 @@ public class PZL_PotionCrafter : OBJ_InteractOnDrop
 {
     [SerializeField] private List<OBJ_Item> m_AllIngredients;
     [SerializeField] private GameObject m_FailedPotion;
-    [SerializeField] private GameObject m_FireResistance;
+    [SerializeField] private GameObject m_SuccessFullPotion;
+    [SerializeField] private Camera m_Camera;
 
+    private PZL_PotionCrafterComplete m_Complete;
     private OBJ_Item m_ItemsDropped;
     private bool bIsPotionFailed = false;
+    private bool bIsSuccessPotionPickedUp = false;
+    private bool bIsFailedPotionPickedUp = false;
+
+    private void Start()
+    {
+        m_Complete = GetComponent<PZL_PotionCrafterComplete>();
+    }
 
     public override bool Interact()
     {
@@ -47,12 +56,13 @@ public class PZL_PotionCrafter : OBJ_InteractOnDrop
         {
             if (!bIsPotionFailed)
             {
-                m_FireResistance.SetActive(true);
+                m_SuccessFullPotion.SetActive(true);
             }
             else
             {
                 m_FailedPotion.SetActive(true);
             }
+            m_Complete.PotionComplete();
             SetCanInteract(false);
         }
     }
