@@ -10,7 +10,7 @@ public class SoundSettingsManager : MonoBehaviour
     [SerializeField] private Slider sfxSlider;
 
     //[SerializeField] private AudioSource sfxSource;
-    //[SerializeField] private AudioSource musicSource;
+    [SerializeField] private AudioSource musicSource;
 
 
     private void Awake()
@@ -35,7 +35,7 @@ public class SoundSettingsManager : MonoBehaviour
     {
         Debug.Log($"Musique volume: {vol}");
         saveSystemManager.GetGameData().volumeMusic = vol;
-        //musicSource.volume = vol;
+        musicSource.volume = vol;
     }
 
     private void SetSFXVolume(float vol)

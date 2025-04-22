@@ -16,6 +16,9 @@ public class RegionData : ScriptableObject
     [SerializeField]
     private string sceneName;
 
+    [SerializeField]
+    private AudioClip backgroundMusic;
+
     public string GetName()
     {
         return regionName.GetLocalized(LanguageManager.Instance.GetCurrentLanguage(), defaultRegionName);
@@ -42,5 +45,15 @@ public class RegionData : ScriptableObject
     public string GetSceneName()
     {
         return sceneName;
+    }
+
+    public AudioClip GetBackgroundMusic()
+    {
+        return backgroundMusic;
+    }
+
+    public void SetBackgroundMusic(AudioClip audioClip)
+    {
+        backgroundMusic = audioClip;
     }
 }
