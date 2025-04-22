@@ -155,7 +155,6 @@ public class Minimap3DManager : MonoBehaviour
 
             GameObject marker = Instantiate(highlight.miniObject, markerPos, Quaternion.identity);
             marker.transform.SetParent(miniTile.transform);
-            marker.transform.localScale = Vector3.one * 0.4f;
 
             int layer = Mathf.RoundToInt(Mathf.Log(minimapLayer.value, 2));
             marker.layer = layer;
