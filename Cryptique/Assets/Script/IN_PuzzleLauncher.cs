@@ -14,11 +14,33 @@ public class IN_PuzzleLauncher : OBJ_Interactable
 
     //    Interact();
     //}
+    private PC_PlayerController m_playerController;
+
+    private void Awake()
+    {
+        m_playerController = PC_PlayerController.Instance;
+    }
 
     public override bool Interact()
     {
-        Puzzle.StartPuzzle(puzzleData, onSuccess);
+        m_playerController.MoveForInteraction();
 
         return true;
+    }
+
+    private void OnEnable()
+    {
+        m_playerController.OnInteractionCallback += Wait;
+    }
+
+    private void OnDisable()
+    {
+        m_playerController.OnInteractionCallback -= Wait;
+    }
+
+    void Wait()
+    {
+        Debug.Log("puzzle started");
+        Puzzle.StartPuzzle(puzzleData, onSuccess);
     }
 }
