@@ -18,7 +18,10 @@ public class IN_EscapeArrow : OBJ_Interactable
     private static bool m_isBusy = false;
     private Transform m_cameraAnchor;
     [SerializeField] private PC_PlayerController m_playerController;
-    
+
+    private SaveSystemManager m_SaveSystemManager;
+    private GameProgressionManager m_gameProgressionManager;
+
     /* Functions */
     private void Awake()
     {
@@ -70,6 +73,22 @@ public class IN_EscapeArrow : OBJ_Interactable
         else
         {
             SceneManager.LoadScene(m_goToRegion);
+
+            if(m_SaveSystemManager == null)
+                m_SaveSystemManager = SaveSystemManager.Instance;
+            if (m_gameProgressionManager == null)
+                m_gameProgressionManager = GameProgressionManager.Instance;
+
+            foreach(RegionData region in m_gameProgressionManager.GetRegions())
+            {
+                if (region.GetName() == m_goToRegion)
+                {
+                    m_SaveSystemManager.GetGameData().progression.currentRegion = region.GetName();
+                    
+                }
+            }
+
+
         }
 
         return true;

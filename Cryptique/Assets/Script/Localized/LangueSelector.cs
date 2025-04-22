@@ -13,7 +13,7 @@ public class LangueSelector : OptionSelectorComponent<LanguageCode>
 
     protected override void LoadFromSave()
     {
-        var value = saveSystemManager.GetGameData().langue;
+        var value = saveSystemManager.GetGameData().settings.langue;
 
         if (options.Contains(value))
             currentIndex = options.IndexOf(value);
@@ -23,7 +23,7 @@ public class LangueSelector : OptionSelectorComponent<LanguageCode>
 
     protected override void SaveToGameData(LanguageCode value)
     {
-        saveSystemManager.GetGameData().langue = value;
+        saveSystemManager.GetGameData().settings.langue = value;
         languageManager.RefreshAll();
         var targetLocale = LocalizationSettings.AvailableLocales.Locales
             .FirstOrDefault(l => l.Identifier.Code == GetLocaleCode(value));

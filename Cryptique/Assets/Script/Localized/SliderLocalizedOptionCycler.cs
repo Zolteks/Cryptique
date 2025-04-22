@@ -8,7 +8,7 @@ class SliderLocalizedOptionCycler : LocalizedOptionCycler
         OptionChangeNotifier.Notify(optionName, optionKeys[currentIndex]);
         if (Enum.IsDefined(typeof(SlideMode), currentIndex))
         {
-            saveSystemManager.GetGameData().slideMode = (SlideMode)currentIndex;
+            saveSystemManager.GetGameData().settings.slideMode = (SlideMode)currentIndex;
         }
         else
         {
