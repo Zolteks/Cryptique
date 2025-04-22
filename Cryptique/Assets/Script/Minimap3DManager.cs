@@ -78,6 +78,8 @@ public class Minimap3DManager : MonoBehaviour
         if (playerMarker != null)
         {
             Quaternion currentRotation = playerMarker.transform.rotation;
+            float cameraY = Camera.main.transform.eulerAngles.y;
+            currentRotation = Quaternion.Euler(0, -cameraY, 0);
 
             if (currentRotation != lastMarkerRotation)
             {
