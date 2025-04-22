@@ -34,7 +34,30 @@ public class UI_Hint : MonoBehaviour, ILocalizedElement
     }
     public void RefreshLocalized()
     {
-       // pageTitle.text = gameProgressionManager.GetCurrentRegion().GetName();
+        List<PuzzleData> puzzles = gameProgressionManager.GetCurrentsPuzzles();
+        //Refresh the buttons text
+        foreach (Transform child in this.transform)
+        {
+            if (child.GetComponentInChildren<TextMeshProUGUI>())
+            {
+                child.GetComponentInChildren<TextMeshProUGUI>().text = puzzles[child.GetSiblingIndex()].GetPuzzleID();
+
+                //Refresh the hints text
+                Transform hintsContainer = child.Find("HintsContainer");
+                if (hintsContainer != null)
+                {
+                    foreach (Transform hint in hintsContainer)
+                    {
+                        TextMeshProUGUI text = hint.GetComponentInChildren<TextMeshProUGUI>();
+                        if (text != null)
+                        {
+                            int index = hint.GetSiblingIndex();
+                            text.text = puzzles[child.GetSiblingIndex()].GetHints()[index].GetText();
+                        }
+                    }
+                }
+            }
+        }
     }
 
 
@@ -80,14 +103,14 @@ public class UI_Hint : MonoBehaviour, ILocalizedElement
             {
                 GameObject hintGO = Instantiate(hintPrefab, hintsContainer);
 
-                //if(!hint.IsUnlocked())
-                //{
-                //    Image hideImage = GetComponentInChildByName<Image>(hintGO.transform, "HideHint");
-                //    if (hideImage != null)
-                //    {
-                //        hideImage.gameObject.SetActive(true);
-                //    }
-                //}
+                if (!hint.IsUnlocked())
+                {
+                    Image hideImage = GetComponentInChildByName<Image>(hintGO.transform, "HideHint");
+                    if (hideImage != null)
+                    {
+                        hideImage.gameObject.SetActive(true);
+                    }
+                }
 
                 foreach (Transform child in hintGO.transform)
                 {

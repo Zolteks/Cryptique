@@ -51,6 +51,14 @@ public class GameProgressionManager : Singleton<GameProgressionManager>
             if ((!puzzle.IsCompleted() && ArePrerequisitesCompleted(puzzle)) || puzzle.IsUnlocked())
             {
                 availablePuzzles.Add(puzzle);
+                List<HintData> hints = puzzle.GetHints();
+                for (int i = 0; i < hints.Count; i++)
+                {
+                    if (hints[i].IsUnlocked())
+                        continue;
+                    hints[i].SetTimeToShow(hints[i].GetTimeToShow() * i);
+                    hints[i].StartTimeToShow(this);
+                }
             }
         }
 
@@ -101,11 +109,9 @@ public class GameProgressionManager : Singleton<GameProgressionManager>
         List<PuzzleData> prerequisites = puzzle.GetPrerequisites();
         if (prerequisites == null || prerequisites.Count == 0)
             return true;
-
+       
         foreach (var step in puzzle.GetPrerequisites())
         {
-
-
             if(step == null)
                 continue;
 

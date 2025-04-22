@@ -13,9 +13,22 @@ MonoBehaviour:
   m_Name: SortingGame
   m_EditorClassIdentifier: 
   defaultPuzzleID: SortingGame
-  defaultDescription: 
+  defaultDescription: "Something seems off with those logs... Looks like something\u2019s
+    hidden behind them."
   puzzleID:
-    entries: []
+    entries:
+    - languageCode: 0
+      value: Sorting Game
+    - languageCode: 1
+      value: Jeu de trie
   description:
-    entries: []
-  prerequisites: []
+    entries:
+    - languageCode: 0
+      value: "Something seems off with those logs... Looks like something\u2019s
+        hidden behind them."
+    - languageCode: 1
+      value: "Il y a quelque chose de bizarre avec ces b\xFBches\u2026 On dirait
+        qu\u2019il y a quelque chose derri\xE8re."
+  prerequisites:
+  - {fileID: 11400000, guid: 8b62351e314201844ba7c46ad5d4cba0, type: 2}
+  hints: []
