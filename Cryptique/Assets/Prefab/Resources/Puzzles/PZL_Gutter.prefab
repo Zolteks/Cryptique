@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ec2168386d1e64ab1cec74d2bae251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleData: {fileID: 0}
+  puzzleData: {fileID: 11400000, guid: 8b62351e314201844ba7c46ad5d4cba0, type: 2}
   onSuccess:
     m_PersistentCalls:
       m_Calls:
@@ -3014,10 +3014,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 7922792783245053286, guid: 76c0892a1ac5dc046a577233491c0bea,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922792783245053286, guid: 76c0892a1ac5dc046a577233491c0bea,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0133
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922792783245053286, guid: 76c0892a1ac5dc046a577233491c0bea,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.02446
+      objectReference: {fileID: 0}
     - target: {fileID: 8796757795801079698, guid: 76c0892a1ac5dc046a577233491c0bea,
         type: 3}
       propertyPath: m_Name
       value: T_Guttter (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8805854888759531776, guid: 76c0892a1ac5dc046a577233491c0bea,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8805854888759531776, guid: 76c0892a1ac5dc046a577233491c0bea,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 8805854888759531776, guid: 76c0892a1ac5dc046a577233491c0bea,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

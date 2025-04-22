@@ -21,8 +21,6 @@ public class PZL_SortingGame : Puzzle
     {
         etatsPlacement = new List<bool>(new bool[iElementNumber]);
         SGL_InteractManager.Instance.ChangeCamera(cam);
-        PC_PlayerController.Instance.DisableInput();
-        SGL_InteractManager.Instance.EnableInteraction();
     }
 
     public void UpdateEtatPlacement(int index, bool estBienPlace)
@@ -54,7 +52,6 @@ public class PZL_SortingGame : Puzzle
         {
             bOilTake = true;
             Debug.Log("Huile récupérée !");
-            PC_PlayerController.Instance.EnableInput();
             Complete();
         }
     }
