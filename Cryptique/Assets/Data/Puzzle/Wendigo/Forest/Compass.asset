@@ -15,7 +15,19 @@ MonoBehaviour:
   defaultPuzzleID: Compass
   defaultDescription: 
   puzzleID:
-    entries: []
+    entries:
+    - languageCode: 0
+      value: Compass
+    - languageCode: 1
+      value: Boussole
   description:
-    entries: []
+    entries:
+    - languageCode: 0
+      value: "This cabin is so old\u2026 I feel like every wooden board could be
+        hiding a forgotten treasure."
+    - languageCode: 1
+      value: "Cette cabane est tellement vieille\u2026 J\u2019ai l\u2019impression
+        que chaque planche cache un secret ou un tr\xE9sor oubli\xE9."
   prerequisites: []
+  hints:
+  - {fileID: 11400000, guid: 4b2c0d80a6b510041a9e794294b5c37d, type: 2}

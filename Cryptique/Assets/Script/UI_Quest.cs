@@ -13,7 +13,6 @@ public class UI_Quest : MonoBehaviour, ILocalizedElement
     private LanguageManager languageManager;
     void Start()
     {
-        UpdateAll();
 
         if (gameProgressionManager == null)
         {
@@ -93,6 +92,7 @@ public class UI_Quest : MonoBehaviour, ILocalizedElement
             TextMeshProUGUI text = puzzleDescription.GetComponentInChildren<TextMeshProUGUI>();
             if (text != null)
             {
+                Debug.Log("Puzzle ID: " + puzzle.GetPuzzleID()); 
                 text.text = puzzle.GetDescription();
             }
         }

@@ -9,19 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4eb46f676d625d43884288bc4805fe9, type: 3}
-  m_Name: Ladder
+  m_Script: {fileID: 11500000, guid: 8ff62f9efd63d0f46a5d92717bd630b5, type: 3}
+  m_Name: Well
   m_EditorClassIdentifier: 
-  defaultPuzzleID: Ladder
-  defaultDescription: 
-  puzzleID:
+  defaultHintText: Well
+  hintText:
     entries:
     - languageCode: 0
-      value: Ladder
+      value: Try searching the village square, villagers always leave something useful
+        behind!
     - languageCode: 1
-      value: Echelles
-  description:
-    entries: []
-  prerequisites:
-  - {fileID: 11400000, guid: e9478f4823266f241b2dcc229b2dc5c8, type: 2}
-  hints: []
+      value: Essaie de chercher au centre du village, les villageois oublie toujours
+        des choses utiles !

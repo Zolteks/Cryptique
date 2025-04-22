@@ -13,9 +13,23 @@ MonoBehaviour:
   m_Name: Well
   m_EditorClassIdentifier: 
   defaultPuzzleID: Well
-  defaultDescription: 
+  defaultDescription: Night is starting to fall... It would be wise to find a source
+    of light before going any further.
   puzzleID:
-    entries: []
+    entries:
+    - languageCode: 0
+      value: Well
+    - languageCode: 1
+      value: Puit
   description:
-    entries: []
-  prerequisites: []
+    entries:
+    - languageCode: 0
+      value: Night is starting to fall... It would be wise to find a source of light
+        before going any further.
+    - languageCode: 1
+      value: "La nuit commence \xE0 tomber...trouver une source de lumi\xE8re serait
+        bien."
+  prerequisites:
+  - {fileID: 11400000, guid: 3c1aad39c3cc7c941a5955739a9a8701, type: 2}
+  hints:
+  - {fileID: 11400000, guid: 2985caeaafcc6864196a9c39b1e73264, type: 2}

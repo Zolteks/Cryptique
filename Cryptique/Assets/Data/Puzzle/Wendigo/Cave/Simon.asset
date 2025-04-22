@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Simon
   m_EditorClassIdentifier: 
   defaultPuzzleID: Simon
-  defaultDescription: Simon
+  defaultDescription: "The bridge is broken... There's no way to cross like this.
+    We\u2019ll have to find another way."
   puzzleID:
     entries:
     - languageCode: 0
@@ -23,7 +24,11 @@ MonoBehaviour:
   description:
     entries:
     - languageCode: 0
-      value: Simon
+      value: "The bridge is broken... There's no way to cross like this. We\u2019ll
+        have to find another way."
     - languageCode: 1
-      value: Simon
+      value: "Le pont est cass\xE9\u2026 Impossible de passer par l\xE0 en l\u2019\xE9tat.
+        Il va falloir trouver un autre moyen de traverser."
   prerequisites: []
+  hints:
+  - {fileID: 11400000, guid: 136744249bc2318449def66de7d384f9, type: 2}

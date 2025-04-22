@@ -9,19 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4eb46f676d625d43884288bc4805fe9, type: 3}
-  m_Name: Ladder
+  m_Script: {fileID: 11500000, guid: 8ff62f9efd63d0f46a5d92717bd630b5, type: 3}
+  m_Name: Gutter
   m_EditorClassIdentifier: 
-  defaultPuzzleID: Ladder
-  defaultDescription: 
-  puzzleID:
+  defaultHintText: Gutter
+  hintText:
     entries:
     - languageCode: 0
-      value: Ladder
+      value: Tsuki might be able to sneak in and unlock it from the inside.
     - languageCode: 1
-      value: Echelles
-  description:
-    entries: []
-  prerequisites:
-  - {fileID: 11400000, guid: e9478f4823266f241b2dcc229b2dc5c8, type: 2}
-  hints: []
+      value: "Tsuki doit pouvoir se faufiler quelque part pour l\u2019ouvrir de l\u2019int\xE9rieur."

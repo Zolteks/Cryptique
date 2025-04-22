@@ -13,9 +13,23 @@ MonoBehaviour:
   m_Name: UndergroundLake
   m_EditorClassIdentifier: 
   defaultPuzzleID: Mirror
-  defaultDescription: 
+  defaultDescription: "This door looks incredibly heavy\u2026 The creature must be
+    behind it. But how do we open it?"
   puzzleID:
-    entries: []
+    entries:
+    - languageCode: 0
+      value: Light game
+    - languageCode: 1
+      value: "Jeu de lumi\xE8re"
   description:
-    entries: []
-  prerequisites: []
+    entries:
+    - languageCode: 0
+      value: "This door looks incredibly heavy\u2026 The creature must be behind
+        it. But how do we open it?"
+    - languageCode: 1
+      value: "Cette porte a l\u2019air si lourde\u2026 La cr\xE9ature doit se trouver
+        derri\xE8re. Mais comment l\u2019ouvrir ?"
+  prerequisites:
+  - {fileID: 11400000, guid: 3e8946f26a7d52f4bbdaf54f937764e3, type: 2}
+  hints:
+  - {fileID: 11400000, guid: 8f152666e61061b429f98adf2f4b8a92, type: 2}
