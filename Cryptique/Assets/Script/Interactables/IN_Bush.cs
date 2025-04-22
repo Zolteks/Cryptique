@@ -12,14 +12,12 @@ public class IN_Bush : OBJ_Interactable
         if (false == CanInteract())
             return false;
 
-        return true;
-    }
+        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            return false;
 
-    private void OnMouseDown()
-    {
-        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
-        if(Interact())
-            isInteract = true;
+        isInteract = true;
+
+        return true;
     }
 
     public bool getIsInteract()

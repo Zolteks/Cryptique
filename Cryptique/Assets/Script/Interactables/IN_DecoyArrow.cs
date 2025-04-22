@@ -44,12 +44,4 @@ public class IN_DecoyArrow : OBJ_Interactable
         
         Destroy(mask);
     }
-
-    // Is that definitive? Unsure
-    private void OnMouseDown()
-    {
-        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
-
-        Interact();
-    }
 }
