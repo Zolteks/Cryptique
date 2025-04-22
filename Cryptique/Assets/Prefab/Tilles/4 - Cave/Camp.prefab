@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 0
+  m_walkToItem: 0
   m_item: {fileID: 11400000, guid: 64181bc638cc30242a92e9832e4368ee, type: 2}
   fusionHolder: {fileID: 11400000, guid: e71e75154ebe51e479831c743109a4bb, type: 2}
 --- !u!208 &2227181867087295749
@@ -527,6 +528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 0
+  m_walkToItem: 0
   m_item: {fileID: 11400000, guid: 883b72c8457f32549b80aa75bb83608e, type: 2}
   fusionHolder: {fileID: 11400000, guid: e71e75154ebe51e479831c743109a4bb, type: 2}
 --- !u!208 &8299052188685345060
@@ -667,6 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 0
+  m_walkToItem: 0
   m_item: {fileID: 11400000, guid: 17da9a0b77b8b774a91641acffda754c, type: 2}
   fusionHolder: {fileID: 11400000, guid: e71e75154ebe51e479831c743109a4bb, type: 2}
 --- !u!208 &4029637072851288009
@@ -1136,6 +1139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
+  m_walkToItem: 0
   m_itemToDrop:
   - {fileID: 11400000, guid: 6e93dcb414c2b8f4885bcd97af7afcd7, type: 2}
 --- !u!65 &8767374924808804463
@@ -1455,6 +1459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
+  m_walkToItem: 0
   puzzleData: {fileID: 11400000, guid: e9478f4823266f241b2dcc229b2dc5c8, type: 2}
   onSuccess:
     m_PersistentCalls:
@@ -1471,16 +1476,16 @@ MonoBehaviour:
           m_StringArgument: Crumble
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 2044909997344158584}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: ResetTrigger
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Crumble
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 0}
@@ -1571,6 +1576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
+  m_walkToItem: 0
   m_item: {fileID: 11400000, guid: a2f2797a66609a94e876d0db3e1a8a5a, type: 2}
   fusionHolder: {fileID: 11400000, guid: e71e75154ebe51e479831c743109a4bb, type: 2}
 --- !u!65 &1400755159465734667
