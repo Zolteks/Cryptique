@@ -28,7 +28,13 @@ public class Puzzle : MonoBehaviour
             Debug.Log($"{puzzleData.GetPuzzleID()} is completed.");
             onSuccess?.Invoke();
             puzzleData.SetCompleted(true);
-           // puzzleData.SetUnlocked(false);
+            // puzzleData.SetUnlocked(false);
+            print(SaveSystemManager.Instance.gameObject.name);
+            print(SaveSystemManager.Instance.GetGameData());
+            print(SaveSystemManager.Instance.GetGameData().progression);
+            print(SaveSystemManager.Instance.GetGameData().progression.solvedPuzzles);
+            print(puzzleData);
+            print(puzzleData.GetPuzzleID());
             SaveSystemManager.Instance.GetGameData().progression.solvedPuzzles.Add(puzzleData.GetPuzzleID());
 
             Quit();

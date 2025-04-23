@@ -79,7 +79,7 @@ public class UI_ManageInventory : Singleton<UI_ManageInventory>
     /// <param name="id">The id in the inventory system List</param>
     public void ClearGridElement(int id)
     {
-        Debug.Log("ClearGridElement " + id);
+        //Debug.Log("ClearGridElement " + id);
         Image child = gContentPanel.transform.GetChild(id).GetChild(0).GetComponent<Image>();
         child.sprite = m_initialSprite;
         child.color = new Color(255, 0 ,0);

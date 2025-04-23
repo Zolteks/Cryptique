@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_item: {fileID: 11400000, guid: fa15410ffa432a446b4708004ee2d4f1, type: 2}
 --- !u!1 &2294840452387452503
 GameObject:
@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_item: {fileID: 11400000, guid: 8b726d50c0065334cbc6a8013d1136a9, type: 2}
 --- !u!1 &2962985963414171776
 GameObject:
@@ -901,7 +901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_item: {fileID: 11400000, guid: 8b09c34dcec067b4aafda0d93ee89f1b, type: 2}
 --- !u!65 &2744835432331730036
 BoxCollider:
@@ -1011,7 +1011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_item: {fileID: 11400000, guid: 889066cb5abf9074db3df92ae29f4cba, type: 2}
 --- !u!65 &2122133618166382830
 BoxCollider:
@@ -1107,7 +1107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_item: {fileID: 11400000, guid: 8b09c34dcec067b4aafda0d93ee89f1b, type: 2}
 --- !u!65 &4060115860616259260
 BoxCollider:
@@ -1155,7 +1155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_item: {fileID: 11400000, guid: 8c9a823e6e476be449d99e0aa59dab14, type: 2}
 --- !u!65 &2925923321916681615
 BoxCollider:
@@ -1197,7 +1197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_item: {fileID: 11400000, guid: b8c78eb831b1e8643a28a70a74a211a6, type: 2}
 --- !u!65 &2209820942281929683
 BoxCollider:
@@ -1316,7 +1316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_item: {fileID: 11400000, guid: 92cb6a18c8abd044c9bcee3d4e9cdb0b, type: 2}
 --- !u!65 &855015143464255079
 BoxCollider:
@@ -1380,7 +1380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_item: {fileID: 11400000, guid: 18fd97500c1e0e44ab38d1a65bc6a4f7, type: 2}
 --- !u!65 &4523682560095525862
 BoxCollider:
@@ -1466,7 +1466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_item: {fileID: 11400000, guid: aceb923d74a58bf44ae688df119f105c, type: 2}
 --- !u!65 &1460400814048961855
 BoxCollider:
@@ -1508,7 +1508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_item: {fileID: 11400000, guid: b33e8b52420d40c4fa8f023dcb1708a8, type: 2}
 --- !u!65 &1582345916222666697
 BoxCollider:
@@ -1572,7 +1572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_item: {fileID: 11400000, guid: 86d2553b9d2fd4c49b4db4b809403eb3, type: 2}
 --- !u!65 &4912837875599196362
 BoxCollider:
@@ -1614,7 +1614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_itemToDrop:
   - {fileID: 11400000, guid: 27f01a5e415f6af4e916d115a4e32e5d, type: 2}
   - {fileID: 11400000, guid: b33e8b52420d40c4fa8f023dcb1708a8, type: 2}
@@ -1668,7 +1668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c4393d33aa3aa4f94074b4cbc2b712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleData: {fileID: 11400000, guid: f3fa2d3b76c8bc64c9d4deb0341f12d0, type: 2}
+  puzzleData: {fileID: 11400000, guid: 90f77963b150abe4aaa237fcce6a3bd8, type: 2}
   onSuccess:
     m_PersistentCalls:
       m_Calls:
@@ -1752,7 +1752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_itemToDrop:
   - {fileID: 11400000, guid: 8b726d50c0065334cbc6a8013d1136a9, type: 2}
   - {fileID: 11400000, guid: fa15410ffa432a446b4708004ee2d4f1, type: 2}
@@ -1819,7 +1819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_cameraObject: {fileID: 4942551482427508567}
   m_camera: {fileID: 8423264142221235567}
   m_canva: {fileID: 1460614582738454107}
@@ -1858,7 +1858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_item: {fileID: 11400000, guid: 3704846eef832fa4c9ae1d2681f41972, type: 2}
 --- !u!65 &2651164518292682754
 BoxCollider:
@@ -1900,7 +1900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_item: {fileID: 11400000, guid: 41184e8517c598c48be5547e7c63b62b, type: 2}
 --- !u!65 &1311351167099368172
 BoxCollider:
@@ -1942,7 +1942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_item: {fileID: 11400000, guid: 27f01a5e415f6af4e916d115a4e32e5d, type: 2}
 --- !u!65 &3825992626019078087
 BoxCollider:

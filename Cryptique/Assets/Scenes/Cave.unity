@@ -127,11 +127,51 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3105667246638507407, guid: d15cee0beef8e864ea94651c4b43a760,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 3776775919466209471, guid: d15cee0beef8e864ea94651c4b43a760,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3776775919466209471, guid: d15cee0beef8e864ea94651c4b43a760,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.007019745
+      objectReference: {fileID: 0}
     - target: {fileID: 6191159326284373595, guid: d15cee0beef8e864ea94651c4b43a760,
         type: 3}
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 385177490}
+    - target: {fileID: 7541155804238196643, guid: d15cee0beef8e864ea94651c4b43a760,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541155804238196643, guid: d15cee0beef8e864ea94651c4b43a760,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541155804238196643, guid: d15cee0beef8e864ea94651c4b43a760,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.009
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541155804238196643, guid: d15cee0beef8e864ea94651c4b43a760,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661892901728470535, guid: d15cee0beef8e864ea94651c4b43a760,
+        type: 3}
+      propertyPath: m_muzzle
+      value: 
+      objectReference: {fileID: 135380010}
     - target: {fileID: 8546435750892724003, guid: d15cee0beef8e864ea94651c4b43a760,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -192,8 +232,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: FairyLake
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3896504202995175116, guid: d15cee0beef8e864ea94651c4b43a760, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -207,6 +246,12 @@ GameObject:
 --- !u!1 &135380009 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 721801137520094152, guid: d15cee0beef8e864ea94651c4b43a760,
+    type: 3}
+  m_PrefabInstance: {fileID: 135380007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &135380010 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2970932258730296509, guid: d15cee0beef8e864ea94651c4b43a760,
     type: 3}
   m_PrefabInstance: {fileID: 135380007}
   m_PrefabAsset: {fileID: 0}
@@ -273,31 +318,6 @@ PrefabInstance:
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 2080545615}
-    - target: {fileID: 2318930611415926802, guid: 3bf06714003031840bd52d870b593908,
-        type: 3}
-      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2318930611415926802, guid: 3bf06714003031840bd52d870b593908,
-        type: 3}
-      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2318930611415926802, guid: 3bf06714003031840bd52d870b593908,
-        type: 3}
-      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2318930611415926802, guid: 3bf06714003031840bd52d870b593908,
-        type: 3}
-      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeMusicCave
-      objectReference: {fileID: 0}
-    - target: {fileID: 2318930611415926802, guid: 3bf06714003031840bd52d870b593908,
-        type: 3}
-      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SFX_Lair, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 3370422678971397805, guid: 3bf06714003031840bd52d870b593908,
         type: 3}
       propertyPath: m_Name
@@ -313,6 +333,11 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 616500977}
+    - target: {fileID: 8315125853490529030, guid: 3bf06714003031840bd52d870b593908,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -433,12 +458,6 @@ AudioSource:
 --- !u!1 &698359331 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 230573197274518423, guid: 17aabcfba52af6b42a7e7f1e65379084,
-    type: 3}
-  m_PrefabInstance: {fileID: 1681278985}
-  m_PrefabAsset: {fileID: 0}
---- !u!20 &698359336 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 3792877587150632377, guid: 17aabcfba52af6b42a7e7f1e65379084,
     type: 3}
   m_PrefabInstance: {fileID: 1681278985}
   m_PrefabAsset: {fileID: 0}
@@ -1451,7 +1470,7 @@ PrefabInstance:
     - target: {fileID: 9206649146902579051, guid: a6496054e12ad0041815091d24fcb847,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.00002670288
+      value: -0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 9206649146902579051, guid: a6496054e12ad0041815091d24fcb847,
         type: 3}
@@ -1570,9 +1589,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 811360905978570890, guid: abea60e0ded05cd419b77e258879296a,
         type: 3}
-      propertyPath: camera
-      value: 
-      objectReference: {fileID: 698359336}
+      propertyPath: roundAmount
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 863253048711656582, guid: abea60e0ded05cd419b77e258879296a,
         type: 3}
       propertyPath: m_teleportPoint

@@ -85,7 +85,7 @@ public class PC_PlayerController : Singleton<PC_PlayerController>
     {
         // Raycast pour trouver le point de destination
         Ray ray = m_camera.ScreenPointToRay(touchPoint);
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit, 100, ~4096))
         {
             // Définir le point de destination sur le NavMeshAgent
             SetDesination(hit.point);

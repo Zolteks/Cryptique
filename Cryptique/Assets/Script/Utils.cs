@@ -21,7 +21,7 @@ public class Utils : MonoBehaviour
     public static GameObject GetObjectUnderTouch(Camera camera, Vector3 mousePosition)
     {
         var ray = camera.ScreenPointToRay(mousePosition);
-        return Physics.Raycast(ray, out var hit) ? hit.collider.gameObject : null;
+        return Physics.Raycast(ray, out var hit, 100, ~(4096 + 8192)) ? hit.collider.gameObject : null;
     }
 
     public static bool DetectHitWithUI(Vector2 touchPosition, GraphicRaycaster raycaster)
