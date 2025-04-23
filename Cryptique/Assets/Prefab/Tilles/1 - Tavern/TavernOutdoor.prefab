@@ -251,6 +251,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5841761955138999082, guid: 9cbdd2122dd164f4ca346c6ca4e7c933,
+        type: 3}
+      propertyPath: m_interactMethod
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -374,6 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
+  m_interactMethod: 2
   m_item: {fileID: 11400000, guid: c3a9e53ce36687249b820fa24adf811e, type: 2}
 --- !u!1001 &1733456261110523866
 PrefabInstance:
@@ -432,6 +438,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4255454392908832365, guid: 0848ef9c73342cf43be9b365980af3cc,
+        type: 3}
+      propertyPath: m_interactMethod
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4637034405734090346, guid: 0848ef9c73342cf43be9b365980af3cc,
         type: 3}
@@ -798,6 +809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
+  m_interactMethod: 0
   m_itemToDrop:
   - {fileID: 11400000, guid: c3a9e53ce36687249b820fa24adf811e, type: 2}
   m_navMeshObstacle: {fileID: 3225949576092017811}
