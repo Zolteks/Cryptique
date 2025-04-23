@@ -290,6 +290,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1173688528208502793, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: DirectionalLight
+      value: 
+      objectReference: {fileID: 1184631924}
     - target: {fileID: 1924724225445575096, guid: c0b03de04c14e924cafbb28f5118be9c,
         type: 3}
       propertyPath: m_camera
@@ -385,11 +390,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5566644138177984620, guid: c0b03de04c14e924cafbb28f5118be9c,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 719051986}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0b03de04c14e924cafbb28f5118be9c, type: 3}
 --- !u!1001 &490628915
 PrefabInstance:
@@ -504,24 +505,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfConds: 3
---- !u!1 &719051976 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5566644138177984620, guid: c0b03de04c14e924cafbb28f5118be9c,
-    type: 3}
-  m_PrefabInstance: {fileID: 377626638}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &719051986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 719051976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe9628c5a1d65ce4794a940e47ae8cb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &740528526 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3784917365006905897, guid: 0ad105d04f6160148950f232ef5f8d04,
