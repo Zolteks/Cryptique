@@ -112,6 +112,23 @@ public class PC_PlayerController : Singleton<PC_PlayerController>
         m_isInputActive = false;
     }
     
+    public void StopMovement()
+    {
+        Debug.Log("Stop movement of player");
+        m_agent.ResetPath();
+        m_agent.velocity = Vector3.zero;
+        m_agent.isStopped = true;
+        m_animator.SetBool(m_isInteractingParameter, false);
+        if (!m_isInputActive)
+            EnableInput();
+        if (m_coroutineWaitFor != null)
+            StopCoroutine(m_coroutineWaitFor);
+        if (m_coroutineInteraction != null)
+            StopCoroutine(m_coroutineInteraction);
+        OnMoveCallback = null;
+        OnInteractionCallback = null;
+    }
+    
     private void FlipSprite()
     {
         m_playerRotation = m_playerRotation == PlayerRotation.Left ? PlayerRotation.Right : PlayerRotation.Left;
