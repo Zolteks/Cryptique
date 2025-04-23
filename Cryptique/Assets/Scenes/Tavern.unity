@@ -843,6 +843,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5288503614007186115, guid: a6496054e12ad0041815091d24fcb847,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 2.404541
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288503614007186115, guid: a6496054e12ad0041815091d24fcb847,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -35.92505
+      objectReference: {fileID: 0}
     - target: {fileID: 5399011317229163812, guid: a6496054e12ad0041815091d24fcb847,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1201,7 +1211,7 @@ PrefabInstance:
     - target: {fileID: 9206649146902579051, guid: a6496054e12ad0041815091d24fcb847,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000030517578
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1328,6 +1338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
+  m_walkToItem: 0
   m_item: {fileID: 11400000, guid: ac78a8dec70f84a438b640082725c46f, type: 2}
 --- !u!1 &412051569 stripped
 GameObject:
@@ -1638,6 +1649,21 @@ PrefabInstance:
       objectReference: {fileID: 887734425}
     - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
         type: 3}
+      propertyPath: defaultTileColor.b
+      value: 0.19607845
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: defaultTileColor.g
+      value: 0.16862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: defaultTileColor.r
+      value: 0.21960786
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
       propertyPath: playerMarkerPrefab
       value: 
       objectReference: {fileID: 1873618140}
@@ -1650,6 +1676,21 @@ PrefabInstance:
         type: 3}
       propertyPath: placedTiles.Array.size
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: cameraOffsetDirection.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: cameraOffsetDirection.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: cameraOffsetDirection.z
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
         type: 3}
