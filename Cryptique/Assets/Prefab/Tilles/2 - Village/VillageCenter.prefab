@@ -341,6 +341,23 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8108906816948810387}
     m_Modifications:
+    - target: {fileID: 1000909069371320263, guid: 57b74c96e8658c6458917142b18452df,
+        type: 3}
+      propertyPath: m_characterList
+      value: 
+      objectReference: {fileID: 11400000, guid: 789ebb77145623241abc186a0f8be95b,
+        type: 2}
+    - target: {fileID: 1000909069371320263, guid: 57b74c96e8658c6458917142b18452df,
+        type: 3}
+      propertyPath: m_interactMethod
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000909069371320263, guid: 57b74c96e8658c6458917142b18452df,
+        type: 3}
+      propertyPath: m_localizationAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 17b08ac5ae792c749a9eb5be58c66833,
+        type: 2}
     - target: {fileID: 1269327074501974569, guid: 57b74c96e8658c6458917142b18452df,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -505,6 +522,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219878038959671299, guid: 7f5255879525c3844adf6befedc860f4,
+        type: 3}
+      propertyPath: m_interactMethod
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -737,6 +759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
+  m_interactMethod: 2
   m_item: {fileID: 11400000, guid: bda8ec95e0f35ec42bae8e4bb62f1f9d, type: 2}
 --- !u!1 &963577550875597036 stripped
 GameObject:
@@ -910,6 +933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 0
+  m_interactMethod: 2
   puzzleData: {fileID: 11400000, guid: 645c46cffe2e42c4196d5f106ec93319, type: 2}
   onSuccess:
     m_PersistentCalls:
@@ -951,6 +975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
+  m_interactMethod: 0
   m_itemToDrop:
   - {fileID: 11400000, guid: 3b58b6aa1d8aabe4297feed1f1a6b7d2, type: 2}
 --- !u!208 &4235223100180061132
@@ -1504,6 +1529,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763483740502553228, guid: 45f71eb412666544598632fece51280b,
+        type: 3}
+      propertyPath: m_interactMethod
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6801900503440625506, guid: 45f71eb412666544598632fece51280b,
         type: 3}

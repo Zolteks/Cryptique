@@ -18,12 +18,16 @@ public class PZL_SortingGame : Puzzle
     private bool bOilTake = false;
     private GameObject m_doors;
     private BoxCollider m_boxCollider;
+    private GameObject m_UIplayGameObject;
 
     void Start()
     {
         m_doors = GameObject.Find("Doors");
         m_boxCollider = m_doors.GetComponent<BoxCollider>();
         m_boxCollider.enabled = false;
+
+        m_UIplayGameObject = GameObject.Find("UIPlay");
+        m_UIplayGameObject.SetActive(false);
 
         etatsPlacement = new List<bool>(new bool[iElementNumber]);
         SGL_InteractManager.Instance.ChangeCamera(cam);
@@ -63,6 +67,7 @@ public class PZL_SortingGame : Puzzle
 
             PC_PlayerController.Instance.EnableInput();
             SGL_InteractManager.Instance.ChangeCamera(Camera.main);
+            m_UIplayGameObject.SetActive(true);
             Complete();
         }
     }
