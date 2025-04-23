@@ -583,6 +583,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 645832678264689218, guid: a6496054e12ad0041815091d24fcb847,
+        type: 3}
+      propertyPath: musicSource
+      value: 
+      objectReference: {fileID: 719888162}
     - target: {fileID: 996125169452318898, guid: a6496054e12ad0041815091d24fcb847,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1981,6 +1986,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b69c406e10345f41bed8009b5693f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &719888162 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2304731759139659462, guid: c0b03de04c14e924cafbb28f5118be9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 719888160}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &789445298 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7037506441632072481, guid: 41ef0a37c40db0844a3fa1147113d16e,
