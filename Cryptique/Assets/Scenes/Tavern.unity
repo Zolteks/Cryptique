@@ -392,9 +392,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1338367160512551884, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
         type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[6].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338367160512551884, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
       propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[6].m_Target
       value: 
       objectReference: {fileID: 1842771552}
+    - target: {fileID: 1338367160512551884, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[6].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338367160512551884, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[6].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1338367160512551884, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[6].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2400562514875686459, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
         type: 3}
       propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.size
@@ -1523,7 +1543,7 @@ GameObject:
   - component: {fileID: 530141463}
   - component: {fileID: 530141462}
   m_Layer: 11
-  m_Name: Grimoire
+  m_Name: Grimoir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1538,11 +1558,11 @@ Transform:
   m_GameObject: {fileID: 530141460}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.025512695, y: -0.042470098, z: 0.18029785}
+  m_LocalPosition: {x: -0.025512695, y: -0.042460125, z: 0.18029785}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1294704734}
+  m_Father: {fileID: 633037535}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &530141462
 MeshRenderer:
@@ -1566,7 +1586,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 7217235050628425294, guid: aaa2410d3cf7e7a48b0cbe24211ff62d, type: 3}
+  - {fileID: 3960541174727205860, guid: aaa2410d3cf7e7a48b0cbe24211ff62d, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1602,6 +1622,38 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1322053966}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &633037534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 633037535}
+  m_Layer: 0
+  m_Name: Grimoire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &633037535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633037534}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 530141461}
+  m_Father: {fileID: 1294704734}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &719888160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2202,9 +2254,9 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 530141461}
   - {fileID: 322244714}
   - {fileID: 52156992}
+  - {fileID: 633037535}
   m_Father: {fileID: 1259402841}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1322053966

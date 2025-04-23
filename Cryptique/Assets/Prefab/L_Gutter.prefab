@@ -254,6 +254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3c19191388879f47b7c485f59ccfc60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_canInteract: 1
+  m_interactMethod: 0
   rotationSpeed: 360
 --- !u!54 &2407435148626215549
 Rigidbody:
@@ -471,7 +473,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: ca2ed216f98028c4dae6c5224a952b3c,
+      objectReference: {fileID: 2122293009287970544, guid: 4e791896bac66294da939481eb0eb25b,
         type: 3}
     - target: {fileID: -7511558181221131132, guid: 4456c3845eef5f84db17910341868f42,
         type: 3}
@@ -587,7 +589,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: -876546973899608171, guid: ca2ed216f98028c4dae6c5224a952b3c,
+      objectReference: {fileID: 2122293009287970544, guid: 4e791896bac66294da939481eb0eb25b,
         type: 3}
     - target: {fileID: -7511558181221131132, guid: 4456c3845eef5f84db17910341868f42,
         type: 3}

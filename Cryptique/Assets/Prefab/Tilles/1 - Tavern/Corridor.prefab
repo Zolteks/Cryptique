@@ -292,7 +292,7 @@ PrefabInstance:
     - target: {fileID: 7972287033334376096, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.19
+      value: 0.349
       objectReference: {fileID: 0}
     - target: {fileID: 7972287033334376096, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
         type: 3}
@@ -506,7 +506,7 @@ PrefabInstance:
     - target: {fileID: 7972287033334376096, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.34
       objectReference: {fileID: 0}
     - target: {fileID: 7972287033334376096, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
         type: 3}
@@ -792,10 +792,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1116983871278821052}
-    - targetCorrespondingSourceObject: {fileID: 6188040641043582813, guid: 5329897332d6d264485ee6819d2045c5,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3469323923086621669}
   m_SourcePrefab: {fileID: 100100000, guid: 5329897332d6d264485ee6819d2045c5, type: 3}
 --- !u!1 &291845029746747456 stripped
 GameObject:
@@ -932,28 +928,6 @@ MonoBehaviour:
   right: 1
   bot: 0
   left: 0
---- !u!1 &3339089466812268115 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6188040641043582813, guid: 5329897332d6d264485ee6819d2045c5,
-    type: 3}
-  m_PrefabInstance: {fileID: 8914455451882664206}
-  m_PrefabAsset: {fileID: 0}
---- !u!208 &3469323923086621669
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3339089466812268115}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.24800001, y: 0.51100004, z: 0.24800001}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -0.171, y: 0.51100004, z: 0.081}
-  m_TimeToStationary: 0.5
 --- !u!1 &3902841520697457721 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -3630130341805322953, guid: 5329897332d6d264485ee6819d2045c5,
