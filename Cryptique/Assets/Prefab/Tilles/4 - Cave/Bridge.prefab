@@ -1200,6 +1200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
+  m_walkToItem: 0
   pzl: {fileID: 811360905978570890}
   id: 1
 --- !u!4 &1525375380169117718 stripped
@@ -1362,6 +1363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
+  m_walkToItem: 0
   pzl: {fileID: 811360905978570890}
   id: 2
 --- !u!4 &3042247726571227903 stripped
@@ -1511,7 +1513,7 @@ MonoBehaviour:
   fShowPauseDuration: 0.5
   activatedMat: {fileID: -425385054887583187, guid: 6fedcc65c05e722409d0c4afbe3c9f07,
     type: 3}
-  camera: {fileID: 0}
+  camera: {fileID: 2113192520228157966}
   canvas: {fileID: 1291410277398308623}
   leftWall: {fileID: 5705412685178534658}
   righttWall: {fileID: 9034338757705766852}
@@ -1528,6 +1530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
+  m_walkToItem: 0
   m_canva: {fileID: 7134762854023721538}
 --- !u!1 &3501493185666218645 stripped
 GameObject:
@@ -1548,6 +1551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
+  m_walkToItem: 0
   pzl: {fileID: 811360905978570890}
   id: 0
 --- !u!65 &6978729026320183330

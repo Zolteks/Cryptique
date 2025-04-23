@@ -72,6 +72,11 @@ public class PZL_Simon : Puzzle
         }
     }
 
+    public override void Quit()
+    {
+        PC_PlayerController.Instance.EnableInput();
+    }
+
     void PlayNextRound()
     {
         m_currentLayout.Add(Random.Range(0, buttons.Count));
@@ -148,10 +153,12 @@ public class PZL_Simon : Puzzle
             camera.gameObject.SetActive(false);
             canvas.gameObject.SetActive(false);
 
-            GameManager.Instance.GetCamera().GetComponent<CameraRotator>().ResetAllowedDirections();
 
-            leftWall.SetActive(true);
-            righttWall.SetActive(true);
+            //leftWall.SetActive(true);
+            //righttWall.SetActive(true);
+
+            GameManager.Instance.GetCamera().GetComponent<CameraRotator>().ResetAllowedDirections();
+            GameManager.Instance.GetCamera().GetComponent<CameraRotator>().UpdateWalls();
             SGL_InteractManager.Instance.ChangeCamera(Camera.main);
         }
     }

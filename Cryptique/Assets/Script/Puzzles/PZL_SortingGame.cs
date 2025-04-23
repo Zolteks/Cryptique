@@ -62,6 +62,7 @@ public class PZL_SortingGame : Puzzle
             Debug.Log("Huile récupérée !");
 
             PC_PlayerController.Instance.EnableInput();
+            SGL_InteractManager.Instance.ChangeCamera(Camera.main);
             Complete();
         }
     }

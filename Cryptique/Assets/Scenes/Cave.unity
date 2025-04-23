@@ -273,6 +273,31 @@ PrefabInstance:
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 2080545615}
+    - target: {fileID: 2318930611415926802, guid: 3bf06714003031840bd52d870b593908,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318930611415926802, guid: 3bf06714003031840bd52d870b593908,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318930611415926802, guid: 3bf06714003031840bd52d870b593908,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318930611415926802, guid: 3bf06714003031840bd52d870b593908,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeMusicCave
+      objectReference: {fileID: 0}
+    - target: {fileID: 2318930611415926802, guid: 3bf06714003031840bd52d870b593908,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SFX_Lair, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3370422678971397805, guid: 3bf06714003031840bd52d870b593908,
         type: 3}
       propertyPath: m_Name
@@ -283,6 +308,11 @@ PrefabInstance:
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 135380009}
+    - target: {fileID: 5698717035630752847, guid: 3bf06714003031840bd52d870b593908,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 616500977}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -394,6 +424,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0b03de04c14e924cafbb28f5118be9c, type: 3}
+--- !u!82 &616500977 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2304731759139659462, guid: c0b03de04c14e924cafbb28f5118be9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 616500976}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &698359331 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 230573197274518423, guid: 17aabcfba52af6b42a7e7f1e65379084,
@@ -1508,6 +1544,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WendigoLair
       objectReference: {fileID: 0}
+    - target: {fileID: 3133235071286668613, guid: 247733eec68c812469ca74eee749f41a,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 616500977}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

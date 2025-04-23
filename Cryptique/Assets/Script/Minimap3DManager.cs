@@ -68,7 +68,6 @@ public class Minimap3DManager : MonoBehaviour
                 lastPlayerPosition = player.position;
 
                 UpdateMiniMapPlayerPosition();
-                UpdateMinimapRawImage();
             }
         }
     }
@@ -203,7 +202,7 @@ public class Minimap3DManager : MonoBehaviour
             playerMarker.transform.position = miniTile.transform.position + Vector3.up * 0.5f;
         }
 
-        RepositionCamera();
+        //RepositionCamera();
 
         foreach (TileHighlight highlight in objectInTiles)
         {
@@ -297,6 +296,8 @@ public class Minimap3DManager : MonoBehaviour
 
                     line.layer = Mathf.RoundToInt(Mathf.Log(minimapLayer.value, 2));
                     activeLines.Add(line);
+                    UpdateMinimapRawImage();
+                    CameraRotation();
                 }
             }
         }
