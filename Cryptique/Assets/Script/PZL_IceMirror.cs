@@ -12,7 +12,9 @@ public class PZL_IceMirror : Puzzle
     public string sMirrorTag = "Mirror";
     public string sLightBeamTag = "LightBeam";
 
-    private IN_MirrorLauncher m_launcher;
+    [SerializeField] private IN_MirrorLauncher m_launcher;
+    [SerializeField] Transform m_muzzle;
+
     private GameObject currentBeam;
     private bool bIsBeaming;
 
@@ -34,7 +36,7 @@ public class PZL_IceMirror : Puzzle
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!bIsBeaming && currentBeam != null)
         {
@@ -51,7 +53,7 @@ public class PZL_IceMirror : Puzzle
     {
         if (other.CompareTag(sLightBeamTag) && !bIsBeaming)
         {
-            bIsBeaming = true;
+            ActivateFromBeam();
         }
     }
 
@@ -59,7 +61,7 @@ public class PZL_IceMirror : Puzzle
     {
         if (other.CompareTag(sLightBeamTag) && !bIsBeaming)
         {
-            bIsBeaming = true;
+            //bIsBeaming = true;
         }
     }
 
@@ -75,11 +77,11 @@ public class PZL_IceMirror : Puzzle
     {
         if (currentBeam != null) Destroy(currentBeam);
 
-        Vector3 origin = transform.position;
+        Vector3 origin = m_muzzle.position;
         Vector3 direction = transform.forward;
         RaycastHit hit;
 
-        if (Physics.Raycast(origin, direction, out hit, fBeamLength))
+        if (Physics.Raycast(origin, direction, out hit, fBeamLength, 4096))
         {
             currentBeam = CreateBeam(origin, hit.point);
 
@@ -112,10 +114,13 @@ public class PZL_IceMirror : Puzzle
 
     IEnumerator ResetActivation()
     {
-        yield return new WaitForEndOfFrame();
-        if (!IsBeingHitByBeam())
+        while (bIsBeaming)
         {
-            bIsBeaming = false;
+            yield return new WaitForEndOfFrame();
+            if (!IsBeingHitByBeam())
+            {
+                bIsBeaming = false;
+            }
         }
     }
 
@@ -126,6 +131,7 @@ public class PZL_IceMirror : Puzzle
         {
             if (hit.CompareTag(sLightBeamTag))
             {
+                //print("hitted by "+hit.transform.name);
                 return true;
             }
         }
@@ -136,7 +142,8 @@ public class PZL_IceMirror : Puzzle
     {
         GameObject beam = Instantiate(lightBeamPrefab);
         beam.transform.position = (start + end) / 2f;
-        beam.transform.rotation = Quaternion.LookRotation(end - start);
+        if(end - start != Vector3.zero)
+            beam.transform.rotation = Quaternion.LookRotation(end - start);
         beam.transform.localScale = new Vector3(fBeamDiameter, fBeamDiameter, Vector3.Distance(start, end));
         return beam;
     }
