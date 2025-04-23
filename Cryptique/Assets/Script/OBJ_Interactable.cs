@@ -55,7 +55,6 @@ public abstract class OBJ_Interactable : MonoBehaviour
 
     protected void InteractionCallback()
     {
-
         switch (m_interactMethod)
         {
             case InteractMethod.Walk:

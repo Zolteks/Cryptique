@@ -11,6 +11,8 @@ public class SGL_InteractManager : Singleton<SGL_InteractManager>
     [SerializeField] private Camera m_camera;
     [SerializeField] private Canvas m_canvas;
     [SerializeField] private GraphicRaycaster m_graphicRaycaster;
+
+    private bool bEnabled;
     
     /* Functions */
     private void Awake()
@@ -31,21 +33,27 @@ public class SGL_InteractManager : Singleton<SGL_InteractManager>
 
     private void OnEnable()
     {
-        m_inputManager.OnClick += OnInteract;
+        EnableInteraction();
     }
     
     private void OnDisable()
     {
-        m_inputManager.OnClick -= OnInteract;
+        DisableInteraction();
     }
     
     public void EnableInteraction()
     {
+        if (bEnabled) return;
+
+        bEnabled = true;
         m_inputManager.OnClick += OnInteract;
     }
     
     public void DisableInteraction()
     {
+        if (false == bEnabled) return;
+
+        bEnabled = false;
         m_inputManager.OnClick -= OnInteract;
     }
 
