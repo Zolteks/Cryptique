@@ -523,6 +523,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 139281581087965004, guid: a6496054e12ad0041815091d24fcb847,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 330192647603345868, guid: a6496054e12ad0041815091d24fcb847,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -582,6 +587,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1161161869389358647, guid: a6496054e12ad0041815091d24fcb847,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 719888161}
+    - target: {fileID: 1161161869389358647, guid: a6496054e12ad0041815091d24fcb847,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ButtonDisplayNextLine
       objectReference: {fileID: 0}
     - target: {fileID: 1376288194941573973, guid: a6496054e12ad0041815091d24fcb847,
         type: 3}
@@ -1338,7 +1353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_item: {fileID: 11400000, guid: ac78a8dec70f84a438b640082725c46f, type: 2}
 --- !u!1 &412051569 stripped
 GameObject:
@@ -1768,6 +1783,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0b03de04c14e924cafbb28f5118be9c, type: 3}
+--- !u!114 &719888161 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9143798404617935225, guid: c0b03de04c14e924cafbb28f5118be9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 719888160}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b69c406e10345f41bed8009b5693f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &789445298 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7037506441632072481, guid: 41ef0a37c40db0844a3fa1147113d16e,
@@ -2064,6 +2091,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 391517078581125293, guid: 41ef0a37c40db0844a3fa1147113d16e,
+        type: 3}
+      propertyPath: m_interactMethod
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141862834240797150, guid: 41ef0a37c40db0844a3fa1147113d16e,
+        type: 3}
+      propertyPath: m_interactMethod
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1213677610235321857, guid: 41ef0a37c40db0844a3fa1147113d16e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2116,6 +2153,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1862812952816946758, guid: 41ef0a37c40db0844a3fa1147113d16e,
         type: 3}
+      propertyPath: m_interactMethod
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862812952816946758, guid: 41ef0a37c40db0844a3fa1147113d16e,
+        type: 3}
       propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 412051569}
@@ -2129,6 +2171,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TavernIndoor
       objectReference: {fileID: 0}
+    - target: {fileID: 5281300077666582938, guid: 41ef0a37c40db0844a3fa1147113d16e,
+        type: 3}
+      propertyPath: m_interactMethod
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5604636354486221301, guid: 41ef0a37c40db0844a3fa1147113d16e,
         type: 3}
       propertyPath: m_teleportPoint
@@ -2139,6 +2186,11 @@ PrefabInstance:
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 1842771551}
+    - target: {fileID: 6794162148980680112, guid: 41ef0a37c40db0844a3fa1147113d16e,
+        type: 3}
+      propertyPath: m_interactMethod
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2305,6 +2357,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2522033865927670199, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
+        type: 3}
+      propertyPath: m_interactMethod
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5154468939794860221, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
         type: 3}
       propertyPath: m_teleportPoint
@@ -2319,6 +2376,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5890795415154353888, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
+        type: 3}
+      propertyPath: m_interactMethod
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6641530976588416759, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
+        type: 3}
+      propertyPath: m_interactMethod
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6794706281238397477, guid: f9bcdb576be1b5c41b3e822b45c0a9ef,
         type: 3}
@@ -2604,6 +2671,11 @@ PrefabInstance:
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 1894807819}
+    - target: {fileID: 5298199590610772294, guid: 416895bfbb9198f448103c1f647b0309,
+        type: 3}
+      propertyPath: m_interactMethod
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5580087994424970482, guid: 416895bfbb9198f448103c1f647b0309,
         type: 3}
       propertyPath: m_LocalPosition.x
