@@ -964,6 +964,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4271850671993109352}
   - component: {fileID: 1484760549910616490}
+  - component: {fileID: 4648772703238589348}
   m_Layer: 0
   m_Name: PZL_Compass
   m_TagString: Untagged
@@ -1008,6 +1009,21 @@ MonoBehaviour:
       m_Calls: []
   goCompass: {fileID: 8031934797126070039}
   cam: {fileID: 5850209273777748672}
+--- !u!114 &4648772703238589348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2624432436576138718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d682c799934f7a54ba2ae66139efc778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCamera: {fileID: 5850209273777748672}
+  padding: 1.1
+  minSize: 5
 --- !u!1 &3392412873811772324
 GameObject:
   m_ObjectHideFlags: 0
