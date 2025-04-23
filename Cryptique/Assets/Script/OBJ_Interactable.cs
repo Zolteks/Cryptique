@@ -32,7 +32,7 @@ public abstract class OBJ_Interactable : MonoBehaviour
     {
         if (m_walkToItem && Vector3.Distance(PC_PlayerController.Instance.transform.position, transform.position) < 100)
         {
-            PC_PlayerController.Instance.OnMoveCallback += InteractionCallback;
+            PC_PlayerController.Instance.OnInteractionCallback += InteractionCallback;
         }
         else
             Interact();
@@ -41,6 +41,6 @@ public abstract class OBJ_Interactable : MonoBehaviour
     protected void InteractionCallback()
     {
         Interact();
-        PC_PlayerController.Instance.OnMoveCallback -= InteractionCallback;
+        PC_PlayerController.Instance.OnInteractionCallback -= InteractionCallback;
     }
 }
