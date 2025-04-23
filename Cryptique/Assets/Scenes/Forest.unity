@@ -2036,6 +2036,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7311025367838326302, guid: 443b92f7ad0ca7841937c8474d7acc1e,
         type: 3}
+      propertyPath: m_walkToItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311025367838326302, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 1979042072}
@@ -2444,16 +2449,96 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3287422321527699301, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: bot
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287422321527699301, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: top
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287422321527699301, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: left
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287422321527699301, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: right
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4210817758013613261, guid: fb913962c6005904cb3b04cd6d58514d,
         type: 3}
       propertyPath: m_Name
       value: TreeHouseIndoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5323739598797214235, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: bot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5323739598797214235, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: top
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5323739598797214235, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: left
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5323739598797214235, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: right
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7090683767804318170, guid: fb913962c6005904cb3b04cd6d58514d,
         type: 3}
       propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1162869038}
+    - target: {fileID: 7361002442853179817, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: bot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7361002442853179817, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: top
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7361002442853179817, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: left
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7361002442853179817, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: right
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710677621987593801, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: bot
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710677621987593801, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: top
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710677621987593801, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: left
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710677621987593801, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: right
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
