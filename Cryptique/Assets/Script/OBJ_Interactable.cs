@@ -5,9 +5,16 @@ using UnityEngine;
 
 public abstract class OBJ_Interactable : MonoBehaviour
 {
+    protected enum InteractMethod
+    {
+        None = 0,
+        Walk,
+        WalkAndInterract,
+    }
+
     /* Variables */
     [SerializeField] private bool m_canInteract = true;
-    [SerializeField] protected bool m_walkToItem = false;
+    [SerializeField] protected InteractMethod m_interactMethod = InteractMethod.None;
 
     /* Functions */
 
@@ -30,17 +37,35 @@ public abstract class OBJ_Interactable : MonoBehaviour
 
     public virtual void TriggerInteract()
     {
-        if (m_walkToItem && Vector3.Distance(PC_PlayerController.Instance.transform.position, transform.position) < 100)
+        switch (m_interactMethod)
         {
-            PC_PlayerController.Instance.OnMoveCallback += InteractionCallback;
+            case InteractMethod.None:
+                Interact();
+                break;
+            case InteractMethod.Walk:
+                PC_PlayerController.Instance.OnMoveCallback += InteractionCallback;
+                //PC_PlayerController.Instance.MoveTo();
+                break;
+            case InteractMethod.WalkAndInterract:
+                PC_PlayerController.Instance.OnInteractionCallback += InteractionCallback;
+                PC_PlayerController.Instance.MoveForInteraction();
+                break;
         }
-        else
-            Interact();
     }
 
     protected void InteractionCallback()
     {
+
+        switch (m_interactMethod)
+        {
+            case InteractMethod.Walk:
+                PC_PlayerController.Instance.OnMoveCallback -= InteractionCallback;
+                break;
+            case InteractMethod.WalkAndInterract:
+                PC_PlayerController.Instance.OnInteractionCallback -= InteractionCallback;
+                break;
+        }
+
         Interact();
-        PC_PlayerController.Instance.OnMoveCallback -= InteractionCallback;
     }
 }
