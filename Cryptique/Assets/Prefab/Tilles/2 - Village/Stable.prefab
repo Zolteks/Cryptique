@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 2
   m_item: {fileID: 11400000, guid: 7395c883ec120e04d9a4b7dae5a2649e, type: 2}
 --- !u!65 &5548729687469933013
 BoxCollider:
@@ -614,7 +614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 2
   puzzleData: {fileID: 11400000, guid: 3fb5148d5176e4d48929d4a1d1d770d6, type: 2}
   onSuccess:
     m_PersistentCalls:
@@ -1324,7 +1324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 2
   m_itemToDrop:
   - {fileID: 11400000, guid: 7395c883ec120e04d9a4b7dae5a2649e, type: 2}
 --- !u!114 &5434159046493221835
@@ -1395,18 +1395,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ForestAccess, Assembly-CSharp
-        m_MethodName: UpdateCond
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1808,6 +1796,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Character_Cats
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669370450766229177, guid: 3b10cd4d79b1080419bc792cf4d0efbe,
+        type: 3}
+      propertyPath: m_interactMethod
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6679560551862997847, guid: 3b10cd4d79b1080419bc792cf4d0efbe,
         type: 3}

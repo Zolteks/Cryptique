@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 2
   puzzleData: {fileID: 11400000, guid: ead2ed8cf03fd7441a8981839798f648, type: 2}
   onSuccess:
     m_PersistentCalls:
@@ -239,7 +239,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0.31, y: 0.08, z: -0.48}
 --- !u!1001 &4118922216800158103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 2
   puzzleData: {fileID: 11400000, guid: 0c4022a0c4ef792429099d97552616a3, type: 2}
   onSuccess:
     m_PersistentCalls:
