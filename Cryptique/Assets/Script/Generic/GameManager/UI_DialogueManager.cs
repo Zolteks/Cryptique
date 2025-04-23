@@ -20,8 +20,8 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
         public string sNameEN;
         public string sNameFR;
         public string sNameDisplay;
-        public Image iTalkingPortrait;
-        public Image iListeningPortrait;
+        public Sprite iTalkingPortrait;
+        public Sprite iListeningPortrait;
         public bool bTalkOnRightSide;
         public bool bNoPortrait;
     }
@@ -83,11 +83,11 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
 
     private void Start()
     {
-        iRightCharacterPortrait = GameObject.Find("Dialog_RightPortrait").GetComponent<Image>();
-        iLeftCharacterPortrait = GameObject.Find("Dialog_LeftPortrait").GetComponent<Image>();
-        tNameText = GameObject.Find("Dialog_TalkName").GetComponent<TextMeshProUGUI>();
-        tDialogueDisplay = GameObject.Find("Dialog_TextContent").GetComponent<TextMeshProUGUI>();
-        dialoguePanel = GameObject.Find("Dialogue_box");
+        //iRightCharacterPortrait = GameObject.Find("Dialog_RightPortrait").GetComponent<Image>();
+        //iLeftCharacterPortrait = GameObject.Find("Dialog_LeftPortrait").GetComponent<Image>();
+        //tNameText = GameObject.Find("Dialog_TalkName").GetComponent<TextMeshProUGUI>();
+        //tDialogueDisplay = GameObject.Find("Dialog_TextContent").GetComponent<TextMeshProUGUI>();
+        //dialoguePanel = GameObject.Find("Dialogue_box");
     }
 
     public void ShowDialogueUI()
@@ -197,14 +197,15 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
         }
     }
 
-    private void CopyImageProperties(Image source, Image target)
+    private void CopyImageProperties(Sprite source, Image target)
     {
         if (source == null || target == null || !target.gameObject.activeSelf)
             return;
 
-        target.sprite = source.sprite;
-        target.color = source.color;
-        target.preserveAspect = source.preserveAspect;
+        target.sprite = source;
+       // target.color = source;
+        //target.preserveAspect = source.preserveAspect;
+        target.preserveAspect = true; 
     }
 
     private IEnumerator CoroutineAnimatePortraitFocus(Image talkingPortrait, Image listeningPortrait)

@@ -13,8 +13,8 @@ public class DialogueCharacterList : ScriptableObject
         public string sNameFR;
         public string sNameEN;
         [NonSerialized]public string sNameDisplay;
-        public Image iTalkingPortrait;
-        public Image iListeningPortrait;
+        public Sprite iTalkingPortrait;
+        public Sprite iListeningPortrait;
         public bool bTalkOnRightSide;
         public bool bNoPortrait;
     }
