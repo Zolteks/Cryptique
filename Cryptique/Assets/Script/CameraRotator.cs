@@ -79,6 +79,11 @@ public class CameraRotator : MonoBehaviour
 #endif
     }
 
+    public void UpdateWalls()
+    {
+        eDirectionUpdate?.Invoke(m_currentDir);
+    }
+
     public CameraDirdection GetDirection()
     {
         return m_currentDir;

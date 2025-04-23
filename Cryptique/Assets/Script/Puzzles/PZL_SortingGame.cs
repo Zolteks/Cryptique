@@ -38,7 +38,6 @@ public class PZL_SortingGame : Puzzle
     {
         if (etatsPlacement.All(etat => etat))
         {
-            SGL_InteractManager.Instance.ChangeCamera(Camera.main);
             bIsAllPlaced = true;
             m_Game.SetActive(false);
             m_Oil.SetActive(true);
@@ -55,6 +54,7 @@ public class PZL_SortingGame : Puzzle
             bOilTake = true;
             Debug.Log("Huile récupérée !");
             PC_PlayerController.Instance.EnableInput();
+            SGL_InteractManager.Instance.ChangeCamera(Camera.main);
             Complete();
         }
     }

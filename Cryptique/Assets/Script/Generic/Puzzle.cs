@@ -14,7 +14,7 @@ public class Puzzle : MonoBehaviour
         pzl.puzzleData = data;
     }
 
-    public void Quit()
+    public virtual void Quit()
     {
         PC_PlayerController.Instance.EnableInput();
         Destroy(gameObject);
