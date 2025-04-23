@@ -16,11 +16,18 @@ public class PZL_SortingGame : Puzzle
     [SerializeField] public Camera cam;
 
     private bool bOilTake = false;
+    private GameObject m_doors;
+    private BoxCollider m_boxCollider;
 
     void Start()
     {
+        m_doors = GameObject.Find("Doors");
+        m_boxCollider = m_doors.GetComponent<BoxCollider>();
+        m_boxCollider.enabled = false;
+
         etatsPlacement = new List<bool>(new bool[iElementNumber]);
         SGL_InteractManager.Instance.ChangeCamera(cam);
+
         PC_PlayerController.Instance.DisableInput();
         SGL_InteractManager.Instance.EnableInteraction();
     }
@@ -53,6 +60,7 @@ public class PZL_SortingGame : Puzzle
         {
             bOilTake = true;
             Debug.Log("Huile récupérée !");
+
             PC_PlayerController.Instance.EnableInput();
             SGL_InteractManager.Instance.ChangeCamera(Camera.main);
             Complete();
