@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2841796070732014467}
-  - component: {fileID: 2260058117518546799}
+  - component: {fileID: 1573186755615878160}
   - component: {fileID: 2631327539819150233}
   m_Layer: 0
   m_Name: Character_Women1
@@ -34,8 +34,8 @@ Transform:
   - {fileID: 2797052316946732684}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &2260058117518546799
-CapsuleCollider:
+--- !u!65 &1573186755615878160
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -52,11 +52,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.48
-  m_Height: 1.68
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.8, z: 0}
+  serializedVersion: 3
+  m_Size: {x: 1.26, y: 2.06, z: 0.2}
+  m_Center: {x: 0, y: 1.03, z: 0}
 --- !u!114 &2631327539819150233
 MonoBehaviour:
   m_ObjectHideFlags: 0
