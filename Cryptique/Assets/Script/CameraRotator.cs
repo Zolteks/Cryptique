@@ -33,6 +33,8 @@ public class CameraRotator : MonoBehaviour
      private SaveSystemManager saveSystemManager;
     [SerializeField] private GameObject slideBoutons;
 
+    [SerializeField] private Animator animator;
+
     private void Start()
     {
         saveSystemManager = SaveSystemManager.Instance;
@@ -137,13 +139,15 @@ public class CameraRotator : MonoBehaviour
         int id = (int)(m_currentDir + incrementValue)%4;
         if (id < 0) id = 3;
 
+        float t = 0;
+        m_busy = true;
+
         if (false == allowedRotations[(CameraDirdection)id]){
+            animator.SetTrigger("Shake");
             yield break;
         }
 
 
-        m_busy = true;
-        float t = 0;
 
         while(t <= duration/2)
         {
@@ -214,5 +218,10 @@ public class CameraRotator : MonoBehaviour
         {
             hasRotated = false; // reinitialise pour le prochain swipe
         }
+    }
+
+    public void SetIsBusy(bool isBusy)
+    {
+        m_busy = isBusy;
     }
 }

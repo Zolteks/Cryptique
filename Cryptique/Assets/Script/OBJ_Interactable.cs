@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Build.Pipeline.Tasks;
 using UnityEngine;
 
 public abstract class OBJ_Interactable : MonoBehaviour
@@ -10,6 +11,7 @@ public abstract class OBJ_Interactable : MonoBehaviour
         None = 0,
         Walk,
         WalkAndInterract,
+        Arrow,
     }
 
     /* Variables */
@@ -44,11 +46,14 @@ public abstract class OBJ_Interactable : MonoBehaviour
                 break;
             case InteractMethod.Walk:
                 PC_PlayerController.Instance.OnMoveCallback += InteractionCallback;
-                //PC_PlayerController.Instance.MoveTo();
+                PC_PlayerController.Instance.MoveTo();
                 break;
             case InteractMethod.WalkAndInterract:
                 PC_PlayerController.Instance.OnInteractionCallback += InteractionCallback;
                 PC_PlayerController.Instance.MoveForInteraction();
+                break;
+            case InteractMethod.Arrow:
+                PC_PlayerController.Instance.OnMoveCallback += InteractionCallback;
                 break;
         }
     }
@@ -62,6 +67,9 @@ public abstract class OBJ_Interactable : MonoBehaviour
                 break;
             case InteractMethod.WalkAndInterract:
                 PC_PlayerController.Instance.OnInteractionCallback -= InteractionCallback;
+                break;
+            case InteractMethod.Arrow:
+                PC_PlayerController.Instance.OnMoveCallback -= InteractionCallback;
                 break;
         }
 
