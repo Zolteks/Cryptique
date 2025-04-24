@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class SFXManager : Singleton<SFXManager>
 {
-    [SerializeField] private AudioSource templateSFXSource; // Une AudioSource avec les bons réglages à dupliquer
+    [SerializeField] private AudioSource templateSFXSource;
     private float sfxVolume = 1f;
     private List<AudioSource> activeSFXSources = new();
 
-    public AudioSource PlaySFX(AudioClip clip, Vector3 position, bool loop = false)
+    public AudioSource PlaySFX(AudioClip clip, Vector3 position, AudioMixerGroup audioMixer, bool loop = false)
     {
         if (clip == null)  return null;
 
@@ -20,6 +21,7 @@ public class SFXManager : Singleton<SFXManager>
         CopyAudioSettings(templateSFXSource, source);
         source.clip = clip;
         source.volume = sfxVolume;
+        source.outputAudioMixerGroup = audioMixer;
         source.loop = loop;
         source.Play();
 

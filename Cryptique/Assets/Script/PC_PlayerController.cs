@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 public class PC_PlayerController : Singleton<PC_PlayerController>
 {
@@ -247,6 +248,13 @@ public class PC_PlayerController : Singleton<PC_PlayerController>
     private IEnumerator CoroutineInteraction()
     {
         //yield return new WaitForEndOfFrame();
+
+        AudioClip audioClip = Resources.Load<AudioClip>("Interaction");
+        AudioMixerGroup validationGroup = Resources.Load<AudioMixerGroup>("MainMixer");
+        AudioMixerGroup sfxGroup = validationGroup.audioMixer.FindMatchingGroups("Feedback")[0];
+        Debug.Log(validationGroup);
+        SFXManager.Instance.PlaySFX(audioClip, transform.position, sfxGroup);
+
         m_animator.SetTrigger(m_interactionTriggerParameter);
         while(!m_animator.GetCurrentAnimatorStateInfo(0).IsName(m_idleStateName))
         {

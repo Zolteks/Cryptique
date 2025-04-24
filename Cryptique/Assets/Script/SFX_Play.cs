@@ -1,17 +1,19 @@
 ﻿using UnityEditor;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SFX_Play : MonoBehaviour
 {
     [SerializeField] public SFXData sfxData;
     [SerializeField] public string selectedSFXName;
+    [SerializeField] private AudioMixerGroup sfxMixerGroup;
 
     public void PlaySFX()
     {
         var sfx = sfxData?.GetSFXByName(selectedSFXName);
         if (sfx != null)
         {
-            SFXManager.Instance.PlaySFX(sfx.clip, transform.position);
+            SFXManager.Instance.PlaySFX(sfx.clip, transform.position, sfxMixerGroup);
         }
     }
 
@@ -38,6 +40,10 @@ public class SFX_PlayEditor : Editor
         // Champs de base
         SerializedProperty sfxDataProp = serializedObject.FindProperty("sfxData");
         EditorGUILayout.PropertyField(sfxDataProp);
+
+        // Champs AudioMixerGroup
+        SerializedProperty sfxMixerGroupProp = serializedObject.FindProperty("sfxMixerGroup");
+        EditorGUILayout.PropertyField(sfxMixerGroupProp);
 
         if (sfxPlay.sfxData != null)
         {
