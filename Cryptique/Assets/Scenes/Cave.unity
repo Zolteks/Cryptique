@@ -646,7 +646,7 @@ PrefabInstance:
     - target: {fileID: 2499246790116424587, guid: 3bf06714003031840bd52d870b593908,
         type: 3}
       propertyPath: m_interactMethod
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2752728374052387019, guid: 3bf06714003031840bd52d870b593908,
         type: 3}
@@ -682,13 +682,18 @@ PrefabInstance:
     - target: {fileID: 5688199813398800375, guid: 3bf06714003031840bd52d870b593908,
         type: 3}
       propertyPath: m_interactMethod
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5698717035630752847, guid: 3bf06714003031840bd52d870b593908,
         type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 616500977}
+    - target: {fileID: 6733068299316223768, guid: 3bf06714003031840bd52d870b593908,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7314226104061518514, guid: 3bf06714003031840bd52d870b593908,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -708,7 +713,7 @@ PrefabInstance:
     - target: {fileID: 8422307610086709531, guid: 3bf06714003031840bd52d870b593908,
         type: 3}
       propertyPath: m_interactMethod
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3781,6 +3786,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 604026067685126233, guid: 247733eec68c812469ca74eee749f41a,
+        type: 3}
+      propertyPath: left
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 604026067685126233, guid: 247733eec68c812469ca74eee749f41a,
+        type: 3}
+      propertyPath: right
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220760129507841258, guid: 247733eec68c812469ca74eee749f41a,
+        type: 3}
+      propertyPath: left
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220760129507841258, guid: 247733eec68c812469ca74eee749f41a,
+        type: 3}
+      propertyPath: right
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2049411091757948598, guid: 247733eec68c812469ca74eee749f41a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3841,6 +3866,26 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 616500977}
+    - target: {fileID: 3140770558103157041, guid: 247733eec68c812469ca74eee749f41a,
+        type: 3}
+      propertyPath: bot
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140770558103157041, guid: 247733eec68c812469ca74eee749f41a,
+        type: 3}
+      propertyPath: top
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908373086899795683, guid: 247733eec68c812469ca74eee749f41a,
+        type: 3}
+      propertyPath: bot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6908373086899795683, guid: 247733eec68c812469ca74eee749f41a,
+        type: 3}
+      propertyPath: top
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3958,6 +4003,11 @@ PrefabInstance:
       propertyPath: m_backCam
       value: 
       objectReference: {fileID: 698359331}
+    - target: {fileID: 6588826605230089127, guid: abea60e0ded05cd419b77e258879296a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7805144404042003308, guid: abea60e0ded05cd419b77e258879296a,
         type: 3}
       propertyPath: m_Name
