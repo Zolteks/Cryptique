@@ -410,7 +410,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_teleportPoint
       value: 
-      objectReference: {fileID: 605175636}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1195,7 +1195,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_teleportPoint
       value: 
-      objectReference: {fileID: 1382963596}
+      objectReference: {fileID: 0}
     - target: {fileID: 6595354927140864571, guid: 0cd038b647defab4383139e2a9ba9afe,
         type: 3}
       propertyPath: fallbackTile
@@ -1221,18 +1221,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cd038b647defab4383139e2a9ba9afe, type: 3}
---- !u!1 &605175636 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7378385649824595571, guid: 0cd038b647defab4383139e2a9ba9afe,
-    type: 3}
-  m_PrefabInstance: {fileID: 560464337}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &677882101 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1243454055926067820, guid: d6593f4827c37dd4f9681901332d7756,
-    type: 3}
-  m_PrefabInstance: {fileID: 481085748}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &769060041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1481,7 +1469,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_teleportPoint
       value: 
-      objectReference: {fileID: 677882101}
+      objectReference: {fileID: 0}
     - target: {fileID: 7387142819022303508, guid: fa744c2db5be29e43bcfc75db2aa2342,
         type: 3}
       propertyPath: fallbackTile
@@ -1880,6 +1868,31 @@ PrefabInstance:
       objectReference: {fileID: 1595747185}
     - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
         type: 3}
+      propertyPath: placedTiles.Array.data[0].tile
+      value: 
+      objectReference: {fileID: 1427051820}
+    - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: placedTiles.Array.data[1].tile
+      value: 
+      objectReference: {fileID: 1440901007}
+    - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: placedTiles.Array.data[2].tile
+      value: 
+      objectReference: {fileID: 1670553135}
+    - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: placedTiles.Array.data[3].tile
+      value: 
+      objectReference: {fileID: 172053914}
+    - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: placedTiles.Array.data[4].tile
+      value: 
+      objectReference: {fileID: 1595747185}
+    - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
       propertyPath: objectInTiles.Array.data[0].tile
       value: 
       objectReference: {fileID: 1427051820}
@@ -1908,6 +1921,31 @@ PrefabInstance:
       propertyPath: objectInTiles.Array.data[2].miniObject
       value: 
       objectReference: {fileID: 2089157153}
+    - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: placedTiles.Array.data[0].minimapLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: placedTiles.Array.data[1].minimapLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: placedTiles.Array.data[2].minimapLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: placedTiles.Array.data[3].minimapLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5835831541616445497, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: placedTiles.Array.data[4].minimapLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7556065170156024338, guid: c0b03de04c14e924cafbb28f5118be9c,
         type: 3}
       propertyPath: m_NavMeshData
@@ -1941,12 +1979,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3777543194506278060, guid: 152a40d6409570d4e995d86a2b523a40,
     type: 3}
   m_PrefabInstance: {fileID: 1773690198}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1382963596 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8826428911790803738, guid: fa744c2db5be29e43bcfc75db2aa2342,
-    type: 3}
-  m_PrefabInstance: {fileID: 946302664}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1427051820 stripped
 GameObject:
@@ -2749,7 +2781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_canInteract: 1
-  m_walkToItem: 0
+  m_interactMethod: 0
   m_goToRegion: 
   m_teleportPoint: {fileID: 1979042072}
   m_playerController: {fileID: 0}
