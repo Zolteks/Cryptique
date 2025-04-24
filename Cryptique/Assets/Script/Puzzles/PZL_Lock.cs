@@ -8,14 +8,21 @@ using UnityEngine.UI;
 public class PZL_Lock : Puzzle
 {
     [SerializeField] List<int> code;
-
+    [SerializeField] Camera cam;
     [SerializeField]  List<SimpleScrollSnap> scrollAreas;
+
+    private GameObject m_LockerArmory;
+    private BoxCollider m_Collider;
 
     private PC_PlayerController m_playerController;
     private void Start()
     {
         m_playerController = PC_PlayerController.Instance;
+        SGL_InteractManager.Instance.ChangeCamera(cam);
         m_playerController.DisableInput();
+
+        m_LockerArmory = GameObject.Find("Armoire_lock");
+        m_Collider = m_LockerArmory.GetComponent<BoxCollider>();
     }
 
     public void UpdateCode()
@@ -41,7 +48,10 @@ public class PZL_Lock : Puzzle
                 return;
             }
         }
+
+        m_Collider.enabled = false;
         m_playerController.EnableInput();
+        SGL_InteractManager.Instance.ChangeCamera(Camera.main);
         Complete();
     }
 }
