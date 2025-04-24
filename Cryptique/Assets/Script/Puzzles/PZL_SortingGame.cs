@@ -59,15 +59,14 @@ public class PZL_SortingGame : Puzzle
     {
         if (!bIsAllPlaced || bOilTake) return;
 
+        m_UIplayGameObject.SetActive(true);
         // Vérifie si l'objet n'est plus actif OU a été détruit
         if (m_Oil == null || !m_Oil.activeInHierarchy)
         {
             bOilTake = true;
-            Debug.Log("Huile récupérée !");
 
             PC_PlayerController.Instance.EnableInput();
             SGL_InteractManager.Instance.ChangeCamera(Camera.main);
-            m_UIplayGameObject.SetActive(true);
             Complete();
         }
     }

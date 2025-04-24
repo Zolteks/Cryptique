@@ -1419,6 +1419,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2848711522941337193, guid: 0cd038b647defab4383139e2a9ba9afe,
+        type: 3}
+      propertyPath: m_teleportPoint
+      value: 
+      objectReference: {fileID: 946302665}
     - target: {fileID: 3278058616577176259, guid: 0cd038b647defab4383139e2a9ba9afe,
         type: 3}
       propertyPath: fallbackTile
@@ -1873,6 +1878,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa744c2db5be29e43bcfc75db2aa2342, type: 3}
+--- !u!1 &946302665 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6210907668535013054, guid: fa744c2db5be29e43bcfc75db2aa2342,
+    type: 3}
+  m_PrefabInstance: {fileID: 946302664}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1058616821
 GameObject:
   m_ObjectHideFlags: 0
@@ -2507,6 +2518,11 @@ PrefabInstance:
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 1979042072}
+    - target: {fileID: 7311025367838326302, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: m_interactMethod
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8324811166733742163, guid: 443b92f7ad0ca7841937c8474d7acc1e,
         type: 3}
       propertyPath: m_teleportPoint
