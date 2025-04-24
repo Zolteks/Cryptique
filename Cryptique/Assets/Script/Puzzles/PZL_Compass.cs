@@ -12,6 +12,7 @@ public class PZL_Compass : Puzzle
     {
         if (goCompass != null)
         {
+            print("test");
             SGL_InteractManager.Instance.ChangeCamera(cam);
 
             PC_PlayerController.Instance.DisableInput();
@@ -31,6 +32,7 @@ public class PZL_Compass : Puzzle
 
     void CompassDestroy()
     {
+        print("Compass");
         PC_PlayerController.Instance.EnableInput();
 
         SGL_InteractManager.Instance.ChangeCamera(Camera.main);
