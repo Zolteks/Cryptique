@@ -210,6 +210,7 @@ public class PC_PlayerController : Singleton<PC_PlayerController>
         if (m_isInputActive)
             DisableInput();
         else return;
+        print(m_animator.gameObject.name);
         m_animator.SetBool(m_isInteractingParameter, true);
         m_coroutineWaitFor = StartCoroutine(CoroutineWaitFor());
         OnMoveCallback += LaunchInteraction;

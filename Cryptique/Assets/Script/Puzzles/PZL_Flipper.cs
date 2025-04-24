@@ -33,10 +33,14 @@ public class PZL_Flipper : Puzzle
     // Variables pour l'animation fluide du cube
     private float animationDuration = 0.5f; // Durée de l'animation
     private float timeElapsed = 0f;
+    GameObject m_UIPlay;
 
     // Start is called before the first frame update
     void Start()
     {
+        m_UIPlay = GameObject.Find("UIPlay");
+        m_UIPlay.SetActive(false);
+
         SGL_InteractManager.Instance.ChangeCamera(cam);
         fZStartPosition = gLauncher.position.z;
         fZEndPosition = gLastPos.transform.position.z;
@@ -67,6 +71,7 @@ public class PZL_Flipper : Puzzle
         if (goAllStalacmites.transform.childCount == 0)
         {
             SGL_InteractManager.Instance.ChangeCamera(Camera.main);
+            m_UIPlay.SetActive(true);
             Complete();
         }
     }

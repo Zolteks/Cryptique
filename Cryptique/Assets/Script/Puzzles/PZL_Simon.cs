@@ -26,6 +26,7 @@ public class PZL_Simon : Puzzle
     List<int> m_currentLayout;
     int m_playerStreak;
     bool m_busy = false;
+    GameObject m_UIPlay;
 
     public void ResetPuzzle()
     {
@@ -35,10 +36,10 @@ public class PZL_Simon : Puzzle
         PlayNextRound();
     }
 
-    //private void Start()
-    //{
-    //    ResetPuzzle();
-    //}
+    private void Start()
+    {
+        m_UIPlay = GameObject.Find("UIPlay");
+    }
 
     public void TriggerButton(int id)
     {
@@ -62,6 +63,7 @@ public class PZL_Simon : Puzzle
                 else
                 {
                     ChangeCamState();
+                    m_UIPlay.SetActive(true);
                     Complete();
                 }
             }
