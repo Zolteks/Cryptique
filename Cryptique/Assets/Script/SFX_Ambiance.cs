@@ -7,12 +7,12 @@ public class SFX_Ambiance : MonoBehaviour
 {
     [SerializeField] public SFXData sfxData;
     [SerializeField] public string selectedSFXName;
+    [SerializeField] private bool loop = false;
 
-    SaveSystemManager saveSystemManager;
+    private AudioSource audioSource;
 
     void Start()
     {
-        saveSystemManager = SaveSystemManager.Instance;
         PlaySFX();
     }
 
@@ -21,8 +21,13 @@ public class SFX_Ambiance : MonoBehaviour
         var sfx = sfxData?.GetSFXByName(selectedSFXName);
         if (sfx != null)
         {
-            AudioSource.PlayClipAtPoint(sfx.clip, transform.position);
+            audioSource = SFXManager.Instance.PlaySFX(sfx.clip, transform.position, loop);
         }
+    }
+
+    public void SlowDisableAudioAmbiance()
+    {
+        SFXManager.Instance.FadeOutAndDestroy(audioSource, 5f);
     }
 }
 
@@ -39,6 +44,9 @@ public class SFX_TempeteEditor : Editor
         // Champs de base
         SerializedProperty sfxDataProp = serializedObject.FindProperty("sfxData");
         EditorGUILayout.PropertyField(sfxDataProp);
+
+        SerializedProperty loopProp = serializedObject.FindProperty("loop");
+        EditorGUILayout.PropertyField(loopProp);
 
         if (sfxPlay.sfxData != null)
         {

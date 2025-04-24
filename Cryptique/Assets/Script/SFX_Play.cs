@@ -11,7 +11,7 @@ public class SFX_Play : MonoBehaviour
         var sfx = sfxData?.GetSFXByName(selectedSFXName);
         if (sfx != null)
         {
-            AudioSource.PlayClipAtPoint(sfx.clip, transform.position);
+            SFXManager.Instance.PlaySFX(sfx.clip, transform.position);
         }
     }
 

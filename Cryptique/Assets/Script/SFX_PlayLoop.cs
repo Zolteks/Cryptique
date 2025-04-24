@@ -6,6 +6,8 @@ public class SFX_PlayLoop : MonoBehaviour
 {
     [SerializeField] public SFXData sfxData;
     [SerializeField] public string selectedSFXName;
+    [SerializeField] private int minWaitTime = 1;
+    [SerializeField] private int maxWaitTime = 60;
 
     private SFXData.SFX sfx;
 
@@ -20,9 +22,8 @@ public class SFX_PlayLoop : MonoBehaviour
     {
         if(!isWaiting)
         {
-            AudioSource.PlayClipAtPoint(sfx.clip, transform.position);
-            Debug.Log("DU SONNNN");
-            StartCoroutine(WaitForRandomTime(Random.Range(1, 60)));
+            SFXManager.Instance.PlaySFX(sfx.clip, transform.position);
+            StartCoroutine(WaitForRandomTime(Random.Range(minWaitTime, maxWaitTime)));
         }
     }
 
@@ -32,6 +33,7 @@ public class SFX_PlayLoop : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         isWaiting = false;
     }
+
 }
 
 
@@ -44,10 +46,17 @@ public class SFX_PlayLoopEditor : Editor
 
         SFX_PlayLoop sfxPlay = (SFX_PlayLoop)target;
 
-        // Champs de base
+        // Champs SFXData
         SerializedProperty sfxDataProp = serializedObject.FindProperty("sfxData");
         EditorGUILayout.PropertyField(sfxDataProp);
 
+        // Champs min/max temps
+        SerializedProperty minWaitProp = serializedObject.FindProperty("minWaitTime");
+        SerializedProperty maxWaitProp = serializedObject.FindProperty("maxWaitTime");
+        EditorGUILayout.PropertyField(minWaitProp);
+        EditorGUILayout.PropertyField(maxWaitProp);
+
+        // Dropdown pour choisir la SFX
         if (sfxPlay.sfxData != null)
         {
             string[] sfxNames = sfxPlay.sfxData.GetSFXNames();
