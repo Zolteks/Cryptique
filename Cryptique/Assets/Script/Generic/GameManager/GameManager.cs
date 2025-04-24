@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     static public GameManager Instance;
 
     [SerializeField] private Transform m_camera;
-    [SerializeField] private UI_DialogueManager m_dialogueManager;
    // [SerializeField] private UIManager uiManager;
 
     private GameProgressionManager m_gameProgressionManager;
@@ -24,10 +23,6 @@ public class GameManager : MonoBehaviour
         return m_camera;
     }
 
-    public UI_DialogueManager GetDialogueManager()
-    {
-        return m_dialogueManager;
-    }
 
     /* Functions */
     private void Awake()
