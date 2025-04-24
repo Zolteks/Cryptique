@@ -69,10 +69,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_canInteract: 1
   m_interactMethod: 1
-  m_sName: 
   m_crossingPoints: []
   m_localizationAsset: {fileID: 0}
   m_characterList: {fileID: 0}
+  m_dialogueBubble: {fileID: 0}
+  m_scale: 0.6
 --- !u!1001 &4884532073321000175
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -160,26 +161,26 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ed9134ff028c90846a8af478a46c42cf,
+    - targetCorrespondingSourceObject: {fileID: 386791141387813222, guid: ed9134ff028c90846a8af478a46c42cf,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5391831272849425843}
+      addedObject: {fileID: 5807409354688194092}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: ed9134ff028c90846a8af478a46c42cf,
     type: 3}
---- !u!1 &4913031186182458706 stripped
+--- !u!1 &5086657951901199753 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: ed9134ff028c90846a8af478a46c42cf,
+  m_CorrespondingSourceObject: {fileID: 386791141387813222, guid: ed9134ff028c90846a8af478a46c42cf,
     type: 3}
   m_PrefabInstance: {fileID: 4884532073321000175}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &5391831272849425843
+--- !u!95 &5807409354688194092
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4913031186182458706}
+  m_GameObject: {fileID: 5086657951901199753}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: bf1b6ee0dcc47f34da13071eb0db4cee, type: 2}

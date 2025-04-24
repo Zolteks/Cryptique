@@ -69,11 +69,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_canInteract: 1
   m_interactMethod: 1
-  m_sName: 
   m_crossingPoints: []
   m_localizationAsset: {fileID: 11400000, guid: 6821cc5907f5f0e48b838d19fe736676,
     type: 2}
   m_characterList: {fileID: 11400000, guid: ddb3a3ba4948b654a9c9e3800b33a58f, type: 2}
+  m_dialogueBubble: {fileID: 0}
+  m_scale: 0.6
 --- !u!1001 &1631115072554721120
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -161,10 +162,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: c4f0bf2c638ffdc408e2b4827ffd798e,
+    - targetCorrespondingSourceObject: {fileID: 386791141387813222, guid: c4f0bf2c638ffdc408e2b4827ffd798e,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8986595175792619011}
+      addedObject: {fileID: 721936218041063247}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: c4f0bf2c638ffdc408e2b4827ffd798e,
     type: 3}
 --- !u!4 &111803355235165886 stripped
@@ -173,20 +174,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1631115072554721120}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1244450745163874013 stripped
+--- !u!1 &1440249157550382598 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: c4f0bf2c638ffdc408e2b4827ffd798e,
+  m_CorrespondingSourceObject: {fileID: 386791141387813222, guid: c4f0bf2c638ffdc408e2b4827ffd798e,
     type: 3}
   m_PrefabInstance: {fileID: 1631115072554721120}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &8986595175792619011
+--- !u!95 &721936218041063247
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244450745163874013}
+  m_GameObject: {fileID: 1440249157550382598}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7bfac26e62d672a4781249b65e2fba28, type: 2}
