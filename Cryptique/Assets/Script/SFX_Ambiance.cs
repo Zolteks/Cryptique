@@ -1,43 +1,52 @@
-﻿using UnityEditor;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class SFX_Play : MonoBehaviour
+public class SFX_Ambiance : MonoBehaviour
 {
     [SerializeField] public SFXData sfxData;
     [SerializeField] public string selectedSFXName;
+    [SerializeField] private bool loop = false;
+
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        PlaySFX();
+    }
 
     public void PlaySFX()
     {
         var sfx = sfxData?.GetSFXByName(selectedSFXName);
         if (sfx != null)
         {
-            SFXManager.Instance.PlaySFX(sfx.clip, transform.position);
+            audioSource = SFXManager.Instance.PlaySFX(sfx.clip, transform.position, loop);
         }
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void SlowDisableAudioAmbiance()
     {
-        if (other.CompareTag("Player"))
-        {
-            PlaySFX();
-            gameObject.GetComponent<BoxCollider>().enabled = false;
-        }
+        SFXManager.Instance.FadeOutAndDestroy(audioSource, 5f);
     }
 }
 
 
-[CustomEditor(typeof(SFX_Play))]
-public class SFX_PlayEditor : Editor
+[CustomEditor(typeof(SFX_Ambiance))]
+public class SFX_TempeteEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
 
-        SFX_Play sfxPlay = (SFX_Play)target;
+        SFX_Ambiance sfxPlay = (SFX_Ambiance)target;
 
         // Champs de base
         SerializedProperty sfxDataProp = serializedObject.FindProperty("sfxData");
         EditorGUILayout.PropertyField(sfxDataProp);
+
+        SerializedProperty loopProp = serializedObject.FindProperty("loop");
+        EditorGUILayout.PropertyField(loopProp);
 
         if (sfxPlay.sfxData != null)
         {
@@ -53,7 +62,7 @@ public class SFX_PlayEditor : Editor
         }
         else
         {
-            EditorGUILayout.HelpBox("Aucune SFXData assignée", MessageType.Warning);
+            EditorGUILayout.HelpBox("Aucune SFXData assign�e", MessageType.Warning);
         }
 
         serializedObject.ApplyModifiedProperties();

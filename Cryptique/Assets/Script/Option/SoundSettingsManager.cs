@@ -9,7 +9,6 @@ public class SoundSettingsManager : MonoBehaviour
     [SerializeField] private Slider musicSlider;
     [SerializeField] private Slider sfxSlider;
 
-    //[SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioSource musicSource;
 
 
@@ -28,6 +27,10 @@ public class SoundSettingsManager : MonoBehaviour
         musicSlider.onValueChanged.AddListener(val => OptionChangeNotifier.Notify("volume_music", val));
         sfxSlider.onValueChanged.AddListener(val => OptionChangeNotifier.Notify("volume_sfx", val));
 
+        // Chargement des données
+        SetMusicVolume(saveSystemManager.GetGameData().settings.volumeMusic);
+        SetSFXVolume(saveSystemManager.GetGameData().settings.volumeSfx);
+
         LoadUI();
     }
 
@@ -42,7 +45,7 @@ public class SoundSettingsManager : MonoBehaviour
     {
         Debug.Log($"SFX volume: {vol}");
         saveSystemManager.GetGameData().settings.volumeSfx = vol;
-       /// sfxSource.volume = vol;
+        SFXManager.Instance.SetSFXVolume(vol);
     }
 
     private void LoadUI()

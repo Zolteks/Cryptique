@@ -69,6 +69,41 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
     }
 
 
+#if UNITY_EDITOR
+    public void OnApplicationQuit()
+    {
+        SaveGame();
+    }
+#else
+    private bool hasSaved = false;
+
+    public void OnApplicationFocus(bool focus)
+    {
+        if (!focus && !hasSaved)
+        {
+            SaveGame();
+            hasSaved = true;
+        }
+        else if (focus)
+        {
+            hasSaved = false; // Réinitialise le flag quand l'app revient au premier plan
+        }
+    }
+
+    public void OnApplicationPause(bool pause)
+    {
+        if (pause && !hasSaved)
+        {
+            SaveGame();
+            hasSaved = true;
+        }
+        else if (!pause)
+        {
+            hasSaved = false; // Réinitialise si l'app revient de pause
+        }
+    }
+#endif
+
     private void Test()
     {
         GameData gameData = new GameData();
