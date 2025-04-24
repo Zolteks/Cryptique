@@ -14,7 +14,7 @@ public class SFXManager : Singleton<SFXManager>
         if (clip == null)  return null;
 
         GameObject go = new GameObject("SFX_" + clip.name);
-        Debug.Log("SFX_" + clip.name);
+        //Debug.Log("SFX_" + clip.name);
         go.transform.position = position;
 
         AudioSource source = go.AddComponent<AudioSource>();
