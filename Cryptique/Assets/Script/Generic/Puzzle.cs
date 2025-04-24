@@ -18,6 +18,7 @@ public class Puzzle : MonoBehaviour
     public virtual void Quit()
     {
         PC_PlayerController.Instance.EnableInput();
+        SGL_InteractManager.Instance.ChangeCamera(Camera.main);
         Destroy(gameObject);
     }
 

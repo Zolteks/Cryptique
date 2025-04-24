@@ -17,6 +17,12 @@ public class PZL_Radio : Puzzle
     float targetFreqW;
     float targetFreqH;
 
+    [SerializeField] float minW;
+    [SerializeField] float maxW;
+
+    [SerializeField] float minH;
+    [SerializeField] float maxH;
+
     [SerializeField] float toleranceW = .1f;
     [SerializeField] float toleranceH = .05f;
 
@@ -27,7 +33,6 @@ public class PZL_Radio : Puzzle
         shader = frequenceDisplay.materials[0];
         curFreqW = 2;
         curFreqH = .1f;
-
         targetFreqW = 5f;
         targetFreqH = .15f;
         shader.SetFloat("_TargetFreqWidth", targetFreqW);
@@ -38,10 +43,8 @@ public class PZL_Radio : Puzzle
 
     void Update()
     {
-        //print(buttonH.angle);
-
-        curFreqW = (buttonW.angle + 360)/40 + 2;
-        curFreqH = .1f+ (360 + buttonH.angle)/1000;
+        curFreqW = minW + (buttonW.angle + 360) / (720 / maxW);
+        curFreqH = minH + (buttonH.angle + 360) / (720 / maxH);
 
         //print("height: "+curFreqH);
         //print("width: "+curFreqW);
