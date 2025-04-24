@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Events;
 
 public class Puzzle : MonoBehaviour
@@ -26,15 +27,14 @@ public class Puzzle : MonoBehaviour
         if (GameProgressionManager.Instance.ArePrerequisitesCompleted(puzzleData))
         {
             Debug.Log($"{puzzleData.GetPuzzleID()} is completed.");
+            //Get the SFX of validation in resources
+            AudioClip audioClip = Resources.Load<AudioClip>("ValidationPZL");
+            var validationGroup = Resources.Load<AudioMixerGroup>("Feedback");
+            SFXManager.Instance.PlaySFX(audioClip, transform.position, validationGroup);
             onSuccess?.Invoke();
             puzzleData.SetCompleted(true);
             // puzzleData.SetUnlocked(false);
-            print(SaveSystemManager.Instance.gameObject.name);
-            print(SaveSystemManager.Instance.GetGameData());
-            print(SaveSystemManager.Instance.GetGameData().progression);
-            print(SaveSystemManager.Instance.GetGameData().progression.solvedPuzzles);
-            print(puzzleData);
-            print(puzzleData.GetPuzzleID());
+      
             SaveSystemManager.Instance.GetGameData().progression.solvedPuzzles.Add(puzzleData.GetPuzzleID());
 
             Quit();

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SFX_PlayLoop : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class SFX_PlayLoop : MonoBehaviour
     [SerializeField] public string selectedSFXName;
     [SerializeField] private int minWaitTime = 1;
     [SerializeField] private int maxWaitTime = 60;
+    [SerializeField] private AudioMixerGroup sfxMixerGroup;
 
     private SFXData.SFX sfx;
 
@@ -22,7 +24,7 @@ public class SFX_PlayLoop : MonoBehaviour
     {
         if(!isWaiting)
         {
-            SFXManager.Instance.PlaySFX(sfx.clip, transform.position);
+            SFXManager.Instance.PlaySFX(sfx.clip, transform.position, sfxMixerGroup);
             StartCoroutine(WaitForRandomTime(Random.Range(minWaitTime, maxWaitTime)));
         }
     }
@@ -55,6 +57,10 @@ public class SFX_PlayLoopEditor : Editor
         SerializedProperty maxWaitProp = serializedObject.FindProperty("maxWaitTime");
         EditorGUILayout.PropertyField(minWaitProp);
         EditorGUILayout.PropertyField(maxWaitProp);
+
+        // Champs AudioMixerGroup
+        SerializedProperty sfxMixerGroupProp = serializedObject.FindProperty("sfxMixerGroup");
+        EditorGUILayout.PropertyField(sfxMixerGroupProp);
 
         // Dropdown pour choisir la SFX
         if (sfxPlay.sfxData != null)

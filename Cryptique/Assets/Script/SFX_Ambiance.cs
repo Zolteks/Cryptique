@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SFX_Ambiance : MonoBehaviour
 {
     [SerializeField] public SFXData sfxData;
     [SerializeField] public string selectedSFXName;
     [SerializeField] private bool loop = false;
+    [SerializeField] private AudioMixerGroup sfxMixerGroup;
 
     private AudioSource audioSource;
 
@@ -21,7 +21,7 @@ public class SFX_Ambiance : MonoBehaviour
         var sfx = sfxData?.GetSFXByName(selectedSFXName);
         if (sfx != null)
         {
-            audioSource = SFXManager.Instance.PlaySFX(sfx.clip, transform.position, loop);
+            audioSource = SFXManager.Instance.PlaySFX(sfx.clip, transform.position, sfxMixerGroup, loop);
         }
     }
 
@@ -47,6 +47,10 @@ public class SFX_TempeteEditor : Editor
 
         SerializedProperty loopProp = serializedObject.FindProperty("loop");
         EditorGUILayout.PropertyField(loopProp);
+
+        // Champs AudioMixerGroup
+        SerializedProperty sfxMixerGroupProp = serializedObject.FindProperty("sfxMixerGroup");
+        EditorGUILayout.PropertyField(sfxMixerGroupProp);
 
         if (sfxPlay.sfxData != null)
         {

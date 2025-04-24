@@ -148,7 +148,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.75
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -286,7 +286,8 @@ AudioSource:
   m_GameObject: {fileID: 2569535069640768677}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 2785219860279321709, guid: deb54f4d530c1a84b83ecce136abf029,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -432,7 +433,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_camera: {fileID: 0}
-  m_dialogueManager: {fileID: 0}
 --- !u!114 &5021316622015085288
 MonoBehaviour:
   m_ObjectHideFlags: 0
