@@ -23,15 +23,15 @@ public class UI_ObjectDescription : MonoBehaviour
     [SerializeField] private float rotationSpeed = 0.2f;
 
 
-#if UNITY_EDITOR || UNITY_STANDALONE
-    [SerializeField] private OBJ_Item item;
+//#if UNITY_EDITOR || UNITY_STANDALONE
+//    [SerializeField] private OBJ_Item item;
 
-    private void Start()
-    {
-        ShowObjectDescription(item);
-        Show3DObject(item);
-    }
-#endif
+//    private void Start()
+//    {
+//        ShowObjectDescription(item);
+//        Show3DObject(item);
+//    }
+//#endif
 
     private void Update()
     {
@@ -40,6 +40,12 @@ public class UI_ObjectDescription : MonoBehaviour
 #else
     HandleTouchRotation(); // mobile
 #endif
+    }
+
+    public void Show(OBJ_Item item)
+    {
+        ShowObjectDescription(item);
+        Show3DObject(item);
     }
 
 
@@ -68,14 +74,25 @@ public class UI_ObjectDescription : MonoBehaviour
         itemCamera.targetTexture = renderTexture;
 
         pivot = new GameObject("ItemPivot");
-        pivot.transform.position = new Vector3(5000,5000,5000);
+        pivot.transform.position = new Vector3(5000, 5000, 5000);
 
         previewInstance = Instantiate(item.GetPrefab(), pivot.transform);
         SetLayerRecursively(previewInstance, LayerMask.NameToLayer("InspectableObject"));
         previewInstance.transform.localPosition = Vector3.zero;
 
-        itemCamera.transform.position = pivot.transform.position + new Vector3(0, 0, -10f);
-        itemCamera.transform.LookAt(pivot.transform);
+        // Calcul automatique de la distance de la caméra
+        Bounds bounds = new Bounds(previewInstance.transform.position, Vector3.zero);
+        Renderer[] renderers = previewInstance.GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
+        {
+            bounds.Encapsulate(renderer.bounds);
+        }
+
+        float objectSize = Mathf.Max(bounds.size.x, bounds.size.y, bounds.size.z);
+        float distance = objectSize / (2f * Mathf.Tan(itemCamera.fieldOfView * 0.5f * Mathf.Deg2Rad)) * 1.2f;
+
+        itemCamera.transform.position = bounds.center - Vector3.forward * distance;
+        itemCamera.transform.LookAt(bounds.center);
 
         Light light = new GameObject("ItemLight").AddComponent<Light>();
         light.type = LightType.Directional;
@@ -84,6 +101,7 @@ public class UI_ObjectDescription : MonoBehaviour
 
         rawImage.texture = renderTexture;
     }
+
 
     private void SetLayerRecursively(GameObject obj, int layer)
     {
