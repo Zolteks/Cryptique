@@ -28,6 +28,7 @@ public class SFX_Play : MonoBehaviour
 }
 
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(SFX_Play))]
 public class SFX_PlayEditor : Editor
 {
@@ -65,3 +66,4 @@ public class SFX_PlayEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+#endif
