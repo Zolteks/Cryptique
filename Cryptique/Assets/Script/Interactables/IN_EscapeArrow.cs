@@ -74,7 +74,8 @@ public class IN_EscapeArrow : OBJ_Interactable
         }
         else
         {
-            SceneManager.LoadScene(m_goToRegion);
+            GameObject obj = (GameObject)Instantiate(Resources.Load("LoadingScreen"));
+            SceneManager.LoadSceneAsync(m_goToRegion);
 
             if(m_SaveSystemManager == null)
                 m_SaveSystemManager = SaveSystemManager.Instance;
