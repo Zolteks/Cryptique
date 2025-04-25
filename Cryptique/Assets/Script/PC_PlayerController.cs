@@ -196,7 +196,7 @@ public class PC_PlayerController : Singleton<PC_PlayerController>
     {
         m_agent.ResetPath();
         NavMesh.SamplePosition(m_newtilePosition, out NavMeshHit hit, m_interactionDistance, NavMesh.AllAreas);
-        Debug.Log("Agent teleport to : " + hit.position);
+        //Debug.Log("Agent teleport to : " + hit.position);
         m_agent.Warp(hit.position);
         if (!m_agent.isOnNavMesh)
             Debug.LogWarning("NavMesh not found");

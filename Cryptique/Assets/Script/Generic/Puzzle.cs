@@ -33,6 +33,7 @@ public class Puzzle : MonoBehaviour
             var validationGroup = Resources.Load<AudioMixerGroup>("Feedback");
             SFXManager.Instance.PlaySFX(audioClip, transform.position, validationGroup);
             onSuccess?.Invoke();
+
             puzzleData.SetCompleted(true);
             // puzzleData.SetUnlocked(false);
       
