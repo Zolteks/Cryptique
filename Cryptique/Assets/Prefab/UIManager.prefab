@@ -6434,6 +6434,7 @@ GameObject:
   - component: {fileID: 6703189218003028589}
   - component: {fileID: 32697713119624998}
   - component: {fileID: 9115656177790984864}
+  - component: {fileID: 5911806842796063994}
   m_Layer: 5
   m_Name: PauseGrimoire
   m_TagString: Untagged
@@ -6603,6 +6604,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   regionDetail: {fileID: 1776858084044034293}
+--- !u!114 &5911806842796063994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4386689370567406525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d98a7909ea830964ebce4ad6bb1eafdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4443650324818492326
 GameObject:
   m_ObjectHideFlags: 0
@@ -15083,7 +15096,7 @@ PrefabInstance:
     - target: {fileID: 1275782737265010795, guid: 6d59e3facb2fd5644950495f3102ac9d,
         type: 3}
       propertyPath: m_Size
-      value: 0.3181068
+      value: 0.31810677
       objectReference: {fileID: 0}
     - target: {fileID: 1275782737265010795, guid: 6d59e3facb2fd5644950495f3102ac9d,
         type: 3}
