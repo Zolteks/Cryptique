@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEditor.Build.Pipeline.Tasks;
 using UnityEngine;
 
 public abstract class OBJ_Interactable : MonoBehaviour

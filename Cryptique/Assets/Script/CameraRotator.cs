@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Localization.PropertyVariants.TrackedProperties;
-using UnityEngine.UI;
 
 
 public enum CameraDirdection
@@ -65,10 +62,10 @@ public class CameraRotator : MonoBehaviour
         //    }
         //}
 
-#else
+
         if (saveSystemManager)
         {
-            if (saveSystemManager.GetGameData().slideMode == SlideMode.Slide  && slideBoutons.activeSelf)
+            if (saveSystemManager.GetGameData().settings.slideMode == SlideMode.Slide  && slideBoutons.activeSelf)
             {
                 slideBoutons.SetActive(false);
                 HandleTouchRotation();

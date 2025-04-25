@@ -32,6 +32,8 @@ public class SFX_Ambiance : MonoBehaviour
 }
 
 
+
+#if UNITY_EDITOR
 [CustomEditor(typeof(SFX_Ambiance))]
 public class SFX_TempeteEditor : Editor
 {
@@ -72,3 +74,4 @@ public class SFX_TempeteEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+#endif
