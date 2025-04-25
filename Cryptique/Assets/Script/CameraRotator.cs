@@ -28,7 +28,7 @@ public class CameraRotator : MonoBehaviour
     private bool hasRotated = false;
 
      private SaveSystemManager saveSystemManager;
-    [SerializeField] private GameObject slideBoutons;
+    //[SerializeField] private GameObject slideBoutons;
 
     [SerializeField] private Animator animator;
 
@@ -43,11 +43,11 @@ public class CameraRotator : MonoBehaviour
     void Update()
     {
         // Debug controls for rotation
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
-            RotateRight();
-        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
-            RotateLeft();
+//#if UNITY_EDITOR
+//        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+//            RotateRight();
+//        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+//            RotateLeft();
 
         //if (saveSystemManager)
         //{
@@ -63,19 +63,19 @@ public class CameraRotator : MonoBehaviour
         //}
 
 
-        if (saveSystemManager)
-        {
-            if (saveSystemManager.GetGameData().settings.slideMode == SlideMode.Slide  && slideBoutons.activeSelf)
-            {
-                slideBoutons.SetActive(false);
-                HandleTouchRotation();
-            }
-            else
-            {
-                slideBoutons.SetActive(true);
-            }
-        }
-#endif
+//        if (saveSystemManager)
+//        {
+//            if (saveSystemManager.GetGameData().settings.slideMode == SlideMode.Slide  && slideBoutons.activeSelf)
+//            {
+//                slideBoutons.SetActive(false);
+//                HandleTouchRotation();
+//            }
+//            else
+//            {
+//                slideBoutons.SetActive(true);
+//            }
+//        }
+//#endif
     }
 
     public void UpdateWalls()
@@ -190,32 +190,32 @@ public class CameraRotator : MonoBehaviour
         isDragging = false;
     }
 
-    private void HandleTouchRotation()
-    {
-        if (isDragging)
-        {
-            Vector2 currentTouchPosition = SGL_InputManager.Instance.GetTouchPosition();
-            Vector2 delta = currentTouchPosition - lastTouchPosition;
+    //private void HandleTouchRotation()
+    //{
+    //    if (isDragging)
+    //    {
+    //        Vector2 currentTouchPosition = SGL_InputManager.Instance.GetTouchPosition();
+    //        Vector2 delta = currentTouchPosition - lastTouchPosition;
 
-            if (!hasRotated && Mathf.Abs(delta.x) > Mathf.Abs(delta.y) && Mathf.Abs(delta.x) > swipeThreshold)
-            {
-                if (delta.x > 0)
-                {
-                    RotateRight();
-                }
-                else
-                {
-                    RotateLeft();
-                }
+    //        if (!hasRotated && Mathf.Abs(delta.x) > Mathf.Abs(delta.y) && Mathf.Abs(delta.x) > swipeThreshold)
+    //        {
+    //            if (delta.x > 0)
+    //            {
+    //                RotateRight();
+    //            }
+    //            else
+    //            {
+    //                RotateLeft();
+    //            }
 
-                hasRotated = true; // empecher de repeter la rotation
-            }
-        }
-        else
-        {
-            hasRotated = false; // reinitialise pour le prochain swipe
-        }
-    }
+    //            hasRotated = true; // empecher de repeter la rotation
+    //        }
+    //    }
+    //    else
+    //    {
+    //        hasRotated = false; // reinitialise pour le prochain swipe
+    //    }
+    //}
 
     public void SetIsBusy(bool isBusy)
     {
