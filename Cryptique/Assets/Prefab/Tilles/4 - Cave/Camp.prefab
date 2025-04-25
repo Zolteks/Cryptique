@@ -1548,6 +1548,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1400755159465734667}
+    - targetCorrespondingSourceObject: {fileID: -600294463607693159, guid: ba65493f80761da41b02b7b748a37f91,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5373901698286741597}
+    - targetCorrespondingSourceObject: {fileID: -600294463607693159, guid: ba65493f80761da41b02b7b748a37f91,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8814835951903084103}
     - targetCorrespondingSourceObject: {fileID: 3953195277586226900, guid: ba65493f80761da41b02b7b748a37f91,
         type: 3}
       insertIndex: -1
@@ -1763,6 +1771,63 @@ MonoBehaviour:
   right: 1
   bot: 0
   left: 0
+--- !u!1 &3337803178487800222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -600294463607693159, guid: ba65493f80761da41b02b7b748a37f91,
+    type: 3}
+  m_PrefabInstance: {fileID: 6483231915232510215}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &5373901698286741597
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3337803178487800222}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.57, y: 3.57, z: 1.52}
+  m_Center: {x: 0.97, y: 0, z: 0.69}
+--- !u!114 &8814835951903084103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3337803178487800222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8cedfe7a741aee45ada83b31abd5226, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_canInteract: 1
+  m_interactMethod: 1
+  puzzleData: {fileID: 11400000, guid: e9478f4823266f241b2dcc229b2dc5c8, type: 2}
+  onSuccess:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2044909997344158584}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Crumble
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3917799418936481745 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1177760830878902570, guid: ba65493f80761da41b02b7b748a37f91,
@@ -1962,91 +2027,6 @@ MonoBehaviour:
   m_Center: {x: 1.98, y: 3.7840002, z: 2.9250002}
   m_Area: 1
   m_AffectedAgents: a98c17ec
---- !u!1 &7739925477624466714 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3643601373693840413, guid: ba65493f80761da41b02b7b748a37f91,
-    type: 3}
-  m_PrefabInstance: {fileID: 6483231915232510215}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &336108456752474239
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7739925477624466714}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.31322, y: 1.7107409, z: 1.2676145}
-  m_Center: {x: 1.1291573, y: 0.85537046, z: 0.633805}
---- !u!114 &8315125853490529030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7739925477624466714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8cedfe7a741aee45ada83b31abd5226, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_canInteract: 1
-  m_interactMethod: 0
-  puzzleData: {fileID: 11400000, guid: e9478f4823266f241b2dcc229b2dc5c8, type: 2}
-  onSuccess:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 336108456752474239}
-        m_TargetAssemblyTypeName: UnityEngine.Collider, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Crumble
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2044909997344158584}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Crumble
-          m_BoolArgument: 1
-        m_CallState: 2
---- !u!208 &4250693494257516794
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7739925477624466714}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 1.1570001, y: 0.855, z: 0.634}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 1.1290001, y: 0.855, z: 0.634}
-  m_TimeToStationary: 0.5
 --- !u!1 &8008951802843078611 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3953195277586226900, guid: ba65493f80761da41b02b7b748a37f91,
