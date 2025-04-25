@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PZL_MovableWoodObject : MonoBehaviour
@@ -10,25 +8,53 @@ public class PZL_MovableWoodObject : MonoBehaviour
     private Vector3 vOffset;
     private float fZCoord;
     private bool bIsDragging = false;
+    private bool isPlaced = false;
+    private string currentZone = null;
 
     void OnMouseDown()
     {
+        if (isPlaced)
+            return; // Empêche de déplacer un bâton déjà placé correctement
+
         fZCoord = pzlGame.cam.WorldToScreenPoint(transform.position).z;
-        vOffset = new Vector3(transform.position.x, transform.position.y, transform.position.z) - GetMouseWorldPos();
+        vOffset = transform.position - GetMouseWorldPos();
         bIsDragging = true;
     }
 
     void OnMouseDrag()
     {
-        if (bIsDragging)
+        if (bIsDragging && !isPlaced)
         {
             transform.position = GetMouseWorldPos() + vOffset;
         }
     }
 
-    private void OnMouseUp()
+    void OnMouseUp()
     {
         bIsDragging = false;
+        if (currentZone != null)
+        {
+            GameObject currentZoneFind = GameObject.Find(currentZone);
+            int zoneID = ExtractID(currentZoneFind.name);
+            int stickID = ExtractID(gameObject.name);
+
+            // Positionner le bâton dans la zone cible
+            Vector3 targetPosition = currentZoneFind.transform.position + new Vector3(0.75f, 0f, -0.3f);
+            print("target pos : " + targetPosition);
+            StartCoroutine(SmoothMovement(targetPosition, 4f));
+
+            if (zoneID == stickID)
+            {
+                // Placement correct
+                isPlaced = true;
+                pzlGame.UpdateEtatPlacement(zoneID - 1, true);
+            }
+            else
+            {
+                // Placement incorrect, le bâton reste déplaçable
+                Debug.Log("Placement incorrect. Le bâton peut être déplacé à nouveau.");
+            }
+        }
     }
 
     private Vector3 GetMouseWorldPos()
@@ -38,29 +64,41 @@ public class PZL_MovableWoodObject : MonoBehaviour
         return pzlGame.cam.ScreenToWorldPoint(mousePoint);
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (!bIsDragging && !pzlGame.GetisAllPlaced())
+        print(other.name);
+        if (bIsDragging && !isPlaced)
         {
-            int cLastCharOnCollide = (int)Char.GetNumericValue(other.name[name.Length - 1]);
-            int cLastCharGameObject = (int)Char.GetNumericValue(gameObject.name[name.Length - 1]);
-
-            if (cLastCharOnCollide == cLastCharGameObject)
-            {
-                StartCoroutine(SmoothMovement(other.transform.position, 4));
-                pzlGame.UpdateEtatPlacement(cLastCharOnCollide - 1, true);
-            }
+            currentZone = other.name;
         }
     }
 
-    private IEnumerator SmoothMovement(Vector3 positionCible, float vitesse)
+    private void OnTriggerExit(Collider other)
     {
-        while (Vector3.Distance(transform.position, positionCible) > 0.01f)
+        print(other.name);
+        if (currentZone == other.name)
         {
-            Vector3 newPosCible = new Vector3(positionCible.x + 0.75f, positionCible.y, positionCible.z - 0.3f);
-            transform.position = Vector3.MoveTowards(transform.position, newPosCible, vitesse * Time.deltaTime);
-            yield return null; // Attendre le prochain frame
+            currentZone = null;
         }
-        gameObject.transform.position = positionCible;
+    }
+
+    private IEnumerator SmoothMovement(Vector3 targetPosition, float speed)
+    {
+        while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+            yield return null;
+        }
+        transform.position = targetPosition;
+    }
+
+    private int ExtractID(string name)
+    {
+        // Supposons que l'ID est le dernier caractère du nom
+        if (int.TryParse(name.Substring(name.Length - 1), out int id))
+        {
+            return id;
+        }
+        return -1; // Valeur par défaut en cas d'échec
     }
 }
