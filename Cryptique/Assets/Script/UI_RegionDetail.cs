@@ -11,6 +11,7 @@ public class UI_RegionDetail : MonoBehaviour, ILocalizedElement
 
     [SerializeField] private GameObject regionDetailPrefab;
     [SerializeField] private TextMeshProUGUI pageTitle;
+    [SerializeField] private GameObject loadingScreen;
 
     private LanguageManager languageManager;
 
@@ -97,6 +98,7 @@ public class UI_RegionDetail : MonoBehaviour, ILocalizedElement
                 SaveAndLoadScene.Excute(region.defaultRegionName);
                 SaveSystemManager.Instance.GetGameData().progression.currentRegion = region.GetName();
                 //gameProgressionManager.SetCurrentRegion(i);
+                loadingScreen.SetActive(true);
             });
         }
     }
