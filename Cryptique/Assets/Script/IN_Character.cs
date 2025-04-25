@@ -3,127 +3,178 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.EventSystems;
-using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.Localization.Tables;
-using UnityEngine.UI;
 
 
 public class IN_Character : OBJ_Interactable
 {
-    [SerializeField] string m_sName;
+    /* Serialized Fields */
+    [Header("Path Settings")]
     [SerializeField] List<Transform> m_crossingPoints;
-
-    NavMeshAgent m_navMeshAgent;
-    int m_iPointIndex = 0;
-
-    UI_DialogueManager.Dialogue m_dialogue;
-    [SerializeField] SharedTableData m_localizationAsset;
-    [SerializeField] DialogueCharacterList m_characterList;
-
+    [Header("Dialogue Settings")]
+    [SerializeField] private SharedTableData m_localizationAsset;
+    [SerializeField] private DialogueCharacterList m_characterList;
+    [Header("Bubble Settings")]
+    [SerializeField] private Sprite m_dialogueBubble;
+    [SerializeField] [Range(0.1f, 1f)] private float m_scale = 0.6f;
+    
+    /* Variables */
+    private Camera m_camera;
+    private UI_DialogueManager.Dialogue m_dialogue;
+    private NavMeshAgent m_navMeshAgent;
+    private int m_pointIndex = 0;
+    private GameObject m_bubbleObject;
+    
+    /* Singletons */
     private PC_PlayerController m_playerController;
-
-
-
+    private LanguageManager m_languageManager;
+    private UI_DialogueManager m_dialogueManager;
+    
+    /* Functions */
     private void Start()
     {
-        if(false == TryGetComponent<NavMeshAgent>(out m_navMeshAgent))
-        {
+        m_navMeshAgent = GetComponent<NavMeshAgent>();
+        if(m_navMeshAgent == null)
             Debug.LogWarning("A NPC doesn't have navmesh agent");
-        }
-
-        LocalizationSettings.Instance.OnSelectedLocaleChanged += (Locale) => ConstructDialogue();
-
+        m_camera = Camera.main;
+        if (m_camera == null)
+            Debug.LogError("Camera not found");
         m_playerController = PC_PlayerController.Instance;
+        if (m_playerController == null)
+            Debug.LogError("PlayerController not found");
+        m_languageManager = LanguageManager.Instance;
+        if (m_languageManager == null)
+            Debug.LogError("LanguageManager not found");
+        m_dialogueManager = UI_DialogueManager.Instance;
+        if (m_dialogueManager == null)
+            Debug.LogError("DialogueManager not found");
+        LocalizationSettings.Instance.OnSelectedLocaleChanged += (locale) => ConstructDialogue();
         ConstructDialogue();
+        ConstructBubble();
+    }
+
+    private void OnDestroy()
+    {
+        if (m_bubbleObject != null)
+            Destroy(m_bubbleObject);
+    }
+
+    private void LateUpdate()
+    {
+        if (m_dialogueBubble == null)
+            return;
+        
+        Vector3 cameraPosition = m_camera.transform.position;
+        cameraPosition.y = m_bubbleObject.transform.position.y;
+        m_bubbleObject.transform.LookAt(cameraPosition);
+        m_bubbleObject.transform.Rotate(0f, 180f, 0f);
     }
 
     public override bool Interact()
     {
-        m_playerController.MoveForInteraction();
-        m_playerController.OnInteractionCallback += Wait;
-
-        //throw new NotImplementedException();
+        Wait();
         return true;
     }
-
-    void Wait()
+    
+    private void ConstructBubble()
     {
-        UI_DialogueManager.Instance.ShowDialogueUI();
-        UI_DialogueManager.Instance.StartDialogue(m_dialogue);
+        if (m_dialogueBubble == null)
+            return;
 
-        m_playerController.OnInteractionCallback -= Wait;
+        var collider = GetComponent<BoxCollider>();
+        if (collider == null)
+        {
+            Debug.LogError("A NPC doesn't have a collider");
+            return;
+        }
+        // Créer un GameObject enfant
+        m_bubbleObject = new GameObject("DialogueBubble");
+        m_bubbleObject.transform.SetParent(transform);
+        float imageWidthOffset = m_dialogueBubble.bounds.size.x / 2 * m_scale;
+        float imageHeightOffset = m_dialogueBubble.bounds.size.y / 6 * m_scale;
+        Debug.Log("Image height offset : " + imageHeightOffset);
+        m_bubbleObject.transform.localPosition = new Vector3(imageWidthOffset, collider.bounds.size.y + imageHeightOffset, 0);
+        m_bubbleObject.transform.localScale = new Vector3(m_scale, m_scale, m_scale);
+        
+        // Ajouter un SpriteRenderer et assigner le sprite
+        SpriteRenderer spriteRenderer = m_bubbleObject.AddComponent<SpriteRenderer>();
+        spriteRenderer.sprite = m_dialogueBubble;
+        spriteRenderer.sortingOrder = 1; // Assurez-vous que l'ordre d'affichage est correct
     }
-
-    void ConstructDialogue()
+    
+    private void Wait()
+    {
+        m_dialogueManager.ShowDialogueUI();
+        m_dialogueManager.StartDialogue(m_dialogue);
+    }
+    
+    private void ConstructDialogue()
     {
         if(m_characterList == null || m_localizationAsset == null)
-        {
             Debug.LogError("A NPC has no character list nor localized dialogue table");
-        }
-        LanguageCode currentLanguage = LanguageManager.Instance.GetCurrentLanguage();
-
-        StringTable localizedTable = LocalizationSettings.Instance.GetStringDatabase().GetTable(m_localizationAsset.TableCollectionName, LocalizationSettings.Instance.GetSelectedLocale());
+        
+        var currentLanguage = m_languageManager.GetCurrentLanguage();
+        var localizedTable = LocalizationSettings.Instance.GetStringDatabase().GetTable(m_localizationAsset.TableCollectionName, LocalizationSettings.Instance.GetSelectedLocale());
+        
         m_dialogue = new();
-
-        for(int i=0; i< m_characterList.talkingCharacters.Count; i++)
+        for(int i = 0; i < m_characterList.talkingCharacters.Count; i++)
         {
-            UI_DialogueManager.DialogueCharacter lineChatracter = new();
+            UI_DialogueManager.DialogueCharacter lineCharacter = new();
             var characterEntry = m_characterList.talkingCharacters[i];
-            lineChatracter.bTalkOnRightSide = characterEntry.bTalkOnRightSide;
-            lineChatracter.bNoPortrait = characterEntry.bNoPortrait;
-            lineChatracter.iTalkingPortrait = characterEntry.iTalkingPortrait;
-            lineChatracter.iListeningPortrait = characterEntry.iListeningPortrait;
-            lineChatracter.sNameEN = characterEntry.sNameEN;
-            lineChatracter.sNameFR = characterEntry.sNameFR;
+            lineCharacter.bTalkOnRightSide = characterEntry.bTalkOnRightSide;
+            lineCharacter.bNoPortrait = characterEntry.bNoPortrait;
+            lineCharacter.iTalkingPortrait = characterEntry.iTalkingPortrait;
+            lineCharacter.iListeningPortrait = characterEntry.iListeningPortrait;
+            lineCharacter.sNameEN = characterEntry.sNameEN;
+            lineCharacter.sNameFR = characterEntry.sNameFR;
 
             if(currentLanguage == LanguageCode.FR)
             {
-                lineChatracter.sNameDisplay = characterEntry.sNameFR;
+                lineCharacter.sNameDisplay = characterEntry.sNameFR;
             }
             else if (currentLanguage == LanguageCode.EN)
             {
-                lineChatracter.sNameDisplay = characterEntry.sNameEN;
+                lineCharacter.sNameDisplay = characterEntry.sNameEN;
             }
             else
             {
-                lineChatracter.sNameDisplay = characterEntry.sNameEN;
+                lineCharacter.sNameDisplay = characterEntry.sNameEN;
             }
 
             UI_DialogueManager.DialogueLine line = new();
             var entry = localizedTable.GetEntry(i.ToString());
             line.sLine = entry.GetLocalizedString();
-            line.cCharacter = lineChatracter;
+            line.cCharacter = lineCharacter;
 
             m_dialogue.lDialogueLines.Add(line);
         }
     }
-
+    
     #region Mouvements
     public void GoToNextPoint()
     {
-        if (m_iPointIndex >= m_crossingPoints.Count - 1)
+        if (m_pointIndex >= m_crossingPoints.Count - 1)
         {
             Debug.LogWarning("A character tried to go to an out of range position");
             return;
         }
 
-        ++m_iPointIndex;
-        NavMesh.SamplePosition(m_crossingPoints[m_iPointIndex].position, out NavMeshHit hit, 5, NavMesh.AllAreas);
+        ++m_pointIndex;
+        NavMesh.SamplePosition(m_crossingPoints[m_pointIndex].position, out NavMeshHit hit, 5, NavMesh.AllAreas);
         m_navMeshAgent.SetDestination(hit.position);
     }
 
     public void GoToPreviousPoint()
     {
-        if (m_iPointIndex <= 0)
+        if (m_pointIndex <= 0)
         {
             Debug.LogWarning("A character tried to go to an out of range position");
             return;
         }
 
-        --m_iPointIndex;
-        NavMesh.SamplePosition(m_crossingPoints[m_iPointIndex].position, out NavMeshHit hit, 5, NavMesh.AllAreas);
+        --m_pointIndex;
+        NavMesh.SamplePosition(m_crossingPoints[m_pointIndex].position, out NavMeshHit hit, 5, NavMesh.AllAreas);
         m_navMeshAgent.SetDestination(hit.position);
     }
 
@@ -137,15 +188,15 @@ public class IN_Character : OBJ_Interactable
 
         if (followingWolePath)
         {
-            int gap = destination - m_iPointIndex;
+            int gap = destination - m_pointIndex;
             Action incrementFunc = gap < 0 ? GoToPreviousPoint : GoToNextPoint;
 
             StartCoroutine(CoroutineGoToPointLoop(incrementFunc, Math.Abs(gap) - 1));
         }
         else
         {
-            m_iPointIndex = destination;
-            NavMesh.SamplePosition(m_crossingPoints[m_iPointIndex].position, out NavMeshHit hit, 5, NavMesh.AllAreas);
+            m_pointIndex = destination;
+            NavMesh.SamplePosition(m_crossingPoints[m_pointIndex].position, out NavMeshHit hit, 5, NavMesh.AllAreas);
             m_navMeshAgent.SetDestination(hit.position);
         }
     }
@@ -174,30 +225,4 @@ public class IN_Character : OBJ_Interactable
     }
 
     #endregion Mouvements
-
-    private void Update()
-    {
-        //if(Input.GetMouseButtonDown(0))
-        //{
-        //    GoToPreviousPoint();
-        //}
-        //if (Input.GetMouseButtonDown(1))
-        //{
-        //    GoToNextPoint();
-        //}
-        //if (Input.GetMouseButtonDown(2))
-        //{ 
-        //    GoToSpecificPoint(0);
-        //}
-    }
-    //private void OnMouseDown()
-    //{
-    //    Debug.Log(GameObject.Find("EventSystem"));
-    //    if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
-
-    //    if (CanInteract())
-    //    {
-    //        Interact();
-    //    }
-    //}
 }
