@@ -8,7 +8,7 @@ public class OBJ_VisualisableObject : OBJ_Interactable
 
     public override bool Interact()
     {
-        uiVisualisation.SetActive(!uiVisualisation.activeSelf);
+        uiVisualisation.SetActive(true);
         if (uiVisualisation.activeSelf)
         {
             UI_ObjectDescription uiObjectDescription = uiVisualisation.GetComponent<UI_ObjectDescription>();
@@ -16,10 +16,6 @@ public class OBJ_VisualisableObject : OBJ_Interactable
             {
                 uiObjectDescription.Show(item);
             }
-        }
-        else
-        {
-            Destroy(uiVisualisation);
         }
 
         return true;
