@@ -39,6 +39,10 @@ public class Puzzle : MonoBehaviour
             SaveSystemManager.Instance.GetGameData().progression.solvedPuzzles.Add(puzzleData.GetPuzzleID());
 
             Quit();
+
+            GrimoireShaker.ShakeGrimoire();
+
+
         }
         else
         {
