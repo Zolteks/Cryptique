@@ -16,6 +16,9 @@ public class PuzzleData : ScriptableObject
     private LocalizedString description;
 
     [SerializeField]
+    private LocalizedString puzzleDescription;
+
+    [SerializeField]
     private List<PuzzleData> prerequisites;
 
     [SerializeField]
@@ -29,6 +32,11 @@ public class PuzzleData : ScriptableObject
     public string GetDescription()
     {
         return description.GetLocalized(LanguageManager.Instance.GetCurrentLanguage(), defaultDescription);
+    }
+
+    public string GetPuzzleDescription()
+    {
+        return puzzleDescription.GetLocalized(LanguageManager.Instance.GetCurrentLanguage(), defaultDescription);
     }
 
     public List<PuzzleData> GetPrerequisites()

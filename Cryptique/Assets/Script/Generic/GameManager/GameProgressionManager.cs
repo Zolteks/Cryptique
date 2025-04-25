@@ -17,8 +17,15 @@ public class GameProgressionManager : Singleton<GameProgressionManager>
 
     public int CollectedItemCount => collectedItems.Count;
 
+    private SaveSystemManager saveSystemManager;
+
     private void Start()
     {
+        if(saveSystemManager == null)
+        {
+            saveSystemManager = SaveSystemManager.Instance;
+        }
+
         foreach (var item in GetCurrentRegion().GetPuzzles())
         {
             item.SetCompleted(false);
@@ -36,7 +43,7 @@ public class GameProgressionManager : Singleton<GameProgressionManager>
 
     public List<PuzzleData> GetCurrentsPuzzles()
     {
-        var region = GetCurrentRegion();
+        var region = GetRegionByName(saveSystemManager.GetGameData().progression.currentRegion);
         if (region == null)
             return null;
         var puzzles = region.GetPuzzles();
