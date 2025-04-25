@@ -120,7 +120,7 @@ public class CameraRotator : MonoBehaviour
 
     public void RotateRight()
     {
-        if (m_busy) return;
+        if (m_busy || IN_EscapeArrow.m_isBusy) return;
    
         StartCoroutine(CoroutineRotate(transform.rotation, transform.rotation * Quaternion.Euler(0, -90, 0), .5f, 1));
     }

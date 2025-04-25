@@ -15,7 +15,7 @@ public class IN_EscapeArrow : OBJ_Interactable
     /*[SerializeField]*/ private float m_easeMaxSpeed = 1200;
     /*[SerializeField]*/ private float m_easeThreshold = 60;
     
-    private static bool m_isBusy = false;
+    public static bool m_isBusy = false;
     private Transform m_cameraAnchor;
     [SerializeField] private PC_PlayerController m_playerController;
 

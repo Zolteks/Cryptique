@@ -2,6 +2,8 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
+using Unity.VisualScripting;
 
 public class UI_Quest : MonoBehaviour, ILocalizedElement
 {
@@ -11,6 +13,9 @@ public class UI_Quest : MonoBehaviour, ILocalizedElement
 
     private GameProgressionManager gameProgressionManager;
     private LanguageManager languageManager;
+
+    int lastUpdatedAmount = 0;
+
     void Start()
     {
 
@@ -61,12 +66,25 @@ public class UI_Quest : MonoBehaviour, ILocalizedElement
         int completedPuzzles = progressionManager.GetCompletedPuzzlesInRegion();
         int totalPuzzles = progressionManager.GetTotalPuzzlesInRegion();
 
-        if (chapterProgressBar != null)
-        {
-            chapterProgressBar.value = totalPuzzles > 0 ? (float)completedPuzzles / totalPuzzles : 0;
-        }
+        StartCoroutine(CoroutineUpdateProgression(lastUpdatedAmount, completedPuzzles, totalPuzzles));
+
+        lastUpdatedAmount = completedPuzzles;
 
         Debug.Log("Puzzle UI updated");
+    }
+
+    IEnumerator CoroutineUpdateProgression(int from, int to, int totalPzl)
+    {
+        float amount = (float)from / totalPzl;
+        float targetAmount = (float)to / totalPzl;
+        float baseAmount = amount;
+        chapterProgressBar.value = Mathf.Max(.1f, from);
+        while(amount  < targetAmount)
+        {
+            amount += Mathf.Min(Mathf.Lerp(0, targetAmount - baseAmount, .5f * Time.deltaTime), targetAmount - amount);
+            chapterProgressBar.value = amount;
+            yield return null;
+        }
     }
 
     public void UpdatePuzzleDescriptions()
