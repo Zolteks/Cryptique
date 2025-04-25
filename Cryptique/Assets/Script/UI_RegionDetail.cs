@@ -95,7 +95,8 @@ public class UI_RegionDetail : MonoBehaviour, ILocalizedElement
             regionDetail.GetComponentInChildren<Button>().onClick.AddListener(() =>
             {
                 SaveAndLoadScene.Excute(region.defaultRegionName);
-                gameProgressionManager.SetCurrentRegion(i);
+                SaveSystemManager.Instance.GetGameData().progression.currentRegion = region.GetName();
+                //gameProgressionManager.SetCurrentRegion(i);
             });
         }
     }
