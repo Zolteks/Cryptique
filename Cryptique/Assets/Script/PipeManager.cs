@@ -73,10 +73,6 @@ public class PipeManager : MonoBehaviour
 
         Instance.ShowAllJoints();
 
-        // Place l'objet au départ
-        Instance.movingObject.transform.position = Instance.startPipe.transform.position;
-        Instance.flowAnimator.AnimateFlow(Instance.allPipes);
-
         if (PZL_GutterLabyrinth == null)
             PZL_GutterLabyrinth = Object.FindAnyObjectByType<PZL_GutterLabyrinth>();
 

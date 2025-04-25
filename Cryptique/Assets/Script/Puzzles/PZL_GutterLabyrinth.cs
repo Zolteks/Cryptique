@@ -9,7 +9,7 @@ public class PZL_GutterLabyrinth : Puzzle
 
     private GameObject m_UIPlay;
 
-    private void Start()
+    private void Awake()
     {
         SGL_InteractManager.Instance.ChangeCamera(cam);
         PC_PlayerController.Instance.DisableInput();
