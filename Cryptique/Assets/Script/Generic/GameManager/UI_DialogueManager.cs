@@ -1,18 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Localization.Tables;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
-using static UI_DialogueTrigger;
 
 public class UI_DialogueManager : Singleton<UI_DialogueManager>
 {
-
-    /* Singleton */
-    private static UI_DialogueManager m_DialogueManager;
-
     #region Serializable Class
     [System.Serializable]
     public class DialogueCharacter
@@ -42,7 +36,6 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
 
     #endregion Serializable Class
 
-
     public Image iLeftCharacterPortrait;
     public Image iRightCharacterPortrait;
     public TextMeshProUGUI tNameText;
@@ -50,56 +43,36 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
 
     public GameObject dialoguePanel;
 
-    LanguageManager languageManager;
-
-    //public Animator dialogueAnimator;
+    private LanguageManager m_languageManager;
+    private PC_PlayerController m_playerController;
 
     private Queue<DialogueLine> qLines;
-
     public bool bisDialogueActive = false;
-
-    public float fTextSpeed = 0.05f;
-
+    public float defaultTextSpeed = 0.02f;
+    public float maxTextSpeed = 0.0001f;
+    private float m_currentTextSpeed;
     private bool bIsTypingText = false;
-
-    //public Animator aDialogueAnimation;
 
     void Awake()
     {
-        m_DialogueManager = UI_DialogueManager.Instance;
-        if(m_DialogueManager == null)
-        {
-            Debug.LogError("DialogueManager is null");
-        }
-
-        languageManager = LanguageManager.Instance;
-        if(languageManager == null)
-        {
+        m_languageManager = LanguageManager.Instance;
+        if (m_languageManager == null)
             Debug.LogError("LanguageManager is null");
-        }
-
+        m_playerController = PC_PlayerController.Instance;
+        if(m_playerController == null)
+            Debug.LogError("PlayerController is null");
+        m_currentTextSpeed = defaultTextSpeed;
         HideDialogueUI(0);
-    }
-
-    private void Start()
-    {
-        //iRightCharacterPortrait = GameObject.Find("Dialog_RightPortrait").GetComponent<Image>();
-        //iLeftCharacterPortrait = GameObject.Find("Dialog_LeftPortrait").GetComponent<Image>();
-        //tNameText = GameObject.Find("Dialog_TalkName").GetComponent<TextMeshProUGUI>();
-        //tDialogueDisplay = GameObject.Find("Dialog_TextContent").GetComponent<TextMeshProUGUI>();
-        //dialoguePanel = GameObject.Find("Dialogue_box");
     }
 
     public void ShowDialogueUI()
     {
-        PC_PlayerController.Instance.DisableInput();
+        m_playerController.DisableInput();
         dialoguePanel.SetActive(true);
-        //dialogueAnimator.SetTrigger("Show");
     }
 
     public void HideDialogueUI(float time)
     {
-        //dialogueAnimator.SetTrigger("Hide");
         StartCoroutine(CoroutineDeactivateAfterAnimation(time));
     }
 
@@ -113,88 +86,76 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
     public void StartDialogue(Dialogue c_Dialogue)
     {
         bisDialogueActive = true;
-
-        //aDialogueAnimation.Play("show");
-
+        
         if (qLines == null)
-        {
             qLines = new Queue<DialogueLine>();
-        }
         else
-        {
             qLines.Clear();
-        }
-            
-
+        
         foreach (DialogueLine cLine in c_Dialogue.lDialogueLines)
         {
-            LanguageCode currentLanguage = LanguageManager.Instance.GetCurrentLanguage();
-
+            LanguageCode currentLanguage = m_languageManager.GetCurrentLanguage();
             qLines.Enqueue(cLine);
         }
-
+        
         DisplayNextLine();
     }
 
     public void ButtonDisplayNextLine()
     {
-        UI_DialogueManager.Instance.DisplayNextLine();
+        DisplayNextLine();
     }
     
     public void DisplayNextLine()
     {
         if (bIsTypingText == true)
         {
-            fTextSpeed = 0.0001f;
+            m_currentTextSpeed = maxTextSpeed;
             return;
         }
-
         if (qLines.Count == 0)
         {
             EndDialogue();
-            PC_PlayerController.Instance.EnableInput();
+            m_playerController.EnableInput();
             return;
+        }
+        
+        DialogueLine cCurrentLine = qLines.Dequeue();
+        tNameText.text = cCurrentLine.cCharacter.sNameDisplay;
+        
+        // Masquer tous les portraits si bNoPortrait est true
+        if (cCurrentLine.cCharacter.bNoPortrait)
+        {
+            iRightCharacterPortrait.gameObject.SetActive(false);
+            iLeftCharacterPortrait.gameObject.SetActive(false);
         }
         else
         {
-            DialogueLine cCurrentLine = qLines.Dequeue();
-            
-            tNameText.text = cCurrentLine.cCharacter.sNameDisplay;
+            Image talkingPortrait, listeningPortrait;
 
-            // Masquer tous les portraits si bNoPortrait est true
-            if (cCurrentLine.cCharacter.bNoPortrait)
+            if (cCurrentLine.cCharacter.bTalkOnRightSide)
             {
-                iRightCharacterPortrait.gameObject.SetActive(false);
-                iLeftCharacterPortrait.gameObject.SetActive(false);
+                talkingPortrait = iRightCharacterPortrait;
+                listeningPortrait = iLeftCharacterPortrait;
             }
             else
             {
-                Image talkingPortrait, listeningPortrait;
-
-                if (cCurrentLine.cCharacter.bTalkOnRightSide)
-                {
-                    talkingPortrait = iRightCharacterPortrait;
-                    listeningPortrait = iLeftCharacterPortrait;
-                }
-                else
-                {
-                    talkingPortrait = iLeftCharacterPortrait;
-                    listeningPortrait = iRightCharacterPortrait;
-                }
-
-                // Réactiver les portraits au cas où ils étaient désactivés
-                iRightCharacterPortrait.gameObject.SetActive(true);
-                iLeftCharacterPortrait.gameObject.SetActive(true);
-
-                CopyImageProperties(cCurrentLine.cCharacter.iTalkingPortrait, talkingPortrait);
-                CopyImageProperties(cCurrentLine.cCharacter.iListeningPortrait, listeningPortrait);
-
-                StopAllCoroutines();
-                StartCoroutine(CoroutineAnimatePortraitFocus(talkingPortrait, listeningPortrait));
+                talkingPortrait = iLeftCharacterPortrait;
+                listeningPortrait = iRightCharacterPortrait;
             }
-
-            StartCoroutine(CoroutineTypeSentence(cCurrentLine.sLine));
+            
+            // Reactiver les portraits au cas ou ils etaient desactives
+            iRightCharacterPortrait.gameObject.SetActive(true);
+            iLeftCharacterPortrait.gameObject.SetActive(true);
+            
+            CopyImageProperties(cCurrentLine.cCharacter.iTalkingPortrait, talkingPortrait);
+            CopyImageProperties(cCurrentLine.cCharacter.iListeningPortrait, listeningPortrait);
+            
+            StopAllCoroutines();
+            StartCoroutine(CoroutineAnimatePortraitFocus(talkingPortrait, listeningPortrait));
         }
+        
+        StartCoroutine(CoroutineTypeSentence(cCurrentLine.sLine));
     }
 
     private void CopyImageProperties(Sprite source, Image target)
@@ -203,8 +164,6 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
             return;
 
         target.sprite = source;
-       // target.color = source;
-        //target.preserveAspect = source.preserveAspect;
         target.preserveAspect = true; 
     }
 
@@ -249,8 +208,7 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
         listeningPortrait.transform.localScale = listeningTargetScale;
         listeningPortrait.color = listeningTargetColor;
     }
-
-
+    
     IEnumerator CoroutineTypeSentence(string sSentence)
     {
         bIsTypingText = true;
@@ -258,16 +216,15 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
         foreach (char cLetter in sSentence.ToCharArray())
         {
             tDialogueDisplay.text += cLetter;
-            yield return new WaitForSeconds(fTextSpeed);
+            yield return new WaitForSeconds(m_currentTextSpeed);
         }
         bIsTypingText = false;
-        fTextSpeed = 0.05f;
+        m_currentTextSpeed = defaultTextSpeed;
     }
 
     public void EndDialogue()
     {
         bisDialogueActive = false;
-        //aDialogueAnimation.Play("hide");
         HideDialogueUI(0);
         
     }

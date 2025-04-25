@@ -28,7 +28,7 @@ public class CameraRotator : MonoBehaviour
     private bool hasRotated = false;
 
      private SaveSystemManager saveSystemManager;
-    [SerializeField] private GameObject slideBoutons;
+    //[SerializeField] private GameObject slideBoutons;
 
     [SerializeField] private Animator animator;
 
@@ -61,20 +61,20 @@ public class CameraRotator : MonoBehaviour
         //        slideBoutons.SetActive(true);
         //    }
         //}
-
-
-        if (saveSystemManager)
+        
+#else
+        /*if (saveSystemManager)
         {
-            if (saveSystemManager.GetGameData().settings.slideMode == SlideMode.Slide  && slideBoutons.activeSelf)
+            if (saveSystemManager.GetGameData().settings.slideMode == SlideMode.Slide )
             {
                 slideBoutons.SetActive(false);
-                HandleTouchRotation();
+                //HandleTouchRotation();
             }
             else
             {
                 slideBoutons.SetActive(true);
             }
-        }
+        }*/
 #endif
     }
 
@@ -190,7 +190,7 @@ public class CameraRotator : MonoBehaviour
         isDragging = false;
     }
 
-    private void HandleTouchRotation()
+    /*private void HandleTouchRotation()
     {
         if (isDragging)
         {
@@ -215,7 +215,7 @@ public class CameraRotator : MonoBehaviour
         {
             hasRotated = false; // reinitialise pour le prochain swipe
         }
-    }
+    }*/
 
     public void SetIsBusy(bool isBusy)
     {
