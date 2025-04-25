@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class IN_EscapeArrow : OBJ_Interactable
@@ -18,6 +19,7 @@ public class IN_EscapeArrow : OBJ_Interactable
     public static bool m_isBusy = false;
     private Transform m_cameraAnchor;
     [SerializeField] private PC_PlayerController m_playerController;
+    [SerializeField] private UnityEvent tilesToResize;
 
     private SaveSystemManager m_SaveSystemManager;
     private GameProgressionManager m_gameProgressionManager;
@@ -123,6 +125,8 @@ public class IN_EscapeArrow : OBJ_Interactable
 
             var value = dir * Mathf.Lerp(1f, m_easeMaxSpeed, smallestRatio) * Time.deltaTime;
             m_cameraAnchor.position += value;
+
+            tilesToResize.Invoke();
 
             yield return new WaitForFixedUpdate();
         }
