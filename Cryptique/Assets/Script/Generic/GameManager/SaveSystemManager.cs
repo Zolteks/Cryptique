@@ -5,14 +5,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+enum FrameRate
+{
+    Low = 30,
+    Medium = 60,
+    High = 90,
+    Ultra = 120
+}
+
 public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
 {
     private SaveManager<GameDataJson> saveManager = new SaveManager<GameDataJson>();
     private string saveKey = "CryptiqueSaveData";
     private GameData gameData;
+    [SerializeField] private FrameRate m_targetFrameRate = FrameRate.Medium;
 
     private void Start()
     {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = (int)m_targetFrameRate;
        
         Application.runInBackground = true;
         saveManager.Register(new JsonSaveSystem<GameDataJson>());
@@ -86,7 +97,7 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
         }
         else if (focus)
         {
-            hasSaved = false; // Réinitialise le flag quand l'app revient au premier plan
+            hasSaved = false; // Reinitialise le flag quand l'app revient au premier plan
         }
     }
 
@@ -99,7 +110,7 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
         }
         else if (!pause)
         {
-            hasSaved = false; // Réinitialise si l'app revient de pause
+            hasSaved = false; // Reinitialise si l'app revient de pause
         }
     }
 #endif
@@ -122,11 +133,11 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
         gameData.settings.langue = LanguageCode.EN;
         gameData.settings.slideMode = SlideMode.Slide;
 
-        // On assigne les données au save manager
+        // On assigne les donnees au save manager
         SaveSystemManager.Instance.GetGameData().ApplySave(gameData.ToJson());
 
         // Sauvegarde
         SaveSystemManager.Instance.SaveGame();
-        Debug.Log("Données de test sauvegardées.");
+        Debug.Log("Donnees de test sauvegardees.");
     }
 }
