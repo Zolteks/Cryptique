@@ -13,14 +13,15 @@ public class PZL_Crank : MonoBehaviour
 
     private float currentRotationZ;
     private Vector3 initialScale;
+    private Vector3 initialRotation;
     private Vector3 lastMousePosition;
     private OBJ_Collectable m_LanternCollectable;
 
     void Start()
     {
         // Appliquer la rotation fixe de 180° sur l'axe X
-        Vector3 initialRotation = transform.eulerAngles;
-        initialRotation.x = 180f;
+        initialRotation = transform.eulerAngles;
+        //initialRotation.x = 180f;
         transform.eulerAngles = initialRotation;
         initialScale = m_lantern.transform.localScale;
         m_LanternCollectable = m_lantern.GetComponent<OBJ_Collectable>();
@@ -40,7 +41,7 @@ public class PZL_Crank : MonoBehaviour
 
             float deltaRotation = Mathf.DeltaAngle(currentRotationZ, angleDelta);
             currentRotationZ = Mathf.Clamp(currentRotationZ + deltaRotation * rotationSpeed * Time.deltaTime, fmaxLeftRotation, fmaxRightRotation);
-            transform.rotation = Quaternion.Euler(0, 0, currentRotationZ);
+            transform.rotation = Quaternion.Euler(initialRotation.x, initialRotation.y, -currentRotationZ);
 
             UpdateLanterneScale();
         }
