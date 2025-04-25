@@ -78,6 +78,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: EscapArrow
       objectReference: {fileID: 0}
+    - target: {fileID: 6589822879587167952, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589822879587167952, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589822879587167952, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589822879587167952, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FitView
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589822879587167952, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AutoScaleCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589822879587167952, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7972287033334376096, guid: 9dc789d8874d1594dbc1a8fc74d1d57a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -206,6 +236,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 12f9c747c0c14d545849c4e87a0f97ff,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3851188420205333893}
     - targetCorrespondingSourceObject: {fileID: -1652630548277919776, guid: 12f9c747c0c14d545849c4e87a0f97ff,
         type: 3}
       insertIndex: -1
@@ -285,6 +319,29 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2626461003516607652}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2932539950094664181 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 12f9c747c0c14d545849c4e87a0f97ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 2626461003516607652}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3851188420205333893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932539950094664181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df185a09ff1ef4d847bb47e1a889b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCamera: {fileID: 0}
+  padding: 1.1
+  maxSize: 6
+  minSize: 4
+  fitOnStart: 0
 --- !u!1 &5576508675531113284 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1652630548277919776, guid: 12f9c747c0c14d545849c4e87a0f97ff,

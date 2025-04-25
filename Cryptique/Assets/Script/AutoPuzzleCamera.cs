@@ -8,10 +8,13 @@ public class AutoPuzzleCamera : MonoBehaviour
     private float padding = 1.1f;
     [SerializeField]
     private float minSize = 5f;
+    [SerializeField]
+    private bool onStarte = true;
 
     void Start()
     {
-        FitPuzzleInView();
+        if(onStarte)
+            FitPuzzleInView();
     }
 
     public void FitPuzzleInView()
