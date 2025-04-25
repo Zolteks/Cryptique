@@ -211,6 +211,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 42a8ac161f3ee7e44bcbdb0be307b9ab,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4412483859299057965}
     - targetCorrespondingSourceObject: {fileID: -4039758588466106940, guid: 42a8ac161f3ee7e44bcbdb0be307b9ab,
         type: 3}
       insertIndex: -1
@@ -751,3 +755,26 @@ MonoBehaviour:
   m_Center: {x: 0.693, y: 0.65000004, z: -0.004}
   m_Area: 1
   m_AffectedAgents: a98c17ec
+--- !u!1 &9207973161789989679 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 42a8ac161f3ee7e44bcbdb0be307b9ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 8288913734082993790}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4412483859299057965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9207973161789989679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df185a09ff1ef4d847bb47e1a889b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCamera: {fileID: 0}
+  padding: 1.1
+  maxSize: 10
+  minSize: 5
+  fitOnStart: 0
