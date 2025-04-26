@@ -745,6 +745,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2626601520968303449}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7256020986284954447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4666011299448770582, guid: b0919599c27461e48b77e7ebf8cca7d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2626601520968303449}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3822417836681338519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1613,10 +1619,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SFX_DestoryPerType, Assembly-CSharp
-        m_MethodName: DestroySFX
-        m_Mode: 1
+      - m_Target: {fileID: 7256020986284954447}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
