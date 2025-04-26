@@ -10,7 +10,7 @@ public class LaunchInformation : OBJ_Collectable
         if (!CanInteract())
             return false;
 
-        StartCoroutine(CoroutineLaunchInfo(2f));
+        StartCoroutine(CoroutineLaunchInfo(3f));
         
         return true;
     }
