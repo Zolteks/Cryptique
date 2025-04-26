@@ -18,10 +18,14 @@ public class PZL_DiceRoll : Puzzle
 
     private PC_PlayerController m_playerController;
 
+    GameObject m_UIPlay;
+
     private void Start()
     {
         m_playerController = PC_PlayerController.Instance;
         m_playerController.DisableInput();
+        m_UIPlay = GameObject.Find("UIPlay");
+        m_UIPlay.SetActive(false);
     }
 
     public void StartRound(bool playerHasRiggedDice)
@@ -78,6 +82,12 @@ public class PZL_DiceRoll : Puzzle
         StartCoroutine(CoroutineWaitForEnd());
     }
 
+    public void QuitGame()
+    {
+        m_UIPlay.SetActive(true);
+        Quit();
+    }
+
     IEnumerator CoroutineWaitForEnd()
     {
         while (m_diceOver < m_enemyDice.Count)
@@ -90,6 +100,7 @@ public class PZL_DiceRoll : Puzzle
         if (m_playerScore > m_lastScore)
         {
             m_playerController.EnableInput();
+            m_UIPlay.SetActive(true);
             Complete();
         }
     }

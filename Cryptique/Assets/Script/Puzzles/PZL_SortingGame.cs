@@ -55,6 +55,12 @@ public class PZL_SortingGame : Puzzle
         }
     }
 
+    public void QuitGame()
+    {
+        m_UIplayGameObject.SetActive(true);
+        Quit();
+    }
+
     private void Update()
     {
         if (!bIsAllPlaced || bOilTake) return;

@@ -8,15 +8,18 @@ public class PZL_Compass : Puzzle
 
     [SerializeField] public Camera cam;
 
+    GameObject m_UIPlay;
+
     void Start()
     {
         if (goCompass != null)
         {
-            print("test");
             SGL_InteractManager.Instance.ChangeCamera(cam);
 
             PC_PlayerController.Instance.DisableInput();
             SGL_InteractManager.Instance.EnableInteraction();
+            m_UIPlay = GameObject.Find("UIPlay");
+            m_UIPlay.SetActive(false);
 
             StartCoroutine(CoroutineDestroyDetection());
         }
@@ -27,12 +30,18 @@ public class PZL_Compass : Puzzle
         {
             yield return null;
         }
+        m_UIPlay.SetActive(true);
         CompassDestroy();
+    }
+
+    public void QuitGame()
+    {
+        m_UIPlay.SetActive(true);
+        Quit();
     }
 
     void CompassDestroy()
     {
-        print("Compass");
         PC_PlayerController.Instance.EnableInput();
 
         SGL_InteractManager.Instance.ChangeCamera(Camera.main);

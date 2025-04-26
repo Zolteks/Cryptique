@@ -28,4 +28,10 @@ public class PZL_Well : Puzzle
         }
     }
 
+    public void QuitGame()
+    {
+        m_UIplayGameObject.SetActive(true);
+        Quit();
+    }
+
 }

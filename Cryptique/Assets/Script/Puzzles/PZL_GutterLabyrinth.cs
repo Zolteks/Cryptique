@@ -35,6 +35,12 @@ public class PZL_GutterLabyrinth : Puzzle
         }
     }
 
+    public void QuitGame()
+    {
+        m_UIPlay.SetActive(true);
+        Quit();
+    }
+
     IEnumerator CoroutineSolve()
     {
         yield return new WaitForSeconds(1.5f);

@@ -13,6 +13,7 @@ public class PZL_Lock : Puzzle
 
     private GameObject m_LockerArmory;
     private BoxCollider m_Collider;
+    GameObject m_UIPlay;
 
     private PC_PlayerController m_playerController;
     private void Start()
@@ -21,8 +22,17 @@ public class PZL_Lock : Puzzle
         SGL_InteractManager.Instance.ChangeCamera(cam);
         m_playerController.DisableInput();
 
+        m_UIPlay = GameObject.Find("UIPlay");
+        m_UIPlay.SetActive(false);
+
         m_LockerArmory = GameObject.Find("Armoire_lock");
         m_Collider = m_LockerArmory.GetComponent<BoxCollider>();
+    }
+
+    public void QuitGame()
+    {
+        m_UIPlay.SetActive(true);
+        Quit();
     }
 
     public void UpdateCode()
@@ -50,6 +60,7 @@ public class PZL_Lock : Puzzle
         }
 
         m_Collider.enabled = false;
+        m_UIPlay.SetActive(true);
         m_playerController.EnableInput();
         SGL_InteractManager.Instance.ChangeCamera(Camera.main);
         Complete();
