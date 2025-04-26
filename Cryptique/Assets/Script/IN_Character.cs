@@ -62,7 +62,7 @@ public class IN_Character : OBJ_Interactable
 
     private void LateUpdate()
     {
-        if (m_dialogueBubble == null)
+        if (m_dialogueBubble == null || m_bubbleObject == null)
             return;
         
         Vector3 cameraPosition = m_camera.transform.position;
