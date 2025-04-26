@@ -733,15 +733,15 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0919599c27461e48b77e7ebf8cca7d0, type: 3}
---- !u!198 &1645445932144829322 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3649706191741493459, guid: b0919599c27461e48b77e7ebf8cca7d0,
-    type: 3}
-  m_PrefabInstance: {fileID: 2626601520968303449}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5426537381177783683 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8015702369288058586, guid: b0919599c27461e48b77e7ebf8cca7d0,
+    type: 3}
+  m_PrefabInstance: {fileID: 2626601520968303449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7256020986284954447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4666011299448770582, guid: b0919599c27461e48b77e7ebf8cca7d0,
     type: 3}
   m_PrefabInstance: {fileID: 2626601520968303449}
   m_PrefabAsset: {fileID: 0}
@@ -1601,22 +1601,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1645445932144829322}
-        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
-        m_MethodName: Stop
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SFX_DestoryPerType, Assembly-CSharp
-        m_MethodName: DestroySFX
-        m_Mode: 1
+      - m_Target: {fileID: 7256020986284954447}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
