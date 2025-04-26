@@ -732,7 +732,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4135953220153165180, guid: f562ff4c32d9da94795fc60d47f55dfc, type: 3}
+  - {fileID: -4478980961781828161, guid: f562ff4c32d9da94795fc60d47f55dfc, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1098,6 +1098,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 645832678264689218, guid: a6496054e12ad0041815091d24fcb847,
+        type: 3}
+      propertyPath: musicSource
+      value: 
+      objectReference: {fileID: 1162869040}
     - target: {fileID: 820712449750788765, guid: a6496054e12ad0041815091d24fcb847,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -2580,8 +2585,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -7347133523215044447, guid: 29e1ac03ebad48749a3578029fdcfe05, type: 3}
-  - {fileID: -1149911816709168092, guid: 29e1ac03ebad48749a3578029fdcfe05, type: 3}
+  - {fileID: 903825763018809128, guid: 29e1ac03ebad48749a3578029fdcfe05, type: 3}
+  - {fileID: -4318921205399554740, guid: 29e1ac03ebad48749a3578029fdcfe05, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3594,6 +3599,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b69c406e10345f41bed8009b5693f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1162869040 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2304731759139659462, guid: c0b03de04c14e924cafbb28f5118be9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1162869037}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1198615901 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3777543194506278060, guid: 152a40d6409570d4e995d86a2b523a40,
