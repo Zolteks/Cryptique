@@ -29,7 +29,11 @@ MonoBehaviour:
       value: "Cette cabane est tellement vieille\u2026 J\u2019ai l\u2019impression
         que chaque planche cache un secret ou un tr\xE9sor oubli\xE9."
   puzzleDescription:
-    entries: []
+    entries:
+    - languageCode: 0
+      value: 'Find an object by moving the planks. '
+    - languageCode: 1
+      value: "Trouver un object en d\xE9pla\xE7ant les planches."
   prerequisites: []
   hints:
   - {fileID: 11400000, guid: 4b2c0d80a6b510041a9e794294b5c37d, type: 2}
