@@ -24,7 +24,6 @@ public class LangueSelector : OptionSelectorComponent<LanguageCode>
     protected override void SaveToGameData(LanguageCode value)
     {
         saveSystemManager.GetGameData().settings.langue = value;
-        languageManager.RefreshAll();
         var targetLocale = LocalizationSettings.AvailableLocales.Locales
             .FirstOrDefault(l => l.Identifier.Code == GetLocaleCode(value));
 
@@ -32,6 +31,7 @@ public class LangueSelector : OptionSelectorComponent<LanguageCode>
         {
             LocalizationSettings.SelectedLocale = targetLocale;
         }
+        languageManager.RefreshAll(value);
     }
 
     private string GetLocaleCode(LanguageCode code)
