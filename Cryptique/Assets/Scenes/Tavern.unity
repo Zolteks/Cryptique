@@ -465,6 +465,16 @@ PrefabInstance:
       propertyPath: uiVisualisation
       value: 
       objectReference: {fileID: 1895154028}
+    - target: {fileID: 1761509915467012077, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 2039335428}
+    - target: {fileID: 1761509915467012077, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
     - target: {fileID: 1832666155413646359, guid: 07f6cf977cdadd54cb5e8f42c12b334e,
         type: 3}
       propertyPath: uiVisualisation
@@ -4027,6 +4037,12 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4477336758518670796, guid: 41ef0a37c40db0844a3fa1147113d16e,
     type: 3}
   m_PrefabInstance: {fileID: 1322053966}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2039335428 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7632458844872114874, guid: eddec547f9b61dc41978a4a51883e0cf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1894807816}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2074463307
 PrefabInstance:
