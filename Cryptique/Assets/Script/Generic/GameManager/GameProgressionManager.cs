@@ -76,7 +76,7 @@ public class GameProgressionManager : Singleton<GameProgressionManager>
     {
         foreach (RegionData reg in GetRegions())
         {
-            if (reg.GetName() == name)
+            if (reg.defaultRegionName == name)
                 return reg;
         }
         return null;

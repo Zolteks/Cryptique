@@ -76,9 +76,9 @@ public class LanguageManager : Singleton<LanguageManager>
     {
         dynamicElements.Remove(element);
     }
-    public void RefreshAll()
+    public void RefreshAll(LanguageCode cLanguage)
     {
-        currentLanguage = saveSystemManager.GetGameData().settings.langue;
+        currentLanguage = cLanguage;
         foreach (var l in listeners)
         {   
             l.UpdateText(currentLanguage);
@@ -93,11 +93,11 @@ public class LanguageManager : Singleton<LanguageManager>
             callback(currentLanguage);
 
         foreach (var e in dynamicElements)
-            e.RefreshLocalized();
+            e.RefreshLocalized(currentLanguage);
     }
 
     public LanguageCode GetCurrentLanguage()
     {
-        return currentLanguage;
+        return saveSystemManager.GetGameData().settings.langue;
     }
 }

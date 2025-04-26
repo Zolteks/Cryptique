@@ -750,7 +750,7 @@ Transform:
   m_GameObject: {fileID: 2624432436576138718}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -100000, z: 0}
+  m_LocalPosition: {x: 0, y: -10000, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -773,7 +773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a87f1b22be1cfc74e9b48c78aef14d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleData: {fileID: 0}
+  puzzleData: {fileID: 11400000, guid: 0c4022a0c4ef792429099d97552616a3, type: 2}
   onSuccess:
     m_PersistentCalls:
       m_Calls: []
@@ -2992,8 +2992,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1484760549910616490}
-        m_TargetAssemblyTypeName: Puzzle, Assembly-CSharp
-        m_MethodName: Quit
+        m_TargetAssemblyTypeName: PZL_Compass, Assembly-CSharp
+        m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

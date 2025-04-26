@@ -38,6 +38,7 @@ public class SoundSettingsManager : MonoBehaviour
     {
         Debug.Log($"Musique volume: {vol}");
         saveSystemManager.GetGameData().settings.volumeMusic = vol;
+        if (musicSource == null) return;
         musicSource.volume = vol;
     }
 
@@ -45,6 +46,7 @@ public class SoundSettingsManager : MonoBehaviour
     {
         Debug.Log($"SFX volume: {vol}");
         saveSystemManager.GetGameData().settings.volumeSfx = vol;
+        if(SFXManager.Instance == null) return;
         SFXManager.Instance.SetSFXVolume(vol);
     }
 
