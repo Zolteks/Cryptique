@@ -517,6 +517,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 185654739}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &185654741 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 519841567329582597, guid: 9f737ada53f4a874db246575c8586f8f,
+    type: 3}
+  m_PrefabInstance: {fileID: 185654739}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5ee6b9d5e1ce44a841b353e7846bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &287564979 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3027661764651910718, guid: 443b92f7ad0ca7841937c8474d7acc1e,
@@ -3283,6 +3295,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WendigoCross
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945859923042000820, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 185654741}
+    - target: {fileID: 4945859923042000820, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 185654741}
+    - target: {fileID: 4945859923042000820, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: EnableInput
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945859923042000820, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PC_PlayerController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4945859923042000820, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5748703912757911401, guid: 2007209246357054d960166b54a3378d,
         type: 3}
