@@ -81,7 +81,7 @@ public class UI_Quest : MonoBehaviour, ILocalizedElement
         float amount = (float)from / totalPzl;
         float targetAmount = (float)to / totalPzl;
         float baseAmount = amount;
-        chapterProgressBar.value = Mathf.Max(.1f, from);
+        chapterProgressBar.value = Mathf.Max(0f, from);
         while(amount  < targetAmount)
         {
             amount += Mathf.Min(Mathf.Lerp(0, targetAmount - baseAmount, .5f * Time.deltaTime), targetAmount - amount);
@@ -110,13 +110,16 @@ public class UI_Quest : MonoBehaviour, ILocalizedElement
 
         foreach (PuzzleData puzzle in puzzles)
         {
-            GameObject puzzleDescription = Instantiate(puzzleDescriptionPrefab, transform);
+            string description = puzzle.GetDescription(currentLanguage);
+            if (string.IsNullOrWhiteSpace(description))
+                continue;
 
+            GameObject puzzleDescription = Instantiate(puzzleDescriptionPrefab, transform);
             TextMeshProUGUI text = puzzleDescription.GetComponentInChildren<TextMeshProUGUI>();
             if (text != null)
             {
-                Debug.Log("Puzzle ID: " + puzzle.GetPuzzleID()); 
-                text.text = puzzle.GetDescription(currentLanguage);
+                Debug.Log("Puzzle ID: " + puzzle.GetPuzzleID());
+                text.text = description;
             }
         }
     }

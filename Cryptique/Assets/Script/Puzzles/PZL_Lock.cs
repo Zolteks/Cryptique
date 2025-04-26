@@ -64,5 +64,6 @@ public class PZL_Lock : Puzzle
         m_playerController.EnableInput();
         SGL_InteractManager.Instance.ChangeCamera(Camera.main);
         Complete();
+        SaveSystemManager.Instance.GetGameData().progression.IsTutorialDone = true;
     }
 }

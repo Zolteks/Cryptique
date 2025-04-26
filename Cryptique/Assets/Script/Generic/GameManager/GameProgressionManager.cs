@@ -25,8 +25,8 @@ public class GameProgressionManager : Singleton<GameProgressionManager>
         {
             saveSystemManager = SaveSystemManager.Instance;
         }
-
-        foreach (var item in GetCurrentRegion().GetPuzzles())
+        string region = saveSystemManager.GetGameData().progression.currentRegion;
+        foreach (var item in GetRegionByName(region).GetPuzzles())
         {
             item.SetCompleted(false);
         }
