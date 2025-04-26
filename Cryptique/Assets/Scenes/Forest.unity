@@ -2574,6 +2574,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: CaveOutdoor
       objectReference: {fileID: 0}
+    - target: {fileID: 4318388157865689860, guid: 3a86258f80e089147b472f0b07c6ad48,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318388157865689860, guid: 3a86258f80e089147b472f0b07c6ad48,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318388157865689860, guid: 3a86258f80e089147b472f0b07c6ad48,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1737215701}
+    - target: {fileID: 4318388157865689860, guid: 3a86258f80e089147b472f0b07c6ad48,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318388157865689860, guid: 3a86258f80e089147b472f0b07c6ad48,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318388157865689860, guid: 3a86258f80e089147b472f0b07c6ad48,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318388157865689860, guid: 3a86258f80e089147b472f0b07c6ad48,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318388157865689860, guid: 3a86258f80e089147b472f0b07c6ad48,
+        type: 3}
+      propertyPath: OnInteract.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4703446631840142666, guid: 3a86258f80e089147b472f0b07c6ad48,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2624,7 +2664,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7429242462686604395, guid: 3a86258f80e089147b472f0b07c6ad48, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4757,6 +4798,9 @@ MonoBehaviour:
   m_goToRegion: 
   m_teleportPoint: {fileID: 1979042072}
   m_playerController: {fileID: 0}
+  tilesToResize:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &2065372896
 BoxCollider:
   m_ObjectHideFlags: 0
