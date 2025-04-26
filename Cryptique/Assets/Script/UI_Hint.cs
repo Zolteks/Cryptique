@@ -32,7 +32,7 @@ public class UI_Hint : MonoBehaviour, ILocalizedElement
     {
         languageManager.Unregister(this);
     }
-    public void RefreshLocalized()
+    public void RefreshLocalized(LanguageCode cLanguage)
     {
         List<PuzzleData> puzzles = gameProgressionManager.GetCurrentsPuzzles();
         //Refresh the buttons text
@@ -72,8 +72,6 @@ public class UI_Hint : MonoBehaviour, ILocalizedElement
         }
 
         List<PuzzleData> puzzles = gameProgressionManager.GetCurrentsPuzzles();
-
-        Debug.Log("DisplayHints() called. Number of puzzles: " + puzzles.Count);
 
         foreach (PuzzleData puzzle in puzzles)
         {

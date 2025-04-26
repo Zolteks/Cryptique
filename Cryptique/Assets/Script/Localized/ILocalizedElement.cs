@@ -1,4 +1,4 @@
 ﻿public interface ILocalizedElement
 {
-    void RefreshLocalized();
+    void RefreshLocalized(LanguageCode cLanguage);
 }

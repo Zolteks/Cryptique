@@ -36,7 +36,7 @@ public class UI_RegionDetail : MonoBehaviour, ILocalizedElement
         languageManager.Unregister(this);
     }
 
-    public void RefreshLocalized()
+    public void RefreshLocalized(LanguageCode currentLanguage)
     {
         List<RegionData> regionsData = gameProgressionManager.GetRegions();
         //Refresh the buttons text

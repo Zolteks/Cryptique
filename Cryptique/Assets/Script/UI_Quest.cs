@@ -33,15 +33,18 @@ public class UI_Quest : MonoBehaviour, ILocalizedElement
         }
     }
 
-    public void RefreshLocalized()
+    public void RefreshLocalized(LanguageCode cLanguage)
     {
         List<PuzzleData> puzzlesData = gameProgressionManager.GetCurrentsPuzzles();
+        if (puzzlesData == null) return;
         //Refresh the text
         foreach (Transform child in this.transform)
         {
             if (child.GetComponentInChildren<TextMeshProUGUI>())
             {
-                child.GetComponentInChildren<TextMeshProUGUI>().text = puzzlesData[child.GetSiblingIndex()].GetPuzzleID();
+                Debug.Log("Quest :" + child.GetComponentInChildren<TextMeshProUGUI>().text);
+                child.GetComponentInChildren<TextMeshProUGUI>().text = puzzlesData[child.GetSiblingIndex()].GetDescription(cLanguage);
+                Debug.Log("Quest :" + child.GetComponentInChildren<TextMeshProUGUI>().text);
             }
         }
     }
@@ -103,6 +106,8 @@ public class UI_Quest : MonoBehaviour, ILocalizedElement
         if (puzzles.Count == 0 ) return;
 
 
+        LanguageCode currentLanguage = SaveSystemManager.Instance.GetGameData().settings.langue;
+
         foreach (PuzzleData puzzle in puzzles)
         {
             GameObject puzzleDescription = Instantiate(puzzleDescriptionPrefab, transform);
@@ -111,7 +116,7 @@ public class UI_Quest : MonoBehaviour, ILocalizedElement
             if (text != null)
             {
                 Debug.Log("Puzzle ID: " + puzzle.GetPuzzleID()); 
-                text.text = puzzle.GetDescription();
+                text.text = puzzle.GetDescription(currentLanguage);
             }
         }
     }
