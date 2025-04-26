@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PZL_Compass : Puzzle
 {
     [SerializeField] private GameObject goCompass;
-
     [SerializeField] public Camera cam;
 
     GameObject m_UIPlay;
@@ -18,8 +18,8 @@ public class PZL_Compass : Puzzle
 
             PC_PlayerController.Instance.DisableInput();
             SGL_InteractManager.Instance.EnableInteraction();
-            m_UIPlay = GameObject.Find("UIPlay");
-            m_UIPlay.SetActive(false);
+            //m_UIPlay = GameObject.Find("UIPlay");
+            //m_UIPlay.SetActive(false);
 
             StartCoroutine(CoroutineDestroyDetection());
         }
@@ -30,13 +30,13 @@ public class PZL_Compass : Puzzle
         {
             yield return null;
         }
-        m_UIPlay.SetActive(true);
+        //m_UIPlay.SetActive(true);
         CompassDestroy();
     }
 
     public void QuitGame()
     {
-        m_UIPlay.SetActive(true);
+        //m_UIPlay.SetActive(true);
         Quit();
     }
 
