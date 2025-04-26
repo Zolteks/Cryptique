@@ -15,6 +15,12 @@ public class PZL_CrankFinding : Puzzle
         m_UIplayGameObject.SetActive(false);
     }
 
+    public void QuitGame()
+    {
+        m_UIplayGameObject.SetActive(true);
+        Quit();
+    }
+
     public void TakeCrank()
     {
         SGL_InventoryManager.Instance.AddItem(m_Crank);
