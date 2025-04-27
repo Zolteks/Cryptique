@@ -31,6 +31,9 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
         Application.runInBackground = true;
         saveManager.Register(new JsonSaveSystem<GameDataJson>());
         gameData = new GameData();
+
+
+        Test();
     }
 
     public void SaveGame()
