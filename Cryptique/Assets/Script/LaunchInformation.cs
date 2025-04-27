@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class LaunchInformation : OBJ_Collectable
 {
+    [Header("Information Settings")]
+    [SerializeField] private float m_delay = 3f;
     [SerializeField] private GameObject m_UIInfo;
 
     public override bool Interact()
@@ -10,19 +12,19 @@ public class LaunchInformation : OBJ_Collectable
         if (!CanInteract())
             return false;
 
-        StartCoroutine(CoroutineLaunchInfo(3f));
+        StartCoroutine(CoroutineLaunchInfo());
         
         return true;
     }
 
-    private IEnumerator CoroutineLaunchInfo(float delay)
+    private IEnumerator CoroutineLaunchInfo()
     {
         yield return new WaitForEndOfFrame();
         
         m_UIInfo.SetActive(true);
         PC_PlayerController.Instance.DisableInput();
 
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(m_delay);
 
         // Add to inventory
         SGL_InventoryManager.Instance.AddItem(m_item);
