@@ -4916,16 +4916,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DiePlayerBedroom
       objectReference: {fileID: 0}
-    - target: {fileID: 3702898612667371438, guid: 416895bfbb9198f448103c1f647b0309,
-        type: 3}
-      propertyPath: m_UIInfo
-      value: 
-      objectReference: {fileID: 1249399098}
-    - target: {fileID: 3702898612667371438, guid: 416895bfbb9198f448103c1f647b0309,
-        type: 3}
-      propertyPath: m_interactMethod
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4956883218133275127, guid: 416895bfbb9198f448103c1f647b0309,
         type: 3}
       propertyPath: m_teleportPoint
@@ -4965,11 +4955,6 @@ PrefabInstance:
         type: 3}
       propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 5298199590610772294, guid: 416895bfbb9198f448103c1f647b0309,
-        type: 3}
-      propertyPath: m_interactMethod
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5580087994424970482, guid: 416895bfbb9198f448103c1f647b0309,
         type: 3}
@@ -5041,19 +5026,7 @@ PrefabInstance:
       propertyPath: targetCamera
       value: 
       objectReference: {fileID: 1135514735}
-    - target: {fileID: 8543841319619375685, guid: 416895bfbb9198f448103c1f647b0309,
-        type: 3}
-      propertyPath: m_dice
-      value: 
-      objectReference: {fileID: 2074463311}
-    - target: {fileID: 8543841319619375685, guid: 416895bfbb9198f448103c1f647b0309,
-        type: 3}
-      propertyPath: m_UIInfo
-      value: 
-      objectReference: {fileID: 1249399098}
-    m_RemovedComponents:
-    - {fileID: 2589590999026385746, guid: 416895bfbb9198f448103c1f647b0309, type: 3}
-    - {fileID: 8439574580454198008, guid: 416895bfbb9198f448103c1f647b0309, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -5082,12 +5055,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93df185a09ff1ef4d847bb47e1a889b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2074463311 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2178424099233922985, guid: 416895bfbb9198f448103c1f647b0309,
-    type: 3}
-  m_PrefabInstance: {fileID: 2074463307}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
