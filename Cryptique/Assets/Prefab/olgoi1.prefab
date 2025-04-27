@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7209491895180813829}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.049979467, y: -0.15209067, z: -0.8266127}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6937342512764097748, guid: ba65493f80761da41b02b7b748a37f91, type: 3}
+  - {fileID: 3127888173978960519, guid: aaa2410d3cf7e7a48b0cbe24211ff62d, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +106,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.23541382, y: 0.0020000075, z: 0.29339844}
+  m_Size: {x: 0.5, y: 0.05, z: 0.5}
   m_Center: {x: -0.00000018253922, y: 0.0009999996, z: 0.00000033527613}
 --- !u!114 &1478340630120286175
 MonoBehaviour:
@@ -122,5 +122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_canInteract: 1
   m_interactMethod: 2
-  uiVisualisation: {fileID: 0}
+  uiVisualisation: {fileID: 5848457643812644645, guid: 949e61bea3de98349822ff1bd3543364,
+    type: 3}
   item: {fileID: 11400000, guid: 01d8759e6e3d41d4fa68c86c10b1327c, type: 2}

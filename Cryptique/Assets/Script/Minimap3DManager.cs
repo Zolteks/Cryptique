@@ -12,36 +12,36 @@ public class PlacedTileData
 public class Minimap3DManager : MonoBehaviour
 {
     [Header("Original tiles")]
-    public List<PlacedTileData> placedTiles = new List<PlacedTileData>();
+    [SerializeField] private List<PlacedTileData> placedTiles = new List<PlacedTileData>();
 
     [Header("Minimap settings")]
-    public GameObject miniTilePrefab;
-    public GameObject playerMarkerPrefab;
-    public GameObject linePrefab;
-    public float scaleFactor = 100f;
-    public Vector3 minimapOrigin = Vector3.zero;
-    public LayerMask minimapLayer;
+    [SerializeField] private GameObject miniTilePrefab;
+    [SerializeField] private GameObject playerMarkerPrefab;
+    [SerializeField] private GameObject linePrefab;
+    [SerializeField] private float scaleFactor = 100f;
+    [SerializeField] private Vector3 minimapOrigin = Vector3.zero;
+    [SerializeField] private LayerMask minimapLayer;
 
     [Header("Minimap camera")]
-    public Camera minimapCamera;
-    public float cameraDistance = 1000f;
-    public Vector3 cameraOffsetDirection = new Vector3(-1f, 2f, -1f);
+    [SerializeField] private Camera minimapCamera;
+    [SerializeField] private float cameraDistance = 1000f;
+    [SerializeField] private Vector3 cameraOffsetDirection = new Vector3(-1f, 2f, -1f);
 
     [Header("Player tracking")]
-    public Transform player;
+    [SerializeField] private Transform player;
     private Vector3 lastPlayerPosition;
     private Quaternion lastMarkerRotation;
 
     private float unlockTile = 10f;
-    public Color defaultTileColor = Color.white;
+    [SerializeField] private Color defaultTileColor = Color.white;
 
     private Dictionary<GameObject, GameObject> visitedMiniTiles = new Dictionary<GameObject, GameObject>();
     private Dictionary<GameObject, GameObject> miniTileMarkers = new Dictionary<GameObject, GameObject>();
     private GameObject playerMarker;
     private List<GameObject> activeLines = new List<GameObject>();
 
-    public RawImage minimapRawImage;
-    public RenderTexture minimapTexture;
+    [SerializeField] private RawImage minimapRawImage;
+    [SerializeField] private RenderTexture minimapTexture;
 
     [System.Serializable]
     public class TileHighlight
@@ -51,7 +51,7 @@ public class Minimap3DManager : MonoBehaviour
     }
 
     [Header("Map Objects in Tiles")]
-    public List<TileHighlight> objectInTiles = new List<TileHighlight>();
+    [SerializeField] private List<TileHighlight> objectInTiles = new List<TileHighlight>();
 
     void Start()
     {

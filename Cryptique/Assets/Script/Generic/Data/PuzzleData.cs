@@ -29,9 +29,9 @@ public class PuzzleData : ScriptableObject
         return puzzleID.GetLocalized(LanguageManager.Instance.GetCurrentLanguage(), defaultPuzzleID);
     }
 
-    public string GetDescription()
+    public string GetDescription(LanguageCode currentLanguage)
     {
-        return description.GetLocalized(LanguageManager.Instance.GetCurrentLanguage(), defaultDescription);
+        return description.GetLocalized(currentLanguage, defaultDescription);
     }
 
     public string GetPuzzleDescription()

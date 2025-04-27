@@ -25,8 +25,8 @@ public class GameProgressionManager : Singleton<GameProgressionManager>
         {
             saveSystemManager = SaveSystemManager.Instance;
         }
-
-        foreach (var item in GetCurrentRegion().GetPuzzles())
+        string region = saveSystemManager.GetGameData().progression.currentRegion;
+        foreach (var item in GetRegionByName(region).GetPuzzles())
         {
             item.SetCompleted(false);
         }
@@ -76,7 +76,7 @@ public class GameProgressionManager : Singleton<GameProgressionManager>
     {
         foreach (RegionData reg in GetRegions())
         {
-            if (reg.GetName() == name)
+            if (reg.defaultRegionName == name)
                 return reg;
         }
         return null;
@@ -113,12 +113,12 @@ public class GameProgressionManager : Singleton<GameProgressionManager>
 
     public int GetTotalPuzzlesInRegion()
     {
-        return GetAllRegions().FirstOrDefault(r => r.GetName() == GetCurrentRegion().GetName())?.GetPuzzles().Count ?? 0;
+        return GetAllRegions().FirstOrDefault(r => r.GetName() == GetRegionByName(saveSystemManager.GetGameData().progression.currentRegion).GetName())?.GetPuzzles().Count ?? 0;
     }
 
     public int GetCompletedPuzzlesInRegion()
     {
-        return GetAllRegions().FirstOrDefault(r => r.GetName() == GetCurrentRegion().GetName())?.GetCompletedPuzzlesCount() ?? 0;
+        return GetAllRegions().FirstOrDefault(r => r.GetName() == GetRegionByName(saveSystemManager.GetGameData().progression.currentRegion).GetName())?.GetCompletedPuzzlesCount() ?? 0;
     }
 
     public bool ArePrerequisitesCompleted(PuzzleData puzzle)
