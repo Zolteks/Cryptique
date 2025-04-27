@@ -2,6 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
+[DisallowMultipleComponent]
 public class LocalizedTextUI : MonoBehaviour
 {
     [SerializeField] private TextUITraduction localisationData;

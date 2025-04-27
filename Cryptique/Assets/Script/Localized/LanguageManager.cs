@@ -38,6 +38,7 @@ public class LanguageManager : Singleton<LanguageManager>
             listeners.Remove(l);
     }
 
+
     public void Register(LocalizedSpriteUI l)
     {
         if (!spriteListeners.Contains(l))

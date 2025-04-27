@@ -132,7 +132,7 @@ public class PZL_Simon : Puzzle
     public void ChangeCamState()
     {
         Transform cam = camera.transform;
-        if (false == camera.gameObject.active)
+        if (!camera.gameObject.activeSelf)
         {
             camera.gameObject.SetActive(true);
             canvas.gameObject.SetActive(true);
@@ -154,10 +154,6 @@ public class PZL_Simon : Puzzle
         {
             camera.gameObject.SetActive(false);
             canvas.gameObject.SetActive(false);
-
-
-            //leftWall.SetActive(true);
-            //righttWall.SetActive(true);
 
             GameManager.Instance.GetCamera().GetComponent<CameraRotator>().ResetAllowedDirections();
             GameManager.Instance.GetCamera().GetComponent<CameraRotator>().UpdateWalls();

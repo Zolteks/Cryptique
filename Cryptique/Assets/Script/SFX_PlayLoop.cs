@@ -14,6 +14,7 @@ public class SFX_PlayLoop : MonoBehaviour
     private SFXData.SFX sfx;
 
     private bool isWaiting = false;
+    private bool firstTime = true;
 
     private void Start()
     {
@@ -22,7 +23,10 @@ public class SFX_PlayLoop : MonoBehaviour
 
     private void Update()
     {
-        if(!isWaiting)
+        if(firstTime) 
+            StartCoroutine(WaitForRandomTime(Random.Range(minWaitTime, maxWaitTime)));
+
+        if (!isWaiting)
         {
             SFXManager.Instance.PlaySFX(sfx.clip, transform.position, sfxMixerGroup);
             StartCoroutine(WaitForRandomTime(Random.Range(minWaitTime, maxWaitTime)));

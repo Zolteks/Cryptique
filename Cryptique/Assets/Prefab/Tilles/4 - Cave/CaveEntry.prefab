@@ -34,6 +34,7 @@ Transform:
   - {fileID: 6134791302446613003}
   - {fileID: 5473669720233919756}
   - {fileID: 513758697387190234}
+  - {fileID: 7446228382725478288}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &914967836961746089
@@ -136,6 +137,75 @@ MonoBehaviour:
   sfxData: {fileID: 11400000, guid: 2282aa48c38782a42a0eaacb0884ddb1, type: 2}
   selectedSFXName: "Wendigo Entr\xE9e"
   sfxMixerGroup: {fileID: 0}
+--- !u!1 &3019422535656580703
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7446228382725478288}
+  - component: {fileID: 2329165565719298321}
+  - component: {fileID: 4400598365826456354}
+  m_Layer: 0
+  m_Name: TriggerDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7446228382725478288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3019422535656580703}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.31, y: 0.932, z: -2}
+  m_LocalScale: {x: 0.99999976, y: 1, z: 0.99999976}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7049897616365563909}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2329165565719298321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3019422535656580703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de9cc127a049c8d4289c275f615a2b20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_characterList: {fileID: 11400000, guid: 9e980278d9699304fae7dfe07473a8d5, type: 2}
+  m_dialogueLocalizationTable: {fileID: 11400000, guid: 915693fe1c91a5d4a8d5341cc47815b6,
+    type: 2}
+--- !u!65 &4400598365826456354
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3019422535656580703}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 4.1003532}
+  m_Center: {x: 0, y: 0, z: 1.1759686}
 --- !u!1001 &1549366517214999113
 PrefabInstance:
   m_ObjectHideFlags: 0

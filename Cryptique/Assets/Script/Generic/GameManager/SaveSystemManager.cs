@@ -28,8 +28,6 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
         Application.runInBackground = true;
         saveManager.Register(new JsonSaveSystem<GameDataJson>());
         gameData = new GameData();
-
-        Test();
     }
 
     public void SaveGame()
@@ -115,29 +113,29 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
     }
 #endif
 
-    private void Test()
-    {
-        GameData gameData = new GameData();
-        gameData.progression.IsTutorialDone = true;
-        gameData.progression.currentRegion = "Tavern";
-        gameData.progression.currentChapterName = "Wendigo";
-        gameData.progression.completedPuzzles = new();
-        gameData.progression.solvedPuzzles = new();
-        gameData.progression.collectedItems = new();
-        gameData.progression.unlockedChapters = new();
-        gameData.progression.unlockedRegions = new();
-        gameData.progression.completedPuzzles = new();
+    //private void Test()
+    //{
+    //    GameData gameData = new GameData();
+    //    gameData.progression.IsTutorialDone = true;
+    //    gameData.progression.currentRegion = "Tavern";
+    //    gameData.progression.currentChapterName = "Wendigo";
+    //    gameData.progression.completedPuzzles = new();
+    //    gameData.progression.solvedPuzzles = new();
+    //    gameData.progression.collectedItems = new();
+    //    gameData.progression.unlockedChapters = new();
+    //    gameData.progression.unlockedRegions = new();
+    //    gameData.progression.completedPuzzles = new();
 
-        gameData.settings.volumeMusic = 0.5f;
-        gameData.settings.volumeSfx = 0.7f;
-        gameData.settings.langue = LanguageCode.EN;
-        gameData.settings.slideMode = SlideMode.Slide;
+    //    gameData.settings.volumeMusic = 0.5f;
+    //    gameData.settings.volumeSfx = 0.7f;
+    //    gameData.settings.langue = LanguageCode.EN;
+    //    gameData.settings.slideMode = SlideMode.Slide;
 
-        // On assigne les donnees au save manager
-        SaveSystemManager.Instance.GetGameData().ApplySave(gameData.ToJson());
+    //    // On assigne les donnees au save manager
+    //    SaveSystemManager.Instance.GetGameData().ApplySave(gameData.ToJson());
 
-        // Sauvegarde
-        SaveSystemManager.Instance.SaveGame();
-        Debug.Log("Donnees de test sauvegardees.");
-    }
+    //    // Sauvegarde
+    //    SaveSystemManager.Instance.SaveGame();
+    //    Debug.Log("Donnees de test sauvegardees.");
+    //}
 }
