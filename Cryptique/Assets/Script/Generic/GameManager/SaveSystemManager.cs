@@ -124,7 +124,7 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
     private void Test()
     {
         GameData gameData = new GameData();
-        gameData.progression.IsTutorialDone = false;
+        gameData.progression.IsTutorialDone = true;
         gameData.progression.currentRegion = "Tavern";
         gameData.progression.currentChapterName = "Wendigo";
         gameData.progression.completedPuzzles = new();
