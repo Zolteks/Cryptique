@@ -52,8 +52,7 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
                 gameData.ApplySave(data);
                 Debug.Log("Game loaded.");
 
-                LocalizationSettings.AvailableLocales.Locales.FirstOrDefault(l => l.Identifier.Code == GetLocaleCode(gameData.settings.langue));
-            }
+            } 
         }
         else
         {
@@ -85,15 +84,7 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
     }
 
 
-    private string GetLocaleCode(LanguageCode code)
-    {
-        return code switch
-        {
-            LanguageCode.EN => "en",
-            LanguageCode.FR => "fr",
-            _ => "en", // fallback
-        };
-    }
+
 
 #if UNITY_EDITOR
     public void OnApplicationQuit()

@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 //  Script responsable for the Entire Game logic
 public class GameManager : MonoBehaviour
@@ -35,9 +37,28 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         m_gameProgressionManager = GameProgressionManager.Instance;
+
+        // Fix for CS1660 and CS1002
+        var localeCode = GetLocaleCode(SaveSystemManager.Instance.GetGameData().settings.langue);
+        var locale = LocalizationSettings.AvailableLocales.Locales.FirstOrDefault(l => l.Identifier.Code == localeCode);
+        if (locale != null)
+        {
+            LocalizationSettings.SelectedLocale = locale;
+        }
     }
 
-    public void NotifyChapterChanged(string chapterID)
+
+    private string GetLocaleCode(LanguageCode code)
+    {
+        return code switch
+        {
+            LanguageCode.EN => "en",
+            LanguageCode.FR => "fr",
+            _ => "en", // fallback
+        };
+    }
+
+public void NotifyChapterChanged(string chapterID)
     {
         Debug.Log($"Chapter Changed : {chapterID} - Update UI or other systems");
     }
