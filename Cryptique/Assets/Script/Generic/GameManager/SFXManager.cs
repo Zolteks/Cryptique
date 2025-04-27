@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.Audio;
@@ -9,16 +10,22 @@ public class SFXManager : Singleton<SFXManager>
     private float sfxVolume = 1f;
     private List<AudioSource> activeSFXSources = new();
 
+    private void Start()
+    {
+        TryGetComponent<AudioSource>(out var templateSFXSource);
+        //Debug.Log("Audio Source is null : " + (templateSFXSource == null));
+    }
+
     public AudioSource PlaySFX(AudioClip clip, Vector3 position, AudioMixerGroup audioMixer, bool loop = false)
     {
         if (clip == null)  return null;
-
+        
         GameObject go = new GameObject("SFX_" + clip.name);
         //Debug.Log("SFX_" + clip.name);
         go.transform.position = position;
 
         AudioSource source = go.AddComponent<AudioSource>();
-        CopyAudioSettings(templateSFXSource, source);
+        //CopyAudioSettings(templateSFXSource, source);
         source.clip = clip;
         source.volume = sfxVolume;
         source.outputAudioMixerGroup = audioMixer;

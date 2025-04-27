@@ -68,7 +68,7 @@ public class SFX_TempeteEditor : Editor
         }
         else
         {
-            EditorGUILayout.HelpBox("Aucune SFXData assignée", MessageType.Warning);
+            EditorGUILayout.HelpBox("Aucune SFXData assignee", MessageType.Warning);
         }
 
         serializedObject.ApplyModifiedProperties();
