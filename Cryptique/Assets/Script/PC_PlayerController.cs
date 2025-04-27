@@ -97,7 +97,7 @@ public class PC_PlayerController : Singleton<PC_PlayerController>
     {
         if (m_isInputActive) return;
 
-        Debug.Log("Enable input");
+        Debug.Log("Enable Player input");
         m_inputManager.OnClick += CalculatePoint;
         m_interactManager.EnableInteraction();
         m_isInputActive = true;
@@ -107,7 +107,7 @@ public class PC_PlayerController : Singleton<PC_PlayerController>
     {
         if (false == m_isInputActive) return;
 
-        Debug.Log("Disable input");
+        Debug.Log("Disable Player input");
         m_inputManager.OnClick -= CalculatePoint;
         m_interactManager.DisableInteraction();
         m_isInputActive = false;
@@ -155,7 +155,7 @@ public class PC_PlayerController : Singleton<PC_PlayerController>
     {
         m_agent.ResetPath();
         NavMesh.SamplePosition(destination, out NavMeshHit hit, m_interactionDistance, NavMesh.AllAreas);
-        Debug.Log("Agent go to : " + hit.position);
+        //Debug.Log("Agent go to : " + hit.position);
         m_agent.SetDestination(hit.position);
         CheckFlipSprite(hit.position);
     }
@@ -185,7 +185,7 @@ public class PC_PlayerController : Singleton<PC_PlayerController>
     {
         m_agent.ResetPath();
         NavMesh.SamplePosition(newTilePosition, out NavMeshHit hit, m_interactionDistance, NavMesh.AllAreas);
-        Debug.Log("Agent teleport to : " + hit.position);
+        //Debug.Log("Agent teleport to : " + hit.position);
         m_agent.Warp(hit.position);
         if (!m_agent.isOnNavMesh)
             Debug.LogWarning("NavMesh not found");
@@ -240,15 +240,15 @@ public class PC_PlayerController : Singleton<PC_PlayerController>
         }
         // Lancer l'interaction une fois arrivé
         yield return new WaitForEndOfFrame();
-        if (!m_isInputActive)
+        if (!m_isInputActive && m_animator.GetBool(m_isInteractingParameter) == false)
             EnableInput();
         OnMoveCallback?.Invoke();
-        StopCoroutine(m_coroutineWaitFor);
+        //StopCoroutine(m_coroutineWaitFor);
     }
     
     private IEnumerator CoroutineInteraction()
     {
-        //yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
 
         AudioClip audioClip = Resources.Load<AudioClip>("Interaction");
         AudioMixerGroup validationGroup = Resources.Load<AudioMixerGroup>("MainMixer");
@@ -261,13 +261,13 @@ public class PC_PlayerController : Singleton<PC_PlayerController>
         {
             yield return null;
         }
-        Debug.Log("Player interaction finished");
+        //Debug.Log("Player interaction finished");
         // Réactiver les inputs
         yield return new WaitForEndOfFrame();
         if (!m_isInputActive)
             EnableInput();
         m_animator.SetBool(m_isInteractingParameter, false);
         OnInteractionCallback?.Invoke();
-        StopCoroutine(m_coroutineInteraction);
+        //StopCoroutine(m_coroutineInteraction);
     }
 }

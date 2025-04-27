@@ -93,7 +93,6 @@ public class IN_Character : OBJ_Interactable
         m_bubbleObject.transform.SetParent(transform);
         float imageWidthOffset = m_dialogueBubble.bounds.size.x / 2 * m_scale;
         float imageHeightOffset = m_dialogueBubble.bounds.size.y / 6 * m_scale;
-        Debug.Log("Image height offset : " + imageHeightOffset);
         m_bubbleObject.transform.localPosition = new Vector3(imageWidthOffset, collider.bounds.size.y + imageHeightOffset, 0);
         m_bubbleObject.transform.localScale = new Vector3(m_scale, m_scale, m_scale);
         

@@ -42,7 +42,7 @@ public class AnimatorRandomBehaviour : StateMachineBehaviour
             m_lastLoopCount = currentLoop;
             m_completedLoops++;
 
-            Debug.Log("Loop terminée : " + m_completedLoops + "/" + iterationBeforeRandom);
+            //Debug.Log("Loop terminée : " + m_completedLoops + "/" + iterationBeforeRandom);
         }
 
         if (m_completedLoops >= iterationBeforeRandom && !m_randomPlayed && m_randomTriggerHashes.Count > 0)
@@ -50,7 +50,7 @@ public class AnimatorRandomBehaviour : StateMachineBehaviour
             m_randomPlayed = true;
 
             int randomIndex = Random.Range(0, m_randomTriggerHashes.Count);
-            Debug.Log("Random trigger envoyé : " + randomTriggerNames[randomIndex]);
+            //Debug.Log("Random trigger envoyé : " + randomTriggerNames[randomIndex]);
 
             animator.SetTrigger(m_randomTriggerHashes[randomIndex]);
         }

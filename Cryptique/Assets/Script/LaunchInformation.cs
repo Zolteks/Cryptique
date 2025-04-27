@@ -17,6 +17,8 @@ public class LaunchInformation : OBJ_Collectable
 
     private IEnumerator CoroutineLaunchInfo(float delay)
     {
+        yield return new WaitForEndOfFrame();
+        
         m_UIInfo.SetActive(true);
         PC_PlayerController.Instance.DisableInput();
 
@@ -30,7 +32,8 @@ public class LaunchInformation : OBJ_Collectable
         Debug.Log($"Item {m_item.name} collected ! add to GameProgressionManager ");
 
         m_UIInfo.SetActive(false);
+        if (PC_PlayerController.Instance.GetInputActive() == false)
+            PC_PlayerController.Instance.EnableInput();
         Destroy(gameObject);
-        PC_PlayerController.Instance.EnableInput();
     }
 }
