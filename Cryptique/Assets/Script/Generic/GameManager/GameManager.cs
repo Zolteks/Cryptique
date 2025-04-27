@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
 
         m_gameProgressionManager = GameProgressionManager.Instance;
 
-        // Fix for CS1660 and CS1002
         var localeCode = GetLocaleCode(SaveSystemManager.Instance.GetGameData().settings.langue);
         var locale = LocalizationSettings.AvailableLocales.Locales.FirstOrDefault(l => l.Identifier.Code == localeCode);
         if (locale != null)

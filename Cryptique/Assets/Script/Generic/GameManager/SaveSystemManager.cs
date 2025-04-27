@@ -32,7 +32,7 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
         saveManager.Register(new JsonSaveSystem<GameDataJson>());
         gameData = new GameData();
 
-        //Test();
+        Test();
     }
 
     public void SaveGame()
@@ -124,7 +124,7 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
     private void Test()
     {
         GameData gameData = new GameData();
-        gameData.progression.IsTutorialDone = true;
+        gameData.progression.IsTutorialDone = false;
         gameData.progression.currentRegion = "Tavern";
         gameData.progression.currentChapterName = "Wendigo";
         gameData.progression.completedPuzzles = new();
