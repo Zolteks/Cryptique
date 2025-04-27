@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PZL_SortingGame : Puzzle
 {
@@ -14,6 +15,8 @@ public class PZL_SortingGame : Puzzle
     [SerializeField] private GameObject m_Oil;
  
     [SerializeField] public Camera cam;
+
+    [SerializeField] private GameObject m_UIIndications;
 
     private bool bOilTake = false;
     private GameObject m_doors;
@@ -28,6 +31,7 @@ public class PZL_SortingGame : Puzzle
 
         m_UIplayGameObject = GameObject.Find("UIPlay");
         m_UIplayGameObject.SetActive(false);
+
 
         etatsPlacement = new List<bool>(new bool[iElementNumber]);
         SGL_InteractManager.Instance.ChangeCamera(cam);
@@ -67,14 +71,31 @@ public class PZL_SortingGame : Puzzle
         if (!bIsAllPlaced || bOilTake) return;
 
         m_UIplayGameObject.SetActive(true);
+
+        // Dsactier toute les composants Images ans les enfants de m_UIplayGameObject
+        foreach (Image image in m_UIplayGameObject.GetComponentsInChildren<Image>())
+        {
+            image.enabled = false;
+        }
+        m_UIIndications.SetActive(false);
+
         // Vérifie si l'objet n'est plus actif OU a été détruit
         if (m_Oil == null || !m_Oil.activeInHierarchy)
         {
+           
+
             bOilTake = true;
 
             PC_PlayerController.Instance.EnableInput();
             SGL_InteractManager.Instance.ChangeCamera(Camera.main);
             Complete();
+
+            //Reactive les composants Images
+            foreach (Image image in m_UIplayGameObject.GetComponentsInChildren<Image>())
+            {
+                image.enabled = true;
+            }
+            m_UIIndications.SetActive(true);
         }
     }
 
