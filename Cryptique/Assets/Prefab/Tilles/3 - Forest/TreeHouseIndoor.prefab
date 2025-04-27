@@ -411,6 +411,10 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8091531416883058085}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6961a51eeb09c644ba10924e13be0182,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5889458636227852867}
     - targetCorrespondingSourceObject: {fileID: -8428205745367208830, guid: 6961a51eeb09c644ba10924e13be0182,
         type: 3}
       insertIndex: -1
@@ -633,6 +637,29 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.286, y: 0.56700003, z: -0.07300001}
   m_TimeToStationary: 0.5
+--- !u!1 &3884407725779303622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6961a51eeb09c644ba10924e13be0182,
+    type: 3}
+  m_PrefabInstance: {fileID: 4118922216800158103}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5889458636227852867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3884407725779303622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df185a09ff1ef4d847bb47e1a889b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCamera: {fileID: 0}
+  padding: 1.1
+  maxSize: 10
+  minSize: 5
+  fitOnStart: 0
 --- !u!4 &4513698176127723132 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6961a51eeb09c644ba10924e13be0182,

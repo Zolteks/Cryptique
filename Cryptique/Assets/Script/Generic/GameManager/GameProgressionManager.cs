@@ -25,6 +25,7 @@ public class GameProgressionManager : Singleton<GameProgressionManager>
         {
             saveSystemManager = SaveSystemManager.Instance;
         }
+
         string region = saveSystemManager.GetGameData().progression.currentRegion;
         if (String.IsNullOrEmpty(region))
             Debug.LogError("Region is null or empty");

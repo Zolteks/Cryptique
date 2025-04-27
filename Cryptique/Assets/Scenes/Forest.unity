@@ -481,6 +481,21 @@ PrefabInstance:
       propertyPath: teleportPoint
       value: 
       objectReference: {fileID: 1883696705}
+    - target: {fileID: 107606149041370449, guid: 30b96fe2558eb86468736dd59dc173df,
+        type: 3}
+      propertyPath: maxSize
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 107606149041370449, guid: 30b96fe2558eb86468736dd59dc173df,
+        type: 3}
+      propertyPath: minSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 107606149041370449, guid: 30b96fe2558eb86468736dd59dc173df,
+        type: 3}
+      propertyPath: targetCamera
+      value: 
+      objectReference: {fileID: 2037326841}
     - target: {fileID: 404737875289032920, guid: 30b96fe2558eb86468736dd59dc173df,
         type: 3}
       propertyPath: fallbackTile
@@ -561,6 +576,41 @@ PrefabInstance:
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 1594695157}
+    - target: {fileID: 3439193035554880075, guid: 30b96fe2558eb86468736dd59dc173df,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439193035554880075, guid: 30b96fe2558eb86468736dd59dc173df,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439193035554880075, guid: 30b96fe2558eb86468736dd59dc173df,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 560464338}
+    - target: {fileID: 3439193035554880075, guid: 30b96fe2558eb86468736dd59dc173df,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439193035554880075, guid: 30b96fe2558eb86468736dd59dc173df,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FitView
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439193035554880075, guid: 30b96fe2558eb86468736dd59dc173df,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AutoScaleCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439193035554880075, guid: 30b96fe2558eb86468736dd59dc173df,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7770122032861741803, guid: 30b96fe2558eb86468736dd59dc173df,
         type: 3}
       propertyPath: compass
@@ -576,6 +626,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30b96fe2558eb86468736dd59dc173df, type: 3}
+--- !u!114 &321377136 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 107606149041370449, guid: 30b96fe2558eb86468736dd59dc173df,
+    type: 3}
+  m_PrefabInstance: {fileID: 321377135}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df185a09ff1ef4d847bb47e1a889b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &333735278
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,6 +957,41 @@ PrefabInstance:
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 1662674144}
+    - target: {fileID: 5355833229600025409, guid: d6593f4827c37dd4f9681901332d7756,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5355833229600025409, guid: d6593f4827c37dd4f9681901332d7756,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5355833229600025409, guid: d6593f4827c37dd4f9681901332d7756,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 945933085}
+    - target: {fileID: 5355833229600025409, guid: d6593f4827c37dd4f9681901332d7756,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5355833229600025409, guid: d6593f4827c37dd4f9681901332d7756,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FitView
+      objectReference: {fileID: 0}
+    - target: {fileID: 5355833229600025409, guid: d6593f4827c37dd4f9681901332d7756,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AutoScaleCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5355833229600025409, guid: d6593f4827c37dd4f9681901332d7756,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6081332360688983967, guid: d6593f4827c37dd4f9681901332d7756,
         type: 3}
       propertyPath: fallbackTile
@@ -905,6 +1002,21 @@ PrefabInstance:
       propertyPath: teleportPoint
       value: 
       objectReference: {fileID: 1883696705}
+    - target: {fileID: 6560170259374636799, guid: d6593f4827c37dd4f9681901332d7756,
+        type: 3}
+      propertyPath: maxSize
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6560170259374636799, guid: d6593f4827c37dd4f9681901332d7756,
+        type: 3}
+      propertyPath: minSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6560170259374636799, guid: d6593f4827c37dd4f9681901332d7756,
+        type: 3}
+      propertyPath: targetCamera
+      value: 
+      objectReference: {fileID: 2037326841}
     - target: {fileID: 7359842504924128581, guid: d6593f4827c37dd4f9681901332d7756,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -940,6 +1052,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6593f4827c37dd4f9681901332d7756, type: 3}
+--- !u!114 &481085749 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6560170259374636799, guid: d6593f4827c37dd4f9681901332d7756,
+    type: 3}
+  m_PrefabInstance: {fileID: 481085748}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df185a09ff1ef4d847bb47e1a889b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &483563882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2185,11 +2309,61 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1509145158378130461, guid: 0cd038b647defab4383139e2a9ba9afe,
+        type: 3}
+      propertyPath: maxSize
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1509145158378130461, guid: 0cd038b647defab4383139e2a9ba9afe,
+        type: 3}
+      propertyPath: minSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1509145158378130461, guid: 0cd038b647defab4383139e2a9ba9afe,
+        type: 3}
+      propertyPath: targetCamera
+      value: 
+      objectReference: {fileID: 2037326841}
     - target: {fileID: 2848711522941337193, guid: 0cd038b647defab4383139e2a9ba9afe,
         type: 3}
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 946302665}
+    - target: {fileID: 2848711522941337193, guid: 0cd038b647defab4383139e2a9ba9afe,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848711522941337193, guid: 0cd038b647defab4383139e2a9ba9afe,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848711522941337193, guid: 0cd038b647defab4383139e2a9ba9afe,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 946302666}
+    - target: {fileID: 2848711522941337193, guid: 0cd038b647defab4383139e2a9ba9afe,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848711522941337193, guid: 0cd038b647defab4383139e2a9ba9afe,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FitView
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848711522941337193, guid: 0cd038b647defab4383139e2a9ba9afe,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AutoScaleCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2848711522941337193, guid: 0cd038b647defab4383139e2a9ba9afe,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3242262381362955523, guid: 0cd038b647defab4383139e2a9ba9afe,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2270,6 +2444,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cd038b647defab4383139e2a9ba9afe, type: 3}
+--- !u!114 &560464338 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1509145158378130461, guid: 0cd038b647defab4383139e2a9ba9afe,
+    type: 3}
+  m_PrefabInstance: {fileID: 560464337}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df185a09ff1ef4d847bb47e1a889b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &650189052
 GameObject:
   m_ObjectHideFlags: 0
@@ -2751,12 +2937,39 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7787731955769002071, guid: 3a86258f80e089147b472f0b07c6ad48,
+        type: 3}
+      propertyPath: maxSize
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787731955769002071, guid: 3a86258f80e089147b472f0b07c6ad48,
+        type: 3}
+      propertyPath: minSize
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787731955769002071, guid: 3a86258f80e089147b472f0b07c6ad48,
+        type: 3}
+      propertyPath: targetCamera
+      value: 
+      objectReference: {fileID: 2037326841}
     m_RemovedComponents:
     - {fileID: 7429242462686604395, guid: 3a86258f80e089147b472f0b07c6ad48, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a86258f80e089147b472f0b07c6ad48, type: 3}
+--- !u!114 &945933085 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7787731955769002071, guid: 3a86258f80e089147b472f0b07c6ad48,
+    type: 3}
+  m_PrefabInstance: {fileID: 945933084}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df185a09ff1ef4d847bb47e1a889b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &946302664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2840,6 +3053,21 @@ PrefabInstance:
       propertyPath: teleportPoint
       value: 
       objectReference: {fileID: 1883696705}
+    - target: {fileID: 1739623037537182249, guid: fa744c2db5be29e43bcfc75db2aa2342,
+        type: 3}
+      propertyPath: maxSize
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1739623037537182249, guid: fa744c2db5be29e43bcfc75db2aa2342,
+        type: 3}
+      propertyPath: minSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1739623037537182249, guid: fa744c2db5be29e43bcfc75db2aa2342,
+        type: 3}
+      propertyPath: targetCamera
+      value: 
+      objectReference: {fileID: 2037326841}
     - target: {fileID: 3464182164391626017, guid: fa744c2db5be29e43bcfc75db2aa2342,
         type: 3}
       propertyPath: m_teleportPoint
@@ -2885,6 +3113,41 @@ PrefabInstance:
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 2062986871}
+    - target: {fileID: 7577647726826064581, guid: fa744c2db5be29e43bcfc75db2aa2342,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7577647726826064581, guid: fa744c2db5be29e43bcfc75db2aa2342,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7577647726826064581, guid: fa744c2db5be29e43bcfc75db2aa2342,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 481085749}
+    - target: {fileID: 7577647726826064581, guid: fa744c2db5be29e43bcfc75db2aa2342,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7577647726826064581, guid: fa744c2db5be29e43bcfc75db2aa2342,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FitView
+      objectReference: {fileID: 0}
+    - target: {fileID: 7577647726826064581, guid: fa744c2db5be29e43bcfc75db2aa2342,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AutoScaleCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7577647726826064581, guid: fa744c2db5be29e43bcfc75db2aa2342,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7816292693617431670, guid: fa744c2db5be29e43bcfc75db2aa2342,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2926,6 +3189,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 946302664}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &946302666 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1739623037537182249, guid: fa744c2db5be29e43bcfc75db2aa2342,
+    type: 3}
+  m_PrefabInstance: {fileID: 946302664}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df185a09ff1ef4d847bb47e1a889b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &956577834
 GameObject:
   m_ObjectHideFlags: 0
@@ -3209,6 +3484,41 @@ PrefabInstance:
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 2025063402}
+    - target: {fileID: 698959653207006226, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 698959653207006226, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 698959653207006226, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2025063403}
+    - target: {fileID: 698959653207006226, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 698959653207006226, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FitView
+      objectReference: {fileID: 0}
+    - target: {fileID: 698959653207006226, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AutoScaleCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 698959653207006226, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3977274209496130299, guid: 2007209246357054d960166b54a3378d,
         type: 3}
       propertyPath: m_Name
@@ -3294,6 +3604,51 @@ PrefabInstance:
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 1657035314}
+    - target: {fileID: 6160659424064164979, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6160659424064164979, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6160659424064164979, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1657035315}
+    - target: {fileID: 6160659424064164979, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6160659424064164979, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FitView
+      objectReference: {fileID: 0}
+    - target: {fileID: 6160659424064164979, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AutoScaleCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6160659424064164979, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7800095566240858263, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: minSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7800095566240858263, guid: 2007209246357054d960166b54a3378d,
+        type: 3}
+      propertyPath: targetCamera
+      value: 
+      objectReference: {fileID: 2037326841}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3311,6 +3666,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1142569789}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1142569792 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7800095566240858263, guid: 2007209246357054d960166b54a3378d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1142569789}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df185a09ff1ef4d847bb47e1a889b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1162869037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3991,11 +4358,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2983084353279157041, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: minSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2983084353279157041, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: targetCamera
+      value: 
+      objectReference: {fileID: 2037326841}
     - target: {fileID: 5967372624204531222, guid: 443b92f7ad0ca7841937c8474d7acc1e,
         type: 3}
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 1843531452}
+    - target: {fileID: 5967372624204531222, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967372624204531222, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967372624204531222, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1843531453}
+    - target: {fileID: 5967372624204531222, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967372624204531222, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FitView
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967372624204531222, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AutoScaleCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967372624204531222, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6601402276490103343, guid: 443b92f7ad0ca7841937c8474d7acc1e,
         type: 3}
       propertyPath: m_Name
@@ -4016,11 +4428,66 @@ PrefabInstance:
       propertyPath: m_interactMethod
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7311025367838326302, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1979042074}
+    - target: {fileID: 7311025367838326302, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FitView
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311025367838326302, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AutoScaleCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311025367838326302, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8324811166733742163, guid: 443b92f7ad0ca7841937c8474d7acc1e,
         type: 3}
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 1142569791}
+    - target: {fileID: 8324811166733742163, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324811166733742163, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324811166733742163, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1142569792}
+    - target: {fileID: 8324811166733742163, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324811166733742163, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FitView
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324811166733742163, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AutoScaleCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324811166733742163, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4032,6 +4499,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1657035313}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1657035315 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2983084353279157041, guid: 443b92f7ad0ca7841937c8474d7acc1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1657035313}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df185a09ff1ef4d847bb47e1a889b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1662674144 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4294762474694775457, guid: 3a86258f80e089147b472f0b07c6ad48,
@@ -4190,6 +4669,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1076217579204442466, guid: 152a40d6409570d4e995d86a2b523a40,
+        type: 3}
+      propertyPath: maxSize
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076217579204442466, guid: 152a40d6409570d4e995d86a2b523a40,
+        type: 3}
+      propertyPath: minSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076217579204442466, guid: 152a40d6409570d4e995d86a2b523a40,
+        type: 3}
+      propertyPath: targetCamera
+      value: 
+      objectReference: {fileID: 2037326841}
     - target: {fileID: 1122552970892154144, guid: 152a40d6409570d4e995d86a2b523a40,
         type: 3}
       propertyPath: fallbackTile
@@ -4215,6 +4709,41 @@ PrefabInstance:
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 1845383477}
+    - target: {fileID: 4755384718614742801, guid: 152a40d6409570d4e995d86a2b523a40,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755384718614742801, guid: 152a40d6409570d4e995d86a2b523a40,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755384718614742801, guid: 152a40d6409570d4e995d86a2b523a40,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 321377136}
+    - target: {fileID: 4755384718614742801, guid: 152a40d6409570d4e995d86a2b523a40,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755384718614742801, guid: 152a40d6409570d4e995d86a2b523a40,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FitView
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755384718614742801, guid: 152a40d6409570d4e995d86a2b523a40,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AutoScaleCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755384718614742801, guid: 152a40d6409570d4e995d86a2b523a40,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7806482419335874486, guid: 152a40d6409570d4e995d86a2b523a40,
         type: 3}
       propertyPath: compass
@@ -4241,6 +4770,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 152a40d6409570d4e995d86a2b523a40, type: 3}
+--- !u!114 &1773690199 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1076217579204442466, guid: 152a40d6409570d4e995d86a2b523a40,
+    type: 3}
+  m_PrefabInstance: {fileID: 1773690198}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df185a09ff1ef4d847bb47e1a889b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1789554567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4344,6 +4885,41 @@ PrefabInstance:
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 1198615901}
+    - target: {fileID: 3439193035554880075, guid: 7420308818d9f4b40943195ba4097d86,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439193035554880075, guid: 7420308818d9f4b40943195ba4097d86,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439193035554880075, guid: 7420308818d9f4b40943195ba4097d86,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1773690199}
+    - target: {fileID: 3439193035554880075, guid: 7420308818d9f4b40943195ba4097d86,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439193035554880075, guid: 7420308818d9f4b40943195ba4097d86,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FitView
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439193035554880075, guid: 7420308818d9f4b40943195ba4097d86,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AutoScaleCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439193035554880075, guid: 7420308818d9f4b40943195ba4097d86,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8244061687401887667, guid: 7420308818d9f4b40943195ba4097d86,
         type: 3}
       propertyPath: fallbackTile
@@ -4354,12 +4930,39 @@ PrefabInstance:
       propertyPath: teleportPoint
       value: 
       objectReference: {fileID: 1883696705}
+    - target: {fileID: 8681245609988336764, guid: 7420308818d9f4b40943195ba4097d86,
+        type: 3}
+      propertyPath: maxSize
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8681245609988336764, guid: 7420308818d9f4b40943195ba4097d86,
+        type: 3}
+      propertyPath: minSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8681245609988336764, guid: 7420308818d9f4b40943195ba4097d86,
+        type: 3}
+      propertyPath: targetCamera
+      value: 
+      objectReference: {fileID: 2037326841}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7997209476707990196, guid: 7420308818d9f4b40943195ba4097d86, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7420308818d9f4b40943195ba4097d86, type: 3}
+--- !u!114 &1789554568 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8681245609988336764, guid: 7420308818d9f4b40943195ba4097d86,
+    type: 3}
+  m_PrefabInstance: {fileID: 1789554567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df185a09ff1ef4d847bb47e1a889b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1843531451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4428,11 +5031,86 @@ PrefabInstance:
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 1919038470}
+    - target: {fileID: 3439193035554880075, guid: f64a659e7bc0e514aa01dd419b4d32af,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439193035554880075, guid: f64a659e7bc0e514aa01dd419b4d32af,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439193035554880075, guid: f64a659e7bc0e514aa01dd419b4d32af,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1657035315}
+    - target: {fileID: 3439193035554880075, guid: f64a659e7bc0e514aa01dd419b4d32af,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439193035554880075, guid: f64a659e7bc0e514aa01dd419b4d32af,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FitView
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439193035554880075, guid: f64a659e7bc0e514aa01dd419b4d32af,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AutoScaleCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3439193035554880075, guid: f64a659e7bc0e514aa01dd419b4d32af,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3653878054408667589, guid: f64a659e7bc0e514aa01dd419b4d32af,
+        type: 3}
+      propertyPath: targetCamera
+      value: 
+      objectReference: {fileID: 2037326841}
     - target: {fileID: 4755384718614742801, guid: f64a659e7bc0e514aa01dd419b4d32af,
         type: 3}
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 1086422817}
+    - target: {fileID: 4755384718614742801, guid: f64a659e7bc0e514aa01dd419b4d32af,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755384718614742801, guid: f64a659e7bc0e514aa01dd419b4d32af,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755384718614742801, guid: f64a659e7bc0e514aa01dd419b4d32af,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1789554568}
+    - target: {fileID: 4755384718614742801, guid: f64a659e7bc0e514aa01dd419b4d32af,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755384718614742801, guid: f64a659e7bc0e514aa01dd419b4d32af,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FitView
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755384718614742801, guid: f64a659e7bc0e514aa01dd419b4d32af,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AutoScaleCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755384718614742801, guid: f64a659e7bc0e514aa01dd419b4d32af,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4827428702057166646, guid: f64a659e7bc0e514aa01dd419b4d32af,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4464,6 +5142,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1843531451}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1843531453 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3653878054408667589, guid: f64a659e7bc0e514aa01dd419b4d32af,
+    type: 3}
+  m_PrefabInstance: {fileID: 1843531451}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df185a09ff1ef4d847bb47e1a889b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1845383477 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5772942929921077532, guid: 30b96fe2558eb86468736dd59dc173df,
@@ -4495,6 +5185,41 @@ PrefabInstance:
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 287564979}
+    - target: {fileID: 277079171886847582, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 277079171886847582, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 277079171886847582, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1657035315}
+    - target: {fileID: 277079171886847582, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 277079171886847582, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FitView
+      objectReference: {fileID: 0}
+    - target: {fileID: 277079171886847582, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AutoScaleCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 277079171886847582, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1406024658944696435, guid: fb913962c6005904cb3b04cd6d58514d,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -4670,6 +5395,21 @@ PrefabInstance:
       propertyPath: right
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5889458636227852867, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: maxSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5889458636227852867, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: minSize
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5889458636227852867, guid: fb913962c6005904cb3b04cd6d58514d,
+        type: 3}
+      propertyPath: targetCamera
+      value: 
+      objectReference: {fileID: 2037326841}
     - target: {fileID: 7090683767804318170, guid: fb913962c6005904cb3b04cd6d58514d,
         type: 3}
       propertyPath: onSuccess.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4733,6 +5473,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1979042071}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1979042074 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5889458636227852867, guid: fb913962c6005904cb3b04cd6d58514d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1979042071}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df185a09ff1ef4d847bb47e1a889b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1998227232 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 870640603888374707, guid: 152a40d6409570d4e995d86a2b523a40,
@@ -4752,6 +5504,41 @@ PrefabInstance:
       propertyPath: m_teleportPoint
       value: 
       objectReference: {fileID: 1142569790}
+    - target: {fileID: 287874964597839023, guid: f93de91d139daba4a8ead6806ba1e32b,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 287874964597839023, guid: f93de91d139daba4a8ead6806ba1e32b,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 287874964597839023, guid: f93de91d139daba4a8ead6806ba1e32b,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1142569792}
+    - target: {fileID: 287874964597839023, guid: f93de91d139daba4a8ead6806ba1e32b,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 287874964597839023, guid: f93de91d139daba4a8ead6806ba1e32b,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FitView
+      objectReference: {fileID: 0}
+    - target: {fileID: 287874964597839023, guid: f93de91d139daba4a8ead6806ba1e32b,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AutoScaleCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 287874964597839023, guid: f93de91d139daba4a8ead6806ba1e32b,
+        type: 3}
+      propertyPath: tilesToResize.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1137774662772114147, guid: f93de91d139daba4a8ead6806ba1e32b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4807,6 +5594,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForestEnter
       objectReference: {fileID: 0}
+    - target: {fileID: 6002805969505208708, guid: f93de91d139daba4a8ead6806ba1e32b,
+        type: 3}
+      propertyPath: minSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6002805969505208708, guid: f93de91d139daba4a8ead6806ba1e32b,
+        type: 3}
+      propertyPath: targetCamera
+      value: 
+      objectReference: {fileID: 2037326841}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4818,6 +5615,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2025063401}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2025063403 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6002805969505208708, guid: f93de91d139daba4a8ead6806ba1e32b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2025063401}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93df185a09ff1ef4d847bb47e1a889b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2037326838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4924,6 +5733,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c158ef6706c9cc499236d3b597111e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!20 &2037326841 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3792877587150632377, guid: 17aabcfba52af6b42a7e7f1e65379084,
+    type: 3}
+  m_PrefabInstance: {fileID: 2037326838}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2062986871 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2214775978353913388, guid: d6593f4827c37dd4f9681901332d7756,
