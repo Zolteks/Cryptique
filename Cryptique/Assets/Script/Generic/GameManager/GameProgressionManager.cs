@@ -26,6 +26,10 @@ public class GameProgressionManager : Singleton<GameProgressionManager>
             saveSystemManager = SaveSystemManager.Instance;
         }
         string region = saveSystemManager.GetGameData().progression.currentRegion;
+        if (String.IsNullOrEmpty(region))
+            Debug.LogError("Region is null or empty");
+        else
+            Debug.Log("Current Region: " + region);
         foreach (var item in GetRegionByName(region).GetPuzzles())
         {
             item.SetCompleted(false);
