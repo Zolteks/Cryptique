@@ -23,8 +23,11 @@ public class SFX_PlayLoop : MonoBehaviour
 
     private void Update()
     {
-        if(firstTime) 
+        if (firstTime)
+        {
             StartCoroutine(WaitForRandomTime(Random.Range(minWaitTime, maxWaitTime)));
+            firstTime = false;
+        }
 
         if (!isWaiting)
         {

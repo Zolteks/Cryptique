@@ -1,14 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Linq;
+using System.Collections.Generic;
+
 
 public class UI_ObjectDescription : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI m_itemName;
     [SerializeField] private TextMeshProUGUI m_itemDescription;
     [SerializeField] private RawImage rawImage;
+
+    [SerializeField] private GraphicRaycaster raycaster;
+    [SerializeField] private EventSystem eventSystem;
+
 
 
     private Camera itemCamera;
@@ -118,8 +124,11 @@ public class UI_ObjectDescription : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            lastTouchPosition = Input.mousePosition;
-            isDragging = true;
+            if (IsPointerOverRawImage())
+            {
+                lastTouchPosition = Input.mousePosition;
+                isDragging = true;
+            }
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -149,8 +158,11 @@ public class UI_ObjectDescription : MonoBehaviour
 
     private void HandleStartTouch(Vector2 pos, float time)
     {
-        lastTouchPosition = pos;
-        isDragging = true;
+        if (IsPointerOverRawImage())
+        {
+            lastTouchPosition = pos;
+            isDragging = true;
+        }
     }
 
     private void HandleEndTouch(Vector2 pos, float time)
@@ -173,6 +185,19 @@ public class UI_ObjectDescription : MonoBehaviour
     }
 
 
+    private bool IsPointerOverRawImage()
+    {
+        PointerEventData pointerData = new PointerEventData(eventSystem)
+        {
+            position = Input.mousePosition
+        };
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        raycaster.Raycast(pointerData, results);
+
+        // Vérifie si on clique sur l'objet RawImage
+        return results.Any(r => r.gameObject == rawImage.gameObject);
+    }
 
 
 }

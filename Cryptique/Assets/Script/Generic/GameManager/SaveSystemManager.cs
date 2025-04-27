@@ -2,8 +2,11 @@ using SaveSystem;
 using SaveSystem.SSJson;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
+using static UnityEngine.Rendering.DebugUI;
 
 enum FrameRate
 {
@@ -28,6 +31,8 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
         Application.runInBackground = true;
         saveManager.Register(new JsonSaveSystem<GameDataJson>());
         gameData = new GameData();
+
+        //Test();
     }
 
     public void SaveGame()
@@ -46,6 +51,8 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
             {
                 gameData.ApplySave(data);
                 Debug.Log("Game loaded.");
+
+                LocalizationSettings.AvailableLocales.Locales.FirstOrDefault(l => l.Identifier.Code == GetLocaleCode(gameData.settings.langue));
             }
         }
         else
@@ -77,6 +84,16 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
         return gameData;
     }
 
+
+    private string GetLocaleCode(LanguageCode code)
+    {
+        return code switch
+        {
+            LanguageCode.EN => "en",
+            LanguageCode.FR => "fr",
+            _ => "en", // fallback
+        };
+    }
 
 #if UNITY_EDITOR
     public void OnApplicationQuit()
@@ -113,29 +130,29 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
     }
 #endif
 
-    //private void Test()
-    //{
-    //    GameData gameData = new GameData();
-    //    gameData.progression.IsTutorialDone = true;
-    //    gameData.progression.currentRegion = "Tavern";
-    //    gameData.progression.currentChapterName = "Wendigo";
-    //    gameData.progression.completedPuzzles = new();
-    //    gameData.progression.solvedPuzzles = new();
-    //    gameData.progression.collectedItems = new();
-    //    gameData.progression.unlockedChapters = new();
-    //    gameData.progression.unlockedRegions = new();
-    //    gameData.progression.completedPuzzles = new();
+    private void Test()
+    {
+        GameData gameData = new GameData();
+        gameData.progression.IsTutorialDone = true;
+        gameData.progression.currentRegion = "Tavern";
+        gameData.progression.currentChapterName = "Wendigo";
+        gameData.progression.completedPuzzles = new();
+        gameData.progression.solvedPuzzles = new();
+        gameData.progression.collectedItems = new();
+        gameData.progression.unlockedChapters = new();
+        gameData.progression.unlockedRegions = new();
+        gameData.progression.completedPuzzles = new();
 
-    //    gameData.settings.volumeMusic = 0.5f;
-    //    gameData.settings.volumeSfx = 0.7f;
-    //    gameData.settings.langue = LanguageCode.EN;
-    //    gameData.settings.slideMode = SlideMode.Slide;
+        gameData.settings.volumeMusic = 0.5f;
+        gameData.settings.volumeSfx = 0.7f;
+        gameData.settings.langue = LanguageCode.EN;
+        gameData.settings.slideMode = SlideMode.Slide;
 
-    //    // On assigne les donnees au save manager
-    //    SaveSystemManager.Instance.GetGameData().ApplySave(gameData.ToJson());
+        // On assigne les donnees au save manager
+        SaveSystemManager.Instance.GetGameData().ApplySave(gameData.ToJson());
 
-    //    // Sauvegarde
-    //    SaveSystemManager.Instance.SaveGame();
-    //    Debug.Log("Donnees de test sauvegardees.");
-    //}
+        // Sauvegarde
+        SaveSystemManager.Instance.SaveGame();
+        Debug.Log("Donnees de test sauvegardees.");
+    }
 }
