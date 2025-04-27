@@ -21,6 +21,7 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
     private SaveManager<GameDataJson> saveManager = new SaveManager<GameDataJson>();
     private string saveKey = "CryptiqueSaveData";
     private GameData gameData;
+    [SerializeField] private bool m_isDebug = false;
     [SerializeField] private FrameRate m_targetFrameRate = FrameRate.Medium;
 
     private void Start()
@@ -125,7 +126,7 @@ public class SaveSystemManager : SingletonPersistent<SaveSystemManager>
     private void Test()
     {
         GameData gameData = new GameData();
-        gameData.progression.IsTutorialDone = true;
+        gameData.progression.IsTutorialDone = m_isDebug;
         gameData.progression.currentRegion = "Tavern";
         gameData.progression.currentChapterName = "Wendigo";
         gameData.progression.completedPuzzles = new();
