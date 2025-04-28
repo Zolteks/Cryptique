@@ -84,7 +84,7 @@ public class IN_EscapeArrow : OBJ_Interactable
 
             foreach(RegionData region in m_gameProgressionManager.GetRegions())
             {
-                if (region.GetName() == m_goToRegion)
+                if (region.defaultRegionName == m_goToRegion)
                 {
                     m_SaveSystemManager.GetGameData().progression.currentRegion = region.defaultRegionName;
                     

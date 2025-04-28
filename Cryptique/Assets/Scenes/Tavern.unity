@@ -1069,6 +1069,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 7.6076202
       objectReference: {fileID: 0}
+    - target: {fileID: 1101778837616166739, guid: a6496054e12ad0041815091d24fcb847,
+        type: 3}
+      propertyPath: key
+      value: Tavern
+      objectReference: {fileID: 0}
+    - target: {fileID: 1101778837616166739, guid: a6496054e12ad0041815091d24fcb847,
+        type: 3}
+      propertyPath: localisationData
+      value: 
+      objectReference: {fileID: 11400000, guid: c547686c7fbdde444a7f61b33deb5fe7,
+        type: 2}
     - target: {fileID: 1122388668015353036, guid: a6496054e12ad0041815091d24fcb847,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3719,6 +3730,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1322053966}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &610285306 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 139281581087965004, guid: a6496054e12ad0041815091d24fcb847,
+    type: 3}
+  m_PrefabInstance: {fileID: 281015558}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &633037534
 GameObject:
   m_ObjectHideFlags: 0
@@ -4036,6 +4053,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 23800000, guid: 477d5d8ff4e9cde46a5f33921a27d49d,
         type: 2}
+    - target: {fileID: 9143798404617935225, guid: c0b03de04c14e924cafbb28f5118be9c,
+        type: 3}
+      propertyPath: UI_Play
+      value: 
+      objectReference: {fileID: 610285306}
     - target: {fileID: 9143798404617935225, guid: c0b03de04c14e924cafbb28f5118be9c,
         type: 3}
       propertyPath: tNameText

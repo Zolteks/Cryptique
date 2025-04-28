@@ -53,6 +53,8 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
     private float m_currentTextSpeed;
     private bool bIsTypingText = false;
 
+    [SerializeField] private GameObject UI_Play;
+
     void Awake()
     {
         m_languageManager = LanguageManager.Instance;
@@ -67,6 +69,8 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
 
     public void ShowDialogueUI()
     {
+        UI_Play.SetActive(false);
+
         m_playerController.DisableInput();
         dialoguePanel.SetActive(true);
     }
@@ -74,6 +78,7 @@ public class UI_DialogueManager : Singleton<UI_DialogueManager>
     public void HideDialogueUI(float time)
     {
         StartCoroutine(CoroutineDeactivateAfterAnimation(time));
+        UI_Play.SetActive(true);
     }
 
     IEnumerator CoroutineDeactivateAfterAnimation(float time)
