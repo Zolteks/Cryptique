@@ -30,7 +30,9 @@ public class IN_Character : OBJ_Interactable
     private PC_PlayerController m_playerController;
     private LanguageManager m_languageManager;
     private UI_DialogueManager m_dialogueManager;
-    
+
+    private bool wasInteracting = false;
+
     /* Functions */
     private void Start()
     {
@@ -74,6 +76,7 @@ public class IN_Character : OBJ_Interactable
     public override bool Interact()
     {
         Wait();
+        wasInteracting = true;
         return true;
     }
     
@@ -224,4 +227,9 @@ public class IN_Character : OBJ_Interactable
     }
 
     #endregion Mouvements
+    
+    public bool getWasInteracting()
+    {
+        return wasInteracting;
+    }
 }
