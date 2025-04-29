@@ -31,9 +31,6 @@ public class ForestAccess : MonoBehaviour
             character = placeHorse.GetComponent<IN_Character>();
             horseAnimator = placeHorse.GetComponent<Animator>();
         }
-
-        if (character == null)
-            Debug.LogError("ForestAccess -> Character not found on placeHorse");
     }
 
     private void Update()
@@ -48,7 +45,6 @@ public class ForestAccess : MonoBehaviour
             if (inventoryManager.CheckForItem(cond))
             {
                 foundConds.Add(cond);
-                Debug.Log($"ForestAccess -> Found condition: {cond.GetName()}");
             }
         }
 
@@ -60,23 +56,16 @@ public class ForestAccess : MonoBehaviour
         if (character.getWasInteracting())
         { 
             isInteract = true;
-            Debug.Log("ForestAccess -> Character is interacting");
         }
-        else
-            Debug.Log("ForestAccess -> Character not interacting");
 
         if (conds.Count == 0 && isInteract && !horseMoving)
         {
             StartCoroutine(MoveHorseCoroutine());
-
-            Destroy(this);
         }
     }
 
     private IEnumerator MoveHorseCoroutine()
     {
-        Debug.Log("ForestAccess -> All conditions met, moving horse.");
-
         horseMoving = true;
 
         if (horseAnimator != null)
@@ -98,7 +87,5 @@ public class ForestAccess : MonoBehaviour
 
         placeHorse.SetActive(false);
         enterHorse.SetActive(true);
-
-        Debug.Log("ForestAccess -> Horse moved and switched successfully.");
     }
 }
